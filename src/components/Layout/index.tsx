@@ -1,9 +1,9 @@
 import React from "react";
 
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 import styles from "./Layout.module.scss";
-import Footer from "./Footer";
 
 interface Layout {
   children: React.ReactNode;
