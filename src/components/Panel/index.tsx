@@ -2,7 +2,11 @@ import React from "react";
 
 import styles from "./Panel.module.scss";
 
-function Panel({ children }: { children: React.ReactNode }) {
+interface Panel {
+  children: React.ReactNode;
+}
+
+function Panel({ children }: Panel) {
   return <div className={styles.Panel}>{children}</div>;
 }
 
