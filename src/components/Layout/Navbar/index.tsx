@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import classNames from "classnames";
+
 import ConunLogo from "@/assets/icons/conun-logo-head-bar.svg";
 
 import styles from "./Navbar.module.scss";
@@ -16,7 +17,7 @@ function Navbar() {
     {
       id: "smart-contract",
       name: "Smart Contract",
-      path: "/smart",
+      path: "/smart-contract",
       show: true,
     },
     {
@@ -28,24 +29,22 @@ function Navbar() {
   ];
   return (
     <div className={styles.Navbar}>
-      <Link href="/#home">
-        <a>
-          <ConunLogo className={classNames(styles.ConunLogo)} />
-        </a>
-      </Link>
-      {PAGES.map((nav) => {
-        return (
-          <a
-            key={nav.id}
-            href={nav.path}
-            className={classNames(styles.Nav)}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {nav.name}
+      <div className={styles.Logo}>
+        <Link href="/">
+          <a>
+            <ConunLogo />
           </a>
-        );
-      })}
+        </Link>
+      </div>
+      <div className={styles.Navs}>
+        {PAGES.map((nav) => {
+          return (
+            <Link key={nav.id} href={nav.path}>
+              <a className={classNames(styles.Nav)}>{nav.name}</a>
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 }
