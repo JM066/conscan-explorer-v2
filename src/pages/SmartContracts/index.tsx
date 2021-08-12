@@ -1,7 +1,9 @@
 import React from "react";
 
+import Panel from "@/components/Panel";
+
 function SmartContract() {
-  return <div>This is Smart Contract</div>;
+  return <Panel>This is Smart Contracts</Panel>;
 }
 
 export default SmartContract;
