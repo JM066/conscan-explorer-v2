@@ -2,6 +2,7 @@ import React from "react";
 
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import PageContainer from "./PageContainer";
 
 import styles from "./Layout.module.scss";
 
@@ -13,7 +14,7 @@ function Layout({ children }: Layout) {
   return (
     <div className={styles.Layout}>
       <Navbar />
-      {children}
+      <PageContainer>{children}</PageContainer>
       <Footer />
     </div>
   );
