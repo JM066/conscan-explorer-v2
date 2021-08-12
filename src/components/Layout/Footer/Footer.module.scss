@@ -1,5 +1,65 @@
 .Footer {
-  background-color: bisque;
+  background-color: var(--footerground);
   height: 200px;
   width: 100%;
+  & .FooterItems {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+
+    & .WorldCell {
+      height: 100px;
+
+      & .World {
+        height: 100px;
+        margin-top: 20px;
+        width: 300px;
+      }
+    }
+
+    & .IconContainer {
+      align-items: left;
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      & .LogoCell {
+        color: white;
+        margin: 10px 0;
+        width: 200px;
+        & .Logo {
+          width: 100px;
+        }
+      }
+      & .Icons {
+        display: flex;
+        justify-content: space-between;
+      }
+      & .Version {
+        color: white;
+      }
+    }
+
+    & .CompanyCell {
+      color: white;
+      display: flex;
+      flex-direction: column;
+      font-weight: bold;
+      & .Company {
+        font-size: 14px;
+        font-weight: 300;
+        margin-top: 10px;
+      }
+    }
+    & .CommunityCell {
+      color: white;
+      display: flex;
+      flex-direction: column;
+      & .Community {
+        font-size: 14px;
+        font-weight: 300;
+        margin-top: 10px;
+      }
+    }
+  }
 }
