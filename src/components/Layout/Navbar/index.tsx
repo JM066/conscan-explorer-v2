@@ -19,13 +19,11 @@ function Navbar() {
           </Link>
         </div>
         <div className={styles.Navs}>
-          {PAGES_HEADER.map((nav) => {
-            return (
-              <Link key={nav.id} href={nav.path}>
-                <a className={styles.Nav}>{nav.name}</a>
-              </Link>
-            );
-          })}
+          {PAGES_HEADER.map((nav) => (
+            <Link key={nav.id} href={nav.path}>
+              <a className={styles.Nav}>{nav.name}</a>
+            </Link>
+          ))}
         </div>
       </div>
     </div>

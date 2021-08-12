@@ -8,13 +8,11 @@ import styles from "./Footer.module.scss";
 function Footer() {
   return (
     <div className={styles.Footer}>
-      {PAGES_FOOTER.map((logo) => {
-        return (
-          <Link key={logo.id} href={logo.path}>
-            <a>{logo.id}</a>
-          </Link>
-        );
-      })}
+      {PAGES_FOOTER.map((logo) => (
+        <Link key={logo.id} href={logo.path}>
+          <a>{logo.id}</a>
+        </Link>
+      ))}
     </div>
   );
 }
