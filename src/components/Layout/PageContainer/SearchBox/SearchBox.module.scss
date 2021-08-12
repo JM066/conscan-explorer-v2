@@ -1,0 +1,26 @@
+.SearchBox {
+  align-items: center;
+  background-color: var(--foreground);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 150px;
+  justify-content: center;
+  width: 100%;
+
+  & .Title {
+    font-size: 2em;
+    font-weight: 500;
+    & .Red {
+      color: var(--red-main);
+    }
+  }
+
+  & .SearchPlaceholder {
+    border: 2px solid var(--grey-bkg);
+    border-radius: var(--radius);
+    height: 30px;
+    width: 900px;
+  }
+}
