@@ -1,5 +1,27 @@
-.Navbar {
-  background-color: bisque;
-  height: 60px;
+.Header {
+  background-color: var(--foreground);
+  border-bottom: 1px solid black;
   width: 100%;
+  .Navbar {
+    align-items: center;
+    display: flex;
+    height: 60px;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 70%;
+    & .Logo {
+      margin-left: 20px;
+      width: 200px;
+    }
+
+    & .Navs {
+      color: skyblue;
+      font-size: 18px;
+      font-weight: bold;
+      & .Nav {
+        cursor: pointer;
+        margin-right: 20px;
+      }
+    }
+  }
 }
