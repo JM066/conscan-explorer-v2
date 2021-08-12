@@ -28,22 +28,24 @@ function Navbar() {
     },
   ];
   return (
-    <div className={styles.Navbar}>
-      <div className={styles.Logo}>
-        <Link href="/">
-          <a>
-            <ConunLogo />
-          </a>
-        </Link>
-      </div>
-      <div className={styles.Navs}>
-        {PAGES.map((nav) => {
-          return (
-            <Link key={nav.id} href={nav.path}>
-              <a className={classNames(styles.Nav)}>{nav.name}</a>
-            </Link>
-          );
-        })}
+    <div className={styles.Header}>
+      <div className={styles.Navbar}>
+        <div className={styles.Logo}>
+          <Link href="/">
+            <a>
+              <ConunLogo />
+            </a>
+          </Link>
+        </div>
+        <div className={styles.Navs}>
+          {PAGES.map((nav) => {
+            return (
+              <Link key={nav.id} href={nav.path}>
+                <a className={classNames(styles.Nav)}>{nav.name}</a>
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
