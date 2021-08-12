@@ -2,9 +2,9 @@ import React from "react";
 
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import PageContainer from "./PageContainer";
 
 import styles from "./Layout.module.scss";
-import PageContainer from "./PageContainer";
 
 interface Layout {
   children: React.ReactNode;
