@@ -1,7 +1,7 @@
 import React from "react";
 
-const Docs = () => {
+function Docs() {
   return <div>This is Docs</div>;
-};
+}
 
 export default Docs;

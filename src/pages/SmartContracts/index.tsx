@@ -1,7 +1,7 @@
 import React from "react";
 
-const SmartContract = () => {
+function SmartContract() {
   return <div>This is Smart Contract</div>;
-};
+}
 
 export default SmartContract;
