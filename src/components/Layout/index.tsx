@@ -4,6 +4,11 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import PageContainer from "./PageContainer";
 
+import { useChannelHash } from "src/hooks/useChannelHash";
+
+import Loading from "../Loading";
+import Disconnected from "../Disconnected";
+
 import styles from "./Layout.module.scss";
 
 interface Layout {
@@ -11,10 +16,20 @@ interface Layout {
 }
 
 function Layout({ children }: Layout) {
+  const { channelHash, loadingChannelHash } = useChannelHash();
+
   return (
     <div className={styles.Layout}>
       <Navbar />
-      <PageContainer>{children}</PageContainer>
+      <PageContainer>
+        {loadingChannelHash ? (
+          <Loading />
+        ) : channelHash ? (
+          children
+        ) : (
+          <Disconnected />
+        )}
+      </PageContainer>
       <Footer />
     </div>
   );
