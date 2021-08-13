@@ -12,7 +12,7 @@ import Disconnected from "../Disconnected";
 import styles from "./Layout.module.scss";
 
 interface Layout {
-  children: React.ReactNode;
+  children: React.ReactElement;
 }
 
 function Layout({ children }: Layout) {
