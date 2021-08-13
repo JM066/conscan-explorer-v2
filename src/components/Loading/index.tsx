@@ -7,8 +7,8 @@ function Loading() {
   return (
     <Panel centered className={styles.Panel}>
       <div className={styles.Loader}>
-        <div></div>
-        <div></div>
+        <div />
+        <div />
       </div>
     </Panel>
   );
