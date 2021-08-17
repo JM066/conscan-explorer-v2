@@ -1,9 +1,9 @@
-import tele from "@/assets/icons/telegramIcon.png";
-import face from "@/assets/icons/facebookIcon.png";
-import twit from "@/assets/icons/twitterIcon.png";
-import kack from "@/assets/icons/kakaoIcon.png";
-import git from "@/assets/icons/githubIcon.png";
-import disc from "@/assets/icons/discordIcon.png";
+import Tele from "@/assets/icons/telegramIcon.svg";
+import Face from "@/assets/icons/facebookIcon.svg";
+import Twit from "@/assets/icons/twitterIcon.svg";
+import Kack from "@/assets/icons/kakaoIcon.svg";
+import Git from "@/assets/icons/githubIcon.svg";
+import Disc from "@/assets/icons/discordIcon.svg";
 
 export const PAGES_HEADER = [
   {
@@ -26,32 +26,32 @@ export const PAGES_HEADER = [
 export const PAGES_FOOTER = [
   {
     id: "telegram",
-    icon: tele,
+    icon: <Tele />,
     path: "https://t.me/conun_global",
   },
   {
     id: "facebook",
-    icon: face,
+    icon: <Face />,
     path: "https://www.facebook.com/conunglobal",
   },
   {
     id: "twitter",
-    icon: twit,
+    icon: <Twit />,
     path: "https://twitter.com/conunglobal",
   },
   {
     id: "kakao",
-    icon: kack,
+    icon: <Kack />,
     path: "https://open.kakao.com/o/gCsycmhb",
   },
   {
     id: "github",
-    icon: git,
+    icon: <Git />,
     path: "https://github.com/CONUN-Global/CONUN",
   },
   {
     id: "discord",
-    icon: disc,
+    icon: <Disc />,
     path: "https://discord.gg/VvXvQfa3Za",
   },
 ];
@@ -61,12 +61,12 @@ export const SECTIONS = {
     {
       id: "about-us",
       name: "About Us",
-      path: "https://discord.gg/VvXvQfa3Za",
+      path: "https://conun.io/#overview",
     },
     {
       id: "contact-us",
       name: "Contact Us",
-      path: "https://discord.gg/VvXvQfa3Za",
+      path: "https://conun.io/contactus",
     },
     {
       id: "terms-of-service",

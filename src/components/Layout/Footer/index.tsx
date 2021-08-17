@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 import { PAGES_FOOTER } from "../../../const";
 import { SECTIONS } from "../../../const";
@@ -24,9 +23,7 @@ function Footer() {
           <div className={styles.Icons}>
             {PAGES_FOOTER.map((logo) => (
               <Link key={logo.id} href={logo.path}>
-                <a>
-                  <Image src={logo.icon} alt={logo.id} />
-                </a>
+                <a className={styles.LogoIcon}>{logo.icon}</a>
               </Link>
             ))}
           </div>

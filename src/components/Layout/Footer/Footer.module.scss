@@ -25,6 +25,8 @@
       padding: 10px;
       & .LogoCell {
         color: white;
+        font-size: 14px;
+        font-weight: 300;
         margin: 10px 0;
         width: 200px;
         & .Logo {
@@ -33,10 +35,16 @@
       }
       & .Icons {
         display: flex;
+        height: 50px;
         justify-content: space-between;
+        & .LogoIcon {
+          height: 50px;
+        }
       }
       & .Version {
         color: white;
+        font-size: 14px;
+        font-weight: 300;
       }
     }
 
@@ -55,6 +63,7 @@
       color: white;
       display: flex;
       flex-direction: column;
+      font-weight: bold;
       & .Community {
         font-size: 14px;
         font-weight: 300;
