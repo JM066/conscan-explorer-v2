@@ -5,6 +5,8 @@ import Kack from "@/assets/icons/kakaoIcon.svg";
 import Git from "@/assets/icons/githubIcon.svg";
 import Disc from "@/assets/icons/discordIcon.svg";
 
+export const BASE_URL = "http://192.168.100.54:8081/api/";
+
 export const PAGES_HEADER = [
   {
     id: "main",
