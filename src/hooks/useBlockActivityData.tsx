@@ -1,14 +1,13 @@
-// import React from "react";
 import { useQuery } from "react-query";
 import instance from "../axios/instance";
 
-import { useChannelHash } from "../helpers/useChannelHash";
+import { useChannelHash } from "./useChannelHash";
 
 const useBlockActivityData = () => {
   const { channelHash } = useChannelHash();
-  const { data, isLoading } = useQuery("available-channels", async () => {
+  const { data, isLoading } = useQuery("blocks-activity", async () => {
     const response = await instance.get(`/blockActivity/${channelHash}`);
-    return response.data;
+    return response.data?.row;
   });
   {
     return { data, isLoading };

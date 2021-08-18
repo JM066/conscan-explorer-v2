@@ -1,8 +1,9 @@
 import React from "react";
 
-import StatsBlock from "./StatsBlock";
+import StatsBlock from "../Main/StatsBlock";
 
 import BlocksActivitySection from "@/components/Layout/PageContainer/BlocksActivitySection";
+
 import styles from "./Home.module.scss";
 
 function Home() {

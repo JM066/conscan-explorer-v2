@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["src/components/*"],
-      "@/assets/*": ["src/assets/*"]
+      "@/assets/*": ["src/assets/*"],
+      "@/hooks/*": ["src/hooks/*"]
     },
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
