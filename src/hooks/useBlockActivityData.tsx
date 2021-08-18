@@ -1,23 +1,18 @@
 // import React from "react";
-// import { useQuery } from "react-query";
-// import instance from "../axios/instance";
-// import instance from "src/axios/instance";
-// import getAvailableChannels from "../helpers/getAvailableChannels";
+import { useQuery } from "react-query";
+import instance from "../axios/instance";
 
-// const channelHash = getAvailableChannels();
+import { useChannelHash } from "../helpers/useChannelHash";
 
-// const getBlocksActivity = async (channelHash: string) => {
-//   const { data } = await instance.get(`/blockActivity/${channelHash}`);
-//   return data;
-// };
 const useBlockActivityData = () => {
-  //   const { data, isLoading: isChannelInfoLoading } = useQuery("channels", () =>
-  //     getBlocksActivity(channelHash: any)
-  //   );
-  //   return {
-  //     response: data,
-  //     isChannelInfoLoading,
-  //   };
+  const { channelHash } = useChannelHash();
+  const { data, isLoading } = useQuery("available-channels", async () => {
+    const response = await instance.get(`/blockActivity/${channelHash}`);
+    return response.data;
+  });
+  {
+    return { data, isLoading };
+  }
 };
 
 export default useBlockActivityData;
