@@ -10,22 +10,24 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
+    "@types/react-table": "^7.7.2",
     "axios": "^0.21.1",
     "classnames": "^2.3.1",
     "eslint": "^7.32.0",
-    "next": "11.0.1",
+    "next": "11.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-query": "^3.19.4",
     "react-table": "^7.7.0",
+    "react-waypoint": "^10.1.0",
     "sass": "^1.37.5"
   },
   "devDependencies": {
     "@svgr/webpack": "^5.5.0",
-    "@types/react": "17.0.16",
+    "@types/react": "17.0.18",
     "@typescript-eslint/eslint-plugin": "^4.29.1",
     "@typescript-eslint/parser": "^4.29.1",
-    "eslint-config-next": "^11.0.1",
+    "eslint-config-next": "^11.1.0",
     "eslint-config-prettier": "^8.3.0",
     "husky": "^7.0.1",
     "lint-staged": "^11.1.2",
