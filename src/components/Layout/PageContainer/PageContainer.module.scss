@@ -1,9 +1,9 @@
 .PageContainer {
   align-items: center;
   display: flex;
+  flex: 0 1 1200px;
   flex-direction: column;
   gap: var(--gap);
   min-height: 100vh;
   padding: var(--gap) 0;
-  width: 1200px;
 }
