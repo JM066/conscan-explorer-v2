@@ -1,13 +1,17 @@
 import React, { useMemo } from "react";
+
 import { useFlexLayout, useResizeColumns, useTable } from "react-table";
+import { reducedHash } from "@/helpers/hashDisplay";
 
 import Table from "@/components/Table";
 import Panel from "@/components/Panel";
 import Loading from "@/components/Loading";
 import IdenticonLink from "@/components/IdenticonLink";
 import useBlockActivityData from "@/hooks/useBlockActivityData";
-
+import styles from "./BlocksActivitySection.module.scss";
+import Title from "@/components/Title";
 interface Block {
+  icon: string;
   blocknum: number;
   txcount: number;
   blockhash: string;
@@ -18,12 +22,7 @@ function BlocksActivitySection() {
 
   const blocks = blockactivity?.map((block: Block) => {
     return {
-      icon: (
-        <IdenticonLink
-          link="/smart-contracts"
-          blocknum={block.blocknum.toString()}
-        />
-      ),
+      icon: block.blocknum.toString(),
       blocknum: block.blocknum,
       txcount: block.txcount,
       blockhash: block.blockhash,
@@ -33,20 +32,41 @@ function BlocksActivitySection() {
 
   const columns = useMemo(
     () => [
-      { accessor: "icon" },
+      {
+        accessor: "icon",
+        hideHeader: true,
+
+        Cell: function Celly({ value }: { value: any }) {
+          return (
+            <div className={styles.IconBox}>
+              <IdenticonLink link="/smart-contracts" blocknum={value} />
+            </div>
+          );
+        },
+      },
       {
         accessor: "blocknum",
+        hideHeader: true,
       },
       {
         accessor: "txcount",
-        maxWidth: 80,
+        hideHeader: true,
+        maxWidth: 100,
+        Cell: function Celly({ value }: { value: number }) {
+          return <div className={styles.TxcountBox}>{value}</div>;
+        },
       },
       {
         accessor: "blockhash",
+        hideHeader: true,
+        Cell: ({ value }: { value: string }) => {
+          const hash = reducedHash(value);
+          return hash;
+        },
       },
       {
         accessor: "createdt",
-        // accessor: (row: any) => new Date(row.createdt).toDateString(),
+        hideHeader: true,
       },
     ],
     []
@@ -62,7 +82,8 @@ function BlocksActivitySection() {
   }
 
   return (
-    <Panel>
+    <Panel className={styles.TableContainer}>
+      <Title>Recent Blocks</Title>
       {isLoading ? <Loading /> : <Table instance={tableInstance} />}
     </Panel>
   );

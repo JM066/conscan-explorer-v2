@@ -7,13 +7,11 @@ interface iBlockProp {
 }
 const IdenticonLink = ({ blocknum, link }: iBlockProp) => {
   return (
-    <div>
-      <Link href={link}>
-        <a>
-          <Identicon size={15} string={blocknum} />
-        </a>
-      </Link>
-    </div>
+    <Link href={link}>
+      <a>
+        <Identicon size={15} string={blocknum} />
+      </a>
+    </Link>
   );
 };
 

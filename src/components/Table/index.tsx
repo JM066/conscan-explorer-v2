@@ -44,7 +44,7 @@ const Table: React.FunctionComponent<TableProps> = ({
                 {headerGroup.headers.map((column: any) => {
                   const { key: cellKey, ...cellProps } =
                     column.getHeaderProps();
-                  return (
+                  return column.hideHeader === true ? null : (
                     <div className={styles.Th} key={cellKey} {...cellProps}>
                       {column.render("Header")}
                       <div

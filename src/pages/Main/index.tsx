@@ -11,10 +11,8 @@ function Main() {
     <div className={styles.Container}>
       <StatsBlock />
       <div className={styles.Tables}>
-        <div className={styles.TablePlaceholder}>
-          <BlocksActivitySection />
-        </div>
-        <div className={styles.TablePlaceholder}>RIGHT TABLE</div>
+        <BlocksActivitySection />
+        <BlocksActivitySection />
       </div>
     </div>
   );
