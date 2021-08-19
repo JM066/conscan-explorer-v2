@@ -14,7 +14,7 @@ function useSmartContractList() {
           name: ch.chaincodename,
           version: ch.codes.length,
           txnCount: ch.codes[0].txcount,
-          updated: ch.codes[0].createdt,
+          updated: new Date(ch.codes[0].createdt),
         };
       });
     },

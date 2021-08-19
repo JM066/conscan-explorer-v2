@@ -2,7 +2,14 @@ import React from "react";
 import { useRouter } from "next/router";
 
 import Panel from "@/components/Panel";
+import Loading from "@/components/Loading";
+
 import useSmartContractList from "src/hooks/useSmartContractList";
+
+import { SmartContractDetailsType } from "src/types";
+import InfoTable from "./InfoTable";
+import ContractDescription from "./ContractDescription";
+import ContractTransactionViewer from "./ContractTransactionViewer";
 
 function ContractDetails() {
   const router = useRouter();
@@ -11,18 +18,25 @@ function ContractDetails() {
 
   const { listOfContracts, loadingContractList } = useSmartContractList();
 
-  console.log(listOfContracts);
-  console.log(contractName);
+  const thisSmartContract = listOfContracts?.find(
+    (con: SmartContractDetailsType) => con.name === contractName
+  );
 
   if (loadingContractList) {
-    return <Panel>LOADING</Panel>;
+    return <Loading />;
   }
 
-  if (!listOfContracts.some((con: any) => con.name === contractName)) {
-    return <Panel>Placeholder for redirect, or 404 or whatever</Panel>;
+  if (!thisSmartContract) {
+    router.push("/404");
   }
 
-  return <Panel>{contractName}</Panel>;
+  return (
+    <Panel>
+      <InfoTable smartContract={thisSmartContract} />
+      <ContractDescription />
+      <ContractTransactionViewer contractName={thisSmartContract.name} />
+    </Panel>
+  );
 }
 
 export default ContractDetails;

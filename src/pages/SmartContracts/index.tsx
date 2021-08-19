@@ -36,7 +36,8 @@ function SmartContract() {
       },
       {
         Header: "Last Updated",
-        accessor: "updated",
+        accessor: (row: any) => row.updated.toDateString(),
+        //todo - this should be time ago
       },
     ],
     []
