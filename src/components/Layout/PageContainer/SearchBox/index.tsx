@@ -8,7 +8,9 @@ function SearchBox() {
       <div className={styles.Title}>
         CONUN <span className={styles.Red}>BLOCKCHAIN</span> EXPLORER
       </div>
-      <div className={styles.SearchPlaceholder}></div>
+      <div className={styles.SearchBarCell}>
+        <input className={styles.SearchPlaceholder} />
+      </div>
     </div>
   );
 }

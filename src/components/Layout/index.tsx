@@ -21,15 +21,17 @@ function Layout({ children }: Layout) {
   return (
     <div className={styles.Layout}>
       <Navbar />
-      <PageContainer>
-        {loadingChannelHash ? (
-          <Loading />
-        ) : channelHash ? (
-          children
-        ) : (
-          <Disconnected />
-        )}
-      </PageContainer>
+      <div className={styles.AppWidth}>
+        <PageContainer>
+          {loadingChannelHash ? (
+            <Loading />
+          ) : channelHash ? (
+            children
+          ) : (
+            <Disconnected />
+          )}
+        </PageContainer>
+      </div>
       <Footer />
     </div>
   );
