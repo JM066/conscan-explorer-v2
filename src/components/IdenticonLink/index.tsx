@@ -1,11 +1,11 @@
 import Identicon from "react-identicons";
 import Link from "next/link";
 
-interface iBlockProp {
+interface IdenticonLink {
   blocknum: string;
   link: string;
 }
-const IdenticonLink = ({ blocknum, link }: iBlockProp) => {
+const IdenticonLink = ({ blocknum, link }: IdenticonLink) => {
   return (
     <Link href={link}>
       <a>
