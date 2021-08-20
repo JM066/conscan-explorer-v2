@@ -1,16 +1,19 @@
 import React, { useMemo } from "react";
-
 import { useFlexLayout, useResizeColumns, useTable } from "react-table";
-import { reducedHash } from "@/helpers/hashDisplay";
 
 import Table from "@/components/Table";
 import Panel from "@/components/Panel";
 import Loading from "@/components/Loading";
 import IdenticonLink from "@/components/IdenticonLink";
-import useBlockActivityData from "@/hooks/useBlockActivityData";
-import { getDistance } from "@/helpers/getDistance";
-import styles from "./BlocksActivitySection.module.scss";
 import Title from "@/components/Title";
+
+import useBlockActivityData from "@/hooks/useBlockActivityData";
+
+import { getDistance } from "@/helpers/getDistance";
+import { reducedHash } from "@/helpers/hashDisplay";
+
+import styles from "./BlocksActivitySection.module.scss";
+
 interface Block {
   icon: string;
   blocknum: number;
@@ -19,7 +22,8 @@ interface Block {
   createdt: any;
 }
 function BlocksActivitySection() {
-  const { data: blockactivity, isLoading } = useBlockActivityData();
+  const { data: blockactivity, isLoading } =
+    useBlockActivityData("blockActivity");
   const blocks = blockactivity?.map((block: Block) => {
     return {
       icon: block.blocknum.toString(),
@@ -36,7 +40,7 @@ function BlocksActivitySection() {
         accessor: "icon",
         hideHeader: true,
 
-        Cell: function Celly({ value }: { value: any }) {
+        Cell: function IconLink({ value }: { value: any }) {
           return (
             <div className={styles.IconBox}>
               <IdenticonLink link="/smart-contracts" blocknum={value} />
@@ -52,7 +56,7 @@ function BlocksActivitySection() {
         accessor: "txcount",
         hideHeader: true,
         maxWidth: 100,
-        Cell: function Celly({ value }: { value: number }) {
+        Cell: function TxCount({ value }: { value: number }) {
           return <div className={styles.TxcountBox}>{value}</div>;
         },
       },
