@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import PageContainer from "./PageContainer";
 
-import { useChannelHash } from "src/hooks/useChannelHash";
+import { useChannelHash } from "@/hooks/useChannelHash";
 
 import Loading from "../Loading";
 import Disconnected from "../Disconnected";

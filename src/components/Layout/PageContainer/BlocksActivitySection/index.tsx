@@ -8,6 +8,7 @@ import Panel from "@/components/Panel";
 import Loading from "@/components/Loading";
 import IdenticonLink from "@/components/IdenticonLink";
 import useBlockActivityData from "@/hooks/useBlockActivityData";
+import { getDistance } from "@/helpers/getDistance";
 import styles from "./BlocksActivitySection.module.scss";
 import Title from "@/components/Title";
 interface Block {
@@ -15,18 +16,17 @@ interface Block {
   blocknum: number;
   txcount: number;
   blockhash: string;
-  createdt: string;
+  createdt: any;
 }
 function BlocksActivitySection() {
   const { data: blockactivity, isLoading } = useBlockActivityData();
-
   const blocks = blockactivity?.map((block: Block) => {
     return {
       icon: block.blocknum.toString(),
       blocknum: block.blocknum,
       txcount: block.txcount,
       blockhash: block.blockhash,
-      createdt: new Date(block.createdt).toDateString(),
+      createdt: getDistance(block.createdt),
     };
   });
 
