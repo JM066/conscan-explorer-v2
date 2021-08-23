@@ -17,18 +17,19 @@ export function getContractType(serviceType: string | undefined) {
       default:
         return "basic";
     }
-  }
-  switch (serviceType) {
-    case "CONX":
-      return "coin";
+  } else {
+    switch (serviceType) {
+      case "CONX":
+        return "coin";
 
-    case "DRIVE":
-      return "drive";
+      case "DRIVE":
+        return "drive";
 
-    case "ENGINE":
-      return "engine";
+      case "ENGINE":
+        return "engine";
 
-    default:
-      return "basic";
+      default:
+        return "basic";
+    }
   }
 }
