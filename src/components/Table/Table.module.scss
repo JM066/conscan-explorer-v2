@@ -1,4 +1,5 @@
 .TableContainer {
+  box-sizing: border-box;
   display: block;
   flex: 1;
   min-height: 300px;
@@ -36,6 +37,7 @@
   font-size: 14px;
   min-width: fit-content !important;
   position: relative;
+  width: 100%;
 
   & .Th,
   & .Td {
@@ -64,6 +66,7 @@
 
   & .Th {
     align-items: center;
+    border: 2px solid var(--grey-bkg);
     color: #89a6c4;
     display: flex;
     font-size: 13px;

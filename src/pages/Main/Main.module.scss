@@ -1,24 +1,18 @@
 .Container {
-  align-items: center;
   display: flex;
   flex-direction: column;
   gap: var(--gap);
-  height: 100vh;
-  justify-content: flex-start;
-  min-height: 100vh;
-  padding: 0 0.5rem;
   width: 100%;
 
   & .Tables {
     display: flex;
     gap: var(--gap);
+    justify-content: space-between;
     width: 100%;
 
-    & .TablePlaceholder {
+    & .SubTables {
       background-color: var(--foreground);
       border-radius: var(--radius);
-      flex: 1 1 600px;
-      min-height: 600px;
     }
   }
 }

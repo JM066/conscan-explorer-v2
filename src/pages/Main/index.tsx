@@ -2,6 +2,8 @@ import React from "react";
 
 import StatsBlock from "./StatsBlock";
 
+import BlocksActivitySection from "@/components/Layout/PageContainer/BlocksActivitySection";
+
 import styles from "./Main.module.scss";
 
 function Main() {
@@ -9,8 +11,8 @@ function Main() {
     <div className={styles.Container}>
       <StatsBlock />
       <div className={styles.Tables}>
-        <div className={styles.TablePlaceholder}>LEFT TABLE</div>
-        <div className={styles.TablePlaceholder}>RIGHT TABLE</div>
+        <BlocksActivitySection />
+        <BlocksActivitySection />
       </div>
     </div>
   );

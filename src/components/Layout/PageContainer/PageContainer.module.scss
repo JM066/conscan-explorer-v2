@@ -4,6 +4,8 @@
   flex: 0 1 1200px;
   flex-direction: column;
   gap: var(--gap);
+  margin: 0 auto;
   min-height: 100vh;
   padding: var(--gap) 0;
+  width: 80%;
 }
