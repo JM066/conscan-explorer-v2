@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
-import { useQuery } from "react-query";
-import instance from "../../axios/instance";
+import Link from "next/link";
 
 import { useFlexLayout, useResizeColumns, useTable } from "react-table";
 
@@ -9,31 +8,23 @@ import Panel from "@/components/Panel";
 import Table from "@/components/Table";
 import Title from "@/components/Title";
 
-import { useChannelHash } from "../../hooks/useChannelHash";
+import useSmartContractList from "src/hooks/useSmartContractList";
 
 function SmartContract() {
-  const { channelHash } = useChannelHash();
-
-  const { data: contracts, isLoading } = useQuery(
-    "available-channels",
-    async () => {
-      const response = await instance.get(`/chaincode/${channelHash}`);
-      return response.data?.chaincode?.map((ch: any) => {
-        return {
-          name: ch.chaincodename,
-          version: ch.codes.length,
-          txnCount: ch.codes[0].txcount,
-          updated: ch.codes[0].createdt,
-        };
-      });
-    }
-  );
+  const { listOfContracts, loadingContractList } = useSmartContractList();
 
   const columns = useMemo(
     () => [
       {
         Header: "Name",
         accessor: "name",
+        Cell: function NameLinkCell({
+          cell: { value: name },
+        }: {
+          cell: { value: string };
+        }) {
+          return <Link href={`/smart-contracts/${name}`}>{name}</Link>;
+        },
       },
       {
         Header: "Version",
@@ -45,7 +36,8 @@ function SmartContract() {
       },
       {
         Header: "Last Updated",
-        accessor: "updated",
+        accessor: (row: any) => row.updated.toDateString(),
+        //todo - this should be time ago
       },
     ],
     []
@@ -54,7 +46,7 @@ function SmartContract() {
   const tableInstance = useTable(
     {
       columns,
-      data: contracts || [],
+      data: listOfContracts || [],
     },
     useFlexLayout,
     useResizeColumns
@@ -63,10 +55,10 @@ function SmartContract() {
   return (
     <Panel>
       <Title>Smart Contracts</Title>
-      {isLoading ? (
+      {loadingContractList ? (
         <Loading />
       ) : (
-        contracts.length && <Table instance={tableInstance} />
+        listOfContracts.length && <Table instance={tableInstance} />
       )}
     </Panel>
   );
