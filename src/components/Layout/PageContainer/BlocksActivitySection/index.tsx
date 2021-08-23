@@ -9,7 +9,7 @@ import Title from "@/components/Title";
 
 import useBlockActivityData from "@/hooks/useBlockActivityData";
 
-import { getDistance } from "@/helpers/getDistance";
+import { getTimeDistance } from "@/helpers/getDistance";
 import { reducedHash } from "@/helpers/hashDisplay";
 
 import styles from "./BlocksActivitySection.module.scss";
@@ -22,15 +22,14 @@ interface Block {
   createdt: any;
 }
 function BlocksActivitySection() {
-  const { data: blockactivity, isLoading } =
-    useBlockActivityData("blockActivity");
+  const { data: blockactivity, isLoading } = useBlockActivityData();
   const blocks = blockactivity?.map((block: Block) => {
     return {
       icon: block.blocknum.toString(),
       blocknum: block.blocknum,
       txcount: block.txcount,
       blockhash: block.blockhash,
-      createdt: getDistance(block.createdt),
+      createdt: getTimeDistance(block.createdt),
     };
   });
 
