@@ -3,7 +3,7 @@ import instance from "src/axios/instance";
 import { useChannelHash } from "./useChannelHash";
 
 function useSmartContractList() {
-  const { channelHash, loadingChannelHash } = useChannelHash();
+  const { channelHash } = useChannelHash();
 
   const { data: listOfContracts, isLoading: loadingContractList } = useQuery(
     "smart-contract-list",
@@ -18,7 +18,7 @@ function useSmartContractList() {
         };
       });
     },
-    { enabled: !loadingChannelHash }
+    { enabled: !!channelHash }
   );
   return { listOfContracts, loadingContractList };
 }
