@@ -12,9 +12,7 @@ type ParamProps = {
   txId?: string | number;
 } | null;
 
-function useTxnActivity(params: ParamProps = null) {
-  const { channelHash, loadingChannelHash } = useChannelHash();
-
+function getAxiosURLBasedOnParams(channelHash: string, params: ParamProps) {
   let axiosURL = `/txActivity/${channelHash}`;
 
   if (params) {
@@ -37,6 +35,14 @@ function useTxnActivity(params: ParamProps = null) {
       axiosURL += axiosExtras.join("&");
     }
   }
+
+  return axiosURL;
+}
+
+function useTxnActivity(params: ParamProps = null) {
+  const { channelHash, loadingChannelHash } = useChannelHash();
+
+  const axiosURL = getAxiosURLBasedOnParams(channelHash, params);
 
   const { data: txnActivityData, isLoading: loadingTxnActivityData } = useQuery<
     TxnActivityDataType[]

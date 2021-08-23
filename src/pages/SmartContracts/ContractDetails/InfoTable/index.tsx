@@ -30,7 +30,9 @@ function InfoTable({
       </div>
       <div className={classnames(styles.Cell, styles.DateCell)}>
         <div className={styles.CellTitle}>Updated</div>
-        {/* <div className={styles.CellContents}>{smartContract.updated}</div> */}
+        <div className={styles.CellContents}>
+          {smartContract.updated.toDateString()}
+        </div>
       </div>
     </div>
   );
