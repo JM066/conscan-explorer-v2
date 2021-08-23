@@ -4,12 +4,13 @@ import { useRouter } from "next/router";
 import Panel from "@/components/Panel";
 import Loading from "@/components/Loading";
 
+import ContractTransactionViewer from "./ContractTransactionViewer";
+import ContractDescription from "./ContractDescription";
+import InfoTable from "./InfoTable";
+
 import useSmartContractList from "src/hooks/useSmartContractList";
 
 import { SmartContractDetailsType } from "src/types";
-import InfoTable from "./InfoTable";
-import ContractDescription from "./ContractDescription";
-import ContractTransactionViewer from "./ContractTransactionViewer";
 
 function ContractDetails() {
   const router = useRouter();

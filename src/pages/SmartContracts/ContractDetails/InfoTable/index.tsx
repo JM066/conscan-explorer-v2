@@ -1,7 +1,10 @@
-import ContractIcon from "@/components/ContractIcon";
-import classnames from "classnames";
 import React from "react";
+import classnames from "classnames";
+
+import ContractIcon from "@/components/ContractIcon";
+
 import { SmartContractDetailsType } from "src/types";
+
 import styles from "./InfoTable.module.scss";
 
 function InfoTable({

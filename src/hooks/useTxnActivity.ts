@@ -1,7 +1,10 @@
 import { useQuery } from "react-query";
+
 import instance from "src/axios/instance";
-import { TxnActivityDataType } from "src/types";
+
 import { useChannelHash } from "./useChannelHash";
+
+import { TxnActivityDataType } from "src/types";
 
 type ParamProps = {
   limit?: string | number;
