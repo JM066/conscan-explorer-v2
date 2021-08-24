@@ -1,5 +1,7 @@
-import Identicon from "react-identicons";
 import Link from "next/link";
+import Identicon from "react-identicons";
+
+import styles from "./IdenticonLink.module.scss";
 
 interface IdenticonLink {
   blocknum: string;
@@ -7,11 +9,11 @@ interface IdenticonLink {
 }
 const IdenticonLink = ({ blocknum, link }: IdenticonLink) => {
   return (
-    <Link href={link}>
-      <a>
+    <div className={styles.IconBox}>
+      <Link href={link}>
         <Identicon size={15} string={blocknum} />
-      </a>
-    </Link>
+      </Link>
+    </div>
   );
 };
 
