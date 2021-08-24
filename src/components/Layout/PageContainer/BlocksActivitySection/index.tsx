@@ -9,7 +9,7 @@ import Title from "@/components/Title";
 
 import useBlockActivityData from "@/hooks/useBlockActivityData";
 
-import { getTimeDistance } from "@/helpers/getDistance";
+import { getTimeDistance } from "@/helpers/getTimeDistance";
 import { reducedHash } from "@/helpers/hashDisplay";
 
 import styles from "./BlocksActivitySection.module.scss";

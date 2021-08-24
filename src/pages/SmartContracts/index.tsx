@@ -9,6 +9,7 @@ import Table from "@/components/Table";
 import Title from "@/components/Title";
 
 import useSmartContractList from "src/hooks/useSmartContractList";
+import { getTimeDistance } from "@/helpers/getTimeDistance";
 
 function SmartContract() {
   const { listOfContracts, loadingContractList } = useSmartContractList();
@@ -18,6 +19,7 @@ function SmartContract() {
       {
         Header: "Name",
         accessor: "name",
+        hideHeader: true,
         Cell: function NameLinkCell({
           cell: { value: name },
         }: {
@@ -29,15 +31,17 @@ function SmartContract() {
       {
         Header: "Version",
         accessor: "version",
+        hideHeader: true,
       },
       {
         Header: "Txns",
         accessor: "txnCount",
+        hideHeader: true,
       },
       {
         Header: "Last Updated",
-        accessor: (row: any) => row.updated.toDateString(),
-        //todo - this should be time ago
+        hideHeader: true,
+        accessor: (row: any) => getTimeDistance(row.updated),
       },
     ],
     []
