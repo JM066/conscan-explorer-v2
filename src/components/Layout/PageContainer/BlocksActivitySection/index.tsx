@@ -9,8 +9,7 @@ import Title from "@/components/Title";
 import Button from "@/components/Button";
 import useBlockActivityData from "@/hooks/useBlockActivityData";
 
-import { getTimeDistance } from "@/helpers/getDistance";
-import { reducedHash } from "@/helpers/hashDisplay";
+import { getTimeDistance, reducedHash } from "@/helpers/index";
 
 import styles from "./BlocksActivitySection.module.scss";
 
@@ -42,7 +41,7 @@ function BlocksActivitySection() {
         Cell: function IconLink({ value }: { value: any }) {
           return (
             <div className={styles.IconBox}>
-              <IdenticonLink link="/smart-contracts" blocknum={value} />
+              <IdenticonLink link="/smart-contracts" idString={value} />
             </div>
           );
         },
@@ -85,13 +84,11 @@ function BlocksActivitySection() {
   }
 
   return (
-    <>
-      <Panel className={styles.TableContainer}>
-        <Title>Recent Blocks</Title>
-        {isLoading ? <Loading /> : <Table instance={tableInstance} />}
-      </Panel>
+    <Panel className={styles.TableContainer}>
+      <Title>Recent Blocks</Title>
+      {isLoading ? <Loading /> : <Table instance={tableInstance} />}
       <Button>View More Blocks</Button>
-    </>
+    </Panel>
   );
 }
 
