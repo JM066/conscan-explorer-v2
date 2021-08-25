@@ -1,5 +1,7 @@
-import Identicon from "react-identicons";
 import Link from "next/link";
+import Identicon from "react-identicons";
+
+import styles from "./IdenticonLink.module.scss";
 
 interface IdenticonLink {
   idString: string;
@@ -7,11 +9,13 @@ interface IdenticonLink {
 }
 const IdenticonLink = ({ idString, link }: IdenticonLink) => {
   return (
-    <Link href={link}>
-      <a>
-        <Identicon size={15} string={idString} />
-      </a>
-    </Link>
+    <div className={styles.IconBox}>
+      <Link href={link}>
+        <a>
+          <Identicon size={15} string={idString} />
+        </a>
+      </Link>
+    </div>
   );
 };
 

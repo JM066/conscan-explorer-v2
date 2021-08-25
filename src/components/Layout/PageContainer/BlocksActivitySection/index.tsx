@@ -39,11 +39,7 @@ function BlocksActivitySection() {
         hideHeader: true,
 
         Cell: function IconLink({ value }: { value: any }) {
-          return (
-            <div className={styles.IconBox}>
-              <IdenticonLink link="/smart-contracts" idString={value} />
-            </div>
-          );
+          return <IdenticonLink link="/smart-contracts" idString={value} />;
         },
       },
       {

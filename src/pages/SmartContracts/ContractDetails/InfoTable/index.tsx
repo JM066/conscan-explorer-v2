@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import classnames from "classnames";
 
 import ContractIcon from "@/components/ContractIcon";
+
+import { getTimeDistance } from "@/helpers/getTimeDistance";
 
 import { SmartContractDetailsType } from "src/types";
 
@@ -12,6 +14,8 @@ function InfoTable({
 }: {
   smartContract: SmartContractDetailsType;
 }) {
+  const [showTimeStamp, setShowTimeStamp] = useState(false);
+
   return (
     <div className={styles.Table}>
       <div className={styles.Cell}>
@@ -30,8 +34,13 @@ function InfoTable({
       </div>
       <div className={classnames(styles.Cell, styles.DateCell)}>
         <div className={styles.CellTitle}>Updated</div>
-        <div className={styles.CellContents}>
-          {smartContract.updated.toDateString()}
+        <div
+          className={styles.CellContents}
+          onClick={() => setShowTimeStamp(!showTimeStamp)}
+        >
+          {showTimeStamp
+            ? smartContract.updated.toDateString()
+            : getTimeDistance(smartContract.updated.toDateString())}
         </div>
       </div>
     </div>
