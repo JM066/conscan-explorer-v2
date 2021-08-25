@@ -3,10 +3,10 @@ import instance from "../axios/instance";
 
 import { useChannelHash } from "./useChannelHash";
 
-const useBlockActivityData = (blockProp: string) => {
+const useBlockActivityData = () => {
   const { channelHash } = useChannelHash();
   const { data, isLoading } = useQuery("blocks-activity", async () => {
-    const response = await instance.get(`/${blockProp}/${channelHash}`);
+    const response = await instance.get(`/blockActivity/${channelHash}`);
     return response.data?.row;
   });
   {

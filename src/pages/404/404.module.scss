@@ -1,0 +1,12 @@
+.Panel {
+  gap: 30px;
+  padding-top: 50px;
+
+  & .Icon {
+    height: 20vmin;
+  }
+
+  & .Message {
+    font-size: 1.6rem;
+  }
+}
