@@ -6,7 +6,7 @@ import Panel from "@/components/Panel";
 import Loading from "@/components/Loading";
 import IdenticonLink from "@/components/IdenticonLink";
 import Title from "@/components/Title";
-
+import Button from "@/components/Button";
 import useBlockActivityData from "@/hooks/useBlockActivityData";
 
 import { getDistance } from "@/helpers/getDistance";
@@ -86,10 +86,13 @@ function BlocksActivitySection() {
   }
 
   return (
-    <Panel className={styles.TableContainer}>
-      <Title>Recent Blocks</Title>
-      {isLoading ? <Loading /> : <Table instance={tableInstance} />}
-    </Panel>
+    <>
+      <Panel className={styles.TableContainer}>
+        <Title>Recent Blocks</Title>
+        {isLoading ? <Loading /> : <Table instance={tableInstance} />}
+      </Panel>
+      <Button>View More Blocks</Button>
+    </>
   );
 }
 
