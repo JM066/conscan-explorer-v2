@@ -3,7 +3,7 @@ import classnames from "classnames";
 
 import ContractIcon from "@/components/ContractIcon";
 
-import { getTimeDistance } from "@/helpers/getTimeDistance";
+import { getTimeDistance } from "@/helpers/index";
 
 import { SmartContractDetailsType } from "src/types";
 

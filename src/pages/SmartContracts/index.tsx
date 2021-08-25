@@ -9,7 +9,7 @@ import Table from "@/components/Table";
 import Title from "@/components/Title";
 
 import useSmartContractList from "src/hooks/useSmartContractList";
-import { getTimeDistance } from "@/helpers/getTimeDistance";
+import { getTimeDistance } from "@/helpers/index";
 
 function SmartContract() {
   const { listOfContracts, loadingContractList } = useSmartContractList();
