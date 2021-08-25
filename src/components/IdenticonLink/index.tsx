@@ -4,15 +4,15 @@ import Identicon from "react-identicons";
 import styles from "./IdenticonLink.module.scss";
 
 interface IdenticonLink {
-  blocknum: string;
+  idString: string;
   link: string;
 }
-const IdenticonLink = ({ blocknum, link }: IdenticonLink) => {
+const IdenticonLink = ({ idString, link }: IdenticonLink) => {
   return (
     <div className={styles.IconBox}>
       <Link href={link}>
         <a>
-          <Identicon size={15} string={blocknum} />
+          <Identicon size={15} string={idString} />
         </a>
       </Link>
     </div>

@@ -6,11 +6,10 @@ import Panel from "@/components/Panel";
 import Loading from "@/components/Loading";
 import IdenticonLink from "@/components/IdenticonLink";
 import Title from "@/components/Title";
-
+import Button from "@/components/Button";
 import useBlockActivityData from "@/hooks/useBlockActivityData";
 
-import { getTimeDistance } from "@/helpers/getTimeDistance";
-import { reducedHash } from "@/helpers/hashDisplay";
+import { getTimeDistance, reducedHash } from "@/helpers/index";
 
 import styles from "./BlocksActivitySection.module.scss";
 
@@ -40,7 +39,7 @@ function BlocksActivitySection() {
         hideHeader: true,
 
         Cell: function IconLink({ value }: { value: any }) {
-          return <IdenticonLink link="/smart-contracts" blocknum={value} />;
+          return <IdenticonLink link="/smart-contracts" idString={value} />;
         },
       },
       {
@@ -84,6 +83,7 @@ function BlocksActivitySection() {
     <Panel className={styles.TableContainer}>
       <Title>Recent Blocks</Title>
       {isLoading ? <Loading /> : <Table instance={tableInstance} />}
+      <Button>View More Blocks</Button>
     </Panel>
   );
 }
