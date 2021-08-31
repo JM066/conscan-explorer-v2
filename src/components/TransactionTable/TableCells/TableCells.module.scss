@@ -1,20 +1,29 @@
 .ActionValue {
-  align-items: center;
+  align-items: flex-start;
+  background-color: var(--grey-light);
+  border-radius: 10px 0;
+  color: var(--font-color);
   display: flex;
   flex-direction: column;
+  font-size: 10pt;
   justify-content: center;
+  padding: 10px;
 }
 
 .FromTo {
-  align-items: center;
+  align-items: flex-start;
+  color: var(--font-color);
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .HashTime {
-  align-items: center;
+  align-items: flex-start;
+  color: var(--font-color);
   display: flex;
   flex-direction: column;
+  gap: 5px;
   justify-content: center;
+  padding: 5px;
 }
