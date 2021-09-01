@@ -32,7 +32,7 @@
   border-spacing: 0;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14),
     0 2px 1px -1px rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
-  color: #37559d;
+  color: var(font-color);
   flex: 1;
   font-size: 14px;
   min-width: fit-content !important;
@@ -67,7 +67,7 @@
   & .Th {
     align-items: center;
     border: 2px solid var(--grey-bkg);
-    color: #89a6c4;
+    color: var(font-color);
     display: flex;
     font-size: 13px;
     font-weight: 700;
@@ -151,7 +151,7 @@
       }
 
       &:hover {
-        color: #040849;
+        color: var(font-hover);
       }
     }
   }
