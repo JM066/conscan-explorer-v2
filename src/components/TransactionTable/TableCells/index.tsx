@@ -7,6 +7,12 @@ import { getTimeDistance, reducedHash } from "@/helpers/index";
 
 import styles from "./TableCells.module.scss";
 
+const TXACTION = {
+  TRANSFER: "Transfer",
+  MINT: "Mint",
+  BURN: "Burn",
+};
+
 export function ContractIconCell({
   cell: { value: chaincodename },
 }: {
@@ -29,9 +35,9 @@ export function ActionValueCell({
   cell: { value: { tx_action: string; tx_value: string } };
 }) {
   switch (tx_action_value.tx_action) {
-    case "Transfer":
-    case "Mint":
-    case "Burn":
+    case TXACTION.TRANSFER:
+    case TXACTION.MINT:
+    case TXACTION.BURN:
       return (
         <div className={styles.ActionValue}>
           {tx_action_value.tx_value.length > 3
