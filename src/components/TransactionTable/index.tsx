@@ -20,6 +20,7 @@ function TransactionTable({ txnData }: { txnData: any[] | undefined }) {
         accessor: "id",
         Cell: IdenticonCell,
         hideHeader: true,
+        maxWidth: 120,
       },
       {
         Header: "TXN Hash & Time",
@@ -32,12 +33,14 @@ function TransactionTable({ txnData }: { txnData: any[] | undefined }) {
         accessor: "chaincodename",
         Cell: ContractIconCell,
         hideHeader: true,
+        maxWidth: 80,
       },
       {
         Header: "To From",
         accessor: "tx_from_to",
         Cell: FromToCell,
         hideHeader: true,
+        maxWidth: 120,
       },
       {
         Header: "Action Value",

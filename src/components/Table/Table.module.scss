@@ -107,6 +107,7 @@
 
   & .Tr {
     border-bottom: 1px solid #a8aeffa3;
+    height: 80px;
     transition: all 0.2s;
 
     &:hover {
@@ -137,6 +138,7 @@
     & .Tr {
       background-color: #fff;
       border-bottom: 1px solid #e6eff7;
+      height: auto;
       z-index: 1;
     }
   }

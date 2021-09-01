@@ -1,12 +1,13 @@
 import React, { useMemo } from "react";
 import { useFlexLayout, useResizeColumns, useTable } from "react-table";
 
-import Table from "@/components/Table";
-import Panel from "@/components/Panel";
-import Loading from "@/components/Loading";
-import IdenticonLink from "@/components/IdenticonLink";
-import Title from "@/components/Title";
 import Button from "@/components/Button";
+import IdenticonLink from "@/components/IdenticonLink";
+import Loading from "@/components/Loading";
+import Table from "@/components/Table";
+import Title from "@/components/Title";
+import TwinPanel from "@/components/TwinPanel";
+
 import useBlockActivityData from "@/hooks/useBlockActivityData";
 
 import { getTimeDistance, reducedHash } from "@/helpers/index";
@@ -46,12 +47,12 @@ function BlocksActivitySection() {
       {
         accessor: "blocknum",
         hideHeader: true,
-        maxWidth: 120,
+        maxWidth: 80,
       },
       {
         accessor: "txcount",
         hideHeader: true,
-        maxWidth: 100,
+        maxWidth: 80,
         Cell: function TxCount({ value }: { value: number }) {
           return <div className={styles.TxcountBox}>{value}</div>;
         },
@@ -82,11 +83,11 @@ function BlocksActivitySection() {
   }
 
   return (
-    <Panel className={styles.TableContainer}>
+    <TwinPanel className={styles.TableContainer} isLeft>
       <Title>Recent Blocks</Title>
       {isLoading ? <Loading /> : <Table instance={tableInstance} />}
       <Button>View More Blocks</Button>
-    </Panel>
+    </TwinPanel>
   );
 }
 
