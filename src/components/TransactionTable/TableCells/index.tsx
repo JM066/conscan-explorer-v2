@@ -3,9 +3,15 @@ import React from "react";
 import ContractIcon from "@/components/ContractIcon";
 import IdenticonLink from "@/components/IdenticonLink";
 
-import { reducedHash } from "@/helpers/hashDisplay";
+import { getTimeDistance, reducedHash } from "@/helpers/index";
 
 import styles from "./TableCells.module.scss";
+
+const TXACTION = {
+  TRANSFER: "Transfer",
+  MINT: "Mint",
+  BURN: "Burn",
+};
 
 export function ContractIconCell({
   cell: { value: chaincodename },
@@ -20,7 +26,7 @@ export function IdenticonCell({
 }: {
   cell: { value: string | number };
 }) {
-  return <IdenticonLink blocknum={id.toString()} link={"/#"} />;
+  return <IdenticonLink idString={id.toString()} link={"/#"} />;
 }
 
 export function ActionValueCell({
@@ -28,12 +34,24 @@ export function ActionValueCell({
 }: {
   cell: { value: { tx_action: string; tx_value: string } };
 }) {
-  return (
-    <div className={styles.ActionValue}>
-      <div>{tx_action_value.tx_action}</div>
-      <div>{tx_action_value.tx_value}</div>
-    </div>
-  );
+  switch (tx_action_value.tx_action) {
+    case TXACTION.TRANSFER:
+    case TXACTION.MINT:
+    case TXACTION.BURN:
+      return (
+        <div className={styles.ActionValue}>
+          {tx_action_value.tx_value.length > 3
+            ? ` ${tx_action_value.tx_value.substr(0, 4)}... CONX`
+            : `${tx_action_value.tx_value} CONX`}
+        </div>
+      );
+    default:
+      return (
+        <div className={styles.ActionValue}>
+          {tx_action_value.tx_action || "..."}
+        </div>
+      );
+  }
 }
 
 export function FromToCell({
@@ -56,7 +74,7 @@ export function HashTimeCell({
   return (
     <div className={styles.HashTime}>
       <div>{reducedHash(tx_hash_time.txhash)}</div>
-      <div>{tx_hash_time.createdt.toDateString()}</div>
+      <div>{getTimeDistance(tx_hash_time.createdt)}</div>
     </div>
   );
 }

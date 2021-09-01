@@ -1,0 +1,27 @@
+.Button {
+  align-items: center;
+  background-color: var(--red-main);
+  border: none;
+  border-radius: var(--radius);
+  box-sizing: border-box;
+  color: #fff;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  margin: 10px;
+  outline: none;
+  padding: 20px;
+  text-decoration: none;
+  width: 100%;
+}
+
+.NoStyle {
+  align-items: center;
+  border: none;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  outline: none;
+  text-decoration: none;
+  width: 100%;
+}

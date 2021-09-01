@@ -37,6 +37,7 @@ function BlocksActivitySection() {
       {
         accessor: "icon",
         hideHeader: true,
+        maxWidth: 120,
 
         Cell: function IconLink({ value }: { value: any }) {
           return <IdenticonLink link="/smart-contracts" idString={value} />;
@@ -45,6 +46,7 @@ function BlocksActivitySection() {
       {
         accessor: "blocknum",
         hideHeader: true,
+        maxWidth: 120,
       },
       {
         accessor: "txcount",

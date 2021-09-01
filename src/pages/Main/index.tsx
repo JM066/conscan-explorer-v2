@@ -1,7 +1,7 @@
 import React from "react";
 
 import StatsBlock from "./StatsBlock";
-import BlocksActivitySection from "@/components/Layout/PageContainer/BlocksActivitySection";
+import BlocksActivitySection from "./BlocksActivitySection";
 
 import styles from "./Main.module.scss";
 
