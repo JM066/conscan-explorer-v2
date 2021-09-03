@@ -3,9 +3,9 @@ import React from "react";
 import TwinPanel from "@/components/TwinPanel";
 
 import NetworkStats from "./NetworkStats";
+import Services from "./Services";
 
 import styles from "./StatsCell.module.scss";
-import Services from "./Services";
 
 function StatsCell() {
   return (
