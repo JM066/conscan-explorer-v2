@@ -1,13 +1,10 @@
 .StatsBlock {
-  display: flex;
+  box-sizing: border-box;
+  display: grid;
   gap: var(--gap);
-  height: 300px;
-  justify-content: space-between;
+  grid-template-columns: 50% 50%;
+  height: 330px;
+  justify-content: center;
+  padding: 0 30px;
   width: 100%;
-
-  & .StatsCell {
-    background-color: var(--foreground);
-    border-radius: var(--radius);
-    flex: 1 1 600px;
-  }
 }
