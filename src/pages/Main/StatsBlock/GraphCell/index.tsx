@@ -17,19 +17,16 @@ function GraphCell() {
       const txnData = await instance.get(`/txByMinute/${channelHash}/1`);
       const blockData = await instance.get(`/blocksByMinute/${channelHash}/1`);
 
-      const out = [];
-      for (let i = 0; i < txnData.data.rows.length; i++) {
-        out.push({
-          datetime: new Date(txnData.data.rows[i].datetime).toLocaleTimeString(
+      return txnData.data.rows.map((row: any, ind: number) => {
+        return {
+          datetime: new Date(row.datetime).toLocaleTimeString(
             navigator.language,
             { hour: "2-digit", minute: "2-digit" }
           ),
-          transactions: Number(txnData.data.rows[i].count),
-          blocks: Number(blockData.data.rows[i].count),
-        });
-      }
-
-      return out;
+          transactions: Number(row.count),
+          blocks: Number(blockData.data.rows[ind].count),
+        };
+      });
     },
     { enabled: !!channelHash }
   );
