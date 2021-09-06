@@ -24,8 +24,8 @@ function GraphCell() {
             navigator.language,
             { hour: "2-digit", minute: "2-digit" }
           ),
-          txnCount: Number(txnData.data.rows[i].count),
-          blockCount: Number(blockData.data.rows[i].count),
+          transactions: Number(txnData.data.rows[i].count),
+          blocks: Number(blockData.data.rows[i].count),
         });
       }
 

@@ -11,8 +11,8 @@ type Props = {
   data:
     | {
         datetime: string;
-        txnCount: number;
-        blockCount: number;
+        transactions: number;
+        blocks: number;
       }[]
     | [];
 
@@ -29,7 +29,7 @@ const StatsGraph = ({ data, width, minWidth, height }: Props) => {
         <YAxis
           id="yaxis"
           type="number"
-          dataKey="txnCount"
+          dataKey="transactions"
           interval="preserveStartEnd"
           axisLine={false}
           allowDecimals={false}
@@ -37,7 +37,7 @@ const StatsGraph = ({ data, width, minWidth, height }: Props) => {
         <Area
           animationDuration={600}
           type="monotone"
-          dataKey="txnCount"
+          dataKey="transactions"
           stroke="#09bc8a"
           fill="#09bc8a"
           baseLine={0}
@@ -46,7 +46,7 @@ const StatsGraph = ({ data, width, minWidth, height }: Props) => {
         <Area
           animationDuration={600}
           type="monotone"
-          dataKey="blockCount"
+          dataKey="blocks"
           stroke="#74b3ce"
           fill="#74b3ce"
           baseLine={0}
