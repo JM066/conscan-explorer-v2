@@ -11,8 +11,8 @@ type Props = {
   data:
     | {
         datetime: string;
-        txnCount: string;
-        blockCount: string;
+        txnCount: number;
+        blockCount: number;
       }[]
     | [];
 
@@ -24,7 +24,7 @@ type Props = {
 const StatsGraph = ({ data, width, minWidth, height }: Props) => {
   return (
     <ResponsiveContainer width={width} minWidth={minWidth} height={height}>
-      <AreaChart data={data} margin={{ left: -50 }}>
+      <AreaChart data={data} margin={{ left: -40 }}>
         <XAxis id="xaxis" dataKey="datetime" minTickGap={40} axisLine={true} />
         <YAxis
           id="yaxis"
@@ -38,8 +38,8 @@ const StatsGraph = ({ data, width, minWidth, height }: Props) => {
           animationDuration={600}
           type="monotone"
           dataKey="txnCount"
-          stroke="#495867"
-          fill="#74b3ce"
+          stroke="#09bc8a"
+          fill="#09bc8a"
           baseLine={0}
           dot={{ strokeWidth: 0, fill: "#09bc8a" }}
         />
@@ -47,10 +47,10 @@ const StatsGraph = ({ data, width, minWidth, height }: Props) => {
           animationDuration={600}
           type="monotone"
           dataKey="blockCount"
-          stroke="#495867"
+          stroke="#74b3ce"
           fill="#74b3ce"
           baseLine={0}
-          dot={{ strokeWidth: 0, fill: "#09bc8a" }}
+          dot={{ strokeWidth: 0, fill: "#74b3ce" }}
         />
         <Tooltip />
       </AreaChart>

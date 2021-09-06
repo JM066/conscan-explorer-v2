@@ -24,8 +24,8 @@ function GraphCell() {
             navigator.language,
             { hour: "2-digit", minute: "2-digit" }
           ),
-          txnCount: txnData.data.rows[i].count,
-          blockCount: blockData.data.rows[i].count,
+          txnCount: Number(txnData.data.rows[i].count),
+          blockCount: Number(blockData.data.rows[i].count),
         });
       }
 
@@ -33,6 +33,8 @@ function GraphCell() {
     },
     { enabled: !!channelHash }
   );
+
+  console.log(`data`, data);
 
   return (
     <TwinPanel>
