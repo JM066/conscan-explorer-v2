@@ -4,9 +4,9 @@ import { useQuery } from "react-query";
 import instance from "src/axios/instance";
 
 import TwinPanel from "@/components/TwinPanel";
+import StatsGraph from "./StatsGraph";
 
 import { useChannelHash } from "@/hooks/useChannelHash";
-import StatsGraph from "./StatsGraph";
 
 function GraphCell() {
   const { channelHash } = useChannelHash();
