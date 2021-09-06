@@ -11,6 +11,7 @@ import InfoTable from "./InfoTable";
 import useSmartContractList from "src/hooks/useSmartContractList";
 
 import { SmartContractDetailsType } from "src/types";
+import TabMenu from "@/components/TabMenu";
 
 function ContractDetails() {
   const router = useRouter();
@@ -35,6 +36,7 @@ function ContractDetails() {
     <Panel>
       <InfoTable smartContract={thisSmartContract} />
       <ContractDescription />
+      <TabMenu />
       <ContractTransactionViewer contractName={thisSmartContract.name} />
     </Panel>
   );

@@ -1,0 +1,17 @@
+.TabMenu {
+  display: flex;
+  gap: 3px;
+  height: 30px;
+
+  & .Tab {
+    border-radius: var(--radius) var(--radius) 0 0;
+    cursor: pointer;
+    height: 100%;
+    padding: 5px 15px;
+    width: fit-content;
+
+    &.active {
+      background-color: var(--blue-light);
+    }
+  }
+}
