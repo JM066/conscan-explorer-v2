@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { useFlexLayout, useResizeColumns, useTable } from "react-table";
 
+import ContractIcon from "@/components/ContractIcon";
 import Loading from "@/components/Loading";
 import Panel from "@/components/Panel";
 import Table from "@/components/Table";
@@ -10,6 +11,8 @@ import Title from "@/components/Title";
 
 import useSmartContractList from "src/hooks/useSmartContractList";
 import { getTimeDistance } from "@/helpers/index";
+
+import styles from "./SmartContracts.module.scss";
 
 function SmartContract() {
   const { listOfContracts, loadingContractList } = useSmartContractList();
@@ -19,28 +22,30 @@ function SmartContract() {
       {
         Header: "Name",
         accessor: "name",
-        hideHeader: true,
         Cell: function NameLinkCell({
           cell: { value: name },
         }: {
           cell: { value: string };
         }) {
-          return <Link href={`/smart-contracts/${name}`}>{name}</Link>;
+          return (
+            <div className={styles.NameLinkCell}>
+              <ContractIcon contractName={name} />
+              <Link href={`/smart-contracts/${name}`}>{name}</Link>
+            </div>
+          );
         },
       },
+
       {
         Header: "Version",
         accessor: "version",
-        hideHeader: true,
       },
       {
-        Header: "Txns",
+        Header: "Total Transactions",
         accessor: "txnCount",
-        hideHeader: true,
       },
       {
         Header: "Last Updated",
-        hideHeader: true,
         accessor: (row: any) => getTimeDistance(row.updated),
       },
     ],
