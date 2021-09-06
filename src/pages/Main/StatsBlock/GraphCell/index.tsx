@@ -34,8 +34,6 @@ function GraphCell() {
     { enabled: !!channelHash }
   );
 
-  console.log(`data`, data);
-
   return (
     <TwinPanel>
       <StatsGraph
