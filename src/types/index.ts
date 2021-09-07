@@ -1,3 +1,7 @@
+export type StringKeyObject = {
+  [key: string]: any;
+};
+
 export type SmartContractDetailsType = {
   name: string;
   version: number;

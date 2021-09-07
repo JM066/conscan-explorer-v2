@@ -7,10 +7,13 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   nostyle?: boolean;
 }
 
-function Button({ children, nostyle, className }: ButtonProps) {
+function Button({ children, nostyle, className, ...props }: ButtonProps) {
   if (nostyle) {
     return (
-      <button className={classNames(styles.NoStyle, className)}>
+      <button
+        className={classNames(styles.NoStyle, className)}
+        onClick={props.onClick}
+      >
         {children}
       </button>
     );
