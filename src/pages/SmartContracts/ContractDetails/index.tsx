@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Panel from "@/components/Panel";
 import Loading from "@/components/Loading";
 import TabPanel from "@/components/TabPanel";
+import Tab from "@/components/TabPanel/Tab";
 
 import ContractTransactionViewer from "./ContractTransactionViewer";
 import ContractDescription from "./ContractDescription";
@@ -11,7 +12,7 @@ import InfoTable from "./InfoTable";
 
 import useSmartContractList from "src/hooks/useSmartContractList";
 
-import { SmartContractDetailsType, StringKeyObject } from "src/types";
+import { SmartContractDetailsType } from "src/types";
 
 function ContractDetails() {
   const router = useRouter();
@@ -32,17 +33,15 @@ function ContractDetails() {
     router.push("/404");
   }
 
-  const tabs: StringKeyObject = {
-    Transactions: (
-      <ContractTransactionViewer contractName={thisSmartContract.name} />
-    ),
-  };
-
   return (
     <Panel>
       <InfoTable smartContract={thisSmartContract} />
       <ContractDescription />
-      <TabPanel tabs={tabs} />
+      <TabPanel>
+        <Tab tabName={"Transactions"}>
+          <ContractTransactionViewer contractName={thisSmartContract.name} />
+        </Tab>
+      </TabPanel>
     </Panel>
   );
 }

@@ -1,24 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, Children } from "react";
 import TabMenu from "./TabMenu";
-import { StringKeyObject } from "src/types";
 
 interface Props {
-  tabs: StringKeyObject;
+  children: React.ReactNode;
 }
 
-function TabbedSection({ tabs }: Props) {
+function TabPanel({ children }: Props) {
   const [activeTab, setActiveTab] = useState("Transactions");
 
-  return (
-    <>
-      <TabMenu
-        tabTitles={Object.keys(tabs)}
-        activeTab={activeTab}
-        changeTab={setActiveTab}
-      />
-      {tabs[activeTab]}
-    </>
-  );
+  const childrenArray = Children.toArray(children);
+
+  if (children && childrenArray.length > 1) {
+    const tabNames = childrenArray.map((child: any) => child?.props?.tabName);
+    return (
+      <>
+        <TabMenu
+          tabTitles={tabNames}
+          activeTab={activeTab}
+          changeTab={setActiveTab}
+        />
+        <>
+          {childrenArray.find(
+            (child: any) => child.props.tabName === activeTab
+          )}
+        </>
+      </>
+    );
+  }
+  return <>{children}</>;
 }
 
-export default TabbedSection;
+export default TabPanel;
