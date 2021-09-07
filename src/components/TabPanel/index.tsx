@@ -2,11 +2,12 @@ import React, { useState, Children } from "react";
 import TabMenu from "./TabMenu";
 
 interface Props {
+  defaultTab: string;
   children: React.ReactNode;
 }
 
-function TabPanel({ children }: Props) {
-  const [activeTab, setActiveTab] = useState("Transactions");
+function TabPanel({ defaultTab, children }: Props) {
+  const [activeTab, setActiveTab] = useState(defaultTab);
 
   const childrenArray = Children.toArray(children);
 

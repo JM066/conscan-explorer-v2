@@ -12,7 +12,7 @@ function useSmartContractList() {
       return response.data?.chaincode?.map((ch: any) => {
         return {
           name: ch.chaincodename,
-          version: ch.codes.length,
+          version: ch.codes[0].version,
           txnCount: ch.codes[0].txcount,
           updated: new Date(ch.codes[0].createdt),
         };
