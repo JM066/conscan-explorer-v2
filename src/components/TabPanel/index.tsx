@@ -12,7 +12,11 @@ function TabPanel({ defaultTab, children }: Props) {
   const childrenArray = Children.toArray(children);
 
   if (children && childrenArray.length > 1) {
-    const tabNames = childrenArray.map((child: any) => child?.props?.tabName);
+    console.log(childrenArray);
+
+    const tabNames = childrenArray.map((child: any) =>
+      String(child?.key).substring(2)
+    );
     return (
       <>
         <TabMenu
@@ -22,7 +26,7 @@ function TabPanel({ defaultTab, children }: Props) {
         />
         <>
           {childrenArray.find(
-            (child: any) => child.props.tabName === activeTab
+            (child: any) => String(child?.key).substring(2) === activeTab
           )}
         </>
       </>

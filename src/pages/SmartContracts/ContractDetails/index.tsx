@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import Panel from "@/components/Panel";
 import Loading from "@/components/Loading";
 import TabPanel from "@/components/TabPanel";
-import Tab from "@/components/TabPanel/Tab";
 
 import ContractCode from "./ContractCode";
 import ContractDescription from "./ContractDescription";
@@ -39,12 +38,11 @@ function ContractDetails() {
       <InfoTable smartContract={thisSmartContract} />
       <ContractDescription />
       <TabPanel defaultTab={"Transactions"}>
-        <Tab tabName={"Transactions"}>
-          <ContractTransactionViewer contractName={thisSmartContract.name} />
-        </Tab>
-        <Tab tabName={"Code"}>
-          <ContractCode contract={thisSmartContract} />
-        </Tab>
+        <ContractTransactionViewer
+          key={"Transactions"}
+          contractName={thisSmartContract.name}
+        />
+        <ContractCode key={"Code"} contract={thisSmartContract} />
       </TabPanel>
     </Panel>
   );
