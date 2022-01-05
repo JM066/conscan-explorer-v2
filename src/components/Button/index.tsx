@@ -1,3 +1,4 @@
+import Link from "next/link";
 import classNames from "classnames";
 
 import Spinner from "../Loading";
@@ -5,10 +6,11 @@ import Spinner from "../Loading";
 import styles from "./Button.module.scss";
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
-  className: any;
+  className?: any;
   noStyle?: boolean;
   round?: boolean;
   loading?: boolean;
+  link?: string;
   variant?: "primary" | "secondary";
 }
 
@@ -18,6 +20,7 @@ function Button({
   noStyle,
   round,
   loading = false,
+  link,
   variant = "primary",
   ...props
 }: ButtonProps) {
@@ -29,6 +32,13 @@ function Button({
       >
         {children}
       </button>
+    );
+  }
+  if (link) {
+    return (
+      <Link href={link}>
+        <a className={classNames(styles.Button, className)}>{children}</a>
+      </Link>
     );
   }
   return (

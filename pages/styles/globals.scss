@@ -1,5 +1,6 @@
 html,
 body {
+  box-sizing: border-box;
   color: var(--font-color);
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
@@ -13,6 +14,8 @@ a {
 }
 
 * {
+  box-sizing: border-box;
+  font-size: 16px;
   margin: 0;
   padding: 0;
 
@@ -28,4 +31,9 @@ a {
   --grey-light: #d7dadf;
   --radius: 5px;
   --gap: 30px;
+  --grey-text: #828282;
+
+  @media only screen and (max-width: 800px) {
+    font-size: 1px;
+  }
 }
