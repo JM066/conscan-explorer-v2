@@ -1,0 +1,15 @@
+.Row {
+  border-bottom: 1px solid #909ec1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  opacity: 0.4;
+
+  &.header {
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 1px 3px rgba(171, 171, 171, 0.6);
+    color: var(--grey-text);
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+}

@@ -1,23 +1,58 @@
+import Link from "next/link";
 import classNames from "classnames";
-import styles from "./Button.module.scss";
 
+import Spinner from "../Loading";
+
+import styles from "./Button.module.scss";
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
-  className?: string;
-  nostyle?: boolean;
+  className?: any;
+  noStyle?: boolean;
+  round?: boolean;
+  loading?: boolean;
+  link?: string;
+  variant?: "primary" | "secondary";
 }
 
-function Button({ children, nostyle, className }: ButtonProps) {
-  if (nostyle) {
+function Button({
+  children,
+  className,
+  noStyle,
+  round,
+  loading = false,
+  link,
+  variant = "primary",
+  ...props
+}: ButtonProps) {
+  if (noStyle) {
     return (
-      <button className={classNames(styles.NoStyle, className)}>
+      <button
+        className={classNames(styles.NoStyleButton, className)}
+        {...props}
+      >
         {children}
       </button>
     );
   }
-
+  if (link) {
+    return (
+      <Link href={link}>
+        <a className={classNames(styles.Button, className)}>{children}</a>
+      </Link>
+    );
+  }
   return (
-    <button className={classNames(styles.Button, className)}>{children}</button>
+    <button
+      className={classNames(
+        styles.Button,
+        styles[variant],
+        { [styles.round]: round },
+        className
+      )}
+      {...props}
+    >
+      {loading ? <Spinner /> : children}
+    </button>
   );
 }
 

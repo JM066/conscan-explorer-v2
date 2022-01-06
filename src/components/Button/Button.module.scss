@@ -1,27 +1,24 @@
-.Button {
-  align-items: center;
-  background-color: var(--red-main);
+.NoStyleButton {
+  background-color: transparent;
   border: none;
-  border-radius: var(--radius);
-  box-sizing: border-box;
-  color: #fff;
-  display: flex;
-  height: 50px;
-  justify-content: center;
-  margin: 10px;
+  cursor: pointer;
   outline: none;
-  padding: 20px;
-  text-decoration: none;
-  width: 100%;
 }
 
-.NoStyle {
-  align-items: center;
+.Button {
   border: none;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  outline: none;
-  text-decoration: none;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  padding: 10px;
   width: 100%;
+
+  &.primary {
+    background-color: blue;
+  }
+  &.secondary {
+    background-color: rebeccapurple;
+  }
+  &.round {
+    border-radius: 20px;
+  }
 }

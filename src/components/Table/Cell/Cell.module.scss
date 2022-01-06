@@ -1,0 +1,12 @@
+.Cell {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  &.grow {
+    flex: 2;
+  }
+  &.centered {
+    align-items: center;
+  }
+}
