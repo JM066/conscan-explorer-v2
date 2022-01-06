@@ -10,6 +10,7 @@ function Main() {
   return (
     <div className={styles.Container}>
       <StatsBlock />
+
       <div className={styles.Tables}>
         <BlocksActivitySection />
         <TxnActivitySection />

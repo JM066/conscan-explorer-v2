@@ -7,7 +7,7 @@ import PageContainer from "./PageContainer";
 import { useChannelHash } from "@/hooks/useChannelHash";
 
 import Loading from "../Loading";
-// import Disconnected from "../Disconnected";
+import Disconnected from "../Disconnected";
 
 import styles from "./Layout.module.scss";
 
@@ -28,8 +28,7 @@ function Layout({ children }: Layout) {
           ) : channelHash ? (
             children
           ) : (
-            children
-            // <Disconnected />
+            <Disconnected />
           )}
         </PageContainer>
       </div>
