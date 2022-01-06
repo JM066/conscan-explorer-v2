@@ -1,0 +1,6 @@
+.TwinPanel {
+  max-width: calc(var(--page-width) / 2 - var(--gap) / 2);
+  &.isLeft {
+    justify-self: flex-end;
+  }
+}

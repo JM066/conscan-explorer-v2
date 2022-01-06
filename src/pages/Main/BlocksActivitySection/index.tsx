@@ -4,7 +4,8 @@ import Table from "@/components/Table";
 import Row from "@/components/Table/Row";
 import Cell from "@/components/Table/Cell";
 // import Wrapper from "@/components/Table/Wrapper";
-import Panel from "@/components/Panel";
+
+import TwinPanel from "@/components/TwinPanel";
 import Loading from "@/components/Loading";
 // import IdenticonLink from "@/components/IdenticonLink";
 import Title from "@/components/Title";
@@ -77,7 +78,7 @@ function BlocksActivitySection() {
   }, []);
 
   return (
-    <Panel className={styles.TableContainer}>
+    <TwinPanel className={styles.TableContainer} isLeft>
       <Title>Recent Blocks</Title>
       {isLoading ? (
         <Loading />
@@ -103,7 +104,7 @@ function BlocksActivitySection() {
         </Table>
       )}
       <Button>View More Blocks</Button>
-    </Panel>
+    </TwinPanel>
   );
 }
 

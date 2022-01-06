@@ -7,10 +7,13 @@
     padding: 10px;
   }
   & .TxcountBox {
+    align-items: center;
     background-color: var(--grey-light);
-    border: 2px solid var(--grey-bkg);
     border-radius: 10px 0;
+    display: flex;
     font-size: 10pt;
+    justify-content: center;
     padding: 10px;
+    width: 15px;
   }
 }

@@ -1,23 +1,24 @@
+.NoStyleButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
 .Button {
   border: none;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   padding: 10px;
   width: 100%;
-  & .primary {
+
+  &.primary {
     background-color: blue;
   }
-  & .secondary {
+  &.secondary {
     background-color: rebeccapurple;
   }
-  & .round {
+  &.round {
     border-radius: 20px;
   }
-}
-
-.NoStyleButton {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  outline: none;
 }

@@ -9,7 +9,7 @@ export const PAGES_HEADER = [
   {
     id: "main",
     name: "Main",
-    path: "/main",
+    path: "/",
   },
   {
     id: "smart-contract",
