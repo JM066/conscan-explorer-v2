@@ -5,12 +5,19 @@ interface Props {
   children: React.ReactNode;
   grow?: boolean;
   className?: string;
-  center?: boolean;
+  centered?: boolean;
 }
 
-function Cell({ children, grow, className }: Props) {
+function Cell({ children, grow, centered, className }: Props) {
   return (
-    <div className={classNames(style.Cell, { [style.grow]: grow }, className)}>
+    <div
+      className={classNames(
+        style.Cell,
+        { [style.grow]: grow },
+        { [style.centered]: centered },
+        className
+      )}
+    >
       {children}
     </div>
   );

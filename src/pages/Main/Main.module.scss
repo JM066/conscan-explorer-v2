@@ -10,6 +10,9 @@
     justify-content: space-between;
     width: 100%;
 
+    @media only screen and (max-width: 800px) {
+      flex-direction: column;
+    }
     & .SubTables {
       background-color: var(--foreground);
       border-radius: var(--radius);
