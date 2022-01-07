@@ -1,19 +1,20 @@
 import React from "react";
 
-import StatsBlock from "./StatsBlock";
+// import StatsBlock from "./StatsBlock";
 import BlocksActivitySection from "./BlocksActivitySection";
-import TxnActivitySection from "./TxnActivitySection";
+// import TxnActivitySection from "./TxnActivitySection";
 
 import styles from "./Main.module.scss";
 
 function Main() {
   return (
     <div className={styles.Container}>
-      <StatsBlock />
+      {/* <StatsBlock /> */}
 
       <div className={styles.Tables}>
         <BlocksActivitySection />
-        <TxnActivitySection />
+        <BlocksActivitySection />
+        {/* <TxnActivitySection /> */}
       </div>
     </div>
   );

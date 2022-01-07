@@ -1,3 +1,7 @@
+export type Locales = {
+  value: "en" | "ko";
+  label: "English" | "한국어";
+};
 export type SmartContractDetailsType = {
   name: string;
   version: number;

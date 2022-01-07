@@ -17,9 +17,9 @@ export const PAGES_HEADER = [
     path: "/smart-contracts",
   },
   {
-    id: "docs",
-    name: "Docs",
-    path: "/docs",
+    id: "API",
+    name: "API",
+    path: "/api",
   },
 ];
 

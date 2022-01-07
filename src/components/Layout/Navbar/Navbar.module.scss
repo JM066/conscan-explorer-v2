@@ -1,6 +1,5 @@
 .Header {
-  background-color: var(--foreground);
-  border-bottom: 1px solid black;
+  background: transparent;
   width: 100%;
   .Navbar {
     align-items: center;
@@ -8,19 +7,42 @@
     height: 60px;
     justify-content: space-between;
     margin: 0 auto;
-    width: 85%;
+    width: 90%;
+
+    @media only screen and (min-width: 768px) {
+      width: 80%;
+    }
     & .Logo {
-      margin-left: 20px;
-      width: 200px;
+      margin-left: 1rem;
+      width: 10rem;
     }
 
     & .Navs {
-      color: skyblue;
-      font-size: 18px;
-      font-weight: bold;
+      color: var(--conun-blue);
+      font-size: 1rem;
+      font-weight: 500;
       & .Nav {
         cursor: pointer;
-        margin-right: 20px;
+        margin-right: 1rem;
+      }
+    }
+
+    & .Dropdown {
+      align-items: center;
+      background: rgba(151, 191, 220, 0.68);
+      color: var(--conun-blue);
+      display: flex;
+      flex-direction: column;
+      width: 5rem;
+
+      & .LocaleSelector {
+        list-style: none;
+
+        & .DropdownItem {
+          &:hover {
+            color: #fff;
+          }
+        }
       }
     }
   }
