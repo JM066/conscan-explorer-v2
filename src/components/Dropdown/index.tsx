@@ -9,6 +9,7 @@ interface Props {
   classname?: string;
   onclick: React.MouseEventHandler<HTMLDivElement> | undefined;
   isDropdownOpen: boolean;
+  arrow?: React.ReactNode;
 }
 function Dropdown({
   children,
@@ -16,10 +17,15 @@ function Dropdown({
   classname,
   onclick,
   isDropdownOpen,
+  arrow,
 }: Props) {
   return (
     <div className={classNames(styles.Dropdown, classname)}>
-      <div onClick={onclick}>{selected}</div>
+      <div onClick={onclick} className={styles.SelectedItemContainer}>
+        <div>{selected}</div>
+        {!!arrow && arrow}
+      </div>
+
       {isDropdownOpen && children}
     </div>
   );

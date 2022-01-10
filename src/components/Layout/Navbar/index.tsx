@@ -7,6 +7,8 @@ import Dropdown from "@/components/Dropdown";
 import DropdownItem from "@/components/Dropdown/DropdownItem";
 import ConunLogo from "@/assets/icons/conun-logo-head-bar.svg";
 import { Locales } from "@/types/index";
+import GlobalSymbol from "@/assets/icons/global_symbol.svg";
+import Arrow from "@/assets/icons/dropdown_arrow.svg";
 import styles from "./Navbar.module.scss";
 
 function Navbar() {
@@ -39,30 +41,36 @@ function Navbar() {
             </a>
           </Link>
         </div>
-        <div className={styles.Navs}>
-          {PAGES_HEADER.map((nav) => (
-            <Link key={nav.id} href={nav.path}>
-              <a className={styles.Nav}>{nav.name}</a>
-            </Link>
-          ))}
-        </div>
-        <Dropdown
-          classname={styles.Dropdown}
-          onclick={handleDropdown}
-          selected={language}
-          isDropdownOpen={isDropdownOpen}
-        >
-          <ul className={styles.LocaleSelector}>
-            {LOCALES.map((lang, index) => (
-              <DropdownItem
-                key={index}
-                onclick={() => selectLanguage(lang.label)}
-                item={lang.label}
-                className={styles.DropdownItem}
-              />
+        <div className={styles.NavAndLocales}>
+          <div className={styles.Navs}>
+            {PAGES_HEADER.map((nav) => (
+              <Link key={nav.id} href={nav.path}>
+                <a className={styles.Nav}>{nav.name}</a>
+              </Link>
             ))}
-          </ul>
-        </Dropdown>
+          </div>
+          <div className={styles.LocaleSelector}>
+            <GlobalSymbol className={styles.Global} />
+            <Dropdown
+              classname={styles.Dropdown}
+              onclick={handleDropdown}
+              selected={language}
+              isDropdownOpen={isDropdownOpen}
+              arrow={<Arrow />}
+            >
+              <ul className={styles.ListItems}>
+                {LOCALES.map((lang, index) => (
+                  <DropdownItem
+                    key={index}
+                    onclick={() => selectLanguage(lang.label)}
+                    item={lang.label}
+                    className={styles.DropdownItem}
+                  />
+                ))}
+              </ul>
+            </Dropdown>
+          </div>
+        </div>
       </div>
     </div>
   );

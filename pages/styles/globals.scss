@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500&family=IBM+Plex+Sans+KR:wght@200;300;400;500&family=Teko:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@200;300;400;500&family=Teko:wght@300;400;500;600&display=swap");
+
 :root {
   --grey-bkg: #eef0f6;
   --foreground: #fff;
@@ -9,7 +12,7 @@
   --green: #09bc8a;
   --font-color: #495867;
   --grey-light: #d7dadf;
-  --radius: 5px;
+  --radius: 30px;
   --gap: 30px;
   --grey-text: #828282;
   --conun-blue: #1d428a;
@@ -25,8 +28,7 @@ html,
 body {
   box-sizing: border-box;
   color: var(--font-color);
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Barlow", "Teko", sans-serif;
   margin: 0;
   overflow-x: hidden;
   padding: 0;

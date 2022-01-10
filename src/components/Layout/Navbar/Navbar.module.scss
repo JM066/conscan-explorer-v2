@@ -1,9 +1,11 @@
 .Header {
   background: transparent;
+  padding-top: 25px;
   width: 100%;
   .Navbar {
-    align-items: center;
+    align-items: flex-start;
     display: flex;
+    flex-direction: row;
     height: 60px;
     justify-content: space-between;
     margin: 0 auto;
@@ -17,30 +19,62 @@
       width: 10rem;
     }
 
-    & .Navs {
-      color: var(--conun-blue);
-      font-size: 1rem;
-      font-weight: 500;
-      & .Nav {
-        cursor: pointer;
-        margin-right: 1rem;
-      }
-    }
-
-    & .Dropdown {
-      align-items: center;
-      background: rgba(151, 191, 220, 0.68);
-      color: var(--conun-blue);
+    & .NavAndLocales {
+      align-items: flex-start;
       display: flex;
-      flex-direction: column;
-      width: 5rem;
+      padding-right: 1rem;
+      & .Navs {
+        color: var(--conun-blue);
+        font-size: 1rem;
+        font-weight: 500;
+        margin-top: 3px;
 
+        & .Nav {
+          cursor: pointer;
+          margin-right: 1rem;
+        }
+      }
       & .LocaleSelector {
-        list-style: none;
+        display: flex;
+        flex-direction: row;
 
-        & .DropdownItem {
-          &:hover {
-            color: #fff;
+        & .Global {
+          height: 20px;
+          margin: 3px;
+          width: 20px;
+        }
+        & .Dropdown {
+          align-items: center;
+          background-color: transparent;
+          color: var(--conun-blue);
+          display: flex;
+          flex-direction: column;
+          font-size: 0.7rem;
+          width: 70px;
+
+          & .ListItems {
+            background: rgba(151, 191, 220, 0.68);
+            border-radius: 5px;
+            list-style: none;
+            margin-top: 3px;
+            padding: 5px;
+            width: 100%;
+
+            & .DropdownItem {
+              align-items: center;
+              display: flex;
+              justify-content: center;
+              padding: 5px;
+              width: 100%;
+
+              &:hover {
+                background: var(--conun-blue);
+                border-radius: 0;
+                color: #fff;
+                cursor: pointer;
+                opacity: 0.5;
+              }
+            }
           }
         }
       }
