@@ -1,3 +1,3 @@
-import BlockDetails from "../../../src/pages/Blocks/[blockNum]";
+import BlockDetails from "../../../src/pages/Blocks/BlockDetails";
 
 export default BlockDetails;

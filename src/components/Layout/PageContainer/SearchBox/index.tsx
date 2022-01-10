@@ -8,7 +8,8 @@ import styles from "./SearchBox.module.scss";
 function SearchBox() {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const router = useRouter();
-  const searchSubmitHandler = () => {
+  const searchSubmitHandler = (event: any) => {
+    event.preventDefault();
     const value = inputRef.current?.value;
     if (value?.startsWith("0x") && value.length > 2) {
       const fullPath = `/blocks/${value}`;

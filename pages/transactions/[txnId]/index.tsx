@@ -1,2 +1,2 @@
-import TransactionDetails from "../../../src/pages/Transactions/[TxnId]";
+import TransactionDetails from "../../../src/pages/Transactions/TransactionDetails";
 export default TransactionDetails;
