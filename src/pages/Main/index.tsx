@@ -6,7 +6,9 @@ import BlocksActivitySection from "./BlocksActivitySection";
 
 import styles from "./Main.module.scss";
 
-function Main() {
+function Main(props) {
+  console.log(`channelHash`, props.channelHash);
+
   return (
     <div className={styles.Container}>
       {/* <StatsBlock /> */}

@@ -11,7 +11,7 @@ import Loading from "@/components/Loading";
 import Title from "@/components/Title";
 import Button from "@/components/Button";
 // import useBlockActivityData from "@/hooks/useBlockActivityData";
-
+import { useChannelHash } from "@/hooks/useChannelHash";
 // import { getTimeDistance, reducedHash } from "@/helpers/index";
 
 import styles from "./BlocksActivitySection.module.scss";
@@ -37,6 +37,12 @@ interface Block {
 function BlocksActivitySection() {
   const [isLoading] = useState(false);
   const [data, setData] = useState<Block[]>();
+  const activeChannelHash = useChannelHash();
+
+  useEffect(() => {
+    console.log("activeChannelHash", activeChannelHash);
+  }, []);
+
   // const { data: blockactivity, isLoading } = useBlockActivityData();
   // const blocks = blockactivity?.map((block: Block) => {
   //   return {
@@ -51,14 +57,6 @@ function BlocksActivitySection() {
   // if (!blockactivity) {
   //   return null;
   // }
-
-  // const getBlockActivityData = async () => {
-  //   const response = await fetch(
-  //     "https://nextjs-project-eb4c9-default-rtdb.firebaseio.com/events.json"
-  //   );
-  //   const data = await response.json();
-  //   return data
-  // };
 
   useEffect(() => {
     fetch(
@@ -109,3 +107,13 @@ function BlocksActivitySection() {
 }
 
 export default BlocksActivitySection;
+
+// export async function getStaticProps(){
+
+//   const channelHash =  getChannelHash()
+//   return {
+//     props: {
+//       channelHash
+//     }
+//   }
+// }
