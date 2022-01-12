@@ -1,5 +1,6 @@
 import React from "react";
-function Blocks() {
+function Blocks({ ...props }) {
+  console.log("prosp", props);
   return <div>Blocks</div>;
 }
 export default Blocks;

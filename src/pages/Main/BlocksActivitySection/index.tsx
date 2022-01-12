@@ -11,7 +11,7 @@ import Loading from "@/components/Loading";
 import Title from "@/components/Title";
 import Button from "@/components/Button";
 // import useBlockActivityData from "@/hooks/useBlockActivityData";
-import { useChannelHash } from "@/hooks/useChannelHash";
+// import { useChannelHash } from "@/hooks/useChannelHash";
 // import { getTimeDistance, reducedHash } from "@/helpers/index";
 
 import styles from "./BlocksActivitySection.module.scss";
@@ -34,10 +34,11 @@ interface Block {
   image: string;
   isFeatured: boolean;
 }
-function BlocksActivitySection() {
+function BlocksActivitySection(props: any) {
+  const activeChannelHash = props.channelHash;
   const [isLoading] = useState(false);
   const [data, setData] = useState<Block[]>();
-  const activeChannelHash = useChannelHash();
+  // const activeChannelHash = useChannelHash();
 
   useEffect(() => {
     console.log("activeChannelHash", activeChannelHash);
@@ -107,13 +108,3 @@ function BlocksActivitySection() {
 }
 
 export default BlocksActivitySection;
-
-// export async function getStaticProps(){
-
-//   const channelHash =  getChannelHash()
-//   return {
-//     props: {
-//       channelHash
-//     }
-//   }
-// }
