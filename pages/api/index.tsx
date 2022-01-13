@@ -1,3 +1,14 @@
-import API from "../../src/pages/API";
+export async function getHash() {
+  const res = await fetch("http://192.168.100.208:8080/api/channels/info");
+  const asJSON = await res.json();
+  return asJSON.channels[0].channel_genesis_hash;
+}
+export async function getLatestBlocks() {
+  const channelHash = await getHash();
+  const res = await fetch(
+    `http://192.168.100.208:8080/api/blockActivity/${channelHash}`
+  );
 
-export default API;
+  const asJSON = await res.json();
+  return asJSON;
+}

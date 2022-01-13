@@ -1,18 +1,21 @@
 import Blocks from "../../src/pages/Blocks";
+import { getHash, getLatestBlocks } from "../api/index";
 export default Blocks;
 
-export async function getHash() {
-  const res = await fetch("http://192.168.100.208:8080/api/channels/info");
-  const asJSON = await res.json();
-  return asJSON.channels[0].channel_genesis_hash;
-}
 export async function getStaticProps() {
+  const latestBlocks = await getLatestBlocks();
   const channelHash = await getHash();
-  const res = await fetch(
-    `http://192.168.100.208:8080/api/blockActivity/${channelHash}`
-  );
+  const latestBlockData = latestBlocks;
 
-  console.log(`res`, res);
-  const asJSON = await res.json();
-  return { props: { channelHash: asJSON } };
+  // const latestBlocks = await fetch(
+  //   `http://192.168.100.208:8080/api/blockActivity/${channelHash}?blocknum=${20}`
+  // );
+
+  return {
+    props: {
+      channelHash: channelHash,
+      latestBlocks: latestBlockData,
+    },
+    revalidate: 3,
+  };
 }
