@@ -5,7 +5,6 @@ export default Blocks;
 export async function getStaticProps() {
   const latestBlocks = await getLatestBlocks();
   const channelHash = await getHash();
-  const latestBlockData = latestBlocks;
 
   // const latestBlocks = await fetch(
   //   `http://192.168.100.208:8080/api/blockActivity/${channelHash}?blocknum=${20}`
@@ -14,7 +13,7 @@ export async function getStaticProps() {
   return {
     props: {
       channelHash: channelHash,
-      latestBlocks: latestBlockData,
+      latestBlocks: latestBlocks,
     },
     revalidate: 3,
   };

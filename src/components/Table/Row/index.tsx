@@ -9,9 +9,17 @@ interface Props {
 function Row({ children, header, className }: Props) {
   return (
     <div
-      className={classNames(style.Row, { [style.header]: header }, className)}
+      className={classNames(
+        style.RowContainer,
+        { [style.header]: header },
+        className
+      )}
     >
-      {children}
+      <div
+        className={classNames(style.Row, { [style.header]: header }, className)}
+      >
+        {children}
+      </div>
     </div>
   );
 }

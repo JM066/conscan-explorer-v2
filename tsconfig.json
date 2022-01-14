@@ -27,7 +27,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/pages/API/feedback.js"
+    "src/pages/API/feedback.js",
+    "pages/api/index.js"
   ],
   "exclude": ["node_modules"]
 }

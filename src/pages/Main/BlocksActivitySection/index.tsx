@@ -5,7 +5,7 @@ import Row from "@/components/Table/Row";
 import Cell from "@/components/Table/Cell";
 // import Wrapper from "@/components/Table/Wrapper";
 
-import TwinPanel from "@/components/TwinPanel";
+import Panel from "@/components/Panel";
 import Loading from "@/components/Loading";
 // import IdenticonLink from "@/components/IdenticonLink";
 import Title from "@/components/Title";
@@ -77,8 +77,8 @@ function BlocksActivitySection(props: any) {
   }, []);
 
   return (
-    <TwinPanel className={styles.TableContainer} isLeft>
-      <Title>Recent Blocks</Title>
+    <Panel className={styles.TableContainer}>
+      <Title title="Recent Blocks" />
       {isLoading ? (
         <Loading />
       ) : (
@@ -103,7 +103,7 @@ function BlocksActivitySection(props: any) {
         </Table>
       )}
       <Button>View More Blocks</Button>
-    </TwinPanel>
+    </Panel>
   );
 }
 

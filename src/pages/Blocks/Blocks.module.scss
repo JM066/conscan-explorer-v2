@@ -1,0 +1,18 @@
+.BlocksPage {
+  width: 100%;
+
+  & .TitleBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px 60px;
+
+    & .Title {
+      align-self: center;
+    }
+
+    & .PaginationButtons {
+      margin-top: 15px;
+    }
+  }
+}
