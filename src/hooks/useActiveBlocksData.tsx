@@ -6,12 +6,13 @@ function useActiveBlocksData(channelHash: string, pageNum: number) {
     isLoading,
     data: activeBlocksData,
     isError,
+    error,
   } = useQuery(["page-number", pageNum], async () => {
     const response = await instance.get(
       `http://192.168.100.208:8080/api/blockActivity/${channelHash}?blocknum=${pageNum}`
     );
     return await response.data;
   });
-  return { activeBlocksData, isLoading, isError };
+  return { activeBlocksData, isLoading, isError, error };
 }
 export default useActiveBlocksData;

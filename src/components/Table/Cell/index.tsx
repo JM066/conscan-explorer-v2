@@ -2,7 +2,7 @@ import style from "./Cell.module.scss";
 import classNames from "classnames";
 
 interface Props {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   grow?: boolean;
   className?: string;
   centered?: boolean;

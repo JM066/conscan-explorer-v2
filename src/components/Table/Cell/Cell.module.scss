@@ -1,13 +1,13 @@
 .Cell {
   align-items: flex-start;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-grow: 1;
   width: 100%;
 
   &.grow {
     flex-grow: 2;
-    min-width: 500px;
+    min-width: 550px;
   }
   &.centered {
     align-items: center;

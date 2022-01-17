@@ -28,7 +28,8 @@
     "**/*.ts",
     "**/*.tsx",
     "src/pages/API/feedback.js",
-    "pages/api/index.js"
+    "pages/api/index.js",
+    "pages/404/index.js"
   ],
   "exclude": ["node_modules"]
 }

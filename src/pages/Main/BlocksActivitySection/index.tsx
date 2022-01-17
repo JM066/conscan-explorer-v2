@@ -1,29 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Table from "@/components/Table";
 import Row from "@/components/Table/Row";
 import Cell from "@/components/Table/Cell";
-// import Wrapper from "@/components/Table/Wrapper";
-
 import Panel from "@/components/Panel";
 import Loading from "@/components/Loading";
 // import IdenticonLink from "@/components/IdenticonLink";
 import Title from "@/components/Title";
 import Button from "@/components/Button";
-// import useBlockActivityData from "@/hooks/useBlockActivityData";
-// import { useChannelHash } from "@/hooks/useChannelHash";
-// import { getTimeDistance, reducedHash } from "@/helpers/index";
+import Box from "@/components/Box";
 
 import styles from "./BlocksActivitySection.module.scss";
-import { useEffect } from "react";
-
-// interface Block {
-//   icon: string;
-//   blocknum: number;
-//   txcount: number;
-//   blockhash: string;
-//   createdt: any;
-// }
 
 interface Block {
   id: string;
@@ -38,26 +25,10 @@ function BlocksActivitySection(props: any) {
   const activeChannelHash = props.channelHash;
   const [isLoading] = useState(false);
   const [data, setData] = useState<Block[]>();
-  // const activeChannelHash = useChannelHash();
 
   useEffect(() => {
     console.log("activeChannelHash", activeChannelHash);
   }, []);
-
-  // const { data: blockactivity, isLoading } = useBlockActivityData();
-  // const blocks = blockactivity?.map((block: Block) => {
-  //   return {
-  //     icon: block.blocknum.toString(),
-  //     blocknum: block.blocknum,
-  //     txcount: block.txcount,
-  //     blockhash: block.blockhash,
-  //     createdt: getTimeDistance(block.createdt),
-  //   };
-  // });
-
-  // if (!blockactivity) {
-  //   return null;
-  // }
 
   useEffect(() => {
     fetch(
@@ -78,19 +49,14 @@ function BlocksActivitySection(props: any) {
 
   return (
     <Panel className={styles.TableContainer}>
-      <Title title="Recent Blocks" />
+      <Box justify="center">
+        <Title title="Recent Blocks" />
+      </Box>
+
       {isLoading ? (
         <Loading />
       ) : (
         <Table>
-          <Row header>
-            <Cell centered>Cell</Cell>
-            <Cell centered grow>
-              Cell
-            </Cell>
-            <Cell centered>Cell</Cell>
-          </Row>
-
           {data?.map((column) => {
             return (
               <Row key={column.id}>
@@ -102,7 +68,9 @@ function BlocksActivitySection(props: any) {
           })}
         </Table>
       )}
-      <Button>View More Blocks</Button>
+      <div className={styles.ViewBlocks}>
+        <Button link={"/blocks/"}>View More Blocks</Button>
+      </div>
     </Panel>
   );
 }
