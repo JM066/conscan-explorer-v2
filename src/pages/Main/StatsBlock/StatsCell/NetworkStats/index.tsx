@@ -5,7 +5,7 @@ import instance from "src/axios/instance";
 
 import Panel from "@/components/Panel";
 
-import { useChannelHash } from "@/hooks/useChannelHash";
+import useChannelHash from "@/hooks/useChannelHash";
 
 import BlocksIcon from "@/assets/icons/blocks-icon.svg";
 import TxnIcon from "@/assets/icons/txn-icon.svg";

@@ -1,13 +1,15 @@
 import { useQuery } from "react-query";
-import instance from "../axios/instance";
+import { getHash } from "../../pages/api/index";
 
-export function useChannelHash() {
+function useChannelHash() {
   const { data: channelHash, isLoading: loadingChannelHash } = useQuery(
     "channel-hash",
     async () => {
-      const response = await instance.get("/channels/info");
-      return response.data.channels[0].channel_genesis_hash;
+      const response = await getHash();
+      return response;
     }
   );
   return { channelHash, loadingChannelHash };
 }
+
+export default useChannelHash;

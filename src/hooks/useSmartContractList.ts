@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import instance from "src/axios/instance";
-import { useChannelHash } from "./useChannelHash";
+import useChannelHash from "./useChannelHash";
 
 function useSmartContractList() {
   const { channelHash } = useChannelHash();

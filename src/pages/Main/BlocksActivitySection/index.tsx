@@ -5,7 +5,6 @@ import Row from "@/components/Table/Row";
 import Cell from "@/components/Table/Cell";
 import Panel from "@/components/Panel";
 import Loading from "@/components/Loading";
-// import IdenticonLink from "@/components/IdenticonLink";
 import Title from "@/components/Title";
 import Button from "@/components/Button";
 import Box from "@/components/Box";

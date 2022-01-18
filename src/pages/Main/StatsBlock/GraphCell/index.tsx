@@ -6,7 +6,7 @@ import instance from "src/axios/instance";
 import TwinPanel from "@/components/TwinPanel";
 import StatsGraph from "./StatsGraph";
 
-import { useChannelHash } from "@/hooks/useChannelHash";
+import useChannelHash from "@/hooks/useChannelHash";
 
 function GraphCell() {
   const { channelHash } = useChannelHash();

@@ -18,6 +18,9 @@
 # misc
 .DS_Store
 *.pem
+src/utility/config.ts
+src/utility/config.json
+pages/api/index.js
 
 # debug
 npm-debug.log*
