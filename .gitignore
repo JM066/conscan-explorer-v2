@@ -20,7 +20,7 @@
 *.pem
 src/utility/config.ts
 src/utility/config.json
-pages/api/index.js
+/pages/api/index.tsx
 
 # debug
 npm-debug.log*
