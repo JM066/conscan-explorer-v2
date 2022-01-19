@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 
 import useActiveBlocksData from "@/hooks/useActiveBlocksData";
@@ -29,10 +29,6 @@ function Blocks({ ...props }) {
   );
 
   const EmptyRows = Array(10).fill("");
-
-  useEffect(() => {
-    console.log("blockData", activeBlocksData);
-  }, [activeBlocksData]);
 
   const handleNext = () => {
     if (currentPage >= 10) {

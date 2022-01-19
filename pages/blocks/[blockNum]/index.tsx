@@ -5,11 +5,11 @@ export default BlockDetails;
 export async function getServerSideProps(context: any) {
   const { params } = context;
   const blockNum = params.blockNum;
-  const blockDeatail = await getBlockDetail(blockNum);
+  const blockDetail = await getBlockDetail(blockNum);
 
   return {
     props: {
-      data: blockDeatail,
+      data: blockDetail,
     },
   };
 }
