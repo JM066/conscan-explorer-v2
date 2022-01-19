@@ -16,11 +16,6 @@ export const PAGES_HEADER = [
     name: "Smart Contracts",
     path: "/smart-contracts",
   },
-  {
-    id: "docs",
-    name: "Docs",
-    path: "/docs",
-  },
 ];
 
 export const PAGES_FOOTER = [

@@ -1,0 +1,9 @@
+.Row {
+  background-color: #f8fafd;
+  width: 100%;
+
+  & .Cell {
+    // background-color: blue;
+    height: 25px;
+  }
+}

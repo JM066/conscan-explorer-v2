@@ -1,19 +1,20 @@
 .TableContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   overflow-x: auto;
+  position: relative;
+  width: 100%;
 
-  & .IconBox {
-    border: 2px solid var(--grey-bkg);
-    border-radius: 10px;
+  & .ViewBlocks {
+    background: linear-gradient(99.17deg, #92caff 12.18%, #1d428a 106.22%);
+    border-radius: 18px;
+    bottom: 20px;
+    box-shadow: 0 2px 5px rgba(171, 171, 171, 0.5);
+    color: #fff;
+    font-weight: bold;
     padding: 10px;
-  }
-  & .TxcountBox {
-    align-items: center;
-    background-color: var(--grey-light);
-    border-radius: 10px 0;
-    display: flex;
-    font-size: 10pt;
-    justify-content: center;
-    padding: 10px;
-    width: 15px;
+    position: absolute;
+    width: 90%;
   }
 }

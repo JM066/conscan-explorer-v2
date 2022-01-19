@@ -4,10 +4,10 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import PageContainer from "./PageContainer";
 
-import { useChannelHash } from "@/hooks/useChannelHash";
+import useChannelHash from "@/hooks/useChannelHash";
 
 import Loading from "../Loading";
-import Disconnected from "../Disconnected";
+// import Disconnected from "../Disconnected";
 
 import styles from "./Layout.module.scss";
 
@@ -28,7 +28,8 @@ function Layout({ children }: Layout) {
           ) : channelHash ? (
             children
           ) : (
-            <Disconnected />
+            children
+            // <Disconnected />
           )}
         </PageContainer>
       </div>

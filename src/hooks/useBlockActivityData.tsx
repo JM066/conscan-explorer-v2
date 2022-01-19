@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import instance from "../axios/instance";
 
-import { useChannelHash } from "./useChannelHash";
+import useChannelHash from "./useChannelHash";
 
 const useBlockActivityData = () => {
   const { channelHash } = useChannelHash();

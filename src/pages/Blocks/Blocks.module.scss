@@ -1,0 +1,58 @@
+.BlocksPage {
+  width: 100%;
+
+  & .TitleBox {
+    & .Title {
+      align-self: center;
+    }
+
+    & .PaginationButtons {
+      margin-top: 15px;
+    }
+  }
+
+  & .EmptyTitleBox {
+    padding: 22px 60px;
+  }
+
+  & .Table {
+    & .BlockNumCell {
+      color: #0993b1;
+      font-weight: 600;
+    }
+
+    & .HashCell {
+      align-items: center;
+      color: var(--grey-text);
+      display: flex;
+      font-size: 0.9rem;
+      font-weight: 600;
+
+      & .Wrapper {
+        margin-left: 10px;
+        & .Time {
+          font-size: 0.7rem;
+          font-weight: 500;
+        }
+      }
+    }
+    & .CellWithIcon {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      font-size: 0.9rem;
+
+      & .TransactionIcon {
+        margin-right: 10px;
+      }
+
+      & .Wrapper {
+        & > p {
+          &:last-child {
+            font-size: 0.7rem;
+          }
+        }
+      }
+    }
+  }
+}

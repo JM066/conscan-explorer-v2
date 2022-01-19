@@ -9,7 +9,7 @@
   border: none;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  padding: 10px;
+  padding: 20px;
   width: 100%;
 
   &.primary {
@@ -21,4 +21,10 @@
   &.round {
     border-radius: 20px;
   }
+}
+.Link {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

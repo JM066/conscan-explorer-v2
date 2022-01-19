@@ -37,7 +37,7 @@ function Button({
   if (link) {
     return (
       <Link href={link}>
-        <a className={classNames(styles.Button, className)}>{children}</a>
+        <a className={classNames(styles.Link, className)}>{children}</a>
       </Link>
     );
   }

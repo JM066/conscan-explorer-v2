@@ -9,12 +9,14 @@ import "./styles/globals.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </QueryClientProvider>
+    <div>
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </QueryClientProvider>
+    </div>
   );
 }
 export default MyApp;

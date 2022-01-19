@@ -7,5 +7,8 @@
   margin: 0 auto;
   min-height: 100vh;
   padding: var(--gap) 10px;
-  width: 80%;
+  width: 90%;
+  @media only screen and (min-width: 768px) {
+    width: 80%;
+  }
 }

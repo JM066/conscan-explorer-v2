@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 
 import instance from "src/axios/instance";
 
-import { useChannelHash } from "./useChannelHash";
+import useChannelHash from "./useChannelHash";
 
 import { TxnActivityDataType } from "src/types";
 
