@@ -10,7 +10,7 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
-    "@types/react-table": "^7.7.2",
+    "@types/react-table": "^7.7.9",
     "@types/websocket": "^1.0.4",
     "axios": "^0.21.2",
     "classnames": "^2.3.1",
