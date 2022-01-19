@@ -4,10 +4,10 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import PageContainer from "./PageContainer";
 
-import useChannelHash from "@/hooks/useChannelHash";
+import useLatestBlocksData from "@/hooks/useChannelHash";
 
 import Loading from "../Loading";
-// import Disconnected from "../Disconnected";
+import Disconnected from "../Disconnected";
 
 import styles from "./Layout.module.scss";
 
@@ -16,7 +16,7 @@ interface Layout {
 }
 
 function Layout({ children }: Layout) {
-  const { channelHash, loadingChannelHash } = useChannelHash();
+  const { channelHash, loadingChannelHash } = useLatestBlocksData();
 
   return (
     <div className={styles.Layout}>
@@ -28,8 +28,7 @@ function Layout({ children }: Layout) {
           ) : channelHash ? (
             children
           ) : (
-            children
-            // <Disconnected />
+            <Disconnected />
           )}
         </PageContainer>
       </div>

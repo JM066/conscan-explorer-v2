@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
-import useActiveBlocksData from "@/hooks/useActiveBlocksData";
-
 import Table from "@/components/Table";
 import Wrapper from "@/components/Table/Wrapper";
 import Row from "@/components/Table/Row";
@@ -17,6 +15,11 @@ import ErrorMessage from "@/components/ErrorMessage";
 import IdenticonLink from "@/components/IdenticonLink";
 import TimeStamp from "@/components/TimeStamp";
 import TransactionIcon from "@/assets/icons/transaction.svg";
+
+import useActiveBlocksData from "@/hooks/useActiveBlocksData";
+
+import { BlockActivityDataType } from "@/types/index";
+
 import styles from "./Blocks.module.scss";
 
 function Blocks({ ...props }) {
@@ -85,44 +88,49 @@ function Blocks({ ...props }) {
         </Box>
 
         <Table className={styles.Table}>
-          {activeBlocksData?.row.map((block: any, index: number) => {
-            return (
-              <Row key={index}>
-                <Cell className={styles.BlockNumCell}>
-                  <Link href={`/blocks/${block.blocknum}`}>
-                    <a>{block.blocknum}</a>
-                  </Link>
-                </Cell>
-                <Cell grow className={styles.HashCell}>
-                  <IdenticonLink
-                    idString={index.toString()}
-                    link={`/blocks/${block.blocknum}`}
-                  />
-                  <Wrapper className={styles.Wrapper}>
-                    <p>{block.blockhash}</p>
-                    <TimeStamp className={styles.Time} time={block.createdt} />
-                  </Wrapper>
-                </Cell>
-                <Cell centered={false} className={styles.CellWithIcon}>
-                  <Button link={"txns"}>
-                    <TransactionIcon className={styles.TransactionIcon} />
-                  </Button>
+          {activeBlocksData?.row.map(
+            (block: BlockActivityDataType, index: number) => {
+              return (
+                <Row key={index}>
+                  <Cell className={styles.BlockNumCell}>
+                    <Link href={`/blocks/${block.blocknum}`}>
+                      <a>{block.blocknum}</a>
+                    </Link>
+                  </Cell>
+                  <Cell grow className={styles.HashCell}>
+                    <IdenticonLink
+                      idString={index.toString()}
+                      link={`/blocks/${block.blocknum}`}
+                    />
+                    <Wrapper className={styles.Wrapper}>
+                      <p>{block.blockhash}</p>
+                      <TimeStamp
+                        className={styles.Time}
+                        time={block.createdt}
+                      />
+                    </Wrapper>
+                  </Cell>
+                  <Cell className={styles.CellWithIcon}>
+                    <Button link={"txns"}>
+                      <TransactionIcon className={styles.TransactionIcon} />
+                    </Button>
 
-                  {block.txcount > 1 ? (
-                    <Wrapper className={styles.Wrapper}>
-                      <p>{block.txcount}</p>
-                      <p>Transactions</p>
-                    </Wrapper>
-                  ) : (
-                    <Wrapper className={styles.Wrapper}>
-                      <p>{block.txcount}</p>
-                      <p>Transaction</p>
-                    </Wrapper>
-                  )}
-                </Cell>
-              </Row>
-            );
-          })}
+                    {block.txcount > 1 ? (
+                      <Wrapper className={styles.Wrapper}>
+                        <p>{block.txcount}</p>
+                        <p>Transactions</p>
+                      </Wrapper>
+                    ) : (
+                      <Wrapper className={styles.Wrapper}>
+                        <p>{block.txcount}</p>
+                        <p>Transaction</p>
+                      </Wrapper>
+                    )}
+                  </Cell>
+                </Row>
+              );
+            }
+          )}
         </Table>
       </Panel>
     </div>

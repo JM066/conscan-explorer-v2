@@ -9,6 +9,12 @@ export type SmartContractDetailsType = {
   updated: Date;
 };
 
+export type BlockActivityDataType = {
+  blockNum: number;
+  txcount: number;
+  blockhash: string;
+  createdT: string;
+};
 export type TxnActivityDataType = {
   id: number;
   txhash: string;

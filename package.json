@@ -26,7 +26,8 @@
     "react-waypoint": "^10.1.0",
     "recharts": "^2.1.8",
     "sass": "^1.49.0",
-    "websocket": "^1.0.34"
+    "websocket": "^1.0.34",
+    "zustand": "^3.6.9"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.2.0",

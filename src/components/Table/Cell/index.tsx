@@ -8,7 +8,7 @@ interface Props {
   centered?: boolean;
 }
 
-function Cell({ children, grow, centered, className }: Props) {
+function Cell({ children, grow, centered = false, className }: Props) {
   return (
     <div
       className={classNames(

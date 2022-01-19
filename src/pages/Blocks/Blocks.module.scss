@@ -22,22 +22,23 @@
     }
 
     & .HashCell {
-      align-items: center;
       color: var(--grey-text);
-      display: flex;
       font-size: 0.9rem;
       font-weight: 600;
+      justify-content: flex-start;
+      width: 60%;
 
       & .Wrapper {
         margin-left: 10px;
+
         & .Time {
           font-size: 0.7rem;
           font-weight: 500;
         }
       }
     }
+
     & .CellWithIcon {
-      align-items: center;
       display: flex;
       flex-direction: row;
       font-size: 0.9rem;

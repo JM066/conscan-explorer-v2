@@ -1,50 +1,24 @@
-import React, { useState, useEffect } from "react";
-
 import Table from "@/components/Table";
 import Row from "@/components/Table/Row";
 import Cell from "@/components/Table/Cell";
+import Wrapper from "@/components/Table/Wrapper";
 import Panel from "@/components/Panel";
 import Loading from "@/components/Loading";
 import Title from "@/components/Title";
 import Button from "@/components/Button";
 import Box from "@/components/Box";
 
+import useLatestBlocksData from "@/hooks/useLatestBlocksData";
+
+import { BlockActivityDataType } from "@/types/index";
+import IdenticonLink from "@/components/IdenticonLink";
+import TimeStamp from "@/components/TimeStamp";
+import TransactionIcon from "@/assets/icons/transaction.svg";
+
 import styles from "./BlocksActivitySection.module.scss";
 
-interface Block {
-  id: string;
-  title: string;
-  description: string;
-  location: string;
-  date: string;
-  image: string;
-  isFeatured: boolean;
-}
-function BlocksActivitySection(props: any) {
-  const activeChannelHash = props.channelHash;
-  const [isLoading] = useState(false);
-  const [data, setData] = useState<Block[]>();
-
-  useEffect(() => {
-    console.log("activeChannelHash", activeChannelHash);
-  }, []);
-
-  useEffect(() => {
-    fetch(
-      "https://nextjs-project-eb4c9-default-rtdb.firebaseio.com/events.json"
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        const blocks = [];
-        for (const key in data) {
-          blocks.push({
-            id: key,
-            ...data[key],
-          });
-        }
-        setData(blocks);
-      });
-  }, []);
+function BlocksActivitySection() {
+  const { latestBlocks, isLoading } = useLatestBlocksData();
 
   return (
     <Panel className={styles.TableContainer}>
@@ -55,13 +29,41 @@ function BlocksActivitySection(props: any) {
       {isLoading ? (
         <Loading />
       ) : (
-        <Table>
-          {data?.map((column) => {
+        <Table className={styles.BlocksTable}>
+          {latestBlocks?.map((block: BlockActivityDataType, index: number) => {
             return (
-              <Row key={column.id}>
-                <Cell>{column.title}</Cell>
-                <Cell grow>{column.location}</Cell>
-                <Cell centered>{column.date}</Cell>
+              <Row key={index} className={styles.BlocksRow}>
+                <Cell centered={true} className={styles.NumberCell}>
+                  {block.blocknum}
+                </Cell>
+                <Cell grow className={styles.HashCell}>
+                  <IdenticonLink
+                    idString={index.toString()}
+                    link={`/blocks/${block.blocknum}`}
+                  />
+                  <Wrapper className={styles.Wrapper}>
+                    <p>{block.blockhash}</p>
+                    <TimeStamp className={styles.Time} time={block.createdt} />
+                  </Wrapper>
+                </Cell>
+
+                <Cell className={styles.CellWithIcon}>
+                  <Button link={"txns"}>
+                    <TransactionIcon className={styles.TransactionIcon} />
+                  </Button>
+
+                  {block.txcount > 1 ? (
+                    <Wrapper className={styles.Wrapper}>
+                      <p>{block.txcount}</p>
+                      <p>Transactions</p>
+                    </Wrapper>
+                  ) : (
+                    <Wrapper className={styles.Wrapper}>
+                      <p>{block.txcount}</p>
+                      <p>Transaction</p>
+                    </Wrapper>
+                  )}
+                </Cell>
               </Row>
             );
           })}

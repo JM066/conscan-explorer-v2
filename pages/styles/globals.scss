@@ -10,6 +10,7 @@
   --blue-dark: #495867;
   --blue-light: #74b3ce;
   --green: #09bc8a;
+  --green-dark: #0993b1;
   --font-color: #495867;
   --grey-light: #d7dadf;
   --radius: 15px;
@@ -28,7 +29,7 @@ html,
 body {
   box-sizing: border-box;
   color: var(--font-color);
-  font-family: "Barlow", "Teko", sans-serif;
+  font-family: Barlow, Teko, sans-serif;
   margin: 0;
   overflow-x: hidden;
   padding: 0;
