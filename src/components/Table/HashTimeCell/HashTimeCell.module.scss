@@ -1,0 +1,12 @@
+.HashCell {
+  width: 58%;
+
+  & .Wrapper {
+    margin-left: 10px;
+
+    & .Time {
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
+  }
+}

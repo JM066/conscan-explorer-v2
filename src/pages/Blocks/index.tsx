@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import Link from "next/link";
 
 import Table from "@/components/Table";
-import Wrapper from "@/components/Table/Wrapper";
 import Row from "@/components/Table/Row";
 import Cell from "@/components/Table/Cell";
 import Title from "@/components/Title";
@@ -12,9 +10,8 @@ import Pagination from "@/components/Pagination";
 import DuplicatedSkeleton from "@/components/DuplicatedSkeleton";
 import Button from "@/components/Button";
 import ErrorMessage from "@/components/ErrorMessage";
-import IdenticonLink from "@/components/IdenticonLink";
-import TimeStamp from "@/components/TimeStamp";
-import TransactionIcon from "@/assets/icons/transaction.svg";
+import HashTimeCell from "@/components/Table/HashTimeCell";
+import TxnsCell from "@/components/Table/TxnsCell";
 
 import useActiveBlocksData from "@/hooks/useActiveBlocksData";
 
@@ -93,40 +90,18 @@ function Blocks({ ...props }) {
               return (
                 <Row key={index}>
                   <Cell className={styles.BlockNumCell}>
-                    <Link href={`/blocks/${block.blocknum}`}>
+                    <Button link={`/blocks/${block.blocknum}`}>
                       <a>{block.blocknum}</a>
-                    </Link>
-                  </Cell>
-                  <Cell grow className={styles.HashCell}>
-                    <IdenticonLink
-                      idString={index.toString()}
-                      link={`/blocks/${block.blocknum}`}
-                    />
-                    <Wrapper className={styles.Wrapper}>
-                      <p>{block.blockhash}</p>
-                      <TimeStamp
-                        className={styles.Time}
-                        time={block.createdt}
-                      />
-                    </Wrapper>
-                  </Cell>
-                  <Cell className={styles.CellWithIcon}>
-                    <Button link={"txns"}>
-                      <TransactionIcon className={styles.TransactionIcon} />
                     </Button>
-
-                    {block.txcount > 1 ? (
-                      <Wrapper className={styles.Wrapper}>
-                        <p>{block.txcount}</p>
-                        <p>Transactions</p>
-                      </Wrapper>
-                    ) : (
-                      <Wrapper className={styles.Wrapper}>
-                        <p>{block.txcount}</p>
-                        <p>Transaction</p>
-                      </Wrapper>
-                    )}
                   </Cell>
+                  <HashTimeCell
+                    identicon
+                    hash={block.blockhash}
+                    time={block.createdt}
+                    link={`/blocks/${block.blocknum}`}
+                    index={index}
+                  />
+                  <TxnsCell txcount={block.txcount} />
                 </Row>
               );
             }

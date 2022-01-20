@@ -4,73 +4,17 @@ import instance from "src/axios/instance";
 
 import useChannelHash from "./useChannelHash";
 
-import { TxnActivityDataType } from "src/types";
+function useTxnActivity() {
+  const { channelHash } = useChannelHash();
 
-type ParamProps = {
-  limit?: string | number;
-  chaincode?: string;
-  txId?: string | number;
-} | null;
-
-function getAxiosURLBasedOnParams(channelHash: string, params: ParamProps) {
-  let axiosURL = `/txActivity/${channelHash}`;
-
-  if (params) {
-    axiosURL += "?";
-    const axiosExtras = [];
-
-    if (params.chaincode) {
-      axiosExtras.push(`chaincode=${params.chaincode}`);
-    }
-    if (params.limit) {
-      axiosExtras.push(`limit=${params.chaincode}`);
-    }
-    if (params.txId) {
-      axiosExtras.push(`txId=${params.chaincode}`);
-    }
-
-    if (axiosExtras.length === 1) {
-      axiosURL += [axiosExtras];
-    } else {
-      axiosURL += axiosExtras.join("&");
-    }
-  }
-
-  return axiosURL;
-}
-
-function useTxnActivity(params: ParamProps = null) {
-  const { channelHash, loadingChannelHash } = useChannelHash();
-
-  const axiosURL = getAxiosURLBasedOnParams(channelHash, params);
-
-  const { data: txnActivityData, isLoading: loadingTxnActivityData } = useQuery<
-    TxnActivityDataType[]
-  >(
-    params?.chaincode ? [params.chaincode, "-txn-data"] : "txn-activity-data",
+  const { data: txnActivityData, isLoading: loadingTxnActivityData } = useQuery(
+    "txActivity",
     async () => {
-      const response = await instance.get(axiosURL);
-
-      return response.data?.row.map((row: TxnActivityDataType) => {
-        return {
-          ...row,
-          tx_hash_time: {
-            txhash: row.txhash,
-            createdt: new Date(row.createdt),
-          },
-          tx_from_to: {
-            tx_from: row.tx_from,
-            tx_to: row.tx_to,
-          },
-          tx_action_value: {
-            tx_action: row.tx_action,
-            tx_value: row.tx_value,
-          },
-        };
-      });
-    },
-    { enabled: !loadingChannelHash }
+      const response = await instance.get(`txActivity/${channelHash}`);
+      return response.data.row;
+    }
   );
+
   return { txnActivityData, loadingTxnActivityData };
 }
 

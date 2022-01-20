@@ -10,10 +10,10 @@ export type SmartContractDetailsType = {
 };
 
 export type BlockActivityDataType = {
-  blockNum: number;
+  blocknum: number;
   txcount: number;
   blockhash: string;
-  createdT: string;
+  createdt: string;
 };
 export type TxnActivityDataType = {
   id: number;

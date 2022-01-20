@@ -20,40 +20,5 @@
       color: #0993b1;
       font-weight: 600;
     }
-
-    & .HashCell {
-      color: var(--grey-text);
-      font-size: 0.9rem;
-      font-weight: 600;
-      justify-content: flex-start;
-      width: 60%;
-
-      & .Wrapper {
-        margin-left: 10px;
-
-        & .Time {
-          font-size: 0.7rem;
-          font-weight: 500;
-        }
-      }
-    }
-
-    & .CellWithIcon {
-      display: flex;
-      flex-direction: row;
-      font-size: 0.9rem;
-
-      & .TransactionIcon {
-        margin-right: 10px;
-      }
-
-      & .Wrapper {
-        & > p {
-          &:last-child {
-            font-size: 0.7rem;
-          }
-        }
-      }
-    }
   }
 }

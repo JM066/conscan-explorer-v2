@@ -27,9 +27,35 @@ export function getTimeDistance(datePast: string | Date) {
   });
 }
 
-export function reducedHash(value: string) {
-  if (value.length < 6) {
-    return value;
+export function getReducedHash(txhash: string, left: number, right: number) {
+  if (left && right) {
+    return `${txhash.substring(0, left)}...${txhash.substring(
+      txhash.length - right
+    )}`;
+  } else txhash;
+}
+
+export function getActionValue(
+  action: string,
+  value: string,
+  chaincodename: string
+): { data: string; currency: string | null } {
+  if (action === "Transfer") {
+    if (value.length > 7) {
+      return {
+        data: `${parseInt(value.substring(0, 7)).toLocaleString()}...`,
+        currency: chaincodename,
+      };
+    } else {
+      return {
+        data: value.toLocaleString(),
+        currency: chaincodename,
+      };
+    }
+  } else {
+    return {
+      data: action,
+      currency: null,
+    };
   }
-  return `${value.substring(0, 4)}...${value.substring(value.length - 3)}`;
 }

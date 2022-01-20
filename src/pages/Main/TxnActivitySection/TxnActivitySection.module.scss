@@ -6,21 +6,10 @@
   position: relative;
   width: 100%;
 
-  & .BlocksTable {
+  & .TxnTable {
     overflow-y: scroll;
     padding: 0 10px;
     width: 100%;
-
-    & .BlocksRow {
-      font-size: 0.8rem;
-      gap: 5px;
-      width: 100%;
-
-      & .NumberCell {
-        color: var(--green-dark);
-        font-weight: 600;
-      }
-    }
   }
 
   & .ViewBlocks {
