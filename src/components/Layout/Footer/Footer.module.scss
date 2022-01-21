@@ -1,74 +1,54 @@
 .Footer {
-  background-color: var(--footerground);
+  align-items: center;
+  background: url("../../../assets/background/footer.png");
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
   height: 200px;
+  justify-content: center;
   width: 100%;
+  z-index: 2;
+
   & .FooterItems {
-    align-items: center;
+    align-items: flex-start;
+    color: white;
     display: flex;
+    flex-direction: row;
+    height: 80%;
     justify-content: space-between;
-    margin: 0 auto;
+    padding: 0 20px;
+    width: 80%;
 
-    & .WorldCell {
-      height: 100px;
+    & .LogoCell {
+      font-size: 14px;
+      font-weight: 300;
+      margin: 10px 0;
 
-      & .World {
-        height: 100px;
-        margin-top: 20px;
-        width: 300px;
+      & .Logo {
+        width: 100px;
       }
     }
 
-    & .IconContainer {
-      align-items: left;
+    & .CommunityCell,
+    .SolutionCell,
+    .CompanyCell {
+      align-items: flex-start;
       display: flex;
       flex-direction: column;
-      padding: 10px;
-      & .LogoCell {
-        color: white;
-        font-size: 14px;
-        font-weight: 300;
-        margin: 10px 0;
-        width: 200px;
-        & .Logo {
-          width: 100px;
-        }
-      }
-      & .Icons {
-        display: flex;
-        height: 50px;
-        justify-content: space-between;
-        & .LogoIcon {
-          height: 50px;
-        }
-      }
-      & .Version {
-        color: white;
-        font-size: 14px;
-        font-weight: 300;
-      }
-    }
-
-    & .CompanyCell {
-      color: white;
-      display: flex;
-      flex-direction: column;
+      font-size: 0.8rem;
       font-weight: bold;
-      & .Company {
-        font-size: 14px;
+      justify-content: center;
+
+      & .Community,
+      .Company,
+      .Solutions {
         font-weight: 300;
         margin-top: 10px;
       }
     }
-    & .CommunityCell {
-      color: white;
-      display: flex;
-      flex-direction: column;
-      font-weight: bold;
-      & .Community {
-        font-size: 14px;
-        font-weight: 300;
-        margin-top: 10px;
-      }
+
+    & .Version {
+      font-size: 0.8rem;
     }
   }
 }

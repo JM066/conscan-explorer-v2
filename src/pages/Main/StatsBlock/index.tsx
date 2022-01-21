@@ -1,16 +1,14 @@
 import React from "react";
-
-import GraphCell from "./GraphCell";
-import StatsCell from "./StatsCell";
-
+import classNames from "classnames";
 import styles from "./StatsBlock.module.scss";
 
-function StatsBlock() {
+interface Props {
+  children: React.ReactNode;
+  className: string;
+}
+function StatsBlock({ children, className }: Props) {
   return (
-    <div className={styles.StatsBlock}>
-      <StatsCell />
-      <GraphCell />
-    </div>
+    <div className={classNames(styles.StatsBlock, className)}>{children}</div>
   );
 }
 

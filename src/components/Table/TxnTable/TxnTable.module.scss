@@ -1,0 +1,12 @@
+.Row {
+  font-size: 0.8rem;
+  width: 100%;
+
+  & .HashTimeCell {
+    width: auto;
+  }
+
+  & .FromToTxnCell {
+    width: auto;
+  }
+}

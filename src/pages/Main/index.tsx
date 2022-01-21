@@ -1,6 +1,9 @@
 import React from "react";
 import useWebSocket from "@/hooks/useWebSocket";
+
 import StatsBlock from "./StatsBlock";
+import StatsCell from "./StatsBlock/StatsCell";
+import GraphCell from "./StatsBlock/GraphCell";
 import BlocksActivitySection from "./BlocksActivitySection";
 import TxnActivitySection from "./TxnActivitySection";
 
@@ -10,13 +13,14 @@ function Main() {
   useWebSocket();
   return (
     <div className={styles.Container}>
-      <StatsBlock />
-
-      <div className={styles.Tables}>
+      <StatsBlock className={styles.SubStatsTop}>
+        <StatsCell />
+        <GraphCell />
+      </StatsBlock>
+      <StatsBlock className={styles.SubStatsBottom}>
         <BlocksActivitySection />
-
         <TxnActivitySection />
-      </div>
+      </StatsBlock>
     </div>
   );
 }

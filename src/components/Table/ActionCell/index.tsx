@@ -15,9 +15,9 @@ function ActionCell({ action, value, chaincodename }: Props) {
 
   return (
     <Cell grow className={styles.HashCell}>
-      <Wrapper className={styles.Wrapper}>
-        <p className={styles.HashBox}>{data}</p>
-        <p className={styles.HashBox}>{currency}</p>
+      <Wrapper>
+        <p>{data}</p>
+        <p>{currency}</p>
       </Wrapper>
     </Cell>
   );

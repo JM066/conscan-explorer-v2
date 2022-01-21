@@ -8,10 +8,4 @@
   @media only screen and (max-width: 800px) {
     flex-direction: column;
   }
-
-  & .StatsCell {
-    background-color: var(--foreground);
-    border-radius: var(--radius);
-    flex: 1 1 600px;
-  }
 }

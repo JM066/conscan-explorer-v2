@@ -1,0 +1,13 @@
+.BlocksRow {
+  font-size: 0.8rem;
+  width: 100%;
+
+  & .NumberCell {
+    color: var(--green-dark);
+    font-weight: 600;
+  }
+
+  & .HashTimeCell {
+    width: auto;
+  }
+}

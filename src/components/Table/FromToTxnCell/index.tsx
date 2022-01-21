@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import Wrapper from "@/components/Table/Wrapper";
 import Cell from "@/components/Table/Cell";
 
@@ -10,11 +11,18 @@ interface Props {
   to: string;
   leftHash?: number;
   rightHash?: number;
+  className?: string;
 }
 
-function FromToTxnCell({ from, to, leftHash = 6, rightHash = 4 }: Props) {
+function FromToTxnCell({
+  from,
+  to,
+  leftHash = 6,
+  rightHash = 4,
+  className,
+}: Props) {
   return (
-    <Cell grow className={styles.HashCell}>
+    <Cell grow className={classNames(styles.HashCell, className)}>
       <Wrapper className={styles.Wrapper}>
         <p className={styles.HashBox}>
           <div className={styles.HashTitleBox}>

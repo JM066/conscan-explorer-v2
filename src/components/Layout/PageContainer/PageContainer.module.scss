@@ -4,11 +4,7 @@
   flex: 0 1 var(--page-width);
   flex-direction: column;
   gap: var(--gap);
+  height: 100vh;
   margin: 0 auto;
-  min-height: 100vh;
-  padding: var(--gap) 10px;
-  width: 90%;
-  @media only screen and (min-width: 768px) {
-    width: 80%;
-  }
+  width: 80%;
 }

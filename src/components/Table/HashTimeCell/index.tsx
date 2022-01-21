@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import Wrapper from "@/components/Table/Wrapper";
 import TimeStamp from "@/components/TimeStamp";
 import IdenticonLink from "@/components/IdenticonLink";
@@ -13,6 +14,7 @@ interface Props {
   link: string;
   hashLeft?: number | undefined;
   hashRight?: number | undefined;
+  className?: string;
 }
 function HashTimeCell({
   hash,
@@ -22,13 +24,14 @@ function HashTimeCell({
   link,
   hashLeft,
   hashRight,
+  className,
 }: Props) {
   const shortHash = `${hash.substring(0, hashLeft)}...${hash.substring(
     hash.length - hashRight!
   )}`;
 
   return (
-    <Cell grow className={styles.HashCell}>
+    <Cell grow className={classNames(styles.HashCell, className)}>
       {identicon && <IdenticonLink idString={index.toString()} link={link} />}
       <Wrapper className={styles.Wrapper}>
         <p>{!!hashLeft && !!hashRight ? shortHash : hash}</p>

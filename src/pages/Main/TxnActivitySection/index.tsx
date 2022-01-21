@@ -4,13 +4,9 @@ import Title from "@/components/Title";
 import Loading from "@/components/Loading";
 import Button from "@/components/Button";
 import Table from "@/components/Table";
-import Cell from "@/components/Table/Cell";
+import TxnTable from "@/components/Table/TxnTable";
 import TwinPanel from "@/components/TwinPanel";
 import Box from "@/components/Box";
-import Row from "@/components/Table/Row";
-import HashTimeCell from "@/components/Table/HashTimeCell";
-import FromToTxnCell from "@/components/Table/FromToTxnCell";
-import ActionCell from "@/components/Table/ActionCell";
 import useTxnActivity from "@/hooks/useTxnActivity";
 
 import { TxnActivityDataType } from "@/types/index";
@@ -32,29 +28,7 @@ function TxnActivitySection() {
       ) : (
         <Table className={styles.TxnTable}>
           {txnActivityData.map((txn: TxnActivityDataType, index: number) => (
-            <Row key={index}>
-              <Cell chaincodename={txn.chaincodename}></Cell>
-              <HashTimeCell
-                identicon
-                hash={txn.txhash}
-                time={txn.createdt}
-                link={`Txns/${txn.txhash}`}
-                index={index}
-                hashLeft={6}
-                hashRight={4}
-              />
-              <FromToTxnCell
-                from={txn.tx_from}
-                to={txn.tx_to}
-                leftHash={6}
-                rightHash={4}
-              />
-              <ActionCell
-                action={txn.tx_action}
-                value={txn.tx_value}
-                chaincodename={txn.chaincodename}
-              />
-            </Row>
+            <TxnTable key={index} txn={txn} index={index} />
           ))}
         </Table>
       )}
