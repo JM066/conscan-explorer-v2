@@ -1,5 +1,5 @@
 import React from "react";
-import useWebSocket from "@/hooks/useWebSocket";
+// import useWebSocket from "@/hooks/useWebSocket";
 
 import StatsBlock from "./StatsBlock";
 import StatsCell from "./StatsBlock/StatsCell";
@@ -10,7 +10,7 @@ import TxnActivitySection from "./TxnActivitySection";
 import styles from "./Main.module.scss";
 
 function Main() {
-  useWebSocket();
+  // useWebSocket();
   return (
     <div className={styles.Container}>
       <StatsBlock className={styles.SubStatsTop}>
