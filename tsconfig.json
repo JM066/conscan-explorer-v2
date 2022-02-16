@@ -19,7 +19,8 @@
       "@/assets/*": ["src/assets/*"],
       "@/hooks/*": ["src/hooks/*"],
       "@/helpers/*": ["src/helpers/*"],
-      "@/types/*": ["src/types/*"]
+      "@/types/*": ["src/types/*"],
+      "@/store/*": ["src/store/*"]
     },
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
@@ -29,7 +30,8 @@
     "**/*.tsx",
     "src/pages/API/feedback.js",
     "pages/api/index.tsx",
-    "pages/404/index.js"
+    "pages/404/index.js",
+    "src/hooks/websocket.txs"
   ],
   "exclude": ["node_modules"]
 }

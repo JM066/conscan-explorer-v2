@@ -2,6 +2,15 @@ export type Locales = {
   value: "en" | "ko";
   label: "English" | "한국어";
 };
+export type ObjectType = {
+  [key: string]: string | number;
+};
+export type AppState = {
+  socketData: {
+    newBlocks: ObjectType;
+    newTxns: Array<ObjectType>;
+  };
+};
 export type SmartContractDetailsType = {
   name: string;
   version: number;

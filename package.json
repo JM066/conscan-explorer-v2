@@ -27,7 +27,7 @@
     "recharts": "^2.1.8",
     "sass": "^1.49.0",
     "websocket": "^1.0.34",
-    "zustand": "^3.6.9"
+    "zustand": "^3.7.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.2.0",

@@ -14,7 +14,7 @@ import styles from "./BlocksActivitySection.module.scss";
 
 function BlocksActivitySection() {
   const { latestBlocks, isLoading } = useLatestBlocksData();
-
+  console.log("useLatestBlock", latestBlocks);
   return (
     <Panel className={styles.TableContainer}>
       <Box justify="center">
