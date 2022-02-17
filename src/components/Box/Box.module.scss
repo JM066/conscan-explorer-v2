@@ -1,19 +1,32 @@
 .Box {
-  border-bottom: 1px solid #eee;
-  border-radius: 0.75px;
-  box-shadow: 0 2px 1.5px 0 rgba(171, 171, 171, 0.6);
+  align-items: center;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   padding: 15px 60px;
   width: 100%;
 
   &.center {
     justify-content: center;
   }
+
   &.between {
     justify-content: space-between;
   }
+
   &.around {
     justify-content: space-around;
+  }
+
+  &.rectangle {
+    width: 100%;
+  }
+
+  &.square {
+    height: 100%;
+  }
+
+  &.horizontalLine {
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 2px 1.5px 0 rgb(171 171 171 / 60%);
   }
 }

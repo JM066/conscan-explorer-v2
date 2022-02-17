@@ -1,10 +1,9 @@
 .Container {
-  background-color: transparent;
-  box-shadow: var(--box-shadow);
+  background-color: var(--foreground);
+  border-radius: var(--radius);
   display: flex;
-  flex-direction: column;
-  gap: var(--gap);
+  flex-direction: row;
   height: 100%;
-  padding: 0;
+  justify-content: space-between;
   width: 100%;
 }

@@ -1,9 +1,14 @@
-.StatsBlock {
+.HStack {
   display: flex;
   flex-direction: row;
   gap: var(--gap);
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 100%;
+
+  &.center {
+    align-items: center;
+    justify-content: center;
+  }
 
   @media only screen and (max-width: 800px) {
     flex-direction: column;

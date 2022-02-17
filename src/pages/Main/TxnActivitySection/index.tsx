@@ -5,7 +5,7 @@ import Loading from "@/components/Loading";
 import Button from "@/components/Button";
 import Table from "@/components/Table";
 import TxnTable from "@/components/Table/TxnTable";
-import TwinPanel from "@/components/TwinPanel";
+import VStack from "@/components/VStack";
 import Box from "@/components/Box";
 import useTxnActivity from "@/hooks/useTxnActivity";
 
@@ -18,7 +18,7 @@ function TxnActivitySection() {
 
   console.log("txnActivityData", txnActivityData);
   return (
-    <TwinPanel className={styles.TableContainer}>
+    <VStack className={styles.TableContainer}>
       <Box justify="center">
         <Title title="Recent Transactions"></Title>
       </Box>
@@ -35,7 +35,7 @@ function TxnActivitySection() {
       <div className={styles.ViewBlocks}>
         <Button link={"/blocks/"}>View More Transaction</Button>
       </div>
-    </TwinPanel>
+    </VStack>
   );
 }
 

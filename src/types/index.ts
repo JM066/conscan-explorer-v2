@@ -5,12 +5,7 @@ export type Locales = {
 export type ObjectType = {
   [key: string]: string | number;
 };
-export type AppState = {
-  socketData: {
-    newBlocks: ObjectType;
-    newTxns: Array<ObjectType>;
-  };
-};
+export type AppState = {};
 export type SmartContractDetailsType = {
   name: string;
   version: number;

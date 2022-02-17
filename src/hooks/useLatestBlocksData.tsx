@@ -6,7 +6,7 @@ import useChannelHash from "./useChannelHash";
 const useLatestBlocksData = () => {
   const { channelHash } = useChannelHash();
   const { data: latestBlocks, isLoading } = useQuery(
-    "blocks-activity",
+    "latest-blocks",
     async () => {
       const response = await instance.get(`/blockActivity/${channelHash}`);
       return response.data?.row;

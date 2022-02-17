@@ -2,7 +2,7 @@ import useLatestBlocksData from "@/hooks/useLatestBlocksData";
 
 import Table from "@/components/Table";
 import BlocksTable from "@/components/Table/BlocksTable";
-import Panel from "@/components/Panel";
+import VStack from "@/components/VStack";
 import Loading from "@/components/Loading";
 import Title from "@/components/Title";
 import Button from "@/components/Button";
@@ -16,7 +16,7 @@ function BlocksActivitySection() {
   const { latestBlocks, isLoading } = useLatestBlocksData();
   console.log("useLatestBlock", latestBlocks);
   return (
-    <Panel className={styles.TableContainer}>
+    <VStack className={styles.TableContainer}>
       <Box justify="center">
         <Title title="Recent Blocks" />
       </Box>
@@ -33,7 +33,7 @@ function BlocksActivitySection() {
       <div className={styles.ViewBlocks}>
         <Button link={"/blocks/"}>View More Blocks</Button>
       </div>
-    </Panel>
+    </VStack>
   );
 }
 

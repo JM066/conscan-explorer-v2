@@ -1,0 +1,25 @@
+.NetworkStats {
+  padding: 20px 0;
+  padding-left: 50px;
+  width: 100%;
+
+  & .Statbox {
+    width: 100%;
+
+    &.bottom {
+      border-bottom: 1px solid black;
+    }
+
+    &.left {
+      border-bottom: 1px solid black;
+    }
+
+    &.right {
+      border-bottom: 1px solid black;
+    }
+
+    &.top {
+      border-bottom: 1px solid black;
+    }
+  }
+}

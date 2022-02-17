@@ -5,7 +5,7 @@ import Row from "@/components/Table/Row";
 import Cell from "@/components/Table/Cell";
 import Title from "@/components/Title";
 import Box from "@/components/Box";
-import Panel from "@/components/Panel";
+import VStack from "@/components/VStack/index";
 import Pagination from "@/components/Pagination";
 import DuplicatedSkeleton from "@/components/DuplicatedSkeleton";
 import Button from "@/components/Button";
@@ -58,7 +58,7 @@ function Blocks({ ...props }) {
   }
   if (isLoading) {
     return (
-      <Panel>
+      <VStack>
         <Box className={styles.EmptyTitleBox}>
           <Title className={styles.Title} title="Recent Blocks" />
         </Box>
@@ -67,12 +67,12 @@ function Blocks({ ...props }) {
             <DuplicatedSkeleton key={index} />
           ))}
         </Table>
-      </Panel>
+      </VStack>
     );
   }
   return (
     <div className={styles.BlocksPage}>
-      <Panel>
+      <VStack>
         <Box className={styles.TitleBox}>
           <Title className={styles.Title} title="Recent Blocks" />
           <Pagination
@@ -107,7 +107,7 @@ function Blocks({ ...props }) {
             }
           )}
         </Table>
-      </Panel>
+      </VStack>
     </div>
   );
 }
