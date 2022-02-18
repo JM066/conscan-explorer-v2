@@ -26,6 +26,7 @@ function BlocksTable({
         time={block.createdt}
         index={index}
         identicon
+        hashRight={0}
         link={`/blocks/${block.blocknum}`}
       />
       <TxnsCell txcount={block.txcount} />

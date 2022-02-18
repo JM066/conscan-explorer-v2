@@ -12,8 +12,8 @@ interface Props {
   identicon?: boolean;
   index: number;
   link: string;
-  hashLeft?: number | undefined;
-  hashRight?: number | undefined;
+  hashLeft?: number;
+  hashRight: number | 0;
   className?: string;
 }
 function HashTimeCell({
@@ -23,18 +23,18 @@ function HashTimeCell({
   index,
   link,
   hashLeft,
-  hashRight,
+  hashRight = 0,
   className,
 }: Props) {
   const shortHash = `${hash.substring(0, hashLeft)}...${hash.substring(
-    hash.length - hashRight!
+    hash.length - hashRight
   )}`;
 
   return (
     <Cell grow className={classNames(styles.HashCell, className)}>
       {identicon && <IdenticonLink idString={index.toString()} link={link} />}
       <Wrapper className={styles.Wrapper}>
-        <p>{!!hashLeft && !!hashRight ? shortHash : hash}</p>
+        <p>{hashRight > 0 ? shortHash : hash}</p>
         <TimeStamp className={styles.Time} time={time} />
       </Wrapper>
     </Cell>

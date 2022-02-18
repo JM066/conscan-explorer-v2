@@ -100,6 +100,7 @@ function Blocks({ ...props }) {
                     time={block.createdt}
                     link={`/blocks/${block.blocknum}`}
                     index={index}
+                    hashRight={0}
                   />
                   <TxnsCell txcount={block.txcount} />
                 </Row>
