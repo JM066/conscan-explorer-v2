@@ -5,10 +5,9 @@ import styles from "./Loading.module.scss";
 
 function Loading() {
   return (
-    <VStack centered className={styles.Panel}>
+    <VStack centered className={styles.VStack}>
       <div className={styles.Loader}>
-        <div />
-        <div />
+        <div></div>
       </div>
     </VStack>
   );

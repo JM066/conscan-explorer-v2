@@ -16,7 +16,6 @@ import styles from "./TxnActivitySection.module.scss";
 function TxnActivitySection() {
   const { txnActivityData, loadingTxnActivityData } = useTxnActivity();
 
-  console.log("txnActivityData", txnActivityData);
   return (
     <VStack className={styles.TableContainer}>
       <Box justify="center">

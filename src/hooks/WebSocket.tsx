@@ -45,7 +45,6 @@ export function useWebSocket() {
     if (!ws.current) return;
 
     ws.current.onmessage = (e) => {
-      console.log("socket message");
       const socketData = JSON.parse(e.data.toString());
       const { txdata, ...socketBlocks } = socketData;
       const socketTxns = txdata;

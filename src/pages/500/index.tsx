@@ -1,13 +1,13 @@
 import React from "react";
-import Panel from "@/components/Panel";
+import VStack from "@/components/VStack";
 
 function Custom500() {
   return (
-    <Panel centered>
+    <VStack centered>
       <div>
         <h1>500 - Server-side error occurred</h1>
       </div>
-    </Panel>
+    </VStack>
   );
 }
 

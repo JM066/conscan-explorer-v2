@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-import Panel from "@/components/Panel";
+import HStack from "@/components/HStack";
 import Loading from "@/components/Loading";
 
 import ContractTransactionViewer from "./ContractTransactionViewer";
@@ -32,11 +32,11 @@ function ContractDetails() {
   }
 
   return (
-    <Panel>
+    <HStack>
       <InfoTable smartContract={thisSmartContract} />
       <ContractDescription />
       <ContractTransactionViewer contractName={thisSmartContract.name} />
-    </Panel>
+    </HStack>
   );
 }
 

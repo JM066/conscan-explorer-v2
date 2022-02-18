@@ -5,5 +5,22 @@
   flex-direction: row;
   height: 100%;
   justify-content: space-between;
+  padding: 20px 0;
   width: 100%;
+}
+
+.HorizontalLine {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 20px;
+  justify-content: center;
+  width: 100%;
+
+  & .Line {
+    border: 1px solid #eee;
+    border-style: solid;
+    box-shadow: 0 1px 2px rgb(171 171 171 / 40%);
+    width: 90%;
+  }
 }

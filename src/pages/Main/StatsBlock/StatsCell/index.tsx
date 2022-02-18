@@ -30,28 +30,41 @@ function StatsCell() {
       <VStack bordered={false} centered={false}>
         <NetworkStats
           blocks={data?.blocks}
-          title="con price"
+          title={"con price".toUpperCase()}
           value="0.0000005104 BTC"
           icon={<ConPrice />}
-          borderVariant="left"
+          hasBorder={true}
+          position="top"
         />
+        <div className={styles.HorizontalLine}>
+          <hr className={styles.Line}></hr>
+        </div>
         <NetworkStats
           blocks={data?.blocks}
-          title="total blocks"
+          title={"total blocks".toUpperCase()}
           icon={<BlockIcon />}
+          hasBorder={true}
+          position="bottom"
         />
       </VStack>
 
       <VStack bordered={false}>
         <NetworkStats
           blocks={data?.txns}
-          title="market cap"
+          title={"market cap".toUpperCase()}
           icon={<MarketCap />}
+          hasBorder={false}
+          position="top"
         />
+        <div className={styles.HorizontalLine}>
+          <hr className={styles.Line}></hr>
+        </div>
         <NetworkStats
           blocks={data?.txns}
-          title="total transactions"
+          title={"total transactions".toUpperCase()}
           icon={<TotalTxn />}
+          hasBorder={false}
+          position="bottom"
         />
       </VStack>
     </div>

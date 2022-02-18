@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import VStack from "@/components/HStack/index";
+import Hstack from "@/components/HStack/index";
 import styles from "./NetworkStat.module.scss";
 
 type StatType = {
@@ -8,26 +8,38 @@ type StatType = {
   title: string;
   value?: string;
   icon: React.ReactNode;
-  borderVariant?: "left" | "right" | "top" | "bottom";
+  className?: string;
+  hasBorder: boolean;
+  position?: "top" | "bottom";
 };
 function NetworkStats({
   blocks,
   title,
   value,
   icon,
-  borderVariant = "bottom",
+  className,
+  hasBorder = false,
+  position = "top",
 }: StatType) {
   return (
-    <VStack className={styles.NetworkStats} centered={false}>
-      <div className={classNames(styles.Statbox, styles[borderVariant])}>
-        <div>{icon}</div>
-        <div>
-          <p>{title}</p>
-          <p>{blocks}</p>
-          <p>{value}</p>
+    <div className={classNames(styles.NetworkStats, className)}>
+      <div className={classNames(styles.Statbox, styles[position])}>
+        <div
+          className={classNames(styles.InnerBox, {
+            [styles.borderRight]: hasBorder,
+          })}
+        >
+          <Hstack className={styles.CenterBox}>
+            <div className={styles.StatIcon}>{icon}</div>
+            <div className={styles.StatDataContainer}>
+              <p className={styles.Title}>{title}</p>
+              <p className={styles.Numbers}>{blocks}</p>
+              <p className={styles.CoinVal}>{value}</p>
+            </div>
+          </Hstack>
         </div>
       </div>
-    </VStack>
+    </div>
   );
 }
 
