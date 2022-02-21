@@ -1,10 +1,10 @@
 .PageContainer {
   align-items: center;
   display: flex;
-  flex: 0 1 var(--page-width);
   flex-direction: column;
   gap: var(--gap);
-  height: 100vh;
+  height: 100%;
   margin: 0 auto;
-  width: 80%;
+  padding: 30px 0;
+  width: 100%;
 }

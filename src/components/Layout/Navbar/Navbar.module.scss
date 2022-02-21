@@ -2,11 +2,11 @@
   background: transparent;
   padding-top: 25px;
   width: 100%;
+
   .Navbar {
     align-items: flex-start;
     display: flex;
     flex-direction: row;
-    height: 60px;
     justify-content: space-between;
     margin: 0 auto;
     width: 90%;
@@ -14,6 +14,7 @@
     @media only screen and (min-width: 768px) {
       width: 80%;
     }
+
     & .Logo {
       margin-left: 1rem;
       width: 10rem;
@@ -23,6 +24,7 @@
       align-items: flex-start;
       display: flex;
       padding-right: 1rem;
+
       & .Navs {
         color: var(--conun-blue);
         font-size: 1rem;
@@ -34,6 +36,7 @@
           margin-right: 1rem;
         }
       }
+
       & .LocaleSelector {
         display: flex;
         flex-direction: row;
@@ -43,6 +46,7 @@
           margin: 3px;
           width: 20px;
         }
+
         & .Dropdown {
           align-items: center;
           background-color: transparent;
@@ -53,7 +57,7 @@
           width: 70px;
 
           & .ListItems {
-            background: rgba(151, 191, 220, 0.68);
+            background: rgb(151 191 220 / 68%);
             border-radius: 5px;
             list-style: none;
             margin-top: 3px;

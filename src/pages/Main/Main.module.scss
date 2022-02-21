@@ -1,7 +1,9 @@
 .Container {
+  align-items: center;
   display: flex;
   flex-direction: column;
   gap: var(--gap);
+  justify-content: center;
   width: 100%;
 
   & .SubStatsTop {

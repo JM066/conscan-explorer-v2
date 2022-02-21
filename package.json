@@ -10,6 +10,7 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
+    "@react-hook/media-query": "^1.1.1",
     "@types/react-table": "^7.7.9",
     "@types/websocket": "^1.0.4",
     "axios": "^0.21.2",

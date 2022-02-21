@@ -21,12 +21,12 @@ function BlocksTable({
         <a>{block.blocknum}</a>
       </Cell>
       <HashTimeCell
-        className={styles.HashTimeCell}
         hash={block.blockhash}
         time={block.createdt}
         index={index}
         identicon
-        hashRight={0}
+        hashLeft={15}
+        hashRight={15}
         link={`/blocks/${block.blocknum}`}
       />
       <TxnsCell txcount={block.txcount} />

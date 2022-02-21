@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { useRouter } from "next/router";
 
 import Button from "@/components/Button";
+
 import MagnifyingGlass from "@/assets/icons/magnifying-glass.svg";
 import styles from "./SearchBox.module.scss";
 

@@ -1,6 +1,9 @@
 .HashCell {
+  width: 287px;
+
   & .Wrapper {
     margin-left: 10px;
+    width: 100%;
 
     & .Time {
       font-size: 0.7rem;

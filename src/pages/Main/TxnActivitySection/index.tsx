@@ -18,7 +18,7 @@ function TxnActivitySection() {
 
   return (
     <VStack className={styles.TableContainer}>
-      <Box justify="center">
+      <Box position="center">
         <Title title="Recent Transactions"></Title>
       </Box>
 

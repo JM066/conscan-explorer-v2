@@ -1,7 +1,7 @@
 .Box {
   align-items: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   padding: 15px 60px;
   width: 100%;
 
@@ -9,20 +9,12 @@
     justify-content: center;
   }
 
-  &.between {
-    justify-content: space-between;
+  &.start {
+    justify-content: flex-start;
   }
 
-  &.around {
-    justify-content: space-around;
-  }
-
-  &.rectangle {
-    width: 100%;
-  }
-
-  &.square {
-    height: 100%;
+  &.end {
+    justify-content: flex-end;
   }
 
   &.horizontalLine {

@@ -35,12 +35,12 @@
         color: var(--conun-blue);
         gap: 20px;
         justify-content: flex-start;
-        padding-left: 40px;
+        padding-left: 60px;
         width: 90%;
 
-        @media only screen and (min-width: 768px) and (max-width: 1025px) {
+        @media only screen and (max-width: 1605px) {
           gap: 20px;
-          padding-left: 20px;
+          padding-left: 40px;
         }
 
         & .StatIcon {

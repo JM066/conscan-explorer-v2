@@ -2,10 +2,10 @@
   align-items: center;
   background: url("../../../assets/background/footer.png");
   background-repeat: no-repeat;
-  display: flex;
-  flex-direction: column;
+  bottom: 0;
   height: 200px;
-  justify-content: center;
+  padding: 20px 0;
+  position: relative;
   width: 100%;
   z-index: 2;
 
@@ -14,9 +14,7 @@
     color: white;
     display: flex;
     flex-direction: row;
-    height: 80%;
     justify-content: space-between;
-    padding: 0 20px;
     width: 80%;
 
     & .LogoCell {

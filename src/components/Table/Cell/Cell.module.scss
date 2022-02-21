@@ -1,22 +1,31 @@
-.Cell {
+.CellContainer {
   align-items: center;
   display: flex;
-  flex-direction: row;
-  flex-grow: 1;
-  justify-content: flex-start;
+  justify-content: column;
 
-  &.grow {
-    flex-grow: 2;
-  }
+  & .Cell {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: flex-start;
 
-  &.centered {
-    justify-content: center;
+    &.grow {
+      flex-grow: 2;
+    }
+
+    &.centered {
+      justify-content: center;
+    }
   }
 }
+
 @media only screen and (max-width: 1024px) {
-  .Cell {
-    &.grow {
-      min-width: 500px;
+  .CellContainer {
+    & .Cell {
+      &.grow {
+        min-width: 500px;
+      }
     }
   }
 }

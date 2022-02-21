@@ -1,13 +1,13 @@
 import React from "react";
-
+import classNames from "classnames";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import Loading from "../Loading";
+import Disconnected from "../Disconnected";
 import PageContainer from "./PageContainer";
 
 import useLatestBlocksData from "@/hooks/useChannelHash";
-
-import Loading from "../Loading";
-import Disconnected from "../Disconnected";
+// import useIsMobile from "@/hooks/useIsMobile";
 
 import styles from "./Layout.module.scss";
 
@@ -17,9 +17,10 @@ interface Layout {
 
 function Layout({ children }: Layout) {
   const { channelHash, loadingChannelHash } = useLatestBlocksData();
+  // const isMobile = useIsMobile();
 
   return (
-    <div className={styles.Layout}>
+    <div className={classNames(styles.Layout)}>
       <Navbar />
       <div className={styles.AppWidth}>
         <PageContainer>

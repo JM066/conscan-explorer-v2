@@ -59,7 +59,7 @@ function Blocks({ ...props }) {
   if (isLoading) {
     return (
       <VStack>
-        <Box className={styles.EmptyTitleBox}>
+        <Box className={styles.EmptyTitleBox} position="start">
           <Title className={styles.Title} title="Recent Blocks" />
         </Box>
         <Table>
@@ -73,7 +73,7 @@ function Blocks({ ...props }) {
   return (
     <div className={styles.BlocksPage}>
       <VStack>
-        <Box className={styles.TitleBox}>
+        <Box className={styles.TitleBox} position="start">
           <Title className={styles.Title} title="Recent Blocks" />
           <Pagination
             className={styles.PaginationButtons}
@@ -83,12 +83,11 @@ function Blocks({ ...props }) {
             handleNext={handleNext}
           />
         </Box>
-
         <Table className={styles.Table}>
           {activeBlocksData?.row.map(
             (block: BlockActivityDataType, index: number) => {
               return (
-                <Row key={index}>
+                <Row key={index} className={styles.Row}>
                   <Cell className={styles.BlockNumCell}>
                     <Button link={`/blocks/${block.blocknum}`}>
                       <a>{block.blocknum}</a>
@@ -96,6 +95,7 @@ function Blocks({ ...props }) {
                   </Cell>
                   <HashTimeCell
                     identicon
+                    className={styles.HashCell}
                     hash={block.blockhash}
                     time={block.createdt}
                     link={`/blocks/${block.blocknum}`}

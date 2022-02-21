@@ -4,7 +4,7 @@ import DriveIcon from "@/assets/icons/drive-smart.svg";
 import TransferIcon from "@/assets/icons/conx-smart.svg";
 import BridgeIcon from "@/assets/icons/bridge-smart.svg";
 
-import style from "./Cell.module.scss";
+import styles from "./Cell.module.scss";
 
 interface Props {
   children?: React.ReactNode;
@@ -34,16 +34,18 @@ function Cell({
     }
   };
   return (
-    <div
-      className={classNames(
-        style.Cell,
-        { [style.grow]: grow },
-        { [style.centered]: centered },
-        className
-      )}
-    >
-      {!!chaincodename && getActionIcon(chaincodename)}
-      {children}
+    <div className={classNames(styles.CellContainer, className)}>
+      <div
+        className={classNames(
+          styles.Cell,
+          { [styles.grow]: grow },
+          { [styles.centered]: centered },
+          className
+        )}
+      >
+        {!!chaincodename && getActionIcon(chaincodename)}
+        {children}
+      </div>
     </div>
   );
 }
