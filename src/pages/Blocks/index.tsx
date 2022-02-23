@@ -21,8 +21,12 @@ import styles from "./Blocks.module.scss";
 
 function Blocks({ ...props }) {
   const channelHash = props.channelHash;
-  const data = props.latestBlocks.row;
-  const [currentPage, setCurrentPage] = useState<number>(data[0].blocknum);
+  const latestBlocks = props.latestBlocks.row;
+  const [currentPage, setCurrentPage] = useState<number>(
+    latestBlocks[0].blocknum
+  );
+
+  console.log("current page ", latestBlocks);
   const { activeBlocksData, isLoading, isError, error } = useActiveBlocksData(
     channelHash,
     currentPage
@@ -36,17 +40,17 @@ function Blocks({ ...props }) {
     }
   };
   const handlePrev = () => {
-    if (currentPage < data[0].blocknum) {
-      setCurrentPage((prev) => Math.min(prev + 10, data[0].blocknum));
+    if (currentPage < latestBlocks[0].blocknum) {
+      setCurrentPage((prev) => Math.min(prev + 10, latestBlocks[0].blocknum));
     }
   };
 
   const handleLatest = () => {
-    setCurrentPage(data[0].blocknum);
+    setCurrentPage(latestBlocks[0].blocknum);
   };
 
   const handleOldest = () => {
-    setCurrentPage(data[0].blocknum % 10);
+    setCurrentPage(latestBlocks[0].blocknum % 10);
   };
 
   if (isError && error) {

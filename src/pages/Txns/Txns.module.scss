@@ -1,0 +1,52 @@
+.BlocksPage {
+  background-color: var(--foreground);
+  width: 100%;
+
+  & .TitleBox {
+    display: flex;
+    justify-content: space-between;
+
+    & .Title {
+      align-self: center;
+    }
+
+    & .PaginationButtons {
+      align-self: flex-end;
+      justify-self: flex-end;
+      margin-top: 15px;
+    }
+  }
+
+  & .Table {
+    & .Row {
+      width: 80%;
+
+      & .BlockNumCell {
+        color: #0993b1;
+        font-weight: 600;
+      }
+
+      & .HashCell {
+        width: 600px;
+      }
+    }
+  }
+}
+
+.EmptyTitleBox {
+  padding: 22px 60px;
+}
+
+@media only screen and (max-width: 1605px) {
+  .BlocksPage {
+    & .Table {
+      & .Row {
+        gap: 50px;
+
+        & .HashCell {
+          width: 450px;
+        }
+      }
+    }
+  }
+}

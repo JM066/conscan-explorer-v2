@@ -7,14 +7,14 @@ import Table from "@/components/Table";
 import TxnTable from "@/components/Table/TxnTable";
 import VStack from "@/components/VStack";
 import Box from "@/components/Box";
-import useTxnActivity from "@/hooks/useTxnActivity";
+import useLatestActiveTxns from "@/hooks/useLatestActiveTxns";
 
 import { TxnActivityDataType } from "@/types/index";
 
 import styles from "./TxnActivitySection.module.scss";
 
 function TxnActivitySection() {
-  const { txnActivityData, loadingTxnActivityData } = useTxnActivity();
+  const { latestTxns, isLoading } = useLatestActiveTxns();
 
   return (
     <VStack className={styles.TableContainer}>
@@ -22,11 +22,11 @@ function TxnActivitySection() {
         <Title title="Recent Transactions"></Title>
       </Box>
 
-      {loadingTxnActivityData ? (
+      {isLoading ? (
         <Loading />
       ) : (
         <Table className={styles.TxnTable}>
-          {txnActivityData.map((txn: TxnActivityDataType, index: number) => (
+          {latestTxns.map((txn: TxnActivityDataType, index: number) => (
             <TxnTable key={index} txn={txn} index={index} />
           ))}
         </Table>

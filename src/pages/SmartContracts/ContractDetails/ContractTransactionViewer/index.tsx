@@ -1,19 +1,16 @@
 import React from "react";
 
 import Loading from "@/components/Loading";
-import TransactionTable from "@/components/TransactionTable";
 
-import useTxnActivity from "src/hooks/useTxnActivity";
+import useLatestTxnsData from "src/hooks/useLatestTxnsData";
 
-function ContractTransactionViewer({ contractName }: { contractName: string }) {
-  const { txnActivityData, loadingTxnActivityData } = useTxnActivity({
-    chaincode: contractName,
-  });
+function ContractTransactionViewer() {
+  const { latestTxns, isLoading } = useLatestTxnsData();
 
-  if (loadingTxnActivityData) {
+  if (isLoading) {
     return <Loading />;
   }
-  return <TransactionTable txnData={txnActivityData} />;
+  return <div>Transaction Viewer{latestTxns}</div>;
 }
 
 export default ContractTransactionViewer;
