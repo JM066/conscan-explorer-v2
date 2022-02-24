@@ -7,14 +7,14 @@ import Table from "@/components/Table";
 import TxnTable from "@/components/Table/TxnTable";
 import VStack from "@/components/VStack";
 import Box from "@/components/Box";
-import useLatestActiveTxns from "@/hooks/useLatestActiveTxns";
+import useLatestTxnsData from "@/hooks/useLatestTxnsData";
 
 import { TxnActivityDataType } from "@/types/index";
 
 import styles from "./TxnActivitySection.module.scss";
 
 function TxnActivitySection() {
-  const { latestTxns, isLoading } = useLatestActiveTxns();
+  const { latestTxns, isLoading } = useLatestTxnsData();
 
   return (
     <VStack className={styles.TableContainer}>
@@ -32,7 +32,7 @@ function TxnActivitySection() {
         </Table>
       )}
       <div className={styles.ViewBlocks}>
-        <Button link={"/blocks/"}>View More Transaction</Button>
+        <Button link={"/txns/"}>View More Transaction</Button>
       </div>
     </VStack>
   );

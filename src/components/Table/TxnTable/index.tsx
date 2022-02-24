@@ -1,16 +1,26 @@
+import React, { useEffect, useState } from "react";
 import Row from "@/components/Table/Row";
 import Cell from "@/components/Table/Cell";
 import HashTimeCell from "@/components/Table/HashTimeCell";
 import FromToTxnCell from "@/components/Table/FromToTxnCell";
 import ActionCell from "@/components/Table/ActionCell";
-import { TxnActivityDataType } from "@/types/index";
 
+import { getBlocksActionIcon } from "@/helpers/index";
+
+import { TxnActivityDataType } from "@/types/index";
 import styles from "./TxnTable.module.scss";
 
 function TxnTable({ txn, index }: { txn: TxnActivityDataType; index: number }) {
+  const [actionIcon, setActionIcon] = useState<React.ReactNode>(null);
+
+  useEffect(() => {
+    const icon = getBlocksActionIcon(txn?.chaincodename);
+    setActionIcon(icon);
+  }, []);
+
   return (
     <Row className={styles.Row}>
-      <Cell chaincodename={txn.chaincodename}></Cell>
+      {actionIcon && <Cell>{actionIcon}</Cell>}
       <HashTimeCell
         className={styles.HashTimeCell}
         identicon

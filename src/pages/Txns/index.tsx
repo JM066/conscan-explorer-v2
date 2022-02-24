@@ -11,8 +11,9 @@ import DuplicatedSkeleton from "@/components/DuplicatedSkeleton";
 import Button from "@/components/Button";
 import ErrorMessage from "@/components/ErrorMessage";
 import HashTimeCell from "@/components/Table/HashTimeCell";
-import TxnsCell from "@/components/Table/TxnsCell";
+
 import useActiveTxnsData from "@/hooks/useActiveTxnsData";
+import useChannelStatistics from "@/hooks/useChannelStatistics";
 
 import { TxnActivityDataType } from "@/types/index";
 import styles from "./Txns.module.scss";
@@ -20,7 +21,7 @@ import styles from "./Txns.module.scss";
 function Txns({ ...props }) {
   const channelHash = props.channelHash;
   const latestTxns = props.latestTxns.row;
-
+  const channelStatistics = useChannelStatistics(channelHash);
   const [currentPage, setCurrentPage] = useState<number>(latestTxns[0].id);
 
   const { activeTxnsData, isLoading, isError, error } = useActiveTxnsData(
@@ -29,15 +30,16 @@ function Txns({ ...props }) {
   );
 
   const EmptyRows = Array(10).fill("");
+  const numbsToSubtract = channelStatistics.txns - 10;
 
   const handleNext = () => {
-    if (currentPage >= 10) {
+    if (currentPage >= 10 && currentPage > latestTxns[0].id - numbsToSubtract) {
       setCurrentPage((prev) => Math.max(prev - 10, 1));
     }
   };
   const handlePrev = () => {
     if (currentPage < latestTxns[0].id) {
-      setCurrentPage((prev) => Math.min(prev + 10, latestTxns[0].blocknum));
+      setCurrentPage((prev) => Math.min(prev + 10, latestTxns[0].id));
     }
   };
 
@@ -46,7 +48,7 @@ function Txns({ ...props }) {
   };
 
   const handleOldest = () => {
-    setCurrentPage(latestTxns[0].id % 10);
+    setCurrentPage(latestTxns[0].id - numbsToSubtract);
   };
   if (isError && error) {
     let errorMessage;
@@ -60,7 +62,7 @@ function Txns({ ...props }) {
     return (
       <VStack>
         <Box className={styles.EmptyTitleBox} position="start">
-          <Title className={styles.Title} title="Recent Blocks" />
+          <Title className={styles.Title} title="Recent Transactions" />
         </Box>
         <Table>
           {EmptyRows.map((index: number) => (
@@ -71,10 +73,10 @@ function Txns({ ...props }) {
     );
   }
   return (
-    <div>
+    <div className={styles.BlocksPage}>
       <VStack>
         <Box className={styles.TitleBox} position="start">
-          <Title className={styles.Title} title="Recent Blocks" />
+          <Title className={styles.Title} title="Recent Transactions" />
           <Pagination
             className={styles.PaginationButtons}
             handleLatest={handleLatest}
@@ -89,7 +91,7 @@ function Txns({ ...props }) {
               return (
                 <Row key={index} className={styles.Row}>
                   <Cell className={styles.BlockNumCell}>
-                    <Button link={`/blocks/${txns.id}`}>
+                    <Button link={`/txns/${txns.id}`}>
                       <a>{txns.id}</a>
                     </Button>
                   </Cell>
@@ -102,7 +104,6 @@ function Txns({ ...props }) {
                     index={index}
                     hashRight={0}
                   />
-                  <TxnsCell txcount={1} />
                 </Row>
               );
             }
@@ -113,3 +114,5 @@ function Txns({ ...props }) {
   );
 }
 export default Txns;
+//BurnFrom
+//Mint

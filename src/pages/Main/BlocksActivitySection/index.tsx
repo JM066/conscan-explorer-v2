@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import useLatestBlocksData from "@/hooks/useLatestBlocksData";
 
 import Table from "@/components/Table";
@@ -14,6 +15,10 @@ import styles from "./BlocksActivitySection.module.scss";
 
 function BlocksActivitySection() {
   const { latestBlocks, isLoading } = useLatestBlocksData();
+
+  useEffect(() => {
+    console.log("latestBlocks", latestBlocks);
+  }, []);
 
   return (
     <VStack className={styles.TableContainer}>

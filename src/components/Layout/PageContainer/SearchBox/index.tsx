@@ -33,7 +33,7 @@ function SearchBox() {
             className={styles.InputWithNoOutline}
             ref={inputRef}
           />
-          <Button noStyle type="submit">
+          <Button variant="ghost" type="submit" className={styles.SerachButton}>
             <MagnifyingGlass />
           </Button>
         </div>

@@ -1,9 +1,5 @@
 import classNames from "classnames";
 
-import DriveIcon from "@/assets/icons/drive-smart.svg";
-import TransferIcon from "@/assets/icons/conx-smart.svg";
-import BridgeIcon from "@/assets/icons/bridge-smart.svg";
-
 import styles from "./Cell.module.scss";
 
 interface Props {
@@ -11,28 +7,9 @@ interface Props {
   grow?: boolean;
   className?: string;
   centered?: boolean;
-  chaincodename?: string;
 }
 
-function Cell({
-  children,
-  grow,
-  centered = false,
-  chaincodename,
-  className,
-}: Props) {
-  const getActionIcon = (chaincodename: string) => {
-    switch (chaincodename) {
-      case "conx":
-        return <TransferIcon />;
-      case "drive":
-        return <DriveIcon />;
-      case "bridge":
-        return <BridgeIcon />;
-      default:
-        return <TransferIcon />;
-    }
-  };
+function Cell({ children, grow, centered = false, className }: Props) {
   return (
     <div className={classNames(styles.CellContainer, className)}>
       <div
@@ -43,7 +20,6 @@ function Cell({
           className
         )}
       >
-        {!!chaincodename && getActionIcon(chaincodename)}
         {children}
       </div>
     </div>

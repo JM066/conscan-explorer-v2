@@ -1,4 +1,6 @@
 import classNames from "classnames";
+
+import Button from "@/components/Button";
 import Rewind from "@/assets/icons/rewind.svg";
 import FastForward from "@/assets/icons/fast-forward.svg";
 import Prev from "@/assets/icons/prev.svg";
@@ -22,10 +24,18 @@ function Pagination({
 }: Props) {
   return (
     <div className={classNames(styles.PaginationButtons, className)}>
-      <FastForward onClick={handleLatest} />
-      <Prev onClick={handlePrev} />
-      <Next onClick={handleNext} />
-      <Rewind onClick={handleOldest} />
+      <Button variant="ghost">
+        <FastForward onClick={handleLatest} />
+      </Button>
+      <Button variant="ghost">
+        <Prev onClick={handlePrev} />
+      </Button>
+      <Button variant="ghost">
+        <Next onClick={handleNext} />
+      </Button>
+      <Button variant="ghost">
+        <Rewind onClick={handleOldest} />
+      </Button>
     </div>
   );
 }

@@ -1,10 +1,3 @@
-.NoStyleButton {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  outline: none;
-}
-
 .Button {
   border: none;
   box-shadow: 0 2px 2px rgb(0 0 0 / 10%);
@@ -18,6 +11,15 @@
 
   &.secondary {
     background-color: rebeccapurple;
+  }
+
+  &.ghost {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
   }
 
   &.round {

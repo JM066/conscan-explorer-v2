@@ -1,4 +1,7 @@
 import { formatDistance } from "date-fns";
+import DriveIcon from "@/assets/icons/drive-smart.svg";
+import TransferIcon from "@/assets/icons/conx-smart.svg";
+import BridgeIcon from "@/assets/icons/bridge-smart.svg";
 
 export function getContractType(serviceType: string | undefined) {
   switch (serviceType?.toUpperCase()) {
@@ -15,6 +18,18 @@ export function getContractType(serviceType: string | undefined) {
       return "basic";
   }
 }
+export const getBlocksActionIcon = (chaincodename: string) => {
+  switch (chaincodename) {
+    case "conx":
+      return <TransferIcon />;
+    case "drive":
+      return <DriveIcon />;
+    case "bridge":
+      return <BridgeIcon />;
+    default:
+      return <TransferIcon />;
+  }
+};
 
 export function getTimeDistance(datePast: string | Date) {
   if (typeof datePast === "string") {

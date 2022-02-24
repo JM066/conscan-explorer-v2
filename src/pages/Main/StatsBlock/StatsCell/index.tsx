@@ -1,35 +1,24 @@
 import React from "react";
-import instance from "src/axios/instance";
-import { useQuery } from "react-query";
+// import instance from "src/axios/instance";
+// import { useQuery } from "react-query";
 import NetworkStats from "./NetworkStat/index";
 import VStack from "@/components/VStack";
-import useChannelHash from "@/hooks/useChannelHash";
+import useChannelStatistics from "@/hooks/useChannelStatistics";
+
 import ConPrice from "src/assets/icons/con_price.svg";
 import MarketCap from "src/assets/icons/market_cap.svg";
 import TotalTxn from "src/assets/icons/total_txn.svg";
 import BlockIcon from "src/assets/icons/block_icon.svg";
 import styles from "./StatsCell.module.scss";
 
-function StatsCell() {
-  const { channelHash } = useChannelHash();
-
-  const { data } = useQuery(
-    "channel-statistics",
-    async () => {
-      const response = await instance.get(`/status/${channelHash}`);
-      return {
-        blocks: response?.data?.latestBlock,
-        txns: response?.data?.txCount,
-      };
-    },
-    { enabled: !!channelHash }
-  );
+function StatsCell({ channelHash }: { channelHash: string }) {
+  const channelStatistics = useChannelStatistics(channelHash);
 
   return (
     <div className={styles.Container}>
       <VStack bordered={false} centered={false}>
         <NetworkStats
-          blocks={data?.blocks}
+          blocks={channelStatistics.blocks}
           title={"con price".toUpperCase()}
           value="0.0000005104 BTC"
           icon={<ConPrice />}
@@ -40,7 +29,7 @@ function StatsCell() {
           <hr className={styles.Line}></hr>
         </div>
         <NetworkStats
-          blocks={data?.blocks}
+          blocks={channelStatistics.blocks}
           title={"total blocks".toUpperCase()}
           icon={<BlockIcon />}
           hasBorder={true}
@@ -50,7 +39,7 @@ function StatsCell() {
 
       <VStack bordered={false}>
         <NetworkStats
-          blocks={data?.txns}
+          blocks={channelStatistics.txns}
           title={"market cap".toUpperCase()}
           icon={<MarketCap />}
           hasBorder={false}
@@ -60,7 +49,7 @@ function StatsCell() {
           <hr className={styles.Line}></hr>
         </div>
         <NetworkStats
-          blocks={data?.txns}
+          blocks={channelStatistics.txns}
           title={"total transactions".toUpperCase()}
           icon={<TotalTxn />}
           hasBorder={false}

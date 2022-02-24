@@ -41,15 +41,14 @@
       display: flex;
       flex: 0 1 900px;
       flex-direction: row;
-      height: 30px;
+      height: 100%;
       justify-content: space-between;
-      padding: 0 20px;
+      padding: 10px 20px;
       z-index: 2;
 
       & .InputWithNoOutline {
         background-color: transparent;
         border: 0 solid;
-        width: 70%;
 
         &:focus {
           outline: none;
@@ -58,6 +57,10 @@
         &::placeholder {
           color: var(--conun-blue);
         }
+      }
+
+      & .SerachButton {
+        width: 5%;
       }
     }
   }
