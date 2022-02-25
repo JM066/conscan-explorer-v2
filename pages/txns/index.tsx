@@ -1,10 +1,9 @@
 import Txns from "../../src/pages/Txns";
-import { getHash, getLatestTxns } from "../api/index";
+import { getLatestTxns } from "../api/index";
 export default Txns;
 
 export async function getStaticProps() {
-  const latestTxns = await getLatestTxns();
-  const channelHash = await getHash();
+  const { channelHash, latestTxns } = await getLatestTxns();
 
   return {
     props: {

@@ -2,10 +2,10 @@ import { useQuery } from "react-query";
 
 import instance from "../axios/instance";
 
-import useChannelHash from "./useChannelHash";
+// import useChannelHash from "./useChannelHash";
 
-function useLatestTxnsData() {
-  const { channelHash } = useChannelHash();
+function useLatestTxnsData(channelHash: string) {
+  // const { channelHash } = useChannelHash();
 
   const { data: latestTxns, isLoading } = useQuery("txActivity", async () => {
     const response = await instance.get(`txActivity/${channelHash}`);

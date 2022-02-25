@@ -19,14 +19,15 @@ import { BlockActivityDataType } from "@/types/index";
 
 import styles from "./Blocks.module.scss";
 
-function Blocks({ ...props }) {
-  const channelHash = props.channelHash;
-  const latestBlocks = props.latestBlocks.row;
+interface Props {
+  channelHash: string;
+  latestBlocks: BlockActivityDataType[];
+}
+function Blocks({ channelHash, latestBlocks }: Props) {
   const [currentPage, setCurrentPage] = useState<number>(
     latestBlocks[0].blocknum
   );
 
-  console.log("current page ", latestBlocks);
   const { activeBlocksData, isLoading, isError, error } = useActiveBlocksData(
     channelHash,
     currentPage

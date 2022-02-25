@@ -18,9 +18,11 @@ import useChannelStatistics from "@/hooks/useChannelStatistics";
 import { TxnActivityDataType } from "@/types/index";
 import styles from "./Txns.module.scss";
 
-function Txns({ ...props }) {
-  const channelHash = props.channelHash;
-  const latestTxns = props.latestTxns.row;
+interface Props {
+  channelHash: string;
+  latestTxns: TxnActivityDataType[];
+}
+function Txns({ channelHash, latestTxns }: Props) {
   const channelStatistics = useChannelStatistics(channelHash);
   const [currentPage, setCurrentPage] = useState<number>(latestTxns[0].id);
 
@@ -114,5 +116,3 @@ function Txns({ ...props }) {
   );
 }
 export default Txns;
-//BurnFrom
-//Mint

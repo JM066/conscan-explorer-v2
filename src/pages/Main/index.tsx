@@ -20,8 +20,8 @@ function Main({ channelHash }: { channelHash: string }) {
         <GraphCell />
       </HStack>
       <HStack className={styles.SubStatsBottom}>
-        <BlocksActivitySection />
-        <TxnActivitySection />
+        <BlocksActivitySection channelHash={channelHash} />
+        <TxnActivitySection channelHash={channelHash} />
       </HStack>
     </div>
   );

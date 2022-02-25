@@ -1,10 +1,7 @@
 import { useQuery } from "react-query";
 import instance from "../axios/instance";
 
-import useChannelHash from "./useChannelHash";
-
-const useLatestBlocksData = () => {
-  const { channelHash } = useChannelHash();
+const useLatestBlocksData = (channelHash: string) => {
   const { data: latestBlocks, isLoading } = useQuery(
     "latest-blocks",
     async () => {

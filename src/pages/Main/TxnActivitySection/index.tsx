@@ -13,8 +13,8 @@ import { TxnActivityDataType } from "@/types/index";
 
 import styles from "./TxnActivitySection.module.scss";
 
-function TxnActivitySection() {
-  const { latestTxns, isLoading } = useLatestTxnsData();
+function TxnActivitySection({ channelHash }: { channelHash: string }) {
+  const { latestTxns, isLoading } = useLatestTxnsData(channelHash);
 
   return (
     <VStack className={styles.TableContainer}>

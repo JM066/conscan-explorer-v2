@@ -1,10 +1,9 @@
 import Blocks from "../../src/pages/Blocks";
-import { getHash, getLatestBlocks } from "../api/index";
+import { getLatestBlocks } from "../api/index";
 export default Blocks;
 
-export async function getStaticProps() {
-  const latestBlocks = await getLatestBlocks();
-  const channelHash = await getHash();
+export async function getServerSideProps() {
+  const { channelHash, latestBlocks } = await getLatestBlocks();
 
   return {
     props: {
