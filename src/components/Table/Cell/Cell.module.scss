@@ -1,7 +1,6 @@
 .CellContainer {
-  align-items: center;
   display: flex;
-  justify-content: column;
+  flex-direction: column;
 
   & .Cell {
     align-items: center;

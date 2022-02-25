@@ -1,4 +1,4 @@
-.BlocksPage {
+.TxnsPage {
   background-color: var(--foreground);
   width: 100%;
 
@@ -18,16 +18,11 @@
   }
 
   & .Table {
-    & .Row {
+    & .RowContainer {
       width: 80%;
 
-      & .BlockNumCell {
-        color: #0993b1;
-        font-weight: 600;
-      }
-
-      & .HashCell {
-        width: 600px;
+      & .TxnsTable {
+        gap: 200px;
       }
     }
   }

@@ -5,12 +5,13 @@
       display: flex;
       flex-direction: row;
       font-size: 0.8rem;
-      font-weight: 600;
+      font-weight: 400;
 
       & .HashTitleBox {
         align-items: flex-end;
         display: flex;
         flex-direction: row;
+        font-weight: 600;
         justify-content: flex-end;
         width: 40px;
 

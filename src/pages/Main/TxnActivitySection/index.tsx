@@ -4,6 +4,7 @@ import Title from "@/components/Title";
 import Loading from "@/components/Loading";
 import Button from "@/components/Button";
 import Table from "@/components/Table";
+import Row from "@/components/Table/Row";
 import TxnTable from "@/components/Table/TxnTable";
 import VStack from "@/components/VStack";
 import Box from "@/components/Box";
@@ -25,9 +26,11 @@ function TxnActivitySection({ channelHash }: { channelHash: string }) {
       {isLoading ? (
         <Loading />
       ) : (
-        <Table className={styles.TxnTable}>
+        <Table className={styles.Table}>
           {latestTxns.map((txn: TxnActivityDataType, index: number) => (
-            <TxnTable key={index} txn={txn} index={index} />
+            <Row key={index} className={styles.RowContainer}>
+              <TxnTable txn={txn} index={index} className={styles.TxnTable} />
+            </Row>
           ))}
         </Table>
       )}

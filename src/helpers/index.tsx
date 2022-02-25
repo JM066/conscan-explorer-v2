@@ -2,6 +2,9 @@ import { formatDistance } from "date-fns";
 import DriveIcon from "@/assets/icons/drive-smart.svg";
 import TransferIcon from "@/assets/icons/conx-smart.svg";
 import BridgeIcon from "@/assets/icons/bridge-smart.svg";
+import LikeIcon from "@/assets/icons/like.svg";
+import DownloadIcon from "@/assets/icons/download.svg";
+import CoinIcon from "@/assets/icons/coin.svg";
 
 export function getContractType(serviceType: string | undefined) {
   switch (serviceType?.toUpperCase()) {
@@ -18,8 +21,8 @@ export function getContractType(serviceType: string | undefined) {
       return "basic";
   }
 }
-export const getBlocksActionIcon = (chaincodename: string) => {
-  switch (chaincodename) {
+export const getTxnsIcon = (action: string) => {
+  switch (action) {
     case "conx":
       return <TransferIcon />;
     case "drive":
@@ -28,6 +31,17 @@ export const getBlocksActionIcon = (chaincodename: string) => {
       return <BridgeIcon />;
     default:
       return <TransferIcon />;
+  }
+};
+
+export const getTxnsActionIcon = (action: string) => {
+  switch (action) {
+    case "Like":
+      return <LikeIcon />;
+    case "download":
+      return <DownloadIcon />;
+    default:
+      return <CoinIcon />;
   }
 };
 
@@ -53,24 +67,23 @@ export function getReducedHash(txhash: string, left: number, right: number) {
 export function getActionValue(
   action: string,
   value: string,
-  chaincodename: string
-): { data: string; currency: string | null } {
-  if (action === "Transfer") {
+  coinName: string
+) {
+  if (action == "Transfer") {
     if (value.length > 7) {
       return {
-        data: `${parseInt(value.substring(0, 7)).toLocaleString()}...`,
-        currency: chaincodename,
+        txValue: `${parseInt(value.substring(0, 7).toLocaleString())}...`,
+        txCoin: coinName,
       };
     } else {
       return {
-        data: value.toLocaleString(),
-        currency: chaincodename,
+        txValue: value.toLocaleString(),
+        txCoin: coinName,
       };
     }
   } else {
     return {
-      data: action,
-      currency: null,
+      txValue: value,
     };
   }
 }

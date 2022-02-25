@@ -7,10 +7,16 @@
   position: relative;
   width: 100%;
 
-  & .TxnTable {
+  & .Table {
     overflow-y: scroll;
     padding: 0 10px;
     width: 100%;
+
+    & .RowContainer {
+      & .TxnTable {
+        gap: 50px;
+      }
+    }
   }
 
   & .ViewBlocks {

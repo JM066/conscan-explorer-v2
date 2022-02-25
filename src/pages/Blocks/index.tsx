@@ -100,6 +100,7 @@ function Blocks({ channelHash, latestBlocks }: Props) {
                   </Cell>
                   <HashTimeCell
                     identicon
+                    variant="grey"
                     className={styles.HashCell}
                     hash={block.blockhash}
                     time={block.createdt}

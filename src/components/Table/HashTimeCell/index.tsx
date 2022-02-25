@@ -15,6 +15,7 @@ interface Props {
   hashLeft?: number;
   hashRight: number | 0;
   className?: string;
+  variant: "green" | "grey" | "dark-grey";
 }
 function HashTimeCell({
   hash,
@@ -25,6 +26,7 @@ function HashTimeCell({
   hashLeft,
   hashRight = 0,
   className,
+  variant = "dark-grey",
 }: Props) {
   const shortHash = `${hash.substring(0, hashLeft)}...${hash.substring(
     hash.length - hashRight
@@ -34,7 +36,7 @@ function HashTimeCell({
     <Cell grow className={classNames(styles.HashCell, className)}>
       {identicon && <IdenticonLink idString={index.toString()} link={link} />}
       <Wrapper className={styles.Wrapper}>
-        <p>{hashRight > 0 ? shortHash : hash}</p>
+        <p className={styles[variant]}>{hashRight > 0 ? shortHash : hash}</p>
         <TimeStamp className={styles.Time} time={time} />
       </Wrapper>
     </Cell>

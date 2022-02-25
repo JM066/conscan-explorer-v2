@@ -1,23 +1,24 @@
 import Cell from "@/components/Table/Cell";
 import Wrapper from "@/components/Table/Wrapper";
-import { getActionValue } from "@/helpers/index";
+import { getActionValue, getTxnsActionIcon } from "@/helpers/index";
 
 import styles from "./ActionCell.module.scss";
 
 interface Props {
   action: string;
   value: string;
-  chaincodename: string;
+  coinName: string;
 }
 
-function ActionCell({ action, value, chaincodename }: Props) {
-  const { data, currency } = getActionValue(action, value, chaincodename);
-
+function ActionCell({ action, value, coinName }: Props) {
+  const { txValue, txCoin } = getActionValue(action, value, coinName);
+  const actionIcon = getTxnsActionIcon(action);
   return (
     <Cell grow className={styles.HashCell}>
+      <div>{actionIcon}</div>
       <Wrapper>
-        <p>{data}</p>
-        <p>{currency}</p>
+        <p>{txValue}</p>
+        <p>{txCoin}</p>
       </Wrapper>
     </Cell>
   );

@@ -1,36 +1,42 @@
-import React, { useEffect, useState } from "react";
-import Row from "@/components/Table/Row";
+import React from "react";
 import Cell from "@/components/Table/Cell";
+import HStack from "@/components/HStack";
+import Button from "@/components/Button";
 import HashTimeCell from "@/components/Table/HashTimeCell";
 import FromToTxnCell from "@/components/Table/FromToTxnCell";
 import ActionCell from "@/components/Table/ActionCell";
 
-import { getBlocksActionIcon } from "@/helpers/index";
+import { getTxnsIcon } from "@/helpers/index";
 
 import { TxnActivityDataType } from "@/types/index";
 import styles from "./TxnTable.module.scss";
 
-function TxnTable({ txn, index }: { txn: TxnActivityDataType; index: number }) {
-  const [actionIcon, setActionIcon] = useState<React.ReactNode>(null);
-
-  useEffect(() => {
-    const icon = getBlocksActionIcon(txn?.chaincodename);
-    setActionIcon(icon);
-  }, []);
+interface Props {
+  txn: TxnActivityDataType;
+  index: number;
+  className?: string;
+}
+function TxnTable({ txn, index, className }: Props) {
+  const txnsIcon = getTxnsIcon(txn?.chaincodename);
 
   return (
-    <Row className={styles.Row}>
-      {actionIcon && <Cell>{actionIcon}</Cell>}
-      <HashTimeCell
-        className={styles.HashTimeCell}
-        identicon
-        hash={txn.txhash}
-        time={txn.createdt}
-        link={`Txns/${txn.txhash}`}
-        index={index}
-        hashLeft={6}
-        hashRight={4}
-      />
+    <HStack className={(styles.Row, className)}>
+      <Button variant="ghost">
+        <Cell>{txnsIcon}</Cell>
+      </Button>
+      <Button variant="ghost">
+        <HashTimeCell
+          variant="dark-grey"
+          className={styles.HashTimeCell}
+          identicon
+          hash={txn.txhash}
+          time={txn.createdt}
+          link={`Txns/${txn.txhash}`}
+          index={index}
+          hashLeft={6}
+          hashRight={4}
+        />
+      </Button>
       <FromToTxnCell
         className={styles.FromToTxnCell}
         from={txn.tx_from}
@@ -41,9 +47,9 @@ function TxnTable({ txn, index }: { txn: TxnActivityDataType; index: number }) {
       <ActionCell
         action={txn.tx_action}
         value={txn.tx_value}
-        chaincodename={txn.chaincodename}
+        coinName={txn.chaincodename}
       />
-    </Row>
+    </HStack>
   );
 }
 export default TxnTable;

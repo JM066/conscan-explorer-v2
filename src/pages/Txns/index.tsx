@@ -2,15 +2,13 @@ import React, { useState } from "react";
 
 import Table from "@/components/Table";
 import Row from "@/components/Table/Row";
-import Cell from "@/components/Table/Cell";
 import Title from "@/components/Title";
 import Box from "@/components/Box";
 import VStack from "@/components/VStack/index";
 import Pagination from "@/components/Pagination";
 import DuplicatedSkeleton from "@/components/DuplicatedSkeleton";
-import Button from "@/components/Button";
+import TxnTable from "@/components/Table/TxnTable";
 import ErrorMessage from "@/components/ErrorMessage";
-import HashTimeCell from "@/components/Table/HashTimeCell";
 
 import useActiveTxnsData from "@/hooks/useActiveTxnsData";
 import useChannelStatistics from "@/hooks/useChannelStatistics";
@@ -75,7 +73,7 @@ function Txns({ channelHash, latestTxns }: Props) {
     );
   }
   return (
-    <div className={styles.BlocksPage}>
+    <div className={styles.TxnsPage}>
       <VStack>
         <Box className={styles.TitleBox} position="start">
           <Title className={styles.Title} title="Recent Transactions" />
@@ -91,20 +89,11 @@ function Txns({ channelHash, latestTxns }: Props) {
           {activeTxnsData?.row.map(
             (txns: TxnActivityDataType, index: number) => {
               return (
-                <Row key={index} className={styles.Row}>
-                  <Cell className={styles.BlockNumCell}>
-                    <Button link={`/txns/${txns.id}`}>
-                      <a>{txns.id}</a>
-                    </Button>
-                  </Cell>
-                  <HashTimeCell
-                    identicon
-                    className={styles.HashCell}
-                    hash={txns.txhash}
-                    time={txns.createdt}
-                    link={`/txns/${txns.id}`}
+                <Row key={txns.id} className={styles.RowContainer}>
+                  <TxnTable
+                    txn={txns}
                     index={index}
-                    hashRight={0}
+                    className={styles.TxnsTable}
                   />
                 </Row>
               );
