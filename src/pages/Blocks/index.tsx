@@ -12,7 +12,7 @@ import Button from "@/components/Button";
 import ErrorMessage from "@/components/ErrorMessage";
 import HashTimeCell from "@/components/Table/HashTimeCell";
 import TxnsCell from "@/components/Table/TxnsCell";
-
+import HStack from "@/components/HStack";
 import useActiveBlocksData from "@/hooks/useActiveBlocksData";
 
 import { BlockActivityDataType } from "@/types/index";
@@ -92,23 +92,26 @@ function Blocks({ channelHash, latestBlocks }: Props) {
           {activeBlocksData?.row.map(
             (block: BlockActivityDataType, index: number) => {
               return (
-                <Row key={index} className={styles.Row}>
-                  <Cell className={styles.BlockNumCell}>
-                    <Button link={`/blocks/${block.blocknum}`}>
-                      <a>{block.blocknum}</a>
-                    </Button>
-                  </Cell>
-                  <HashTimeCell
-                    identicon
-                    variant="grey"
-                    className={styles.HashCell}
-                    hash={block.blockhash}
-                    time={block.createdt}
-                    link={`/blocks/${block.blocknum}`}
-                    index={index}
-                    hashRight={0}
-                  />
-                  <TxnsCell txcount={block.txcount} />
+                <Row key={index} className={styles.RowContainer}>
+                  <HStack className={styles.Row}>
+                    <Cell className={styles.BlockNumCell}>
+                      <Button link={`/blocks/${block.blocknum}`}>
+                        <a>{block.blocknum}</a>
+                      </Button>
+                    </Cell>
+                    <HashTimeCell
+                      identicon
+                      variant="grey"
+                      className={styles.HashCell}
+                      hash={block.blockhash}
+                      time={block.createdt}
+                      link={`/blocks/${block.blocknum}`}
+                      index={index}
+                      hashLeft={0}
+                      hashRight={0}
+                    />
+                    <TxnsCell txcount={block.txcount} />
+                  </HStack>
                 </Row>
               );
             }

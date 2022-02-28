@@ -7,11 +7,19 @@ import Box from "@/components/Box";
 import VStack from "@/components/VStack/index";
 import Pagination from "@/components/Pagination";
 import DuplicatedSkeleton from "@/components/DuplicatedSkeleton";
-import TxnTable from "@/components/Table/TxnTable";
+import Cell from "@/components/Table/Cell";
+import HStack from "@/components/HStack";
+import Button from "@/components/Button";
+import HashTimeCell from "@/components/Table/HashTimeCell";
+import FromToTxnCell from "@/components/Table/FromToTxnCell";
+import ActionCell from "@/components/Table/ActionCell";
+
 import ErrorMessage from "@/components/ErrorMessage";
 
 import useActiveTxnsData from "@/hooks/useActiveTxnsData";
 import useChannelStatistics from "@/hooks/useChannelStatistics";
+
+import { getTxnsIcon } from "@/helpers/index";
 
 import { TxnActivityDataType } from "@/types/index";
 import styles from "./Txns.module.scss";
@@ -88,13 +96,39 @@ function Txns({ channelHash, latestTxns }: Props) {
         <Table className={styles.Table}>
           {activeTxnsData?.row.map(
             (txns: TxnActivityDataType, index: number) => {
+              const txnsIcon = getTxnsIcon(txns?.chaincodename);
               return (
                 <Row key={txns.id} className={styles.RowContainer}>
-                  <TxnTable
-                    txn={txns}
-                    index={index}
-                    className={styles.TxnsTable}
-                  />
+                  <HStack className={styles.Row}>
+                    <Button variant="ghost">
+                      <Cell>{txnsIcon}</Cell>
+                    </Button>
+                    <Button variant="ghost">
+                      <HashTimeCell
+                        variant="green"
+                        className={styles.HashTimeCell}
+                        identicon
+                        hash={txns.txhash}
+                        time={txns.createdt}
+                        link={`Txns/${txns.txhash}`}
+                        index={index}
+                        hashLeft={15}
+                        hashRight={15}
+                      />
+                    </Button>
+                    <FromToTxnCell
+                      className={styles.FromToTxnCell}
+                      from={txns.tx_from}
+                      to={txns.tx_to}
+                      leftHash={15}
+                      rightHash={15}
+                    />
+                    <ActionCell
+                      action={txns.tx_action}
+                      value={txns.tx_value}
+                      coinName={txns.chaincodename}
+                    />
+                  </HStack>
                 </Row>
               );
             }

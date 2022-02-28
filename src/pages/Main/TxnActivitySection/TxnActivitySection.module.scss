@@ -13,8 +13,18 @@
     width: 100%;
 
     & .RowContainer {
-      & .TxnTable {
-        gap: 50px;
+      .Row {
+        font-size: 0.8rem;
+        justify-content: space-between;
+        width: 100%;
+
+        & .HashTimeCell {
+          width: 143px;
+        }
+
+        & .FromToTxnCell {
+          width: auto;
+        }
       }
     }
   }

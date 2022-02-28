@@ -57,11 +57,12 @@ export function getTimeDistance(datePast: string | Date) {
 }
 
 export function getReducedHash(txhash: string, left: number, right: number) {
-  if (left && right) {
+  console.log("right, left, txhash", txhash, left, right);
+  if (right > 0) {
     return `${txhash.substring(0, left)}...${txhash.substring(
       txhash.length - right
     )}`;
-  } else txhash;
+  } else return txhash;
 }
 
 export function getActionValue(

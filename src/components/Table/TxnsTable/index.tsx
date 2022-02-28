@@ -7,16 +7,16 @@ import FromToTxnCell from "@/components/Table/FromToTxnCell";
 import ActionCell from "@/components/Table/ActionCell";
 
 import { getTxnsIcon } from "@/helpers/index";
-
 import { TxnActivityDataType } from "@/types/index";
-import styles from "./TxnTable.module.scss";
+import styles from "./TxnsTable.module.scss";
 
 interface Props {
   txn: TxnActivityDataType;
   index: number;
   className?: string;
 }
-function TxnTable({ txn, index, className }: Props) {
+
+function TxnsTable({ txn, index, className }: Props) {
   const txnsIcon = getTxnsIcon(txn?.chaincodename);
 
   return (
@@ -52,4 +52,4 @@ function TxnTable({ txn, index, className }: Props) {
     </HStack>
   );
 }
-export default TxnTable;
+export default TxnsTable;

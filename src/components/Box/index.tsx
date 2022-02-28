@@ -13,7 +13,6 @@ function Box({
   children,
   className,
   position = "center",
-
   bottomLine = true,
 }: Props) {
   return (

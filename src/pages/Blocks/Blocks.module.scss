@@ -18,17 +18,23 @@
   }
 
   & .Table {
-    & .Row {
+    & .RowContainer {
       width: 80%;
 
-      & .BlockNumCell {
-        color: #0993b1;
-        font-weight: 600;
-      }
+      .Row {
+        font-size: 0.8rem;
+        justify-content: space-between;
+        width: 100%;
 
-      & .HashCell {
-        color: var(--grey-text);
-        width: 600px;
+        & .BlockNumCell {
+          color: #0993b1;
+          font-weight: 600;
+        }
+
+        & .HashCell {
+          color: var(--grey-text);
+          width: 500px;
+        }
       }
     }
   }

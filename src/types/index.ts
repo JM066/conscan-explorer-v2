@@ -30,7 +30,7 @@ export type TxnActivityDataType = {
   tx_value: string;
 };
 
-export type TxnTableInterface = {
+export type TxnsTable = {
   id: number;
   chaincodename: string;
   tx_hash_time: {
@@ -45,4 +45,15 @@ export type TxnTableInterface = {
     tx_action: string;
     tx_value: string;
   };
+};
+
+export type BlockDetail = {
+  blksize: number;
+  blockhash: string;
+  blocknum: number;
+  createdt: Date;
+  datahash: string;
+  prehash: string;
+  txcount: number;
+  txhash: String[];
 };

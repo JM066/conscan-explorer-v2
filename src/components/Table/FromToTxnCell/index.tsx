@@ -9,18 +9,12 @@ import styles from "./FromToTxnCell.module.scss";
 interface Props {
   from: string;
   to: string;
-  leftHash?: number;
-  rightHash?: number;
+  leftHash: number;
+  rightHash: number;
   className?: string;
 }
 
-function FromToTxnCell({
-  from,
-  to,
-  leftHash = 6,
-  rightHash = 4,
-  className,
-}: Props) {
+function FromToTxnCell({ from, to, leftHash, rightHash, className }: Props) {
   return (
     <Cell grow className={classNames(styles.HashCell, className)}>
       <Wrapper className={styles.Wrapper}>
@@ -28,11 +22,11 @@ function FromToTxnCell({
           <div className={styles.HashTitleBox}>
             <span>FROM:</span>
           </div>
-          <span> {getReducedHash(from, leftHash, rightHash)}</span>
+          <span>{getReducedHash(from, leftHash, rightHash)}</span>
         </p>
         <p className={styles.HashBox}>
           <div className={styles.HashTitleBox}>
-            <span>To:</span>
+            <span>To: </span>
           </div>
           <span> {getReducedHash(to, leftHash, rightHash)}</span>
         </p>

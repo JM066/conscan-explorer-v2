@@ -21,8 +21,18 @@
     & .RowContainer {
       width: 80%;
 
-      & .TxnsTable {
-        gap: 200px;
+      .Row {
+        font-size: 0.8rem;
+        justify-content: space-between;
+        width: 100%;
+
+        & .HashTimeCell {
+          font-size: 14px;
+        }
+
+        & .FromToTxnCell {
+          width: auto;
+        }
       }
     }
   }

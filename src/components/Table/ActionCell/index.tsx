@@ -17,8 +17,8 @@ function ActionCell({ action, value, coinName }: Props) {
     <Cell grow className={styles.HashCell}>
       <div>{actionIcon}</div>
       <Wrapper>
-        <p>{txValue}</p>
-        <p>{txCoin}</p>
+        <p>{txValue && txValue}</p>
+        <p>{txCoin && txCoin}</p>
       </Wrapper>
     </Cell>
   );
