@@ -5,8 +5,9 @@ interface Props {
   children: React.ReactNode;
   header?: boolean;
   className?: string;
+  fullLength?: boolean;
 }
-function Row({ children, header, className }: Props) {
+function Row({ children, header, fullLength = false, className }: Props) {
   return (
     <div
       className={classNames(
@@ -16,7 +17,10 @@ function Row({ children, header, className }: Props) {
       )}
     >
       <div
-        className={classNames(style.Row, { [style.header]: header }, className)}
+        className={classNames(style.Row, {
+          [style.header]: header,
+          [style.full]: fullLength,
+        })}
       >
         {children}
       </div>

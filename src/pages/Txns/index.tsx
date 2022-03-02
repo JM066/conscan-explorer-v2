@@ -13,10 +13,9 @@ import Button from "@/components/Button";
 import HashTimeCell from "@/components/Table/HashTimeCell";
 import FromToTxnCell from "@/components/Table/FromToTxnCell";
 import ActionCell from "@/components/Table/ActionCell";
-
 import ErrorMessage from "@/components/ErrorMessage";
 
-import useActiveTxnsData from "@/hooks/useActiveTxnsData";
+import useActivityData from "@/hooks/useActivityData";
 import useChannelStatistics from "@/hooks/useChannelStatistics";
 
 import { getTxnsIcon } from "@/helpers/index";
@@ -29,12 +28,13 @@ interface Props {
   latestTxns: TxnActivityDataType[];
 }
 function Txns({ channelHash, latestTxns }: Props) {
+  console.log("channelHash", channelHash);
   const channelStatistics = useChannelStatistics(channelHash);
   const [currentPage, setCurrentPage] = useState<number>(latestTxns[0].id);
-
-  const { activeTxnsData, isLoading, isError, error } = useActiveTxnsData(
+  const { activeData, isLoading, isError, error } = useActivityData(
     channelHash,
-    currentPage
+    currentPage,
+    "txActivity"
   );
 
   const EmptyRows = Array(10).fill("");
@@ -94,45 +94,45 @@ function Txns({ channelHash, latestTxns }: Props) {
           />
         </Box>
         <Table className={styles.Table}>
-          {activeTxnsData?.row.map(
-            (txns: TxnActivityDataType, index: number) => {
-              const txnsIcon = getTxnsIcon(txns?.chaincodename);
-              return (
-                <Row key={txns.id} className={styles.RowContainer}>
-                  <HStack className={styles.Row}>
-                    <Button variant="ghost">
-                      <Cell>{txnsIcon}</Cell>
-                    </Button>
-                    <Button variant="ghost">
-                      <HashTimeCell
-                        variant="green"
-                        className={styles.HashTimeCell}
-                        identicon
-                        hash={txns.txhash}
-                        time={txns.createdt}
-                        link={`Txns/${txns.txhash}`}
-                        index={index}
-                        hashLeft={15}
-                        hashRight={15}
-                      />
-                    </Button>
-                    <FromToTxnCell
-                      className={styles.FromToTxnCell}
-                      from={txns.tx_from}
-                      to={txns.tx_to}
-                      leftHash={15}
-                      rightHash={15}
+          {activeData?.row.map((txns: TxnActivityDataType, index: number) => {
+            const txnsIcon = getTxnsIcon(txns?.chaincodename);
+            return (
+              <Row key={txns.id} className={styles.RowContainer}>
+                <HStack className={styles.Row}>
+                  <Button variant="ghost">
+                    <Cell>{txnsIcon}</Cell>
+                  </Button>
+                  <Button variant="ghost">
+                    <HashTimeCell
+                      variant="green"
+                      className={styles.HashTimeCell}
+                      identicon
+                      hash={txns.txhash}
+                      time={txns.createdt}
+                      link={`Txns/${txns.txhash}`}
+                      index={index}
+                      hashLeft={15}
+                      hashRight={15}
                     />
-                    <ActionCell
-                      action={txns.tx_action}
-                      value={txns.tx_value}
-                      coinName={txns.chaincodename}
-                    />
-                  </HStack>
-                </Row>
-              );
-            }
-          )}
+                  </Button>
+
+                  <FromToTxnCell
+                    className={styles.FromToTxnCell}
+                    from={txns.tx_from}
+                    to={txns.tx_to}
+                    leftHash={15}
+                    rightHash={15}
+                  />
+                  <ActionCell
+                    className={styles.ActionCell}
+                    action={txns.tx_action}
+                    value={txns.tx_value}
+                    coinName={txns.chaincodename}
+                  />
+                </HStack>
+              </Row>
+            );
+          })}
         </Table>
       </VStack>
     </div>

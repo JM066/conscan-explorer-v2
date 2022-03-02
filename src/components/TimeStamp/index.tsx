@@ -1,4 +1,4 @@
-import { formatDistance } from "date-fns";
+import { getTimeDistance } from "@/helpers/index";
 import classNames from "classnames";
 
 interface Props {
@@ -7,13 +7,11 @@ interface Props {
 }
 
 function TimeStamp({ time, className }: Props) {
-  const date = formatDistance(new Date(time), new Date(), {
-    addSuffix: true,
-  });
+  const date = getTimeDistance(time);
 
   return (
     <div className={classNames(className)}>
-      {date.charAt(0).toUpperCase() + date.slice(1)}
+      {date && date.charAt(0).toUpperCase() + date.slice(1)}
     </div>
   );
 }

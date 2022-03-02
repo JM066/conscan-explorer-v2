@@ -1,4 +1,5 @@
 import { formatDistance } from "date-fns";
+import { zonedTimeToUtc } from "date-fns-tz";
 import DriveIcon from "@/assets/icons/drive-smart.svg";
 import TransferIcon from "@/assets/icons/conx-smart.svg";
 import BridgeIcon from "@/assets/icons/bridge-smart.svg";
@@ -47,17 +48,25 @@ export const getTxnsActionIcon = (action: string) => {
 
 export function getTimeDistance(datePast: string | Date) {
   if (typeof datePast === "string") {
-    return formatDistance(new Date(datePast), new Date(), {
+    const zonedPastDate = getLocalTime(datePast);
+    const zonedPresentDate = getLocalTime(new Date());
+    return formatDistance(new Date(zonedPastDate), zonedPresentDate, {
       addSuffix: true,
     });
   }
-  return formatDistance(datePast, new Date(), {
-    addSuffix: true,
-  });
+}
+
+export function getTimeZone() {
+  const timeZone = new Intl.DateTimeFormat().resolvedOptions().timeZone;
+  return timeZone;
+}
+export function getLocalTime(date: string | Date) {
+  const timeZone = getTimeZone();
+  const localTime = zonedTimeToUtc(date, timeZone);
+  return localTime;
 }
 
 export function getReducedHash(txhash: string, left: number, right: number) {
-  console.log("right, left, txhash", txhash, left, right);
   if (right > 0) {
     return `${txhash.substring(0, left)}...${txhash.substring(
       txhash.length - right
@@ -84,7 +93,7 @@ export function getActionValue(
     }
   } else {
     return {
-      txValue: value,
+      txValue: `${parseInt(value.substring(0, 7).toLocaleString())}...`,
     };
   }
 }

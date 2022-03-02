@@ -1,4 +1,4 @@
-import useLatestBlocksData from "@/hooks/useLatestBlocksData";
+import useLatestActivityData from "@/hooks/useLatestActivityData";
 
 import Table from "@/components/Table";
 import BlocksTable from "@/components/Table/BlocksTable";
@@ -13,7 +13,10 @@ import { BlockActivityDataType } from "@/types/index";
 import styles from "./BlocksActivitySection.module.scss";
 
 function BlocksActivitySection({ channelHash }: { channelHash: string }) {
-  const { latestBlocks, isLoading } = useLatestBlocksData(channelHash);
+  const { latestData, isLoading } = useLatestActivityData(
+    channelHash,
+    "blockActivity"
+  );
 
   return (
     <VStack className={styles.TableContainer}>
@@ -25,7 +28,7 @@ function BlocksActivitySection({ channelHash }: { channelHash: string }) {
         <Loading />
       ) : (
         <Table className={styles.BlocksTable}>
-          {latestBlocks?.map((block: BlockActivityDataType, index: number) => {
+          {latestData?.map((block: BlockActivityDataType, index: number) => {
             return <BlocksTable key={index} block={block} index={index} />;
           })}
         </Table>

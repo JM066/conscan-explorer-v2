@@ -27,11 +27,15 @@
         width: 100%;
 
         & .HashTimeCell {
-          font-size: 14px;
+          width: 350px;
         }
 
         & .FromToTxnCell {
-          width: auto;
+          width: 240px;
+        }
+
+        & .ActionCell {
+          width: 100px;
         }
       }
     }

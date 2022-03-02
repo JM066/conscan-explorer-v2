@@ -13,7 +13,7 @@ import ErrorMessage from "@/components/ErrorMessage";
 import HashTimeCell from "@/components/Table/HashTimeCell";
 import TxnsCell from "@/components/Table/TxnsCell";
 import HStack from "@/components/HStack";
-import useActiveBlocksData from "@/hooks/useActiveBlocksData";
+import useActivityData from "@/hooks/useActivityData";
 
 import { BlockActivityDataType } from "@/types/index";
 
@@ -28,9 +28,10 @@ function Blocks({ channelHash, latestBlocks }: Props) {
     latestBlocks[0].blocknum
   );
 
-  const { activeBlocksData, isLoading, isError, error } = useActiveBlocksData(
+  const { activeData, isLoading, isError, error } = useActivityData(
     channelHash,
-    currentPage
+    currentPage,
+    "blockActivity"
   );
 
   const EmptyRows = Array(10).fill("");
@@ -89,7 +90,7 @@ function Blocks({ channelHash, latestBlocks }: Props) {
           />
         </Box>
         <Table className={styles.Table}>
-          {activeBlocksData?.row.map(
+          {activeData?.row.map(
             (block: BlockActivityDataType, index: number) => {
               return (
                 <Row key={index} className={styles.RowContainer}>

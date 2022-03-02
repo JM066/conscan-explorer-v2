@@ -1,0 +1,31 @@
+.RowContainer {
+  align-items: flex-start;
+  width: 80%;
+
+  & .Cell {
+    align-items: flex-start;
+    width: 100%;
+
+    & .TitleCell {
+      width: 15%;
+
+      & .Title {
+        gap: 6px;
+        justify-content: flex-end;
+
+        &:first-child {
+          font-weight: 600;
+        }
+
+        & .Partition {
+          color: var(--red);
+        }
+      }
+    }
+
+    & .Value {
+      padding-left: 14px;
+      width: 85%;
+    }
+  }
+}

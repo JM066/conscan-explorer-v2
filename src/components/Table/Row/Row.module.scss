@@ -7,7 +7,6 @@
   width: 100%;
 
   & .Row {
-    align-items: center;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -19,6 +18,10 @@
       color: var(--grey-text);
       font-size: 0.8rem;
       font-weight: 500;
+    }
+
+    &.full {
+      width: 100%;
     }
   }
 }

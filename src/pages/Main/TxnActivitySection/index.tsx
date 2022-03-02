@@ -13,16 +13,18 @@ import ActionCell from "@/components/Table/ActionCell";
 import VStack from "@/components/VStack";
 import Box from "@/components/Box";
 
-import useLatestTxnsData from "@/hooks/useLatestTxnsData";
+import useLatestActivityData from "@/hooks/useLatestActivityData";
 
 import { getTxnsIcon } from "@/helpers/index";
 
 import { TxnActivityDataType } from "@/types/index";
-
 import styles from "./TxnActivitySection.module.scss";
 
 function TxnActivitySection({ channelHash }: { channelHash: string }) {
-  const { latestTxns, isLoading } = useLatestTxnsData(channelHash);
+  const { latestData, isLoading } = useLatestActivityData(
+    channelHash,
+    "txActivity"
+  );
 
   return (
     <VStack className={styles.TableContainer}>
@@ -34,7 +36,7 @@ function TxnActivitySection({ channelHash }: { channelHash: string }) {
         <Loading />
       ) : (
         <Table className={styles.Table}>
-          {latestTxns.map((txns: TxnActivityDataType, index: number) => {
+          {latestData.map((txns: TxnActivityDataType, index: number) => {
             const txnsIcon = getTxnsIcon(txns?.chaincodename);
             return (
               <Row key={index} className={styles.RowContainer}>
@@ -55,13 +57,16 @@ function TxnActivitySection({ channelHash }: { channelHash: string }) {
                       hashRight={4}
                     />
                   </Button>
-                  <FromToTxnCell
-                    className={styles.FromToTxnCell}
-                    from={txns.tx_from}
-                    to={txns.tx_to}
-                    leftHash={6}
-                    rightHash={4}
-                  />
+                  <Button variant="ghost">
+                    <FromToTxnCell
+                      className={styles.FromToTxnCell}
+                      from={txns.tx_from}
+                      to={txns.tx_to}
+                      leftHash={6}
+                      rightHash={4}
+                    />
+                  </Button>
+
                   <ActionCell
                     action={txns.tx_action}
                     value={txns.tx_value}
