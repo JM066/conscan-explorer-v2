@@ -1,3 +1,19 @@
-// import zustand from "zustand";
+import create from "zustand";
 
-// const
+import { AppState } from "@/types/index";
+
+const useStore = create<AppState>((set) => ({
+  channelStats: {
+    blocks: "",
+    txns: "",
+  },
+  setChannelStats: ({ blocks, txns }) => {
+    set({
+      channelStats: {
+        blocks,
+        txns,
+      },
+    });
+  },
+}));
+export default useStore;

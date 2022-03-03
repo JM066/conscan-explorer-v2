@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import useStore from "@/store/store";
 // import instance from "src/axios/instance";
 // import { useQuery } from "react-query";
 import NetworkStats from "./NetworkStat/index";
@@ -13,6 +14,11 @@ import styles from "./StatsCell.module.scss";
 
 function StatsCell({ channelHash }: { channelHash: string }) {
   const channelStatistics = useChannelStatistics(channelHash);
+  const channelStats = useStore((store) => store.setChannelStats);
+
+  useEffect(() => {
+    channelStats(channelStatistics);
+  }, [channelStatistics, channelStats]);
 
   return (
     <div className={styles.Container}>

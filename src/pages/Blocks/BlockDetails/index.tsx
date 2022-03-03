@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import Box from "@/components/Box/index";
 import Button from "@/components/Button/index";
@@ -10,9 +10,11 @@ import ErrorMessage from "@/components/ErrorMessage";
 import DuplicatedSkeleton from "@/components/DuplicatedSkeleton";
 
 import useActivityDetailsData from "@/hooks/useActivityDetailsData";
+import useChannelStatistics from "@/hooks/useChannelStatistics";
 
 import { getTimeDistance, getLocalTime } from "@/helpers/index";
 
+import { useRouter } from "next/router";
 import NextUpwards from "@/assets/icons/next-upwards.svg";
 import PreviousDownwards from "@/assets/icons/previous-downwards.svg";
 
@@ -25,12 +27,19 @@ function BlockDetails({
   blockNum: number;
   channelHash: string;
 }) {
+  const [page, setPage] = useState(blockNum);
+  const channelStatistics = useChannelStatistics(channelHash);
+  const router = useRouter();
   const { isLoading, dataDetails, isError, error } = useActivityDetailsData(
     channelHash,
-    blockNum,
+    page,
     "block/transactions"
   );
   const EmptyRows = Array(10).fill("");
+
+  useEffect(() => {
+    router.replace(`/blocks/${page}`);
+  }, [page, router]);
 
   if (isError && error) {
     let errorMessage;
@@ -80,10 +89,26 @@ function BlockDetails({
       </div>
       <div className={styles.BlueVerticalBar}>
         <div className={styles.ButtonContainer}>
-          <Button variant="ghost">
+          <Button
+            variant="ghost"
+            onClick={() => {
+              const blockNumber = Math.min(
+                dataDetails?.data?.blocknum + 1,
+                Number(channelStatistics?.blocks)
+              );
+
+              setPage(blockNumber);
+            }}
+          >
             <NextUpwards />
           </Button>
-          <Button variant="ghost">
+          <Button
+            variant="ghost"
+            onClick={() => {
+              const blockNumber = Math.max(dataDetails?.data?.blocknum - 1, 0);
+              setPage(blockNumber);
+            }}
+          >
             <PreviousDownwards />
           </Button>
         </div>

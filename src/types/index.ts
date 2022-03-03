@@ -5,7 +5,13 @@ export type Locales = {
 export type ObjectType = {
   [key: string]: string | number;
 };
-export type AppState = {};
+export type AppState = {
+  channelStats: {
+    blocks: string;
+    txns: string;
+  };
+  setChannelStats: (channelStats: { blocks: string; txns: string }) => void;
+};
 export type SmartContractDetailsType = {
   name: string;
   version: number;

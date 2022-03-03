@@ -28,7 +28,6 @@ interface Props {
   latestTxns: TxnActivityDataType[];
 }
 function Txns({ channelHash, latestTxns }: Props) {
-  console.log("channelHash", channelHash);
   const channelStatistics = useChannelStatistics(channelHash);
   const [currentPage, setCurrentPage] = useState<number>(latestTxns[0].id);
   const { activeData, isLoading, isError, error } = useActivityData(
@@ -99,22 +98,21 @@ function Txns({ channelHash, latestTxns }: Props) {
             return (
               <Row key={txns.id} className={styles.RowContainer}>
                 <HStack className={styles.Row}>
-                  <Button variant="ghost">
+                  <Button link={`/txns/${txns.id}`}>
                     <Cell>{txnsIcon}</Cell>
                   </Button>
-                  <Button variant="ghost">
-                    <HashTimeCell
-                      variant="green"
-                      className={styles.HashTimeCell}
-                      identicon
-                      hash={txns.txhash}
-                      time={txns.createdt}
-                      link={`Txns/${txns.txhash}`}
-                      index={index}
-                      hashLeft={15}
-                      hashRight={15}
-                    />
-                  </Button>
+
+                  <HashTimeCell
+                    variant="green"
+                    className={styles.HashTimeCell}
+                    identicon
+                    hash={txns.txhash}
+                    time={txns.createdt}
+                    link={`Txns/${txns.id}`}
+                    index={index}
+                    hashLeft={15}
+                    hashRight={15}
+                  />
 
                   <FromToTxnCell
                     className={styles.FromToTxnCell}

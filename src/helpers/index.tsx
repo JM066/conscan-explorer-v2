@@ -74,26 +74,41 @@ export function getReducedHash(txhash: string, left: number, right: number) {
   } else return txhash;
 }
 
+function FormatNumber(num: number) {
+  if (num < 1e3) return num;
+  if (num >= 1e3 && num < 1e6)
+    return parseInt(new Intl.NumberFormat().format(num / 1e3)).toFixed(0) + "K";
+  if (num >= 1e6 && num < 1e9) return +(num / 1e6).toFixed(0) + "M";
+  if (num >= 1e9 && num < 1e12) return +(num / 1e9).toFixed(0) + "B";
+  if (num >= 1e12 && num < 1e15)
+    return (
+      parseInt(new Intl.NumberFormat().format(num / 1e12)).toFixed(0) + "T"
+    );
+  if (num >= 1e15 && num < 1e18) return +(num / 1e15).toFixed(0) + "q";
+  if (num >= 1e18 && num < 1e21)
+    return (
+      parseInt(new Intl.NumberFormat().format(num / 1e18)).toFixed(0) + "Q"
+    );
+}
+
 export function getActionValue(
   action: string,
   value: string,
   coinName: string
 ) {
-  if (action == "Transfer") {
-    if (value.length > 7) {
-      return {
-        txValue: `${parseInt(value.substring(0, 7).toLocaleString())}...`,
-        txCoin: coinName,
-      };
-    } else {
-      return {
-        txValue: value.toLocaleString(),
-        txCoin: coinName,
-      };
-    }
+  if (
+    action == "Transfer" ||
+    action == "Burn" ||
+    action == "Mint" ||
+    action == "BurnFrom"
+  ) {
+    return {
+      txValue: FormatNumber(parseInt(value)),
+      txCoin: coinName.toUpperCase(),
+    };
   } else {
     return {
-      txValue: `${parseInt(value.substring(0, 7).toLocaleString())}...`,
+      txValue: value,
     };
   }
 }
