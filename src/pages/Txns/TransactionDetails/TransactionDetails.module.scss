@@ -1,16 +1,25 @@
-.BlockDetailsPage {
+.TxnsDetailsPage {
   background-color: var(--foreground);
   border-radius: var(--radius);
   display: flex;
   justify-content: space-between;
   width: 100%;
 
-  & .BlockDataSection {
+  & .TxnsDataSection {
     width: 100%;
 
     & .Table {
       margin: 40px 0;
       width: 100%;
+
+      & .ContractIconContainer {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        justify-content: center;
+        padding-left: 14px;
+      }
     }
   }
 

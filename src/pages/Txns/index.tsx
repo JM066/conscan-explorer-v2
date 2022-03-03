@@ -35,7 +35,7 @@ function Txns({ channelHash, latestTxns }: Props) {
     currentPage,
     "txActivity"
   );
-
+  console.log("activeData", activeData);
   const EmptyRows = Array(10).fill("");
   const numbsToSubtract = channelStatistics.txns - 10;
 
@@ -98,7 +98,7 @@ function Txns({ channelHash, latestTxns }: Props) {
             return (
               <Row key={txns.id} className={styles.RowContainer}>
                 <HStack className={styles.Row}>
-                  <Button link={`/txns/${txns.id}`}>
+                  <Button link={`/txns/${txns.txhash}`}>
                     <Cell>{txnsIcon}</Cell>
                   </Button>
 
@@ -108,7 +108,7 @@ function Txns({ channelHash, latestTxns }: Props) {
                     identicon
                     hash={txns.txhash}
                     time={txns.createdt}
-                    link={`Txns/${txns.id}`}
+                    link={`/txns/${txns.txhash}`}
                     index={index}
                     hashLeft={15}
                     hashRight={15}

@@ -3,7 +3,7 @@ import instance from "../axios/instance";
 
 function useActivityDetailsData(
   channelHash: string,
-  idNumber: number,
+  idNumber: string,
   path: string
 ) {
   const {

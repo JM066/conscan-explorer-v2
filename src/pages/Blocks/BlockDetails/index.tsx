@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 import Box from "@/components/Box/index";
 import Button from "@/components/Button/index";
@@ -14,7 +15,6 @@ import useChannelStatistics from "@/hooks/useChannelStatistics";
 
 import { getTimeDistance, getLocalTime } from "@/helpers/index";
 
-import { useRouter } from "next/router";
 import NextUpwards from "@/assets/icons/next-upwards.svg";
 import PreviousDownwards from "@/assets/icons/previous-downwards.svg";
 
@@ -24,7 +24,7 @@ function BlockDetails({
   blockNum,
   channelHash,
 }: {
-  blockNum: number;
+  blockNum: string;
   channelHash: string;
 }) {
   const [page, setPage] = useState(blockNum);
@@ -39,7 +39,7 @@ function BlockDetails({
 
   useEffect(() => {
     router.replace(`/blocks/${page}`);
-  }, [page, router]);
+  }, [page]);
 
   if (isError && error) {
     let errorMessage;
@@ -63,8 +63,8 @@ function BlockDetails({
     );
   }
   return (
-    <div className={styles.TxnsDetailsPage}>
-      <div className={styles.TxnsDataSection}>
+    <div className={styles.BlockDetailsPage}>
+      <div className={styles.BlockDataSection}>
         <Box position="start" bottomLine={false}>
           <Title title="Blocks Details" />
         </Box>
@@ -97,7 +97,7 @@ function BlockDetails({
                 Number(channelStatistics?.blocks)
               );
 
-              setPage(blockNumber);
+              setPage(blockNumber.toString());
             }}
           >
             <NextUpwards />
@@ -106,7 +106,7 @@ function BlockDetails({
             variant="ghost"
             onClick={() => {
               const blockNumber = Math.max(dataDetails?.data?.blocknum - 1, 0);
-              setPage(blockNumber);
+              setPage(blockNumber.toString());
             }}
           >
             <PreviousDownwards />

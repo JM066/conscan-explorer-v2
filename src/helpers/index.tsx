@@ -112,3 +112,19 @@ export function getActionValue(
     };
   }
 }
+
+export function FormatValue(value: string) {
+  const num = Number(value);
+  return new Intl.NumberFormat().format(num);
+}
+
+export const uniformValue = (action: string) => {
+  switch (action) {
+    case "Transfer":
+    case "Mint":
+      return `CON`;
+
+    default:
+      return null;
+  }
+};
