@@ -112,25 +112,10 @@ function TransactionDetails({
       </div>
       <div className={styles.BlueVerticalBar}>
         <div className={styles.ButtonContainer}>
-          <Button
-            variant="ghost"
-            onClick={() => {
-              // const blockNumber = Math.min(
-              //   dataDetails?.data?.blocknum + 1,
-              //   Number(channelStatistics?.blocks)
-              // );
-              // setPage(blockNumber.toString());
-            }}
-          >
+          <Button variant="ghost">
             <NextUpwards />
           </Button>
-          <Button
-            variant="ghost"
-            // onClick={() => {
-            //   const blockNumber = Math.max(dataDetails?.data?.blocknum - 1, 0);
-            //   setPage(blockNumber.toString());
-            // }}
-          >
+          <Button>
             <PreviousDownwards />
           </Button>
         </div>

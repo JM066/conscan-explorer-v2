@@ -35,7 +35,7 @@ function Txns({ channelHash, latestTxns }: Props) {
     currentPage,
     "txActivity"
   );
-  console.log("activeData", activeData);
+
   const EmptyRows = Array(10).fill("");
   const numbsToSubtract = channelStatistics.txns - 10;
 
