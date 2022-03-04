@@ -94,9 +94,8 @@ function BlockDetails({
             onClick={() => {
               const blockNumber = Math.min(
                 dataDetails?.data?.blocknum + 1,
-                Number(channelStatistics?.blocks)
+                Number(channelStatistics?.blocks - 1)
               );
-
               setPage(blockNumber.toString());
             }}
           >

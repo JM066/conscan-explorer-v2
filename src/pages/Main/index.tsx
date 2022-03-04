@@ -13,6 +13,7 @@ function Main({ channelHash }: { channelHash: string }) {
   useWebSocket();
   // const isMobile = useIsMobile();
 
+  console.log("channelHahs", channelHash);
   return (
     <div className={styles.Container}>
       <HStack className={styles.SubStatsTop}>

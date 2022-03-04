@@ -1,0 +1,8 @@
+.SmartContactContainer {
+  background-color: var(--foreground);
+  width: 100%;
+
+  & .Header {
+    width: 100%;
+  }
+}
