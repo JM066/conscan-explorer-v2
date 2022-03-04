@@ -13,18 +13,20 @@
     width: 100%;
 
     & .RowContainer {
-      .Row {
-        font-size: 0.8rem;
-        justify-content: space-between;
-        width: 100%;
+      & .IconCell {
+        width: 10%;
+      }
 
-        & .HashTimeCell {
-          width: 143px;
-        }
+      & .HashTimeCell {
+        width: 35%;
+      }
 
-        & .FromToTxnCell {
-          width: auto;
-        }
+      & .FromToTxnCell {
+        width: 25%;
+      }
+
+      & .ActionCell {
+        width: 15%;
       }
     }
   }

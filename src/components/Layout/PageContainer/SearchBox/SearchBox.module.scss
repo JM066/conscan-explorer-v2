@@ -49,6 +49,7 @@
       & .InputWithNoOutline {
         background-color: transparent;
         border: 0 solid;
+        width: 100%;
 
         &:focus {
           outline: none;

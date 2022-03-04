@@ -18,25 +18,26 @@
   }
 
   & .Table {
+    width: 80%;
+
     & .RowContainer {
-      width: 80%;
+      justify-content: space-between;
+      width: 100%;
 
-      .Row {
-        font-size: 0.8rem;
-        justify-content: space-between;
-        width: 100%;
+      & .CellIcon {
+        width: 10%;
+      }
 
-        & .HashTimeCell {
-          width: 350px;
-        }
+      & .HashTimeCell {
+        width: 30%;
+      }
 
-        & .FromToTxnCell {
-          width: 240px;
-        }
+      & .FromToTxnCell {
+        width: 30%;
+      }
 
-        & .ActionCell {
-          width: 100px;
-        }
+      & .ActionCell {
+        width: 15%;
       }
     }
   }

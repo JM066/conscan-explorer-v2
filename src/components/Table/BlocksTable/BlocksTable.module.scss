@@ -5,5 +5,14 @@
   & .NumberCell {
     color: var(--green-dark);
     font-weight: 600;
+    width: 10%;
+  }
+
+  & .HashCell {
+    width: 60%;
+  }
+
+  & .TxnsCell {
+    width: 15%;
   }
 }

@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import Wrapper from "@/components/Table/Wrapper";
 import TimeStamp from "@/components/TimeStamp";
 import IdenticonLink from "@/components/IdenticonLink";
@@ -12,27 +11,25 @@ export interface Props {
   hash: string;
   time: string;
   identicon?: boolean;
-  index: number;
+  activityId: string;
   link: string;
   hashLeft: number;
   hashRight: number;
-  className?: string;
   variant: "green" | "grey" | "dark-grey";
 }
 function HashTimeCell({
   hash,
   time,
   identicon,
-  index,
+  activityId,
   link,
   hashLeft,
   hashRight,
-  className,
   variant = "dark-grey",
 }: Props) {
   return (
-    <Cell grow className={classNames(styles.HashCell, className)}>
-      {identicon && <IdenticonLink idString={index.toString()} link={link} />}
+    <Cell grow className={styles.HashCell}>
+      {identicon && <IdenticonLink idString={activityId} link={link} />}
       <Wrapper className={styles.Wrapper}>
         <p className={styles[variant]}>
           {getReducedHash(hash, hashLeft, hashRight)}

@@ -12,14 +12,6 @@
     justify-content: space-between;
     width: 80%;
 
-    &.header {
-      border-bottom: 1px solid #eee;
-      box-shadow: 0 1px 3px rgb(171 171 171 / 60%);
-      color: var(--grey-text);
-      font-size: 0.8rem;
-      font-weight: 500;
-    }
-
     &.full {
       width: 100%;
     }

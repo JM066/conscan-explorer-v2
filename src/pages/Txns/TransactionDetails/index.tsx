@@ -115,7 +115,7 @@ function TransactionDetails({
           <Button variant="ghost">
             <NextUpwards />
           </Button>
-          <Button>
+          <Button variant="ghost">
             <PreviousDownwards />
           </Button>
         </div>

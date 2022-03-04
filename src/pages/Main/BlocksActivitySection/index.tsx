@@ -28,8 +28,14 @@ function BlocksActivitySection({ channelHash }: { channelHash: string }) {
         <Loading />
       ) : (
         <Table className={styles.BlocksTable}>
-          {latestData?.map((block: BlockActivityDataType, index: number) => {
-            return <BlocksTable key={index} block={block} index={index} />;
+          {latestData?.map((block: BlockActivityDataType) => {
+            return (
+              <BlocksTable
+                key={block.blocknum}
+                block={block}
+                activityId={block.blocknum.toString()}
+              />
+            );
           })}
         </Table>
       )}

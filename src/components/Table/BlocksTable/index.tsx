@@ -11,22 +11,25 @@ import styles from "./BlocksTable.module.scss";
 
 function BlocksTable({
   block,
-  index,
+  activityId,
 }: {
   block: BlockActivityDataType;
-  index: number;
+  activityId: string;
 }) {
   return (
-    <Row key={index} className={styles.BlocksRow}>
-      <Cell className={styles.NumberCell}>
-        <a>{block.blocknum}</a>
-      </Cell>
-      <Button variant="ghost">
+    <Row className={styles.BlocksRow} fullLength={true}>
+      <Button variant="ghost" className={styles.NumberCell}>
+        <Cell>
+          <a>{block.blocknum}</a>
+        </Cell>
+      </Button>
+
+      <Button variant="ghost" className={styles.HashCell}>
         <HashTimeCell
           variant="dark-grey"
           hash={block.blockhash}
           time={block.createdt}
-          index={index}
+          activityId={activityId}
           identicon
           hashLeft={15}
           hashRight={15}
@@ -34,7 +37,7 @@ function BlocksTable({
         />
       </Button>
 
-      <TxnsCell txcount={block.txcount} />
+      <TxnsCell className={styles.TxnsCell} txcount={block.txcount} />
     </Row>
   );
 }

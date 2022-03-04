@@ -21,20 +21,20 @@
     & .RowContainer {
       width: 80%;
 
-      .Row {
-        font-size: 0.8rem;
-        justify-content: space-between;
-        width: 100%;
+      & .BlockNumCell {
+        color: #0993b1;
+        font-weight: 600;
+        padding-left: 20px;
+        width: 5%;
+      }
 
-        & .BlockNumCell {
-          color: #0993b1;
-          font-weight: 600;
-        }
+      & .HashCell {
+        color: var(--grey-text);
+        width: 60%;
+      }
 
-        & .HashCell {
-          color: var(--grey-text);
-          width: 500px;
-        }
+      & .TxnsCell {
+        width: 15%;
       }
     }
   }

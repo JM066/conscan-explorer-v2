@@ -9,7 +9,7 @@ interface Props {
   action: string;
   value: string;
   coinName: string;
-  className: string;
+  className?: string;
 }
 
 function ActionCell({ action, value, coinName, className }: Props) {

@@ -3,22 +3,14 @@ import style from "./Row.module.scss";
 
 interface Props {
   children: React.ReactNode;
-  header?: boolean;
   className?: string;
   fullLength?: boolean;
 }
-function Row({ children, header, fullLength = false, className }: Props) {
+function Row({ children, fullLength, className }: Props) {
   return (
-    <div
-      className={classNames(
-        style.RowContainer,
-        { [style.header]: header },
-        className
-      )}
-    >
+    <div className={classNames(style.RowContainer, className)}>
       <div
         className={classNames(style.Row, {
-          [style.header]: header,
           [style.full]: fullLength,
         })}
       >
