@@ -1,0 +1,25 @@
+.HashCell {
+  align-items: flex-start;
+
+  & .Wrapper {
+    margin-left: 10px;
+    width: 100%;
+
+    & .green {
+      color: var(--green-dark);
+    }
+
+    & .grey {
+      color: var(--grey-text);
+    }
+
+    & .dark-grey {
+      color: var(--grey-dark);
+    }
+
+    & .Time {
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
+  }
+}

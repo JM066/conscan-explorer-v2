@@ -1,23 +1,16 @@
 .Container {
+  align-items: center;
   display: flex;
   flex-direction: column;
   gap: var(--gap);
+  justify-content: center;
   width: 100%;
 
-  & .Tables {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap);
-    justify-content: center;
-    width: 100%;
+  & .SubStatsTop {
+    height: 248px;
+  }
 
-    @media only screen and (min-width: 768px) {
-      flex-direction: row;
-    }
-    & .SubTables {
-      background-color: var(--foreground);
-      border-radius: var(--radius);
-    }
+  & .SubStatsBottom {
+    height: 390px;
   }
 }

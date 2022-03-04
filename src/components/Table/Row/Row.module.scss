@@ -1,36 +1,26 @@
 .RowContainer {
   align-items: center;
-  border-bottom: 1px solid rgba(144, 158, 193, 0.4);
+  border-bottom: 1px solid rgb(144 158 193 / 40%);
   display: flex;
   flex-direction: column;
   padding: 20px 0;
-  width: 80%;
+  width: 100%;
 
   & .Row {
-    align-items: center;
     display: flex;
     flex-direction: row;
-    gap: 120px;
-    justify-content: center;
+    justify-content: space-between;
     width: 80%;
 
-    &.header {
-      border-bottom: 1px solid #eee;
-      box-shadow: 0 1px 3px rgba(171, 171, 171, 0.6);
-      color: var(--grey-text);
-      font-size: 0.8rem;
-      font-weight: 500;
+    &.full {
+      width: 100%;
     }
   }
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (max-width: 1605px) {
   .RowContainer {
     padding: 20px 0;
-
-    & .Row {
-      font-size: 0.8rem;
-      width: 80%;
-    }
+    width: 100%;
   }
 }

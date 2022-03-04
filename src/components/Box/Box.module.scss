@@ -1,7 +1,5 @@
 .Box {
-  border-bottom: 1px solid #eee;
-  border-radius: 0.75px;
-  box-shadow: 0 2px 1.5px 0 rgba(171, 171, 171, 0.6);
+  align-items: center;
   display: flex;
   flex-direction: row;
   padding: 15px 60px;
@@ -10,10 +8,17 @@
   &.center {
     justify-content: center;
   }
-  &.between {
-    justify-content: space-between;
+
+  &.start {
+    justify-content: flex-start;
   }
-  &.around {
-    justify-content: space-around;
+
+  &.end {
+    justify-content: flex-end;
+  }
+
+  &.horizontalLine {
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 2px 1.5px 0 rgb(171 171 171 / 60%);
   }
 }

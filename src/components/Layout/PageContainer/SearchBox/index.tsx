@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { useRouter } from "next/router";
 
 import Button from "@/components/Button";
+
 import MagnifyingGlass from "@/assets/icons/magnifying-glass.svg";
 import styles from "./SearchBox.module.scss";
 
@@ -22,8 +23,8 @@ function SearchBox() {
   return (
     <form className={styles.SearchBox} onSubmit={searchSubmitHandler}>
       <div className={styles.Title}>
-        <p>CONUN BLOCKCHAIN EXPLORER</p>
-        <p className={styles.Gradient}>CONSCAN</p>
+        <div> CONUN BLOCKCHAIN EXPLORER</div>
+        <div className={styles.Gradient}>CONSCAN</div>
       </div>
       <div className={styles.SearchBarCell}>
         <div className={styles.SearchPlaceholder}>
@@ -32,7 +33,7 @@ function SearchBox() {
             className={styles.InputWithNoOutline}
             ref={inputRef}
           />
-          <Button noStyle type="submit">
+          <Button variant="ghost" type="submit" className={styles.SerachButton}>
             <MagnifyingGlass />
           </Button>
         </div>

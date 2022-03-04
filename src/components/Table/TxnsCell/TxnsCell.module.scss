@@ -1,0 +1,18 @@
+.CellWithIcon {
+  display: flex;
+  flex-direction: row;
+  font-size: 0.9rem;
+  justify-content: flex-start;
+
+  & .TransactionIcon {
+    margin-right: 10px;
+  }
+
+  & .Wrapper {
+    & > p {
+      &:last-child {
+        font-size: 0.7rem;
+      }
+    }
+  }
+}

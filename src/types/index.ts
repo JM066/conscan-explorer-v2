@@ -2,6 +2,16 @@ export type Locales = {
   value: "en" | "ko";
   label: "English" | "한국어";
 };
+export type ObjectType = {
+  [key: string]: string | number;
+};
+export type AppState = {
+  channelStats: {
+    blocks: string;
+    txns: string;
+  };
+  setChannelStats: (channelStats: { blocks: string; txns: string }) => void;
+};
 export type SmartContractDetailsType = {
   name: string;
   version: number;
@@ -9,6 +19,12 @@ export type SmartContractDetailsType = {
   updated: Date;
 };
 
+export type BlockActivityDataType = {
+  blocknum: number;
+  txcount: number;
+  blockhash: string;
+  createdt: string;
+};
 export type TxnActivityDataType = {
   id: number;
   txhash: string;
@@ -20,7 +36,7 @@ export type TxnActivityDataType = {
   tx_value: string;
 };
 
-export type TxnTableInterface = {
+export type TxnsTable = {
   id: number;
   chaincodename: string;
   tx_hash_time: {
@@ -35,4 +51,15 @@ export type TxnTableInterface = {
     tx_action: string;
     tx_value: string;
   };
+};
+
+export type BlockDetail = {
+  blksize: number;
+  blockhash: string;
+  blocknum: number;
+  createdt: Date;
+  datahash: string;
+  prehash: string;
+  txcount: number;
+  txhash: String[];
 };

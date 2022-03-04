@@ -1,31 +1,36 @@
 import React, { useState } from "react";
-import Link from "next/link";
-
-import useActiveBlocksData from "@/hooks/useActiveBlocksData";
 
 import Table from "@/components/Table";
-import Wrapper from "@/components/Table/Wrapper";
 import Row from "@/components/Table/Row";
 import Cell from "@/components/Table/Cell";
 import Title from "@/components/Title";
 import Box from "@/components/Box";
-import Panel from "@/components/Panel";
+import VStack from "@/components/VStack/index";
 import Pagination from "@/components/Pagination";
 import DuplicatedSkeleton from "@/components/DuplicatedSkeleton";
 import Button from "@/components/Button";
 import ErrorMessage from "@/components/ErrorMessage";
-import IdenticonLink from "@/components/IdenticonLink";
-import TimeStamp from "@/components/TimeStamp";
-import TransactionIcon from "@/assets/icons/transaction.svg";
+import HashTimeCell from "@/components/Table/HashTimeCell";
+import TxnsCell from "@/components/Table/TxnsCell";
+import useActivityData from "@/hooks/useActivityData";
+
+import { BlockActivityDataType } from "@/types/index";
+
 import styles from "./Blocks.module.scss";
 
-function Blocks({ ...props }) {
-  const channelHash = props.channelHash;
-  const data = props.latestBlocks.row;
-  const [currentPage, setCurrentPage] = useState<number>(data[0].blocknum);
-  const { activeBlocksData, isLoading, isError, error } = useActiveBlocksData(
+interface Props {
+  channelHash: string;
+  latestBlocks: BlockActivityDataType[];
+}
+function Blocks({ channelHash, latestBlocks }: Props) {
+  const [currentPage, setCurrentPage] = useState<number>(
+    latestBlocks[0].blocknum
+  );
+
+  const { activeData, isLoading, isError, error } = useActivityData(
     channelHash,
-    currentPage
+    currentPage,
+    "blockActivity"
   );
 
   const EmptyRows = Array(10).fill("");
@@ -36,17 +41,17 @@ function Blocks({ ...props }) {
     }
   };
   const handlePrev = () => {
-    if (currentPage < data[0].blocknum) {
-      setCurrentPage((prev) => Math.min(prev + 10, data[0].blocknum));
+    if (currentPage < latestBlocks[0].blocknum) {
+      setCurrentPage((prev) => Math.min(prev + 10, latestBlocks[0].blocknum));
     }
   };
 
   const handleLatest = () => {
-    setCurrentPage(data[0].blocknum);
+    setCurrentPage(latestBlocks[0].blocknum);
   };
 
   const handleOldest = () => {
-    setCurrentPage(data[0].blocknum % 10);
+    setCurrentPage(latestBlocks[0].blocknum % 10);
   };
 
   if (isError && error) {
@@ -58,8 +63,8 @@ function Blocks({ ...props }) {
   }
   if (isLoading) {
     return (
-      <Panel>
-        <Box className={styles.EmptyTitleBox}>
+      <VStack>
+        <Box className={styles.EmptyTitleBox} position="start">
           <Title className={styles.Title} title="Recent Blocks" />
         </Box>
         <Table>
@@ -67,13 +72,13 @@ function Blocks({ ...props }) {
             <DuplicatedSkeleton key={index} />
           ))}
         </Table>
-      </Panel>
+      </VStack>
     );
   }
   return (
     <div className={styles.BlocksPage}>
-      <Panel>
-        <Box className={styles.TitleBox}>
+      <VStack>
+        <Box className={styles.TitleBox} position="start">
           <Title className={styles.Title} title="Recent Blocks" />
           <Pagination
             className={styles.PaginationButtons}
@@ -83,48 +88,37 @@ function Blocks({ ...props }) {
             handleNext={handleNext}
           />
         </Box>
-
         <Table className={styles.Table}>
-          {activeBlocksData?.row.map((block: any, index: number) => {
+          {activeData?.row.map((block: BlockActivityDataType) => {
             return (
-              <Row key={index}>
+              <Row
+                key={block.blocknum}
+                className={styles.RowContainer}
+                fullLength={true}
+              >
                 <Cell className={styles.BlockNumCell}>
-                  <Link href={`/blocks/${block.blocknum}`}>
-                    <a>{block.blocknum}</a>
-                  </Link>
-                </Cell>
-                <Cell grow className={styles.HashCell}>
-                  <IdenticonLink
-                    idString={index.toString()}
-                    link={`/blocks/${block.blocknum}`}
-                  />
-                  <Wrapper className={styles.Wrapper}>
-                    <p>{block.blockhash}</p>
-                    <TimeStamp className={styles.Time} time={block.createdt} />
-                  </Wrapper>
-                </Cell>
-                <Cell centered={false} className={styles.CellWithIcon}>
-                  <Button link={"txns"}>
-                    <TransactionIcon className={styles.TransactionIcon} />
+                  <Button link={`/blocks/${block.blocknum}`}>
+                    <p>{block.blocknum}</p>
                   </Button>
-
-                  {block.txcount > 1 ? (
-                    <Wrapper className={styles.Wrapper}>
-                      <p>{block.txcount}</p>
-                      <p>Transactions</p>
-                    </Wrapper>
-                  ) : (
-                    <Wrapper className={styles.Wrapper}>
-                      <p>{block.txcount}</p>
-                      <p>Transaction</p>
-                    </Wrapper>
-                  )}
                 </Cell>
+                <Button variant="ghost" className={styles.HashCell}>
+                  <HashTimeCell
+                    identicon
+                    variant="grey"
+                    hash={block.blockhash}
+                    time={block.createdt}
+                    link={`/blocks/${block.blocknum}`}
+                    activityId={block.blocknum.toString()}
+                    hashLeft={0}
+                    hashRight={0}
+                  />
+                </Button>
+                <TxnsCell txcount={block.txcount} className={styles.TxnsCell} />
               </Row>
             );
           })}
         </Table>
-      </Panel>
+      </VStack>
     </div>
   );
 }

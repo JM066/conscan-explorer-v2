@@ -4,6 +4,7 @@
   border-radius: var(--radius);
   display: flex;
   flex-direction: column;
+  height: 190px;
   justify-content: center;
   padding: 20px;
   width: 100%;
@@ -18,8 +19,7 @@
     font-weight: 300;
 
     & .Gradient {
-      background: -webkit-linear-gradient(45deg, #1d428a, #4095bc);
-      -webkit-background-clip: text;
+      background: linear-gradient(45deg, #1d428a, #4095bc);
       background-clip: text;
       font-family: Teko, sans-serif;
       font-size: 4rem;
@@ -27,6 +27,7 @@
       -webkit-text-fill-color: transparent;
     }
   }
+
   & .SearchBarCell {
     display: flex;
     justify-content: center;
@@ -35,26 +36,32 @@
     & .SearchPlaceholder {
       align-items: center;
       border-radius: var(--radius);
-      box-shadow: inset -2px -2px 3px rgba(237, 237, 237, 0.75),
-        inset 2px 2px 5px rgba(171, 171, 171, 0.75);
+      box-shadow: inset -2px -2px 3px rgb(237 237 237 / 75%),
+        inset 2px 2px 5px rgb(171 171 171 / 75%);
       display: flex;
       flex: 0 1 900px;
       flex-direction: row;
-      height: 30px;
+      height: 100%;
       justify-content: space-between;
-      padding: 0 20px;
+      padding: 10px 20px;
       z-index: 2;
+
       & .InputWithNoOutline {
         background-color: transparent;
         border: 0 solid;
-        height: 100%;
-        width: 70%;
+        width: 100%;
+
         &:focus {
           outline: none;
         }
+
         &::placeholder {
           color: var(--conun-blue);
         }
+      }
+
+      & .SerachButton {
+        width: 5%;
       }
     }
   }

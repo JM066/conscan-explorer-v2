@@ -1,10 +1,3 @@
-import Tele from "@/assets/icons/telegramIcon.svg";
-import Face from "@/assets/icons/facebookIcon.svg";
-import Twit from "@/assets/icons/twitterIcon.svg";
-import Kack from "@/assets/icons/kakaoIcon.svg";
-import Git from "@/assets/icons/githubIcon.svg";
-import Disc from "@/assets/icons/discordIcon.svg";
-
 export const PAGES_HEADER = [
   {
     id: "main",
@@ -18,67 +11,81 @@ export const PAGES_HEADER = [
   },
 ];
 
-export const PAGES_FOOTER = [
+export const COMUMUNITY = [
   {
-    id: "telegram",
-    icon: <Tele />,
-    path: "https://t.me/conun_global",
+    id: "youtube",
+    name: "Youtube",
+    path: "https://www.youtube.com/channel/UCVbpETcXaPRZkL2HACUXOsA",
   },
+
   {
-    id: "facebook",
-    icon: <Face />,
-    path: "https://www.facebook.com/conunglobal",
-  },
-  {
-    id: "twitter",
-    icon: <Twit />,
-    path: "https://twitter.com/conunglobal",
-  },
-  {
-    id: "kakao",
-    icon: <Kack />,
-    path: "https://open.kakao.com/o/gCsycmhb",
-  },
-  {
-    id: "github",
-    icon: <Git />,
-    path: "https://github.com/CONUN-Global/CONUN",
+    id: "medium",
+    name: "Medium",
+    path: "https://medium.com/conun-korea",
   },
   {
     id: "discord",
-    icon: <Disc />,
+    name: "Discord",
     path: "https://discord.gg/VvXvQfa3Za",
+  },
+  {
+    id: "telegram",
+    name: "Telegram",
+    path: "https://t.me/conun_global",
+  },
+  {
+    id: "github",
+    name: "Github",
+    path: "https://github.com/CONUN-Global/CONUN",
+  },
+];
+export const COMPANY = [
+  {
+    id: "about-us",
+    name: "About Us",
+    path: "https://conun.io/#overview",
+  },
+  {
+    id: "contact-us",
+    name: "Contact Us",
+    path: "https://conun.io/contactus",
+  },
+  {
+    id: "terms-of-service",
+    name: "Terms of Service",
+    path: "https://conun.io/termsandconditions",
+  },
+  {
+    id: "privacy-policy",
+    name: "Privacy Policy",
+    path: "https://conun.io/privacypolicy",
+  },
+  {
+    id: "white-paper",
+    name: "White Paper",
+    path: "https://conun.io/whitepaper",
   },
 ];
 
-export const SECTIONS = {
-  company: [
-    {
-      id: "about-us",
-      name: "About Us",
-      path: "https://conun.io/#overview",
-    },
-    {
-      id: "contact-us",
-      name: "Contact Us",
-      path: "https://conun.io/contactus",
-    },
-    {
-      id: "terms-of-service",
-      name: "Terms of Service",
-      path: "https://conun.io/policy/termsandcondition",
-    },
-  ],
-  community: [
-    {
-      id: "main-site",
-      name: "Main Site",
-      path: "https://conun.io/",
-    },
-    {
-      id: "discord",
-      name: "Discord",
-      path: "https://discord.gg/VvXvQfa3Za/",
-    },
-  ],
-};
+export const SOLUTIONS = [
+  {
+    id: "distributed-computing",
+    name: "Distributed Computing",
+    path: "https://conun.io/products/sdc",
+  },
+  {
+    id: "private-blockchain",
+    name: "Private Blockchain",
+    path: "https://conun.io/products/CPBN",
+  },
+  {
+    id: "explorer",
+    name: "Explorer",
+    path: "/",
+  },
+  {
+    id: "wallet",
+    name: "Wallet",
+    path: "https://chrome.google.com/webstore/detail/metacon/fpklpminiiiopkibkfamkglecdgfoaia?authuser=1&gclid=CjwKCAiA-9uNBhBTEiwAN3IlNLg6EuaasCIcy616zWE-x8hv-3Vl8PEUo9v-7naXFON7CWTiimiMwRoCUUgQAvD_BwE",
+  },
+];

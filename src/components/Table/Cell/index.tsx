@@ -1,5 +1,6 @@
-import style from "./Cell.module.scss";
 import classNames from "classnames";
+
+import styles from "./Cell.module.scss";
 
 interface Props {
   children?: React.ReactNode;
@@ -8,17 +9,19 @@ interface Props {
   centered?: boolean;
 }
 
-function Cell({ children, grow, centered, className }: Props) {
+function Cell({ children, grow, centered = false, className }: Props) {
   return (
-    <div
-      className={classNames(
-        style.Cell,
-        { [style.grow]: grow },
-        { [style.centered]: centered },
-        className
-      )}
-    >
-      {children}
+    <div className={classNames(styles.CellContainer, className)}>
+      <div
+        className={classNames(
+          styles.Cell,
+          { [styles.grow]: grow },
+          { [styles.centered]: centered },
+          className
+        )}
+      >
+        {children}
+      </div>
     </div>
   );
 }

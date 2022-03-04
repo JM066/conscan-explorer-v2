@@ -1,22 +1,28 @@
-import React from "react";
-import useWebSocket from "@/hooks/useWebSocket";
-// import StatsBlock from "./StatsBlock";
+import StatsCell from "./StatsBlock/StatsCell";
+import GraphCell from "./StatsBlock/GraphCell";
 import BlocksActivitySection from "./BlocksActivitySection";
-// import TxnActivitySection from "./TxnActivitySection";
+import TxnActivitySection from "./TxnActivitySection";
+import HStack from "@/components/HStack";
+
+import useWebSocket from "@/hooks/WebSocket";
+// import useIsMobile from "@/hooks/useIsMobile";
 
 import styles from "./Main.module.scss";
 
-function Main() {
+function Main({ channelHash }: { channelHash: string }) {
   useWebSocket();
+  // const isMobile = useIsMobile();
+
   return (
     <div className={styles.Container}>
-      {/* <StatsBlock /> */}
-
-      <div className={styles.Tables}>
-        <BlocksActivitySection />
-        <BlocksActivitySection />
-        {/* <TxnActivitySection /> */}
-      </div>
+      <HStack className={styles.SubStatsTop}>
+        <StatsCell channelHash={channelHash} />
+        <GraphCell />
+      </HStack>
+      <HStack className={styles.SubStatsBottom}>
+        <BlocksActivitySection channelHash={channelHash} />
+        <TxnActivitySection channelHash={channelHash} />
+      </HStack>
     </div>
   );
 }

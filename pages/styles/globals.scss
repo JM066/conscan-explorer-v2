@@ -6,16 +6,21 @@
   --foreground: #fff;
   --footerground: #495867;
   --red-main: #e95654;
+  --red: #f66;
   --red-light: #feb0af;
   --blue-dark: #495867;
   --blue-light: #74b3ce;
+  --sky-bule: #92caff;
   --green: #09bc8a;
+  --green-dark: #0993b1;
   --font-color: #495867;
   --grey-light: #d7dadf;
+  --grey-dark: #4f4f4f;
   --radius: 15px;
   --gap: 30px;
   --grey-text: #828282;
   --conun-blue: #1d428a;
+  --box-shadow: 0 2px 10px 2px rgb(171 171 171 / 40%);
 
   font-size: 14px;
 
@@ -28,7 +33,7 @@ html,
 body {
   box-sizing: border-box;
   color: var(--font-color);
-  font-family: "Barlow", "Teko", sans-serif;
+  font-family: Barlow, Teko, sans-serif;
   margin: 0;
   overflow-x: hidden;
   padding: 0;

@@ -3,10 +3,12 @@ import { useQuery } from "react-query";
 
 import instance from "src/axios/instance";
 
-import TwinPanel from "@/components/TwinPanel";
+import VStack from "@/components/VStack";
 import StatsGraph from "./StatsGraph";
 
 import useChannelHash from "@/hooks/useChannelHash";
+
+import styles from "./GraphCell.module.scss";
 
 function GraphCell() {
   const { channelHash } = useChannelHash();
@@ -32,15 +34,14 @@ function GraphCell() {
   );
 
   return (
-    <TwinPanel>
+    <VStack className={styles.GraphCell}>
       <StatsGraph
         data={data || []}
         width={"95%"}
         minWidth={"50px"}
         height={250}
       />
-      <div></div>
-    </TwinPanel>
+    </VStack>
   );
 }
 

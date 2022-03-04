@@ -1,0 +1,46 @@
+.TxnsDetailsPage {
+  background-color: var(--foreground);
+  border-radius: var(--radius);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  & .TxnsDataSection {
+    width: 100%;
+
+    & .Table {
+      margin: 40px 0;
+      width: 100%;
+
+      & .ContractIconContainer {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        justify-content: center;
+        padding-left: 14px;
+      }
+    }
+  }
+
+  & .BlueVerticalBar {
+    align-items: center;
+    background-color: var(--sky-bule);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50px;
+
+    & .ButtonContainer {
+      display: flex;
+      flex-direction: column;
+      height: 90px;
+      justify-content: space-between;
+    }
+  }
+}
+
+.EmptyTitleBox {
+  padding: 22px 60px;
+}
