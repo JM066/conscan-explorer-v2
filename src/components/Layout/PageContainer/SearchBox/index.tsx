@@ -23,8 +23,8 @@ function SearchBox() {
   return (
     <form className={styles.SearchBox} onSubmit={searchSubmitHandler}>
       <div className={styles.Title}>
-        <p>CONUN BLOCKCHAIN EXPLORER</p>
-        <p className={styles.Gradient}>CONSCAN</p>
+        <div> CONUN BLOCKCHAIN EXPLORER</div>
+        <div className={styles.Gradient}>CONSCAN</div>
       </div>
       <div className={styles.SearchBarCell}>
         <div className={styles.SearchPlaceholder}>

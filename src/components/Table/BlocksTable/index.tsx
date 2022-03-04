@@ -17,10 +17,10 @@ function BlocksTable({
   activityId: string;
 }) {
   return (
-    <Row className={styles.BlocksRow} fullLength={true}>
+    <Row className={styles.BlocksRow}>
       <Button variant="ghost" className={styles.NumberCell}>
         <Cell>
-          <a>{block.blocknum}</a>
+          <p>{block.blocknum}</p>
         </Cell>
       </Button>
 

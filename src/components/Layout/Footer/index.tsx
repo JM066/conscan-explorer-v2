@@ -15,7 +15,7 @@ function Footer() {
         </div>
 
         <div className={styles.CommunityCell}>
-          <p>Company</p>
+          <div> Company</div>
           {COMPANY.map((section) => {
             return (
               <Link key={section.id} href={section.path}>
@@ -25,7 +25,7 @@ function Footer() {
           })}
         </div>
         <div className={styles.SolutionCell}>
-          <p>Solutions</p>
+          <div> Solutions</div>
           {SOLUTIONS.map((section) => (
             <Link key={section.id} href={section.path}>
               <a className={styles.Solutions}>{section.name}</a>
@@ -33,7 +33,7 @@ function Footer() {
           ))}
         </div>
         <div className={styles.CompanyCell}>
-          <p>Community</p>
+          <div> Community</div>
           {COMUMUNITY.map((section) => (
             <Link key={section.id} href={section.path}>
               <a className={styles.Community}>{section.name}</a>

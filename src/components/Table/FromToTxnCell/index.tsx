@@ -18,18 +18,18 @@ function FromToTxnCell({ from, to, leftHash, rightHash, className }: Props) {
   return (
     <Cell grow className={classNames(styles.HashCell, className)}>
       <Wrapper className={styles.Wrapper}>
-        <p className={styles.HashBox}>
+        <div className={styles.HashBox}>
           <div className={styles.HashTitleBox}>
             <span>FROM:</span>
           </div>
           <span>{getReducedHash(from, leftHash, rightHash)}</span>
-        </p>
-        <p className={styles.HashBox}>
+        </div>
+        <div className={styles.HashBox}>
           <div className={styles.HashTitleBox}>
             <span>To: </span>
           </div>
           <span> {getReducedHash(to, leftHash, rightHash)}</span>
-        </p>
+        </div>
       </Wrapper>
     </Cell>
   );

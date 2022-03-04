@@ -12,11 +12,11 @@ import styles from "./TxnsTable.module.scss";
 
 interface Props {
   txn: TxnActivityDataType;
-  index: number;
+
   className?: string;
 }
 
-function TxnsTable({ txn, index, className }: Props) {
+function TxnsTable({ txn, className }: Props) {
   const txnsIcon = getTxnsIcon(txn?.chaincodename);
 
   return (
@@ -24,15 +24,14 @@ function TxnsTable({ txn, index, className }: Props) {
       <Button variant="ghost">
         <Cell>{txnsIcon}</Cell>
       </Button>
-      <Button variant="ghost">
+      <Button variant="ghost" className={styles.HashTimeCell}>
         <HashTimeCell
           variant="dark-grey"
-          className={styles.HashTimeCell}
           identicon
           hash={txn.txhash}
           time={txn.createdt}
           link={`Txns/${txn.txhash}`}
-          index={index}
+          activityId={txn.id.toString()}
           hashLeft={6}
           hashRight={4}
         />

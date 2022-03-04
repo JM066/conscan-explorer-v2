@@ -25,16 +25,16 @@
         color: #0993b1;
         font-weight: 600;
         padding-left: 20px;
-        width: 5%;
+        width: 10%;
       }
 
       & .HashCell {
         color: var(--grey-text);
-        width: 60%;
+        max-width: 550px;
       }
 
       & .TxnsCell {
-        width: 15%;
+        width: 20%;
       }
     }
   }

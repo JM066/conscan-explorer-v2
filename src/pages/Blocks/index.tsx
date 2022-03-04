@@ -98,7 +98,7 @@ function Blocks({ channelHash, latestBlocks }: Props) {
               >
                 <Cell className={styles.BlockNumCell}>
                   <Button link={`/blocks/${block.blocknum}`}>
-                    <a>{block.blocknum}</a>
+                    <p>{block.blocknum}</p>
                   </Button>
                 </Cell>
                 <Button variant="ghost" className={styles.HashCell}>

@@ -17,12 +17,12 @@ function DetailRow({ title, value, children }: Props) {
       <Cell className={styles.Cell}>
         <div className={styles.TitleCell}>
           <HStack className={styles.Title}>
-            <p>{title}</p>
-            <p className={styles.Partition}>|</p>
+            <div> {title}</div>
+            <div className={styles.Partition}>|</div>
           </HStack>
         </div>
         {children && <div>{children}</div>}
-        {value && <p className={styles.Value}>{value}</p>}
+        {value && <div className={styles.Value}>{value}</div>}
       </Cell>
     </Row>
   );

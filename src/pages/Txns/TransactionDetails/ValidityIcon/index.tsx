@@ -7,14 +7,14 @@ function ValidityIcon({ validity }: { validity: string }) {
     return (
       <div className={styles.ValidityIcon}>
         <SuccessIcon />
-        <p>{validity}</p>
+        <div> {validity}</div>
       </div>
     );
   }
 
   return (
     <div>
-      <p>{validity}</p>
+      <div> {validity}</div>
     </div>
   );
 }

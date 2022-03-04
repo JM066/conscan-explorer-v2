@@ -24,8 +24,6 @@ export function getContractType(serviceType: string | undefined) {
 }
 export const getTxnsIcon = (action: string) => {
   switch (action) {
-    case "conx":
-      return <TransferIcon />;
     case "drive":
       return <DriveIcon />;
     case "bridge":

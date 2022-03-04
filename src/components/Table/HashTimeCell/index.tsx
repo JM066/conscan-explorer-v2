@@ -31,9 +31,9 @@ function HashTimeCell({
     <Cell grow className={styles.HashCell}>
       {identicon && <IdenticonLink idString={activityId} link={link} />}
       <Wrapper className={styles.Wrapper}>
-        <p className={styles[variant]}>
+        <div className={styles[variant]}>
           {getReducedHash(hash, hashLeft, hashRight)}
-        </p>
+        </div>
         <TimeStamp className={styles.Time} time={time} />
       </Wrapper>
     </Cell>

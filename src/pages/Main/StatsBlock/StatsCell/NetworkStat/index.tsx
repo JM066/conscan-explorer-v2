@@ -32,9 +32,9 @@ function NetworkStats({
           <Hstack className={styles.CenterBox}>
             <div className={styles.StatIcon}>{icon}</div>
             <div className={styles.StatDataContainer}>
-              <p className={styles.Title}>{title}</p>
-              <p className={styles.Numbers}>{blocks}</p>
-              <p className={styles.CoinVal}>{value}</p>
+              <div className={styles.Title}>{title}</div>
+              <div className={styles.Numbers}>{blocks}</div>
+              <div className={styles.CoinVal}>{value}</div>
             </div>
           </Hstack>
         </div>

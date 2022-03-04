@@ -13,15 +13,15 @@ function TxnsCell({
   txcount: number;
   className?: string;
 }) {
-  const singlularOrPlural = txcount > 1 ? "Transactions" : "Transaction";
+  const singularOrPlural = txcount > 1 ? "Transactions" : "Transaction";
   return (
     <Cell className={classNames(styles.CellWithIcon, className)}>
       <Button link={"txns"}>
         <TransactionIcon className={styles.TransactionIcon} />
       </Button>
       <Wrapper className={styles.Wrapper}>
-        <p>{txcount}</p>
-        <p>{singlularOrPlural}</p>
+        <div> {txcount}</div>
+        <div> {singularOrPlural}</div>
       </Wrapper>
     </Cell>
   );
