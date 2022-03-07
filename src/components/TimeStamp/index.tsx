@@ -2,7 +2,7 @@ import { getTimeDistance } from "@/helpers/index";
 import classNames from "classnames";
 
 interface Props {
-  time: string;
+  time: string | number;
   className?: string;
 }
 

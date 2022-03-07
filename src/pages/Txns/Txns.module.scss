@@ -26,6 +26,10 @@
 
       & .CellIcon {
         width: 10%;
+
+        & .ContractIcon {
+          width: 18px;
+        }
       }
 
       & .HashTimeCell {

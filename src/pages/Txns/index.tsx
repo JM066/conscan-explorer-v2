@@ -7,17 +7,15 @@ import Box from "@/components/Box";
 import VStack from "@/components/VStack/index";
 import Pagination from "@/components/Pagination";
 import DuplicatedSkeleton from "@/components/DuplicatedSkeleton";
-import Cell from "@/components/Table/Cell";
 import Button from "@/components/Button";
 import HashTimeCell from "@/components/Table/HashTimeCell";
 import FromToTxnCell from "@/components/Table/FromToTxnCell";
 import ActionCell from "@/components/Table/ActionCell";
 import ErrorMessage from "@/components/ErrorMessage";
+import ContractIcon from "@/components/ContractIcon";
 
 import useActivityData from "@/hooks/useActivityData";
 import useChannelStatistics from "@/hooks/useChannelStatistics";
-
-import { getTxnsIcon } from "@/helpers/index";
 
 import { TxnActivityDataType } from "@/types/index";
 import styles from "./Txns.module.scss";
@@ -93,7 +91,6 @@ function Txns({ channelHash, latestTxns }: Props) {
         </Box>
         <Table className={styles.Table}>
           {activeData?.row.map((txns: TxnActivityDataType) => {
-            const txnsIcon = getTxnsIcon(txns?.chaincodename);
             return (
               <Row
                 key={txns.id}
@@ -104,7 +101,10 @@ function Txns({ channelHash, latestTxns }: Props) {
                   link={`/txns/${txns.txhash}`}
                   className={styles.CellIcon}
                 >
-                  <Cell>{txnsIcon}</Cell>
+                  <ContractIcon
+                    contractName={txns?.chaincodename}
+                    className={styles.ContractIcon}
+                  />
                 </Button>
                 <Button className={styles.HashTimeCell} variant="ghost">
                   <HashTimeCell

@@ -1,37 +1,9 @@
 import { formatDistance } from "date-fns";
 import { zonedTimeToUtc } from "date-fns-tz";
-import DriveIcon from "@/assets/icons/drive-smart.svg";
-import TransferIcon from "@/assets/icons/conx-smart.svg";
-import BridgeIcon from "@/assets/icons/bridge-smart.svg";
+
 import LikeIcon from "@/assets/icons/like.svg";
 import DownloadIcon from "@/assets/icons/download.svg";
 import CoinIcon from "@/assets/icons/coin.svg";
-
-export function getContractType(serviceType: string | undefined) {
-  switch (serviceType?.toUpperCase()) {
-    case "CONX":
-      return "coin";
-
-    case "DRIVE":
-      return "drive";
-
-    case "ENGINE":
-      return "engine";
-
-    default:
-      return "basic";
-  }
-}
-export const getTxnsIcon = (action: string) => {
-  switch (action) {
-    case "drive":
-      return <DriveIcon />;
-    case "bridge":
-      return <BridgeIcon />;
-    default:
-      return <TransferIcon />;
-  }
-};
 
 export const getTxnsActionIcon = (action: string) => {
   switch (action) {
@@ -44,7 +16,7 @@ export const getTxnsActionIcon = (action: string) => {
   }
 };
 
-export function getTimeDistance(datePast: string | Date) {
+export function getTimeDistance(datePast: string | number) {
   if (typeof datePast === "string") {
     const zonedPastDate = getLocalTime(datePast);
     const zonedPresentDate = getLocalTime(new Date());

@@ -1,5 +1,6 @@
 import { getAllcontracts } from "pages/api";
-import SmartContracts from "../../src/pages/SmartContracts";
+
+import Drive from "../../../src/pages/SmartContracts/Drive";
 
 export async function getServerSideProps() {
   const contracts = await getAllcontracts();
@@ -8,4 +9,5 @@ export async function getServerSideProps() {
     props: { contracts },
   };
 }
-export default SmartContracts;
+
+export default Drive;
