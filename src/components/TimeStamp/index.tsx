@@ -1,4 +1,4 @@
-import { getTimeDistance } from "@/helpers/index";
+import { getTimeDistance, toCapitalize } from "@/helpers/index";
 import classNames from "classnames";
 
 interface Props {
@@ -10,9 +10,7 @@ function TimeStamp({ time, className }: Props) {
   const date = getTimeDistance(time);
 
   return (
-    <div className={classNames(className)}>
-      {date && date.charAt(0).toUpperCase() + date.slice(1)}
-    </div>
+    <div className={classNames(className)}>{date && toCapitalize(date)}</div>
   );
 }
 

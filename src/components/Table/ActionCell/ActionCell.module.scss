@@ -1,7 +1,21 @@
-.HashCell {
+.ActionCell {
   color: var(--grey-text);
   font-size: 0.8rem;
   font-weight: 500;
   gap: 10px;
   letter-spacing: -0.02em;
+}
+
+.SmartContractActionCell {
+  align-items: flex-start;
+  color: var(--grey-text);
+  font-size: 0.8rem;
+  font-weight: 500;
+  gap: 5px;
+  letter-spacing: -0.02em;
+
+  & .ContractIcon {
+    height: 17px;
+    width: 17px;
+  }
 }
