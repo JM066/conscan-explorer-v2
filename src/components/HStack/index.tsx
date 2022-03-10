@@ -7,7 +7,7 @@ interface Props {
   className?: string;
   centered?: boolean;
 }
-function HStack({ children, className, centered = true }: Props) {
+function HStack({ children, className, centered }: Props) {
   return (
     <div
       className={classNames(styles.HStack, className, {

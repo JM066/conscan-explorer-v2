@@ -8,8 +8,17 @@
   & .TxnsDataSection {
     width: 100%;
 
+    & .TitleContainer {
+      padding: 27px 70px 27px 39px;
+
+      & .Title {
+        font-size: 1.6rem;
+      }
+    }
+
     & .Table {
-      margin: 40px 0;
+      margin-bottom: 50px;
+      margin-top: 30px;
       width: 100%;
 
       & .ContractIconContainer {

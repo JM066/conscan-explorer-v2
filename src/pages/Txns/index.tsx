@@ -78,7 +78,7 @@ function Txns({ channelHash, latestTxns }: Props) {
   }
   return (
     <div className={styles.TxnsPage}>
-      <VStack>
+      <VStack className={styles.TableContainer}>
         <Box className={styles.TitleBox} position="start">
           <Title className={styles.Title} title="Recent Transactions" />
           <Pagination

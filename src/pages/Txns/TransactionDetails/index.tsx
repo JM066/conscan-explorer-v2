@@ -18,6 +18,7 @@ import {
   getLocalTime,
   FormatValue,
   uniformValue,
+  generateEmptyRows,
 } from "@/helpers/index";
 
 import NextUpwards from "@/assets/icons/next-upwards.svg";
@@ -39,7 +40,6 @@ function TransactionDetails({
     page,
     "transaction"
   );
-  const EmptyRows = Array(8).fill("");
 
   if (isError && error) {
     let errorMessage;
@@ -55,7 +55,7 @@ function TransactionDetails({
           <Title title="Blocks Details" />
         </Box>
         <Table>
-          {EmptyRows.map((index: number) => (
+          {generateEmptyRows(8).map((index: number) => (
             <DuplicatedSkeleton key={index} />
           ))}
         </Table>
@@ -65,8 +65,12 @@ function TransactionDetails({
   return (
     <div className={styles.TxnsDetailsPage}>
       <div className={styles.TxnsDataSection}>
-        <Box position="start" bottomLine={false}>
-          <Title title="Transaction Details" />
+        <Box
+          position="start"
+          bottomLine={false}
+          className={styles.TitleContainer}
+        >
+          <Title title="Transaction Details" className={styles.Title} />
         </Box>
 
         <Table className={styles.Table}>

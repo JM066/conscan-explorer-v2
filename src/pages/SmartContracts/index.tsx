@@ -17,7 +17,11 @@ function SmartContract({ contracts }: Props) {
   return (
     <VStack className={styles.SmartContact}>
       <VStack className={styles.SmartContactContainer}>
-        <Box position="center" bottomLine={false} className={styles.Header}>
+        <Box
+          position="center"
+          bottomLine={false}
+          className={styles.TableHeader}
+        >
           <Title title={"Smart Contract".toUpperCase()} bolded={false} />
         </Box>
         <Table className={styles.Table}>

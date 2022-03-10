@@ -3,5 +3,22 @@
 
   & .DrivePageContainer {
     width: 85%;
+
+    & .TitleHeader {
+      padding-top: 28px;
+    }
+
+    & .TableHeader {
+      border-bottom: 1px solid #eee;
+      box-shadow: 0 2px 0 0 rgb(171 171 171 / 30%);
+
+      & .TabContainer {
+        display: flex;
+      }
+
+      & .Division {
+        flex: 1 2 20%;
+      }
+    }
   }
 }

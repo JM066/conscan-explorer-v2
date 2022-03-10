@@ -10,7 +10,7 @@ interface Title {
   bolded?: boolean;
 }
 
-function Title({ className, title, bolded = true }: Title) {
+function Title({ className, title, bolded }: Title) {
   return (
     <div
       className={classNames(styles.Title, { [styles.bold]: bolded }, className)}

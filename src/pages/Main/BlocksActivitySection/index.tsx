@@ -20,8 +20,8 @@ function BlocksActivitySection({ channelHash }: { channelHash: string }) {
 
   return (
     <VStack className={styles.TableContainer}>
-      <Box position="center">
-        <Title title="Recent Blocks" />
+      <Box position="center" className={styles.TitleContainer}>
+        <Title title="Recent Blocks" className={styles.Title} />
       </Box>
 
       {isLoading ? (

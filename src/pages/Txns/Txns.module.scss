@@ -2,53 +2,57 @@
   background-color: var(--foreground);
   width: 100%;
 
-  & .TitleBox {
-    display: flex;
-    justify-content: space-between;
-
-    & .Title {
-      align-self: center;
-    }
-
-    & .PaginationButtons {
-      align-self: flex-end;
-      justify-self: flex-end;
-      margin-top: 15px;
-    }
-  }
-
-  & .Table {
-    width: 80%;
-
-    & .RowContainer {
+  & .TableContainer {
+    & .TitleBox {
+      display: flex;
       justify-content: space-between;
-      width: 100%;
+      padding: 27px 70px 27px 39px;
 
-      & .CellIcon {
-        width: 10%;
+      & .Title {
+        align-self: center;
+        font-size: 1.6rem;
+      }
 
-        & .ContractIcon {
-          width: 18px;
+      & .PaginationButtons {
+        align-self: flex-end;
+        justify-self: flex-end;
+        margin-top: 15px;
+      }
+    }
+
+    & .Table {
+      width: 80%;
+
+      & .RowContainer {
+        justify-content: space-between;
+        width: 100%;
+
+        & .CellIcon {
+          width: 10%;
+
+          & .ContractIcon {
+            width: 18px;
+          }
         }
-      }
 
-      & .HashTimeCell {
-        width: 30%;
-      }
+        & .HashTimeCell {
+          width: 30%;
+        }
 
-      & .FromToTxnCell {
-        width: 30%;
-      }
+        & .FromToTxnCell {
+          width: 30%;
+        }
 
-      & .ActionCell {
-        width: 15%;
+        & .ActionCell {
+          width: 15%;
+        }
       }
     }
   }
 }
 
 .EmptyTitleBox {
-  padding: 22px 60px;
+  padding: 27px 70px 27px 39px;
 }
 
 @media only screen and (max-width: 1605px) {

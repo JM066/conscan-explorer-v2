@@ -24,8 +24,8 @@ function TxnActivitySection({ channelHash }: { channelHash: string }) {
 
   return (
     <VStack className={styles.TableContainer}>
-      <Box position="center">
-        <Title title="Recent Transactions"></Title>
+      <Box position="center" className={styles.TitleContainer}>
+        <Title title="Recent Transactions" className={styles.Title}></Title>
       </Box>
 
       {isLoading ? (

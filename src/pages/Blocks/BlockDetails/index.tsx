@@ -65,8 +65,12 @@ function BlockDetails({
   return (
     <div className={styles.BlockDetailsPage}>
       <div className={styles.BlockDataSection}>
-        <Box position="start" bottomLine={false}>
-          <Title title="Blocks Details" />
+        <Box
+          position="start"
+          bottomLine={false}
+          className={styles.TitleContainer}
+        >
+          <Title title="Blocks Details" className={styles.Title} />
         </Box>
 
         <Table className={styles.Table}>

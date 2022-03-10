@@ -101,3 +101,7 @@ export const uniformValue = (action: string) => {
       return null;
   }
 };
+
+export const generateEmptyRows = (numOfRows: number) => {
+  return Array(numOfRows).fill("");
+};

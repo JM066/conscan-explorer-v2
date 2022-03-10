@@ -77,8 +77,8 @@ function Blocks({ channelHash, latestBlocks }: Props) {
   }
   return (
     <div className={styles.BlocksPage}>
-      <VStack>
-        <Box className={styles.TitleBox} position="start">
+      <VStack className={styles.TableContainer}>
+        <Box className={styles.TitleContainer} position="start">
           <Title className={styles.Title} title="Recent Blocks" />
           <Pagination
             className={styles.PaginationButtons}

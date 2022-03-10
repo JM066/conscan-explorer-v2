@@ -2,18 +2,19 @@
   background-color: var(--foreground);
   height: 654px;
   justify-content: space-between;
-  padding-bottom: 40px;
+  padding-bottom: 50px;
   padding-top: 24px;
   width: 100%;
 
   & .SmartContactContainer {
     justify-content: flex-start;
 
-    & .Header {
+    & .TableHeader {
       width: 100%;
     }
 
     & .Table {
+      padding-top: 62px;
       width: 90%;
 
       & .TitleRow {
