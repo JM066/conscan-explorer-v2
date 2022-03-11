@@ -1,5 +1,7 @@
 .DrivePage {
   background-color: var(--foreground);
+  height: 690px;
+  justify-content: flex-start;
 
   & .DrivePageContainer {
     width: 85%;
@@ -14,10 +16,6 @@
 
       & .TabContainer {
         display: flex;
-      }
-
-      & .Division {
-        flex: 1 2 20%;
       }
     }
   }

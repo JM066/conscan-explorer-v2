@@ -1,20 +1,20 @@
 import Row from "@/components/Table/Row";
 import Cell from "@/components/Table/Cell";
-import Wrapper from "../Table/Wrapper";
-
+import Table from "@/components/Table/index";
 import styles from "./DuplicatedSkeleton.module.scss";
 
-function DuplicatedSkeleton() {
+function DuplicatedSkeleton({ row }: { row: number }) {
+  const EmptyRows = Array(row).fill("");
   return (
-    <Row className={styles.Row}>
-      <Cell className={styles.Cell}></Cell>
-      <Cell className={styles.Cell} grow>
-        <Wrapper className={styles.Wrapper}></Wrapper>
-      </Cell>
-      <Cell centered={false} className={styles.Cell}>
-        <Wrapper className={styles.Wrapper}></Wrapper>
-      </Cell>
-    </Row>
+    <Table className={styles.DuplicatedTable}>
+      {EmptyRows.map((index: number) => (
+        <Row key={index} className={styles.Row}>
+          <Cell className={styles.Cell}></Cell>
+          <Cell className={styles.Cell} grow></Cell>
+          <Cell centered={false} className={styles.Cell}></Cell>
+        </Row>
+      ))}
+    </Table>
   );
 }
 export default DuplicatedSkeleton;

@@ -24,16 +24,17 @@ interface Props {
   channelHash: string;
   latestTxns: TxnActivityDataType[];
 }
+
 function Txns({ channelHash, latestTxns }: Props) {
   const channelStatistics = useChannelStatistics(channelHash);
   const [currentPage, setCurrentPage] = useState<number>(latestTxns[0].id);
+
   const { activeData, isLoading, isError, error } = useActivityData(
     channelHash,
     currentPage,
     "txActivity"
   );
 
-  const EmptyRows = Array(10).fill("");
   const numbsToSubtract = channelStatistics.txns - 10;
 
   const handleNext = () => {
@@ -64,16 +65,14 @@ function Txns({ channelHash, latestTxns }: Props) {
 
   if (isLoading) {
     return (
-      <VStack>
-        <Box className={styles.EmptyTitleBox} position="start">
-          <Title className={styles.Title} title="Recent Transactions" />
-        </Box>
-        <Table>
-          {EmptyRows.map((index: number) => (
-            <DuplicatedSkeleton key={index} />
-          ))}
-        </Table>
-      </VStack>
+      <div className={styles.TxnsPage}>
+        <VStack className={styles.TableContainer}>
+          <Box className={styles.TitleBox} position="start">
+            <Title className={styles.Title} title="Recent Transactions" />
+          </Box>
+          <DuplicatedSkeleton row={10} />
+        </VStack>
+      </div>
     );
   }
   return (
@@ -90,7 +89,7 @@ function Txns({ channelHash, latestTxns }: Props) {
           />
         </Box>
         <Table className={styles.Table}>
-          {activeData?.row.map((txns: TxnActivityDataType) => {
+          {activeData?.map((txns: TxnActivityDataType) => {
             return (
               <Row
                 key={txns.id}

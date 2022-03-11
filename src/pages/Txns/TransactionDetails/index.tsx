@@ -6,7 +6,6 @@ import Box from "@/components/Box/index";
 import Button from "@/components/Button/index";
 import Table from "@/components/Table/index";
 import Title from "@/components/Title/index";
-import VStack from "@/components/VStack";
 import ErrorMessage from "@/components/ErrorMessage";
 import DuplicatedSkeleton from "@/components/DuplicatedSkeleton";
 import DetailRow from "@/components/Table/DetailRow/index";
@@ -18,7 +17,6 @@ import {
   getLocalTime,
   FormatValue,
   uniformValue,
-  generateEmptyRows,
 } from "@/helpers/index";
 
 import NextUpwards from "@/assets/icons/next-upwards.svg";
@@ -50,16 +48,14 @@ function TransactionDetails({
   }
   if (isLoading) {
     return (
-      <VStack>
-        <Box className={styles.EmptyTitleBox} position="start">
-          <Title title="Blocks Details" />
-        </Box>
-        <Table>
-          {generateEmptyRows(8).map((index: number) => (
-            <DuplicatedSkeleton key={index} />
-          ))}
-        </Table>
-      </VStack>
+      <div className={styles.TxnsDetailsPage}>
+        <div className={styles.TxnsDataSection}>
+          <Box className={styles.EmptyTitleBox} position="start">
+            <Title title="Blocks Details" />
+          </Box>
+          <DuplicatedSkeleton row={10} />
+        </div>
+      </div>
     );
   }
   return (

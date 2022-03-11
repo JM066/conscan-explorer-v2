@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import React, { useState } from "react";
 
 import Box from "@/components/Box/index";
 import Button from "@/components/Button/index";
 import Table from "@/components/Table/index";
 import Title from "@/components/Title/index";
-import VStack from "@/components/VStack";
 import DetailRow from "@/components/Table/DetailRow/index";
 import ErrorMessage from "@/components/ErrorMessage";
 import DuplicatedSkeleton from "@/components/DuplicatedSkeleton";
@@ -29,17 +27,12 @@ function BlockDetails({
 }) {
   const [page, setPage] = useState(blockNum);
   const channelStatistics = useChannelStatistics(channelHash);
-  const router = useRouter();
+
   const { isLoading, dataDetails, isError, error } = useActivityDetailsData(
     channelHash,
     page,
     "block/transactions"
   );
-  const EmptyRows = Array(10).fill("");
-
-  useEffect(() => {
-    router.replace(`/blocks/${page}`);
-  }, [page]);
 
   if (isError && error) {
     let errorMessage;
@@ -50,16 +43,14 @@ function BlockDetails({
   }
   if (isLoading) {
     return (
-      <VStack>
-        <Box className={styles.EmptyTitleBox} position="start">
-          <Title title="Blocks Details" />
-        </Box>
-        <Table>
-          {EmptyRows.map((index: number) => (
-            <DuplicatedSkeleton key={index} />
-          ))}
-        </Table>
-      </VStack>
+      <div className={styles.BlockDetailsPage}>
+        <div className={styles.BlockDataSection}>
+          <Box className={styles.TitleContainer} position="start">
+            <Title title="Blocks Details" />
+          </Box>
+          <DuplicatedSkeleton row={7} />
+        </div>
+      </div>
     );
   }
   return (

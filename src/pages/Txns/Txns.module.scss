@@ -1,8 +1,11 @@
 .TxnsPage {
   background-color: var(--foreground);
+  border-radius: var(--radius);
   width: 100%;
 
   & .TableContainer {
+    height: 930px;
+
     & .TitleBox {
       display: flex;
       justify-content: space-between;
@@ -52,6 +55,7 @@
 }
 
 .EmptyTitleBox {
+  background-color: var(--foreground);
   padding: 27px 70px 27px 39px;
 }
 

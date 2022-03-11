@@ -1,8 +1,11 @@
 .BlocksPage {
   background-color: var(--foreground);
+  border-radius: var(--radius);
   width: 100%;
 
   & .TableContainer {
+    height: 930px;
+
     & .TitleContainer {
       display: flex;
       justify-content: space-between;

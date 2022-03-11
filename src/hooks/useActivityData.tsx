@@ -18,7 +18,7 @@ function useActivityData(
         dataName === "blockActivity" ? "?blocknum=" : "?txId="
       }${pageNum}`
     );
-    return await response.data;
+    return await response.data.row;
   });
   return { activeData, isLoading, isError, error };
 }

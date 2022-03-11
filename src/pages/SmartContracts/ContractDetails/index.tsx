@@ -4,12 +4,11 @@ import ContractDescription from "./ContractDescription";
 import ContractTransactions from "./ContractTransactions";
 import VStack from "@/components/VStack";
 import Box from "@/components/Box";
-import Table from "@/components/Table";
 import Title from "@/components/Title";
-// import Pagination from "@/components/Pagination";
+import Pagination from "@/components/Pagination";
 import Tabs from "@/components/Tabs";
 import DuplicatedSkeleton from "@/components/DuplicatedSkeleton";
-import { toCapitalize, generateEmptyRows } from "@/helpers/index";
+import { toCapitalize } from "@/helpers/index";
 import { ContractsType, TxnActivityDataType } from "@/types/index";
 import styles from "./ContractDetails.module.scss";
 import useFilteredTransactionList from "@/hooks/useFilteredTransactionList";
@@ -17,43 +16,51 @@ import useFilteredTransactionList from "@/hooks/useFilteredTransactionList";
 interface Props {
   contracts: ContractsType;
   contractName: string;
+  txnsList: Array<TxnActivityDataType>;
 }
-function ContractDetails({ contracts, contractName }: Props) {
+
+function ContractDetails({ contracts, contractName, txnsList }: Props) {
   const TABSARR = [
     { tabId: "txns", label: "TRANSACTIONS" },
     { tabId: "code", label: "CODE" },
   ];
-  const { listOfTransactions, loadingTransactionsList } =
-    useFilteredTransactionList(contractName);
 
   const [activeTab, setActiveTab] = useState<string>(TABSARR[0].tabId);
-  // const [currentPage, setCurrentPage] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState<number>(txnsList[0]?.id);
+
+  const { listOfTransactions, loadingTransactionsList } =
+    useFilteredTransactionList(contractName, currentPage);
 
   const contract = contracts.contracts.find(
     (contract) => contract.chaincodename === contractName
   );
 
-  // const handleLatest = () => {
-  //   setCurrentPage(0);
-  // };
+  const handleLatest = () => {
+    setCurrentPage(txnsList[0]?.id);
+  };
 
-  // const handlePrev = () => {
-  //   if (currentPage >= 9) {
-  //     setCurrentPage((prev) => Math.max(prev - 5, 0));
-  //   }
-  // };
-  // const handleNext = () => {
-  //   if (currentPage < listOfTransactions.length - 1) {
-  //     setCurrentPage((prev) =>
-  //       Math.min(prev + 5, listOfTransactions.length - 1)
-  //     );
-  //   }
-  // };
+  const handlePrev = () => {
+    setCurrentPage((prev) => prev + 5);
+  };
 
-  // const handleOldest = () => {
-  //   setCurrentPage(listOfTransactions.length - 1 - 5);
-  // };
-  console.log(listOfTransactions[0].id);
+  const handleNext = () => {
+    setCurrentPage((prev) => prev - 5);
+  };
+
+  let txnsData;
+  if (loadingTransactionsList) {
+    txnsData = <DuplicatedSkeleton row={5} />;
+  } else {
+    txnsData = listOfTransactions?.map(
+      (transaction: TxnActivityDataType, index: number) => {
+        if (index < 5) {
+          return (
+            <ContractTransactions key={transaction.id} txns={transaction} />
+          );
+        }
+      }
+    );
+  }
 
   return (
     <VStack className={styles.DrivePage}>
@@ -69,30 +76,13 @@ function ContractDetails({ contracts, contractName }: Props) {
             setActiveTab={setActiveTab}
             activeTab={activeTab}
           />
-          <div className={styles.Division}></div>
-          {/* <Pagination
-            className={styles.PaginationButtons}
+          <Pagination
             handleLatest={handleLatest}
-            handleOldest={handleOldest}
             handlePrev={handlePrev}
             handleNext={handleNext}
-          /> */}
+          />
         </Box>
-        {loadingTransactionsList ? (
-          <Table>
-            {generateEmptyRows(5).map((index: number) => (
-              <DuplicatedSkeleton key={index} />
-            ))}
-          </Table>
-        ) : activeTab === "txns" ? (
-          listOfTransactions?.map((transaction: TxnActivityDataType) => {
-            return (
-              <ContractTransactions key={transaction.id} txns={transaction} />
-            );
-          })
-        ) : (
-          <div>code</div>
-        )}
+        {activeTab === "txns" ? txnsData : <div>code code code </div>}
       </div>
     </VStack>
   );
