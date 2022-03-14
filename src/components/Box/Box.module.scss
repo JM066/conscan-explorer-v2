@@ -20,4 +20,18 @@
     border-bottom: 1px solid #eee;
     box-shadow: 0 2px 1.5px 0 rgb(171 171 171 / 60%);
   }
+
+  & .GoBackIconContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  & .Title {
+    font-weight: 400;
+  }
 }

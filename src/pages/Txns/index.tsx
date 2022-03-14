@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import Table from "@/components/Table";
 import Row from "@/components/Table/Row";
-import Title from "@/components/Title";
 import Box from "@/components/Box";
 import VStack from "@/components/VStack/index";
 import Pagination from "@/components/Pagination";
@@ -67,9 +66,12 @@ function Txns({ channelHash, latestTxns }: Props) {
     return (
       <div className={styles.TxnsPage}>
         <VStack className={styles.TableContainer}>
-          <Box className={styles.TitleBox} position="start">
-            <Title className={styles.Title} title="Recent Transactions" />
-          </Box>
+          <Box
+            className={styles.TitleBox}
+            position="start"
+            title="Recent Transactions"
+            goBackButton
+          />
           <DuplicatedSkeleton row={10} />
         </VStack>
       </div>
@@ -78,8 +80,12 @@ function Txns({ channelHash, latestTxns }: Props) {
   return (
     <div className={styles.TxnsPage}>
       <VStack className={styles.TableContainer}>
-        <Box className={styles.TitleBox} position="start">
-          <Title className={styles.Title} title="Recent Transactions" />
+        <Box
+          className={styles.TitleBox}
+          position="start"
+          goBackButton
+          title="Recent Transactions"
+        >
           <Pagination
             className={styles.PaginationButtons}
             handleLatest={handleLatest}

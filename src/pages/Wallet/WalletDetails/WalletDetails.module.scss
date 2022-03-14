@@ -1,0 +1,23 @@
+.WalletPage {
+  align-items: center;
+  background-color: var(--foreground);
+  border-radius: var(--radius);
+  box-shadow: var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+  height: 654px;
+  width: 100%;
+
+  & .TitleBox {
+    align-self: flex-start;
+    padding-left: 39px;
+    padding-top: 28px;
+    width: 100%;
+  }
+
+  & .TableContainer {
+    align-items: flex-start;
+    padding-top: 45px;
+    width: 87%;
+  }
+}

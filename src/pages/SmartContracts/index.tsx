@@ -3,8 +3,8 @@ import VStack from "@/components/VStack";
 import Box from "@/components/Box";
 import Cell from "@/components/Table/Cell";
 import Table from "@/components/Table";
-import Row from "@/components/Table/Row";
 import Title from "@/components/Title";
+import Row from "@/components/Table/Row";
 import Button from "@/components/Button";
 import ContractIcon from "@/components/ContractIcon";
 import { ContractsType } from "@/types/index";
@@ -22,7 +22,7 @@ function SmartContract({ contracts }: Props) {
           bottomLine={false}
           className={styles.TableHeader}
         >
-          <Title title={"Smart Contract".toUpperCase()} bolded={false} />
+          <Title title={"Smart Contract".toUpperCase()} />
         </Box>
         <Table className={styles.Table}>
           <Row className={styles.TitleRow}>

@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import Table from "@/components/Table";
 import Row from "@/components/Table/Row";
 import Cell from "@/components/Table/Cell";
-import Title from "@/components/Title";
 import Box from "@/components/Box";
 import VStack from "@/components/VStack/index";
 import Pagination from "@/components/Pagination";
@@ -12,6 +11,7 @@ import Button from "@/components/Button";
 import ErrorMessage from "@/components/ErrorMessage";
 import HashTimeCell from "@/components/Table/HashTimeCell";
 import TxnsCell from "@/components/Table/TxnsCell";
+
 import useActivityData from "@/hooks/useActivityData";
 
 import { BlockActivityDataType } from "@/types/index";
@@ -63,9 +63,12 @@ function Blocks({ channelHash, latestBlocks }: Props) {
     return (
       <div className={styles.BlocksPage}>
         <VStack className={styles.TableContainer}>
-          <Box className={styles.TitleContainer} position="start">
-            <Title className={styles.Title} title="Recent Blocks" />
-          </Box>
+          <Box
+            className={styles.TitleContainer}
+            position="start"
+            title="Recent Blocks"
+            goBackButton
+          />
           <DuplicatedSkeleton row={10} />
         </VStack>
       </div>
@@ -74,8 +77,12 @@ function Blocks({ channelHash, latestBlocks }: Props) {
   return (
     <div className={styles.BlocksPage}>
       <VStack className={styles.TableContainer}>
-        <Box className={styles.TitleContainer} position="start">
-          <Title className={styles.Title} title="Recent Blocks" />
+        <Box
+          className={styles.TitleContainer}
+          goBackButton
+          position="start"
+          title="Recent Blocks"
+        >
           <Pagination
             className={styles.PaginationButtons}
             handleLatest={handleLatest}

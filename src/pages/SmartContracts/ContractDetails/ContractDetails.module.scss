@@ -1,14 +1,15 @@
 .DrivePage {
   background-color: var(--foreground);
-  height: 690px;
+  box-shadow: var(--box-shadow);
+  height: 720px;
   justify-content: flex-start;
 
-  & .DrivePageContainer {
-    width: 85%;
+  & .TitleHeader {
+    padding: 28px 39px;
+  }
 
-    & .TitleHeader {
-      padding-top: 28px;
-    }
+  & .DrivePageContainer {
+    width: 87%;
 
     & .TableHeader {
       border-bottom: 1px solid #eee;

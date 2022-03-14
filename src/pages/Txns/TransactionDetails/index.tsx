@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-
 import ValidityIcon from "./ValidityIcon/index";
 
 import Box from "@/components/Box/index";
 import Button from "@/components/Button/index";
 import Table from "@/components/Table/index";
-import Title from "@/components/Title/index";
 import ErrorMessage from "@/components/ErrorMessage";
 import DuplicatedSkeleton from "@/components/DuplicatedSkeleton";
 import DetailRow from "@/components/Table/DetailRow/index";
@@ -32,7 +30,6 @@ function TransactionDetails({
   channelHash: string;
 }) {
   const [page] = useState(txnHash);
-
   const { isLoading, dataDetails, isError, error } = useActivityDetailsData(
     channelHash,
     page,
@@ -50,9 +47,12 @@ function TransactionDetails({
     return (
       <div className={styles.TxnsDetailsPage}>
         <div className={styles.TxnsDataSection}>
-          <Box className={styles.EmptyTitleBox} position="start">
-            <Title title="Blocks Details" />
-          </Box>
+          <Box
+            className={styles.EmptyTitleBox}
+            position="start"
+            title="Blocks Details"
+          />
+
           <DuplicatedSkeleton row={10} />
         </div>
       </div>
@@ -65,21 +65,17 @@ function TransactionDetails({
           position="start"
           bottomLine={false}
           className={styles.TitleContainer}
-        >
-          <Title title="Transaction Details" className={styles.Title} />
-        </Box>
-
+          goBackButton
+          path="/txns"
+          title="Transaction Details"
+        />
         <Table className={styles.Table}>
-          <DetailRow
-            title="Transaction Hash"
-            value={dataDetails?.row?.txhash}
-          />
-          <DetailRow
-            title="Timestamp"
-            value={`${getTimeDistance(
-              dataDetails?.row?.createdt
-            )} [${getLocalTime(dataDetails?.row?.createdt)}]`}
-          />
+          <DetailRow title="Transaction Hash">
+            {dataDetails?.row?.txhash}
+          </DetailRow>
+          <DetailRow title="Timestamp">{`${getTimeDistance(
+            dataDetails?.row?.createdt
+          )} [${getLocalTime(dataDetails?.row?.createdt)}]`}</DetailRow>
           <DetailRow title="Validity">
             <ValidityIcon validity={dataDetails?.row?.validation_code} />
           </DetailRow>
@@ -93,21 +89,33 @@ function TransactionDetails({
               <div>{dataDetails?.row?.chaincodename}</div>
             )}
           </DetailRow>
-          <DetailRow title="FROM" value={dataDetails?.row?.tx_from} />
-          <DetailRow title="TO" value={dataDetails?.row?.tx_to} />
-          <DetailRow title="Action" value={dataDetails?.row?.tx_action} />
-          <DetailRow
-            title="Value"
-            value={
-              FormatValue(dataDetails?.row?.tx_value) +
+          <DetailRow title="FROM">
+            <Button
+              variant="ghost"
+              className={styles.TxnsFrom}
+              link={`/wallet/${dataDetails?.row?.tx_from}`}
+            >
+              {dataDetails?.row?.tx_from}
+            </Button>
+          </DetailRow>
+          <DetailRow title="TO">
+            <Button
+              variant="ghost"
+              className={styles.TxnsTo}
+              link={`/wallet/${dataDetails?.row?.tx_to}`}
+            >
+              {dataDetails?.row?.tx_to}
+            </Button>
+          </DetailRow>
+          <DetailRow title="Action">{dataDetails?.row?.tx_action}</DetailRow>
+          <DetailRow title="Value">
+            {FormatValue(dataDetails?.row?.tx_value) +
               " " +
-              uniformValue(dataDetails?.row?.tx_action)
-            }
-          />
-          <DetailRow
-            title="Playload ProposalHash"
-            value={dataDetails?.row?.payload_proposal_hash}
-          />
+              uniformValue(dataDetails?.row?.tx_action)}
+          </DetailRow>
+          <DetailRow title="Payload ProposalHash">
+            {dataDetails?.row?.payload_proposal_hash}
+          </DetailRow>
         </Table>
       </div>
       <div className={styles.BlueVerticalBar}>

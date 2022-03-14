@@ -10,10 +10,6 @@
 
     & .TitleContainer {
       padding: 27px 70px 27px 39px;
-
-      & .Title {
-        font-size: 1.6rem;
-      }
     }
 
     & .Table {
@@ -27,7 +23,13 @@
         flex-direction: row;
         gap: 5px;
         justify-content: center;
-        padding-left: 14px;
+      }
+
+      & .TxnsFrom,
+      & .TxnsTo {
+        &:hover {
+          text-decoration: underline green 2px;
+        }
       }
     }
   }

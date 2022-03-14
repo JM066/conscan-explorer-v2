@@ -9,13 +9,7 @@
     & .TitleContainer {
       display: flex;
       justify-content: space-between;
-      padding: 27px 70px 27px 39px;
-
-      & .Title {
-        align-self: center;
-        font-size: 1.6rem;
-        font-weight: 400;
-      }
+      padding: 28px 39px;
 
       & .PaginationButtons {
         align-self: flex-end;

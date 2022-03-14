@@ -4,7 +4,6 @@ import ContractDescription from "./ContractDescription";
 import ContractTransactions from "./ContractTransactions";
 import VStack from "@/components/VStack";
 import Box from "@/components/Box";
-import Title from "@/components/Title";
 import Pagination from "@/components/Pagination";
 import Tabs from "@/components/Tabs";
 import DuplicatedSkeleton from "@/components/DuplicatedSkeleton";
@@ -64,11 +63,15 @@ function ContractDetails({ contracts, contractName, txnsList }: Props) {
 
   return (
     <VStack className={styles.DrivePage}>
-      <div className={styles.DrivePageContainer}>
-        <Box position="start" bottomLine={false} className={styles.TitleHeader}>
-          <Title title={toCapitalize(contractName)} />
-        </Box>
+      <Box
+        position="start"
+        bottomLine={false}
+        className={styles.TitleHeader}
+        goBackButton
+        title={toCapitalize(contractName)}
+      />
 
+      <div className={styles.DrivePageContainer}>
         {contract && <ContractDescription contract={contract} />}
         <Box className={styles.TableHeader} position="start">
           <Tabs

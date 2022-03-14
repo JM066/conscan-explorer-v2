@@ -7,11 +7,10 @@ import React from "react";
 
 interface Props {
   title: string;
-  value?: string | number;
   children?: React.ReactNode;
 }
 
-function DetailRow({ title, value, children }: Props) {
+function DetailRow({ title, children }: Props) {
   return (
     <Row className={styles.RowContainer} fullLength={true}>
       <Cell className={styles.Cell}>
@@ -21,8 +20,7 @@ function DetailRow({ title, value, children }: Props) {
             <div className={styles.Partition}>|</div>
           </HStack>
         </div>
-        {children && <div>{children}</div>}
-        {value && <div className={styles.Value}>{value}</div>}
+        {children && <div className={styles.Children}>{children}</div>}
       </Cell>
     </Row>
   );
