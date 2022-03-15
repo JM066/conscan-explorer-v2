@@ -2,7 +2,11 @@ import { useQuery } from "react-query";
 import instance from "src/axios/instance";
 import useChannelHash from "./useChannelHash";
 
-function useFilteredTransactionList(dataRole: string, txnId: number) {
+function useFilteredTransactionList(
+  dataRole: string,
+  param: string,
+  txnId: number
+) {
   const { channelHash } = useChannelHash();
 
   const { data: listOfTransactions, isLoading: loadingTransactionsList } =
@@ -10,9 +14,9 @@ function useFilteredTransactionList(dataRole: string, txnId: number) {
       ["contract-transactions", dataRole, txnId],
       async () => {
         const response = await instance.get(
-          `/${
-            dataRole === "wallet" ? "userActivity" : "txActivity"
-          }/${channelHash}?chaincode=${dataRole}&txId=${txnId}`
+          dataRole === "wallet"
+            ? `/userActivity/${channelHash}/${param}?txId=${txnId}`
+            : `/txActivity/${channelHash}?chaincode=${param}&txId=${txnId}`
         );
         return response.data?.row;
       },

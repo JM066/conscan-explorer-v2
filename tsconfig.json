@@ -31,7 +31,8 @@
     "src/pages/API/feedback.js",
     "pages/api/index.tsx",
     "pages/404/index.js",
-    "src/hooks/websocket.txs"
+    "src/hooks/websocket.txs",
+    "src/hooks/useWalletStatustsx"
   ],
   "exclude": ["node_modules"]
 }

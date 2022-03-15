@@ -1,3 +1,5 @@
+import VStack from "@/components/VStack";
+import HStack from "@/components/HStack";
 import styles from "./WalletDescription.module.scss";
 interface Props {
   title: string;
@@ -5,13 +7,13 @@ interface Props {
 }
 function WalletDescription({ title, value }: Props) {
   return (
-    <div className={styles.WalletDescription}>
-      <div>
-        <span>|</span>
-        {title}
-      </div>
-      <div>{value}</div>
-    </div>
+    <HStack className={styles.WalletDescriptionContainer}>
+      <div className={styles.Partition}>|</div>
+      <VStack className={styles.WalletDescription}>
+        <div>{title}</div>
+        <div>{value}</div>
+      </VStack>
+    </HStack>
   );
 }
 

@@ -5,7 +5,7 @@
   box-shadow: var(--box-shadow);
   display: flex;
   flex-direction: column;
-  height: 654px;
+  height: 720px;
   width: 100%;
 
   & .TitleBox {
@@ -19,5 +19,45 @@
     align-items: flex-start;
     padding-top: 45px;
     width: 87%;
+
+    & .WalletAddressContainer {
+      padding-bottom: 17px;
+      padding-left: 30px;
+      width: 100%;
+
+      & .WalletAddress {
+        align-items: center;
+        font-size: 1.4rem;
+        width: 100%;
+
+        & .Title {
+          width: 18%;
+        }
+
+        & .DescriptionContainer {
+          align-items: center;
+          color: #828282;
+          gap: 5px;
+
+          & .Icon {
+            height: 22.15px;
+            width: 22.15px;
+          }
+        }
+      }
+    }
+
+    & .Description {
+      border-radius: 15px;
+      box-shadow: inset -2px -2px 3px rgb(237 237 237 / 75%),
+        inset 2px 2px 5px rgb(171 171 171 / 75%);
+      padding: 14px 30px;
+    }
+
+    & .TableHeader {
+      border-bottom: 1px solid #eee;
+      box-shadow: 0 2px 0 0 rgb(171 171 171 / 30%);
+      padding-top: 24px;
+    }
   }
 }

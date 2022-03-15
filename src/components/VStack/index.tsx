@@ -10,12 +10,7 @@ interface Props {
   bordered?: boolean;
 }
 
-function VStack({
-  className,
-  centered = true,
-  children,
-  bordered = true,
-}: Props) {
+function VStack({ className, centered = true, children, bordered }: Props) {
   return (
     <div
       className={classNames(

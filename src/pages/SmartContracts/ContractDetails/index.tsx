@@ -6,11 +6,15 @@ import VStack from "@/components/VStack";
 import Box from "@/components/Box";
 import Pagination from "@/components/Pagination";
 import Tabs from "@/components/Tabs";
+import Table from "@/components/Table";
 import DuplicatedSkeleton from "@/components/DuplicatedSkeleton";
+
+import useFilteredTransactionList from "@/hooks/useFilteredTransactionList";
+
 import { toCapitalize } from "@/helpers/index";
+
 import { ContractsType, TxnActivityDataType } from "@/types/index";
 import styles from "./ContractDetails.module.scss";
-import useFilteredTransactionList from "@/hooks/useFilteredTransactionList";
 
 interface Props {
   contracts: ContractsType;
@@ -19,16 +23,11 @@ interface Props {
 }
 
 function ContractDetails({ contracts, contractName, txnsList }: Props) {
-  const TABSARR = [
-    { tabId: "txns", label: "TRANSACTIONS" },
-    { tabId: "code", label: "CODE" },
-  ];
-
-  const [activeTab, setActiveTab] = useState<string>(TABSARR[0].tabId);
+  const [activeTab, setActiveTab] = useState<string>("txns");
   const [currentPage, setCurrentPage] = useState<number>(txnsList[0]?.id);
 
   const { listOfTransactions, loadingTransactionsList } =
-    useFilteredTransactionList(contractName, currentPage);
+    useFilteredTransactionList("contract", contractName, currentPage);
 
   const contract = contracts.contracts.find(
     (contract) => contract.chaincodename === contractName
@@ -74,18 +73,16 @@ function ContractDetails({ contracts, contractName, txnsList }: Props) {
       <div className={styles.DrivePageContainer}>
         {contract && <ContractDescription contract={contract} />}
         <Box className={styles.TableHeader} position="start">
-          <Tabs
-            tabs={TABSARR}
-            setActiveTab={setActiveTab}
-            activeTab={activeTab}
-          />
+          <Tabs setActiveTab={setActiveTab} activeTab={activeTab} />
           <Pagination
             handleLatest={handleLatest}
             handlePrev={handlePrev}
             handleNext={handleNext}
           />
         </Box>
-        {activeTab === "txns" ? txnsData : <div>code code code </div>}
+        <Table>
+          {activeTab === "txns" ? txnsData : <div>No Code Data</div>}
+        </Table>
       </div>
     </VStack>
   );

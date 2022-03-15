@@ -66,7 +66,6 @@ function TransactionDetails({
           bottomLine={false}
           className={styles.TitleContainer}
           goBackButton
-          path="/txns"
           title="Transaction Details"
         />
         <Table className={styles.Table}>
