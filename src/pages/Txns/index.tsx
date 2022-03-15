@@ -111,19 +111,17 @@ function Txns({ channelHash, latestTxns }: Props) {
                     className={styles.ContractIcon}
                   />
                 </Button>
-                <Button className={styles.HashTimeCell} variant="ghost">
-                  <HashTimeCell
-                    variant="green"
-                    identicon
-                    hash={txns.txhash}
-                    time={txns.createdt}
-                    link={`/txns/${txns.txhash}`}
-                    activityId={txns.id.toString()}
-                    hashLeft={15}
-                    hashRight={15}
-                  />
-                </Button>
-
+                <HashTimeCell
+                  variant="green"
+                  identicon
+                  hash={txns.txhash}
+                  time={txns.createdt}
+                  link={`/txns/${txns.txhash}`}
+                  activityId={txns.id.toString()}
+                  hashLeft={15}
+                  hashRight={15}
+                  className={styles.HashTimeCell}
+                />
                 <FromToTxnCell
                   className={styles.FromToTxnCell}
                   from={txns.tx_from}

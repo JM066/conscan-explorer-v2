@@ -1,7 +1,6 @@
 import React from "react";
 import classNames from "classnames";
 
-import Button from "@/components/Button";
 import BridgeIcon from "@/assets/icons/bridge-smart.svg";
 import DriveIcon from "@/assets/icons/drive-smart.svg";
 import ConxIcon from "@/assets/icons/conx-smart.svg";
@@ -19,10 +18,11 @@ function Label({ contractName }: { contractName: string }) {
 }
 
 function Icon({ contractName }: { contractName: string }) {
-  if (contractName === "drive") {
+  const contract = contractName.toLowerCase();
+  if (contract === "drive") {
     return <DriveIcon className={styles.Icon} />;
   }
-  if (contractName === "bridge") {
+  if (contract === "bridge") {
     return <BridgeIcon className={styles.Icon} />;
   }
   return <ConxIcon className={styles.Icon} />;
@@ -31,9 +31,7 @@ function Icon({ contractName }: { contractName: string }) {
 function ContractIcon({ contractName, showLabel, className }: Props) {
   return (
     <div className={classNames(styles.ContractIcon, className)}>
-      <Button variant="ghost">
-        <Icon contractName={contractName} />
-      </Button>
+      <Icon contractName={contractName} />
       {showLabel && <Label contractName={contractName} />}
     </div>
   );

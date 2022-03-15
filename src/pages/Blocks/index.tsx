@@ -104,18 +104,17 @@ function Blocks({ channelHash, latestBlocks }: Props) {
                     <p>{block.blocknum}</p>
                   </Button>
                 </Cell>
-                <Button variant="ghost" className={styles.HashCell}>
-                  <HashTimeCell
-                    identicon
-                    variant="grey"
-                    hash={block.blockhash}
-                    time={block.createdt}
-                    link={`/blocks/${block.blocknum}`}
-                    activityId={block.blocknum.toString()}
-                    hashLeft={0}
-                    hashRight={0}
-                  />
-                </Button>
+                <HashTimeCell
+                  identicon
+                  className={styles.HashCell}
+                  variant="grey"
+                  hash={block.blockhash}
+                  time={block.createdt}
+                  link={`/blocks/${block.blocknum}`}
+                  activityId={block.blocknum.toString()}
+                  hashLeft={0}
+                  hashRight={0}
+                />
                 <TxnsCell txcount={block.txcount} className={styles.TxnsCell} />
               </Row>
             );

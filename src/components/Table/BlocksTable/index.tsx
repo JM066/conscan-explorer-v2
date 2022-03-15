@@ -23,20 +23,17 @@ function BlocksTable({
           <p>{block.blocknum}</p>
         </Cell>
       </Button>
-
-      <Button variant="ghost" className={styles.HashCell}>
-        <HashTimeCell
-          variant="dark-grey"
-          hash={block.blockhash}
-          time={block.createdt}
-          activityId={activityId}
-          identicon
-          hashLeft={15}
-          hashRight={15}
-          link={`/blocks/${block.blocknum}`}
-        />
-      </Button>
-
+      <HashTimeCell
+        variant="dark-grey"
+        hash={block.blockhash}
+        time={block.createdt}
+        activityId={activityId}
+        identicon
+        hashLeft={15}
+        hashRight={15}
+        className={styles.HashCell}
+        link={`/blocks/${block.blocknum}`}
+      />
       <TxnsCell className={styles.TxnsCell} txcount={block.txcount} />
     </Row>
   );

@@ -16,21 +16,23 @@ function ContractTransactions({ txns }: Props) {
   return (
     <Row fullLength={true} className={styles.Row}>
       <HStack className={styles.InnerRow}>
-        <Button variant="ghost" className={styles.HashTimeCell}>
+        <div className={styles.HashTimeCell}>
           <IdenticonLink
             idString={txns.id.toString()}
             link={`/txns/${txns.txhash}`}
           />
-          <HashTimeCell
-            variant="green"
-            hash={txns.txhash}
-            time={txns.createdt}
-            link={`/txns/${txns.txhash}`}
-            activityId={txns.id.toString()}
-            hashLeft={15}
-            hashRight={15}
-          />
-        </Button>
+          <Button variant="ghost">
+            <HashTimeCell
+              variant="green"
+              hash={txns.txhash}
+              time={txns.createdt}
+              link={`/txns/${txns.txhash}`}
+              activityId={txns.id.toString()}
+              hashLeft={15}
+              hashRight={15}
+            />
+          </Button>
+        </div>
         <FromToTxnCell
           className={styles.FromToTxnCell}
           from={txns.tx_from}

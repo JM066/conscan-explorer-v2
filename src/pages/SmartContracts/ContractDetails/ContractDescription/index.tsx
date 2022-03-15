@@ -2,6 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import HStack from "@/components/HStack";
 import VStack from "@/components/VStack";
+import ContractIcon from "@/components/ContractIcon";
 import { getTimeDistance, toCapitalize, getLocalTime } from "@/helpers/index";
 import { ContractType } from "@/types/index";
 import styles from "./ContractDescription.module.scss";
@@ -48,7 +49,12 @@ function Section({
         </VStack>
       ) : (
         <VStack className={styles.DescriptionBox}>
-          <div>{toCapitalize(data)}</div>
+          {title === "TYPE" ? (
+            <ContractIcon contractName={toCapitalize(data)} showLabel />
+          ) : (
+            <div>{data}</div>
+          )}
+
           {title === "TITLE" && (
             <div className={styles.Description}>{displayDescription(data)}</div>
           )}

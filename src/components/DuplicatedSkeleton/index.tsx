@@ -7,11 +7,15 @@ function DuplicatedSkeleton({ row }: { row: number }) {
   const EmptyRows = Array(row).fill("");
   return (
     <Table className={styles.DuplicatedTable}>
-      {EmptyRows.map((index: number) => (
+      {EmptyRows.map((row: string, index: number) => (
         <Row key={index} className={styles.Row}>
-          <Cell className={styles.Cell}></Cell>
-          <Cell className={styles.Cell} grow></Cell>
-          <Cell centered={false} className={styles.Cell}></Cell>
+          <Cell className={styles.Cell}>{row}</Cell>
+          <Cell className={styles.Cell} grow>
+            {row}
+          </Cell>
+          <Cell centered={false} className={styles.Cell}>
+            {row}
+          </Cell>
         </Row>
       ))}
     </Table>

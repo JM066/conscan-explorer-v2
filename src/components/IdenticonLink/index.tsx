@@ -9,13 +9,9 @@ interface IdenticonLink {
 }
 const IdenticonLink = ({ idString, link }: IdenticonLink) => {
   return (
-    <div className={styles.IconBox}>
-      <Button variant="ghost" link={link}>
-        <a>
-          <Identicon size={15} string={idString} />
-        </a>
-      </Button>
-    </div>
+    <Button variant="ghost" link={link} className={styles.IconBox}>
+      <Identicon size={15} string={idString} />
+    </Button>
   );
 };
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import WalletDescription from "./WalletDescription";
+import QRCodeGenerator from "./QRCodeGenerator";
 import ContractTransactions from "../../SmartContracts/ContractDetails/ContractTransactions";
 import VStack from "@/components/VStack";
 import HStack from "@/components/HStack";
@@ -14,8 +15,8 @@ import useFilteredTransactionList from "@/hooks/useFilteredTransactionList";
 import { FormatValue } from "@/helpers/index";
 import { TxnActivityDataType } from "@/types/index";
 
-import QRIcon from "@/assets/icons/qr_icon.svg";
 import CopyIcon from "@/assets/icons/copy_icon.svg";
+
 import styles from "./WalletDetails.module.scss";
 
 interface Props {
@@ -75,8 +76,8 @@ function WalletDetails({ txnsList, channelHash, walletAddress }: Props) {
             <div className={styles.Title}>WALLET ADDRESS</div>
             <HStack className={styles.DescriptionContainer}>
               <div>{walletAddress}</div>
-              <QRIcon className={styles.Icon} />
               <CopyIcon className={styles.Icon} />
+              <QRCodeGenerator walletQR={walletAddress} />
             </HStack>
           </HStack>
         </div>

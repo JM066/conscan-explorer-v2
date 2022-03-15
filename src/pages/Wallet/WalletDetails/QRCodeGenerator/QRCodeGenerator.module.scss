@@ -1,0 +1,9 @@
+.QRContainer {
+  align-items: center;
+  display: flex;
+
+  & .QRIcon {
+    height: 22.15px;
+    width: 22.15px;
+  }
+}
