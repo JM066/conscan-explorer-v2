@@ -10,14 +10,14 @@ import useWebSocket from "@/hooks/WebSocket";
 import styles from "./Main.module.scss";
 
 function Main({ channelHash }: { channelHash: string }) {
-  useWebSocket();
+  useWebSocket(channelHash);
   // const isMobile = useIsMobile();
 
   return (
     <div className={styles.Container}>
       <HStack className={styles.SubStatsTop}>
         <StatsCell channelHash={channelHash} />
-        <GraphCell />
+        <GraphCell channelHash={channelHash} />
       </HStack>
       <HStack className={styles.SubStatsBottom}>
         <BlocksActivitySection channelHash={channelHash} />

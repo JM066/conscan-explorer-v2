@@ -2,16 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { useQueryClient } from "react-query";
 import { w3cwebsocket as W3CWebsocket } from "websocket";
 
-import useChannelHash from "@/hooks/useChannelHash";
 import { BlockActivityDataType, TxnActivityDataType } from "../types/index";
 
-export function useWebSocket() {
+export function useWebSocket(channelHash: string) {
   const queryClient = useQueryClient();
 
   let ws = useRef<null | W3CWebsocket>(null);
   const [socket, setSocket] = useState(false);
-
-  const { channelHash } = useChannelHash();
 
   const newSocket = new W3CWebsocket(
     `${process.env.NEXT_PUBLIC_SOCKETURL_API_URL}/blockActivity/${channelHash}`
