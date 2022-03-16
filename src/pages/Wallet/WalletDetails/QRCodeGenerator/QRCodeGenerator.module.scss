@@ -1,9 +1,47 @@
 .QRContainer {
   align-items: center;
   display: flex;
+  position: relative;
 
   & .QRIcon {
     height: 22.15px;
     width: 22.15px;
+  }
+
+  & .QRPopUP {
+    background-color: #fff;
+    box-shadow: var(--box-shadow);
+    height: 460px;
+    position: absolute;
+    top: 27px;
+    width: 350px;
+
+    & .Header {
+      color: var(--conun-blue);
+      font-size: 1.4rem;
+      margin-bottom: 5px;
+      padding: 17px 0;
+    }
+
+    & .QRCode {
+      background: #6fb0e8;
+      border: 5px solid #6fb0e8;
+      border-radius: 10px;
+      box-shadow: 0 2px 3px rgb(171 171 171 / 60%);
+      height: 250px;
+      margin: 22px auto;
+      width: 250px;
+    }
+
+    & .Address {
+      border-radius: 15px;
+      box-shadow: inset -2px -2px 3px rgb(237 237 237 / 75%),
+        inset 2px 2px 5px rgb(171 171 171 / 75%);
+      color: #4f4f4f;
+      font-size: 1.35rem;
+      margin: 10px 30px;
+      padding: 13px 19px;
+      word-break: break-all;
+    }
   }
 }

@@ -1,7 +1,12 @@
 import classNames from "classnames";
 import Cell from "@/components/Table/Cell";
 import Wrapper from "@/components/Table/Wrapper";
-import { getActionValue, getTxnsActionIcon } from "@/helpers/index";
+import {
+  getActionValue,
+  getTxnsActionIcon,
+  FormatNumber,
+  FormatValue,
+} from "@/helpers/index";
 import ContractIcon from "@/components/ContractIcon";
 import styles from "./ActionCell.module.scss";
 
@@ -10,27 +15,25 @@ interface Props {
   value: string;
   coinName: string;
   className?: string;
-  isItFromSmartContact?: boolean;
+  isActionFromSmartContact?: boolean;
 }
 
 function ActionCell({
   action,
   value,
   coinName,
-  isItFromSmartContact,
+  isActionFromSmartContact,
   className,
 }: Props) {
   const { txValue, txCoin } = getActionValue(action, value, coinName);
   const actionIcon = getTxnsActionIcon(action);
-  if (isItFromSmartContact) {
+
+  if (isActionFromSmartContact) {
     return (
-      <Cell
-        grow
-        className={classNames(styles.SmartContractActionCell, className)}
-      >
-        <ContractIcon contractName={coinName} className={styles.ContractIcon} />
-        <div>{actionIcon}</div>
-        <div> {txValue && txValue}</div>
+      <Cell className={classNames(styles.SmartContractActionCell, className)}>
+        <ContractIcon contractName={coinName} className={styles.Icon} />
+        <div className={styles.Icon}>{actionIcon}</div>
+        <div> {txValue && `${FormatValue(value).substring(0, 10)}...`}</div>
         <div> {txCoin && txCoin}</div>
       </Cell>
     );
@@ -39,7 +42,7 @@ function ActionCell({
     <Cell grow className={classNames(styles.ActionCell, className)}>
       <div>{actionIcon}</div>
       <Wrapper>
-        <div> {txValue && txValue}</div>
+        <div> {txValue && FormatNumber(parseInt(txValue))}</div>
         <div> {txCoin && txCoin}</div>
       </Wrapper>
     </Cell>

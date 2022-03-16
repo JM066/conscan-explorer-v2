@@ -7,12 +7,12 @@ import CoinIcon from "@/assets/icons/coin.svg";
 
 export const getTxnsActionIcon = (action: string) => {
   switch (action) {
-    case "Like":
-      return <LikeIcon />;
+    case "like":
+      return <LikeIcon style={{ width: "18px" }} />;
     case "download":
-      return <DownloadIcon />;
+      return <DownloadIcon style={{ width: "18px" }} />;
     default:
-      return <CoinIcon />;
+      return <CoinIcon style={{ width: "18px" }} />;
   }
 };
 export const toCapitalize = (word: string) => {
@@ -47,7 +47,7 @@ export function getReducedHash(txhash: string, left: number, right: number) {
   } else return txhash;
 }
 
-function FormatNumber(num: number) {
+export function FormatNumber(num: number) {
   if (num < 1e3) return num;
   if (num >= 1e3 && num < 1e6)
     return parseInt(new Intl.NumberFormat().format(num / 1e3)).toFixed(0) + "K";
@@ -76,7 +76,7 @@ export function getActionValue(
     action == "BurnFrom"
   ) {
     return {
-      txValue: FormatNumber(parseInt(value)),
+      txValue: value,
       txCoin: coinName.toUpperCase(),
     };
   } else {

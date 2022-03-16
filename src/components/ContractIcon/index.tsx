@@ -9,12 +9,7 @@ import styles from "./ContractIcon.module.scss";
 
 interface Props {
   contractName: string;
-  showLabel?: boolean;
   className?: string;
-}
-
-function Label({ contractName }: { contractName: string }) {
-  return <div>{contractName}</div>;
 }
 
 function Icon({ contractName }: { contractName: string }) {
@@ -28,11 +23,10 @@ function Icon({ contractName }: { contractName: string }) {
   return <ConxIcon className={styles.Icon} />;
 }
 
-function ContractIcon({ contractName, showLabel, className }: Props) {
+function ContractIcon({ contractName, className }: Props) {
   return (
     <div className={classNames(styles.ContractIcon, className)}>
       <Icon contractName={contractName} />
-      {showLabel && <Label contractName={contractName} />}
     </div>
   );
 }

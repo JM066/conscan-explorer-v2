@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import WalletDescription from "./WalletDescription";
 import QRCodeGenerator from "./QRCodeGenerator";
 import ContractTransactions from "../../SmartContracts/ContractDetails/ContractTransactions";
@@ -31,6 +32,9 @@ function WalletDetails({ txnsList, channelHash, walletAddress }: Props) {
     channelHash,
     walletAddress
   );
+
+  const router = useRouter();
+  console.log("router", router);
   const { listOfTransactions, loadingTransactionsList } =
     useFilteredTransactionList("wallet", walletAddress, currentPage);
 

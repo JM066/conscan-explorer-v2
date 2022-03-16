@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import QRCode from "qrcode";
 
+import Box from "@/components/Box";
+import Button from "@/components/Button";
 import QRIcon from "@/assets/icons/qr_icon.svg";
 import styles from "./QRCodeGenerator.module.scss";
 
@@ -12,7 +14,9 @@ function QRCodeGenerator({ walletQR }: { walletQR: string }) {
   useEffect(() => {
     async function generateQR() {
       try {
-        const qr = await QRCode.toDataURL(walletQR);
+        const qr = await QRCode.toDataURL(
+          `${process.env.NEXT_PUBLIC_API_URL}/wallet/${walletQR}`
+        );
         setSrc(qr);
       } catch (e) {
         console.error(e);
@@ -22,13 +26,27 @@ function QRCodeGenerator({ walletQR }: { walletQR: string }) {
   }, [walletQR]);
 
   return (
-    <div
+    <Button
+      variant="ghost"
       onClick={() => setToggleQR((prev) => !prev)}
       className={styles.QRContainer}
     >
       <QRIcon className={styles.QRIcon} />
-      {toggleQR && <Image src={src} alt="qr-code" width={300} height={300} />}
-    </div>
+      {toggleQR && (
+        <div className={styles.QRPopUP}>
+          <Box bottomLine className={styles.Header}>
+            Wallet Address QR Code
+          </Box>
+          <div className={styles.QRCode}>
+            <Image src={src} alt="qr-code" width={500} height={500} />
+          </div>
+
+          <div className={styles.Address}>
+            <p>{walletQR}</p>
+          </div>
+        </div>
+      )}
+    </Button>
   );
 }
 export default QRCodeGenerator;

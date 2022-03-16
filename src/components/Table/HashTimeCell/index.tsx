@@ -17,7 +17,7 @@ export interface Props {
   hashLeft: number;
   hashRight: number;
   variant: "green" | "grey" | "dark-grey";
-  className: string;
+  className?: string;
 }
 function HashTimeCell({
   hash,
