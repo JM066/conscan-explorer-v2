@@ -27,10 +27,11 @@
 
       & .WalletAddress {
         align-items: center;
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         width: 100%;
 
         & .Title {
+          font-size: 1.4rem;
           width: 18%;
         }
 
@@ -39,9 +40,26 @@
           color: #828282;
           gap: 5px;
 
+          & .Address {
+            border: 0.5px solid transparent;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            padding: 5px 10px;
+
+            &.copied {
+              border: 0.5px solid var(--grey-light);
+            }
+          }
+
           & .Icon {
             height: 22.15px;
             width: 22.15px;
+
+            &:hover {
+              border: 2px solid #6fb0e8;
+              border-radius: 50%;
+              box-shadow: 0 2px 3px rgb(171 171 171 / 60%);
+            }
           }
         }
       }

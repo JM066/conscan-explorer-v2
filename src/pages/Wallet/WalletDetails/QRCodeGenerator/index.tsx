@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import classNames from "classnames";
 import Image from "next/image";
 import QRCode from "qrcode";
 
@@ -7,7 +8,13 @@ import Button from "@/components/Button";
 import QRIcon from "@/assets/icons/qr_icon.svg";
 import styles from "./QRCodeGenerator.module.scss";
 
-function QRCodeGenerator({ walletQR }: { walletQR: string }) {
+function QRCodeGenerator({
+  walletQR,
+  className,
+}: {
+  walletQR: string;
+  className?: string;
+}) {
   const [src, setSrc] = useState("");
   const [toggleQR, setToggleQR] = useState(false);
 
@@ -29,7 +36,7 @@ function QRCodeGenerator({ walletQR }: { walletQR: string }) {
     <Button
       variant="ghost"
       onClick={() => setToggleQR((prev) => !prev)}
-      className={styles.QRContainer}
+      className={classNames(styles.QRContainer, className)}
     >
       <QRIcon className={styles.QRIcon} />
       {toggleQR && (

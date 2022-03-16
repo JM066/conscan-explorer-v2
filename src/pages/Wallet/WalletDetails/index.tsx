@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router";
 import WalletDescription from "./WalletDescription";
 import QRCodeGenerator from "./QRCodeGenerator";
 import ContractTransactions from "../../SmartContracts/ContractDetails/ContractTransactions";
 import VStack from "@/components/VStack";
+import CopyButton from "@/components/Button/CopyButton";
 import HStack from "@/components/HStack";
 import Box from "@/components/Box";
 import Table from "@/components/Table";
@@ -16,9 +16,8 @@ import useFilteredTransactionList from "@/hooks/useFilteredTransactionList";
 import { FormatValue } from "@/helpers/index";
 import { TxnActivityDataType } from "@/types/index";
 
-import CopyIcon from "@/assets/icons/copy_icon.svg";
-
 import styles from "./WalletDetails.module.scss";
+import classNames from "classnames";
 
 interface Props {
   txnsList: Array<TxnActivityDataType>;
@@ -28,13 +27,12 @@ interface Props {
 function WalletDetails({ txnsList, channelHash, walletAddress }: Props) {
   const [currentPage, setCurrentPage] = useState<number>(txnsList[0]?.id);
   const [activeTab, setActiveTab] = useState<string>("txns");
+  const [isCopied, setIsCopied] = useState<boolean>(false);
   const { walletStatus, isLoading } = useWalletStatus(
     channelHash,
     walletAddress
   );
 
-  const router = useRouter();
-  console.log("router", router);
   const { listOfTransactions, loadingTransactionsList } =
     useFilteredTransactionList("wallet", walletAddress, currentPage);
 
@@ -79,9 +77,22 @@ function WalletDetails({ txnsList, channelHash, walletAddress }: Props) {
           <HStack className={styles.WalletAddress}>
             <div className={styles.Title}>WALLET ADDRESS</div>
             <HStack className={styles.DescriptionContainer}>
-              <div>{walletAddress}</div>
-              <CopyIcon className={styles.Icon} />
-              <QRCodeGenerator walletQR={walletAddress} />
+              <div
+                className={classNames(styles.Address, {
+                  [styles.copied]: isCopied,
+                })}
+              >
+                {walletAddress}
+              </div>
+              <CopyButton
+                className={styles.Icon}
+                setIsCopied={setIsCopied}
+                textToCopy={walletAddress}
+              />
+              <QRCodeGenerator
+                walletQR={walletAddress}
+                className={styles.Icon}
+              />
             </HStack>
           </HStack>
         </div>
