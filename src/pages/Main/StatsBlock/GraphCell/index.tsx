@@ -1,18 +1,16 @@
 import React from "react";
 import { useQuery } from "react-query";
-
+import { format } from "date-fns-tz";
 import instance from "src/axios/instance";
-
-import VStack from "@/components/VStack";
 import StatsGraph from "./StatsGraph";
 
-import useChannelHash from "@/hooks/useChannelHash";
+import VStack from "@/components/VStack";
+
+import { getLocalTime } from "@/helpers/index";
 
 import styles from "./GraphCell.module.scss";
 
-function GraphCell() {
-  const { channelHash } = useChannelHash();
-
+function GraphCell({ channelHash }: { channelHash: string }) {
   const { data } = useQuery(
     "graph-data-per-hour",
     async () => {
@@ -20,11 +18,11 @@ function GraphCell() {
       const blockData = await instance.get(`/blocksByMinute/${channelHash}/1`);
 
       return txnData.data.rows.map((row: any, ind: number) => {
+        const time = getLocalTime(row.datetime);
+        const min = format(time, "HH:mm");
+
         return {
-          datetime: new Date(row.datetime).toLocaleTimeString(
-            navigator.language,
-            { hour: "2-digit", minute: "2-digit" }
-          ),
+          datetime: min,
           transactions: Number(row.count),
           blocks: Number(blockData.data.rows[ind].count),
         };
@@ -35,12 +33,7 @@ function GraphCell() {
 
   return (
     <VStack className={styles.GraphCell}>
-      <StatsGraph
-        data={data || []}
-        width={"95%"}
-        minWidth={"50px"}
-        height={250}
-      />
+      <StatsGraph data={data} width={"95%"} height={250} />
     </VStack>
   );
 }
