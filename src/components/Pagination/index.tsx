@@ -11,7 +11,7 @@ import styles from "./Pagination.module.scss";
 interface Props {
   className?: string;
   handleLatest: () => void;
-  handleOldest: () => void;
+  handleOldest?: () => void;
   handlePrev: () => void;
   handleNext: () => void;
 }
@@ -33,9 +33,11 @@ function Pagination({
       <Button variant="ghost">
         <Next onClick={handleNext} />
       </Button>
-      <Button variant="ghost">
-        <Rewind onClick={handleOldest} />
-      </Button>
+      {handleOldest && (
+        <Button variant="ghost">
+          <Rewind onClick={handleOldest} />
+        </Button>
+      )}
     </div>
   );
 }

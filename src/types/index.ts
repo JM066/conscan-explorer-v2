@@ -3,7 +3,7 @@ export type Locales = {
   label: "English" | "한국어";
 };
 export type ObjectType = {
-  [key: string]: string | number;
+  [key: string]: string;
 };
 export type AppState = {
   channelStats: {
@@ -16,9 +16,15 @@ export type SmartContractDetailsType = {
   name: string;
   version: number;
   txnCount: number;
-  updated: Date;
+  updated: string;
 };
-
+export type ContractsType = {
+  contracts: ContractType[];
+};
+export type ContractType = {
+  chaincodename: string;
+  codes: Array<ObjectType>;
+};
 export type BlockActivityDataType = {
   blocknum: number;
   txcount: number;

@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Identicon from "react-identicons";
+import Button from "@/components/Button";
 
 import styles from "./IdenticonLink.module.scss";
 
@@ -9,13 +9,9 @@ interface IdenticonLink {
 }
 const IdenticonLink = ({ idString, link }: IdenticonLink) => {
   return (
-    <div className={styles.IconBox}>
-      <Link href={link}>
-        <a>
-          <Identicon size={15} string={idString} />
-        </a>
-      </Link>
-    </div>
+    <Button variant="ghost" link={link} className={styles.IconBox}>
+      <Identicon size={15} string={idString} />
+    </Button>
   );
 };
 

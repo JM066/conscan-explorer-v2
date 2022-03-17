@@ -1,8 +1,12 @@
 .ValidityIcon {
-  align-items: center;
+  align-items: flex-end;
   display: flex;
   flex-direction: row;
   gap: 5px;
   justify-content: center;
-  padding-left: 14px;
+
+  & .Success {
+    height: 16px;
+    width: 16px;
+  }
 }

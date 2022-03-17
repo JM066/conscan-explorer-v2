@@ -6,7 +6,7 @@ function ValidityIcon({ validity }: { validity: string }) {
   if (validity === "VALID") {
     return (
       <div className={styles.ValidityIcon}>
-        <SuccessIcon />
+        <SuccessIcon className={styles.Success} />
         <div> {validity}</div>
       </div>
     );

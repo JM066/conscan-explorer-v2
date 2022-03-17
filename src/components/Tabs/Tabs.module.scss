@@ -1,0 +1,27 @@
+.TabContainer {
+  gap: 5px;
+
+  & .Tab {
+    align-items: center;
+    background-color: var(--sky-bule);
+    border-radius: 15px 15px 0 0;
+    color: var(--grey-text);
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    font-weight: 700;
+    height: 35px;
+    justify-content: center;
+    width: 155px;
+
+    &:hover {
+      background-color: var(--conun-blue);
+      color: var(--foreground);
+    }
+
+    &.selected {
+      background-color: var(--conun-blue);
+      color: var(--foreground);
+    }
+  }
+}

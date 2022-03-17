@@ -1,50 +1,25 @@
 import { formatDistance } from "date-fns";
 import { zonedTimeToUtc } from "date-fns-tz";
-import DriveIcon from "@/assets/icons/drive-smart.svg";
-import TransferIcon from "@/assets/icons/conx-smart.svg";
-import BridgeIcon from "@/assets/icons/bridge-smart.svg";
+
 import LikeIcon from "@/assets/icons/like.svg";
 import DownloadIcon from "@/assets/icons/download.svg";
 import CoinIcon from "@/assets/icons/coin.svg";
 
-export function getContractType(serviceType: string | undefined) {
-  switch (serviceType?.toUpperCase()) {
-    case "CONX":
-      return "coin";
-
-    case "DRIVE":
-      return "drive";
-
-    case "ENGINE":
-      return "engine";
-
-    default:
-      return "basic";
-  }
-}
-export const getTxnsIcon = (action: string) => {
-  switch (action) {
-    case "drive":
-      return <DriveIcon />;
-    case "bridge":
-      return <BridgeIcon />;
-    default:
-      return <TransferIcon />;
-  }
-};
-
 export const getTxnsActionIcon = (action: string) => {
   switch (action) {
-    case "Like":
-      return <LikeIcon />;
+    case "like":
+      return <LikeIcon style={{ width: "18px" }} />;
     case "download":
-      return <DownloadIcon />;
+      return <DownloadIcon style={{ width: "18px" }} />;
     default:
-      return <CoinIcon />;
+      return <CoinIcon style={{ width: "18px" }} />;
   }
 };
+export const toCapitalize = (word: string) => {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+};
 
-export function getTimeDistance(datePast: string | Date) {
+export function getTimeDistance(datePast: string | number) {
   if (typeof datePast === "string") {
     const zonedPastDate = getLocalTime(datePast);
     const zonedPresentDate = getLocalTime(new Date());
@@ -72,7 +47,7 @@ export function getReducedHash(txhash: string, left: number, right: number) {
   } else return txhash;
 }
 
-function FormatNumber(num: number) {
+export function FormatNumber(num: number) {
   if (num < 1e3) return num;
   if (num >= 1e3 && num < 1e6)
     return parseInt(new Intl.NumberFormat().format(num / 1e3)).toFixed(0) + "K";
@@ -101,7 +76,7 @@ export function getActionValue(
     action == "BurnFrom"
   ) {
     return {
-      txValue: FormatNumber(parseInt(value)),
+      txValue: value,
       txCoin: coinName.toUpperCase(),
     };
   } else {

@@ -1,0 +1,81 @@
+.WalletPage {
+  align-items: center;
+  background-color: var(--foreground);
+  border-radius: var(--radius);
+  box-shadow: var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+  height: 720px;
+  width: 100%;
+
+  & .TitleBox {
+    align-self: flex-start;
+    padding-left: 39px;
+    padding-top: 28px;
+    width: 100%;
+  }
+
+  & .TableContainer {
+    align-items: flex-start;
+    padding-top: 45px;
+    width: 87%;
+
+    & .WalletAddressContainer {
+      padding-bottom: 17px;
+      padding-left: 30px;
+      width: 100%;
+
+      & .WalletAddress {
+        align-items: center;
+        font-size: 1.2rem;
+        width: 100%;
+
+        & .Title {
+          font-size: 1.4rem;
+          width: 18%;
+        }
+
+        & .DescriptionContainer {
+          align-items: center;
+          color: #828282;
+          gap: 5px;
+
+          & .Address {
+            border: 0.5px solid transparent;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            padding: 5px 10px;
+
+            &.copied {
+              border: 0.5px solid var(--grey-light);
+            }
+          }
+
+          & .Icon {
+            height: 22.15px;
+            width: 22.15px;
+
+            &:hover {
+              border: 2px solid #6fb0e8;
+              border-radius: 50%;
+              box-shadow: 0 2px 3px rgb(171 171 171 / 60%);
+            }
+          }
+        }
+      }
+    }
+
+    & .Description {
+      border-radius: 15px;
+      box-shadow: inset -2px -2px 3px rgb(237 237 237 / 75%),
+        inset 2px 2px 5px rgb(171 171 171 / 75%);
+      padding: 14px 30px;
+    }
+
+    & .TableHeader {
+      border-bottom: 1px solid #eee;
+      box-shadow: 0 2px 0 0 rgb(171 171 171 / 30%);
+      padding-top: 24px;
+    }
+  }
+}

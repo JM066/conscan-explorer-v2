@@ -1,43 +1,90 @@
-import React from "react";
-import { useRouter } from "next/router";
+import React, { useState } from "react";
 
-import HStack from "@/components/HStack";
-import Loading from "@/components/Loading";
-
-import ContractTransactionViewer from "./ContractTransactionViewer";
 import ContractDescription from "./ContractDescription";
-import InfoTable from "./InfoTable";
+import ContractTransactions from "./ContractTransactions";
+import VStack from "@/components/VStack";
+import Box from "@/components/Box";
+import Pagination from "@/components/Pagination";
+import Tabs from "@/components/Tabs";
+import Table from "@/components/Table";
+import DuplicatedSkeleton from "@/components/DuplicatedSkeleton";
 
-import useSmartContractList from "src/hooks/useSmartContractList";
+import useFilteredTransactionList from "@/hooks/useFilteredTransactionList";
 
-import { SmartContractDetailsType } from "src/types";
+import { toCapitalize } from "@/helpers/index";
 
-function ContractDetails() {
-  const router = useRouter();
+import { ContractsType, TxnActivityDataType } from "@/types/index";
+import styles from "./ContractDetails.module.scss";
 
-  const { contractName } = router.query;
+interface Props {
+  contracts: ContractsType;
+  contractName: string;
+  txnsList: Array<TxnActivityDataType>;
+}
 
-  const { listOfContracts, loadingContractList } = useSmartContractList();
+function ContractDetails({ contracts, contractName, txnsList }: Props) {
+  const [activeTab, setActiveTab] = useState<string>("txns");
+  const [currentPage, setCurrentPage] = useState<number>(txnsList[0]?.id);
 
-  const thisSmartContract = listOfContracts?.find(
-    (con: SmartContractDetailsType) => con.name === contractName
+  const { listOfTransactions, loadingTransactionsList } =
+    useFilteredTransactionList("contract", contractName, currentPage);
+
+  const contract = contracts.contracts.find(
+    (contract) => contract.chaincodename === contractName
   );
 
-  if (loadingContractList) {
-    return <Loading />;
-  }
+  const handleLatest = () => {
+    setCurrentPage(txnsList[0]?.id);
+  };
 
-  if (!thisSmartContract) {
-    router.push("/404");
+  const handlePrev = () => {
+    setCurrentPage((prev) => prev + 5);
+  };
+
+  const handleNext = () => {
+    setCurrentPage((prev) => prev - 5);
+  };
+
+  let txnsData;
+  if (loadingTransactionsList) {
+    txnsData = <DuplicatedSkeleton row={5} />;
+  } else {
+    txnsData = listOfTransactions?.map(
+      (transaction: TxnActivityDataType, index: number) => {
+        if (index < 5) {
+          return (
+            <ContractTransactions key={transaction.id} txns={transaction} />
+          );
+        }
+      }
+    );
   }
 
   return (
-    <HStack>
-      <InfoTable smartContract={thisSmartContract} />
-      <ContractDescription />
-      <ContractTransactionViewer contractName={thisSmartContract.name} />
-    </HStack>
+    <VStack className={styles.DrivePage}>
+      <Box
+        position="start"
+        bottomLine={false}
+        className={styles.TitleHeader}
+        goBackButton
+        title={toCapitalize(contractName)}
+      />
+
+      <div className={styles.DrivePageContainer}>
+        {contract && <ContractDescription contract={contract} />}
+        <Box className={styles.TableHeader} position="start">
+          <Tabs setActiveTab={setActiveTab} activeTab={activeTab} />
+          <Pagination
+            handleLatest={handleLatest}
+            handlePrev={handlePrev}
+            handleNext={handleNext}
+          />
+        </Box>
+        <Table>
+          {activeTab === "txns" ? txnsData : <div>No Code Data</div>}
+        </Table>
+      </div>
+    </VStack>
   );
 }
-
 export default ContractDetails;

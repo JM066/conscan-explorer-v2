@@ -1,9 +1,13 @@
-.Row {
-  background-color: #f8fafd;
-  width: 100%;
+.DuplicatedTable {
+  background-color: var(--foreground);
 
-  & .Cell {
-    // background-color: blue;
-    height: 25px;
+  & .Row {
+    background-color: #f8fafd;
+    padding: 26px 0;
+    width: 100%;
+
+    & .Cell {
+      height: 25px;
+    }
   }
 }

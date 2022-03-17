@@ -1,0 +1,18 @@
+.Row {
+  width: 90%;
+
+  & .InnerRow {
+    justify-content: space-around;
+
+    & .HashTimeCell {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      width: 35%;
+    }
+
+    & .FromToTxnCell {
+      width: 30%;
+    }
+  }
+}

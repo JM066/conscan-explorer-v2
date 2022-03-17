@@ -1,0 +1,23 @@
+.DrivePage {
+  background-color: var(--foreground);
+  box-shadow: var(--box-shadow);
+  height: 720px;
+  justify-content: flex-start;
+
+  & .TitleHeader {
+    padding: 28px 39px;
+  }
+
+  & .DrivePageContainer {
+    width: 87%;
+
+    & .TableHeader {
+      border-bottom: 1px solid #eee;
+      box-shadow: 0 2px 0 0 rgb(171 171 171 / 30%);
+
+      & .TabContainer {
+        display: flex;
+      }
+    }
+  }
+}
