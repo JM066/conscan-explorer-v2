@@ -24,7 +24,12 @@ function SmartContract({ contracts }: Props) {
         >
           <Title title={"Smart Contract".toUpperCase()} />
         </Box>
-        <Table className={styles.Table}>
+        <Table
+          className={styles.Table}
+          loading={false}
+          skeletonRow={4}
+          size="medium"
+        >
           <Row className={styles.TitleRow}>
             <Cell centered className={styles.Cell}>
               Name

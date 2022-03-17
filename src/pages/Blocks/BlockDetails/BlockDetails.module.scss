@@ -3,6 +3,7 @@
   border-radius: var(--radius);
   display: flex;
   justify-content: space-between;
+  position: relative;
   width: 100%;
 
   & .BlockDataSection {
@@ -40,6 +41,36 @@
       flex-direction: column;
       height: 90px;
       justify-content: space-between;
+    }
+  }
+}
+
+.BlockDetails {
+  background-color: var(--foreground);
+  border-radius: var(--radius);
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+
+  & .Spinner {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+  }
+
+  & .BlockDataSection {
+    width: 100%;
+
+    & .TitleContainer {
+      display: flex;
+      justify-content: space-between;
+      padding: 28px 39px;
+
+      & .Title {
+        align-self: center;
+        font-size: 1.6rem;
+      }
     }
   }
 }

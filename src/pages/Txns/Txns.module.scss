@@ -1,10 +1,11 @@
 .TxnsPage {
   background-color: var(--foreground);
   border-radius: var(--radius);
+  height: 930px;
   width: 100%;
 
   & .TableContainer {
-    height: 930px;
+    justify-content: flex-start;
 
     & .TitleBox {
       display: flex;
@@ -52,11 +53,6 @@
       }
     }
   }
-}
-
-.EmptyTitleBox {
-  background-color: var(--foreground);
-  padding: 27px 70px 27px 39px;
 }
 
 @media only screen and (max-width: 1605px) {

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import classNames from "classnames";
 
-import Spinner from "../Loading";
+import SmallSpinner from "../SmallSpinner";
 
 import styles from "./Button.module.scss";
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -39,7 +39,7 @@ function Button({
       )}
       {...props}
     >
-      {loading ? <Spinner /> : children}
+      {loading ? <SmallSpinner /> : children}
     </button>
   );
 }

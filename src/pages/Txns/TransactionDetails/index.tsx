@@ -5,7 +5,7 @@ import Box from "@/components/Box/index";
 import Button from "@/components/Button/index";
 import Table from "@/components/Table/index";
 import ErrorMessage from "@/components/ErrorMessage";
-import DuplicatedSkeleton from "@/components/DuplicatedSkeleton";
+
 import DetailRow from "@/components/Table/DetailRow/index";
 
 import useActivityDetailsData from "@/hooks/useActivityDetailsData";
@@ -43,21 +43,7 @@ function TransactionDetails({
     }
     return <ErrorMessage message={errorMessage?.message} />;
   }
-  if (isLoading) {
-    return (
-      <div className={styles.TxnsDetailsPage}>
-        <div className={styles.TxnsDataSection}>
-          <Box
-            className={styles.EmptyTitleBox}
-            position="start"
-            title="Blocks Details"
-          />
 
-          <DuplicatedSkeleton row={10} />
-        </div>
-      </div>
-    );
-  }
   return (
     <div className={styles.TxnsDetailsPage}>
       <div className={styles.TxnsDataSection}>
@@ -68,7 +54,12 @@ function TransactionDetails({
           goBackButton
           title="Transaction Details"
         />
-        <Table className={styles.Table}>
+        <Table
+          className={styles.Table}
+          skeletonRow={9}
+          loading={isLoading}
+          size="small"
+        >
           <DetailRow title="Transaction Hash">
             {dataDetails?.row?.txhash}
           </DetailRow>
