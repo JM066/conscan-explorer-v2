@@ -7,22 +7,30 @@
   position: relative;
   width: 100%;
 
+  & .TitleContainer {
+    padding: 15px 0;
+
+    & .Title {
+      font-size: 1.1rem;
+    }
+  }
+
   & .Table {
     overflow-y: scroll;
     padding: 0 10px;
     width: 100%;
 
     & .RowContainer {
-      & .IconCell {
-        width: 10%;
+      & .ContractIcon {
+        width: 18px;
       }
 
       & .HashTimeCell {
-        width: 35%;
+        width: 40%;
       }
 
       & .FromToTxnCell {
-        width: 25%;
+        width: 35%;
       }
 
       & .ActionCell {

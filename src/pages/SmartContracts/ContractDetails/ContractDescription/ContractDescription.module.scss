@@ -1,7 +1,43 @@
-.Description {
-  border: 1px solid lightgrey;
-  border-radius: var(--radius);
-  margin-bottom: 30px;
-  margin-top: 20px;
-  padding: 10px;
+.DescriptionContainer {
+  justify-content: space-between;
+  padding-bottom: 44px;
+  padding-top: 10px;
+
+  .Section {
+    align-items: flex-start;
+    gap: 10px;
+    width: 25%;
+
+    .Partition {
+      color: var(--red);
+      font-weight: 600;
+    }
+
+    .Title {
+      font-weight: 600;
+      line-height: 19px;
+    }
+
+    & .DescriptionBox {
+      align-items: flex-start;
+      color: var(--grey-text);
+      justify-content: flex-start;
+
+      & .Description {
+        margin-top: 10px;
+      }
+    }
+  }
+
+  & .Type {
+    width: 10%;
+  }
+
+  & .Author {
+    width: 15%;
+  }
+
+  & .Updated {
+    width: 25%;
+  }
 }

@@ -19,6 +19,7 @@ function Layout({ children }: Layout) {
   const { channelHash, loadingChannelHash } = useLatestBlocksData();
   // const isMobile = useIsMobile();
 
+  console.log("channelhash", channelHash);
   return (
     <div className={classNames(styles.Layout)}>
       <Navbar />

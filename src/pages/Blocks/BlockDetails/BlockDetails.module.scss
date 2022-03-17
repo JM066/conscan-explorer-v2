@@ -8,9 +8,21 @@
   & .BlockDataSection {
     width: 100%;
 
+    & .TitleContainer {
+      display: flex;
+      justify-content: space-between;
+      padding: 28px 39px;
+
+      & .Title {
+        align-self: center;
+        font-size: 1.6rem;
+      }
+    }
+
     & .Table {
-      margin: 40px 0;
-      width: 100%;
+      margin-bottom: 20px;
+      margin-top: 30px;
+      width: 85%;
     }
   }
 
@@ -30,8 +42,4 @@
       justify-content: space-between;
     }
   }
-}
-
-.EmptyTitleBox {
-  padding: 22px 60px;
 }

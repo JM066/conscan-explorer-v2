@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import React, { useState } from "react";
 
 import Box from "@/components/Box/index";
 import Button from "@/components/Button/index";
 import Table from "@/components/Table/index";
-import Title from "@/components/Title/index";
-import VStack from "@/components/VStack";
 import DetailRow from "@/components/Table/DetailRow/index";
 import ErrorMessage from "@/components/ErrorMessage";
 import DuplicatedSkeleton from "@/components/DuplicatedSkeleton";
@@ -29,17 +26,12 @@ function BlockDetails({
 }) {
   const [page, setPage] = useState(blockNum);
   const channelStatistics = useChannelStatistics(channelHash);
-  const router = useRouter();
+
   const { isLoading, dataDetails, isError, error } = useActivityDetailsData(
     channelHash,
     page,
     "block/transactions"
   );
-  const EmptyRows = Array(10).fill("");
-
-  useEffect(() => {
-    router.replace(`/blocks/${page}`);
-  }, [page]);
 
   if (isError && error) {
     let errorMessage;
@@ -50,41 +42,49 @@ function BlockDetails({
   }
   if (isLoading) {
     return (
-      <VStack>
-        <Box className={styles.EmptyTitleBox} position="start">
-          <Title title="Blocks Details" />
-        </Box>
-        <Table>
-          {EmptyRows.map((index: number) => (
-            <DuplicatedSkeleton key={index} />
-          ))}
-        </Table>
-      </VStack>
+      <div className={styles.BlockDetailsPage}>
+        <div className={styles.BlockDataSection}>
+          <Box
+            position="start"
+            bottomLine={false}
+            className={styles.TitleContainer}
+            goBackButton
+            title="Blocks Details"
+          />
+          <DuplicatedSkeleton row={7} />
+        </div>
+      </div>
     );
   }
   return (
     <div className={styles.BlockDetailsPage}>
       <div className={styles.BlockDataSection}>
-        <Box position="start" bottomLine={false}>
-          <Title title="Blocks Details" />
-        </Box>
+        <Box
+          position="start"
+          bottomLine={false}
+          className={styles.TitleContainer}
+          goBackButton
+          title="Blocks Details"
+        />
 
         <Table className={styles.Table}>
-          <DetailRow title="Block Number" value={dataDetails?.data?.blocknum} />
-          <DetailRow title="Block Size" value={dataDetails?.data?.blksize} />
-          <DetailRow
-            title="Timestamp"
-            value={`${getTimeDistance(
-              dataDetails?.data?.createdt
-            )} [${getLocalTime(dataDetails?.createdt)}]`}
-          />
-          <DetailRow title="Block Hash" value={dataDetails?.data?.blockhash} />
-          <DetailRow title="Data Hash" value={dataDetails?.data?.datahash} />
-          <DetailRow title="Previous Hash" value={dataDetails?.data?.prehash} />
-          <DetailRow
-            title="Transaction"
-            value={dataDetails?.data?.txhash[0].toString()}
-          />
+          <DetailRow title="Block Number">
+            {dataDetails?.data?.blocknum}
+          </DetailRow>
+          <DetailRow title="Block Size">{dataDetails?.data?.blksize}</DetailRow>
+          <DetailRow title="Timestamp">{`${getTimeDistance(
+            dataDetails?.data?.createdt
+          )} [${getLocalTime(dataDetails?.createdt)}]`}</DetailRow>
+          <DetailRow title="Block Hash">
+            {dataDetails?.data?.blockhash}
+          </DetailRow>
+          <DetailRow title="Data Hash">{dataDetails?.data?.datahash}</DetailRow>
+          <DetailRow title="Previous Hash">
+            {dataDetails?.data?.prehash}
+          </DetailRow>
+          <DetailRow title="Transaction">
+            {dataDetails?.data?.txhash[0].toString()}
+          </DetailRow>
         </Table>
       </div>
       <div className={styles.BlueVerticalBar}>
@@ -94,9 +94,8 @@ function BlockDetails({
             onClick={() => {
               const blockNumber = Math.min(
                 dataDetails?.data?.blocknum + 1,
-                Number(channelStatistics?.blocks)
+                Number(channelStatistics?.blocks - 1)
               );
-
               setPage(blockNumber.toString());
             }}
           >

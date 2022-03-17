@@ -1,50 +1,62 @@
 .TxnsPage {
   background-color: var(--foreground);
+  border-radius: var(--radius);
   width: 100%;
 
-  & .TitleBox {
-    display: flex;
-    justify-content: space-between;
+  & .TableContainer {
+    height: 930px;
 
-    & .Title {
-      align-self: center;
-    }
-
-    & .PaginationButtons {
-      align-self: flex-end;
-      justify-self: flex-end;
-      margin-top: 15px;
-    }
-  }
-
-  & .Table {
-    width: 80%;
-
-    & .RowContainer {
+    & .TitleBox {
+      display: flex;
       justify-content: space-between;
-      width: 100%;
+      padding: 28px 39px;
 
-      & .CellIcon {
-        width: 10%;
+      & .Title {
+        align-self: center;
+        font-size: 1.6rem;
       }
 
-      & .HashTimeCell {
-        width: 30%;
+      & .PaginationButtons {
+        align-self: flex-end;
+        justify-self: flex-end;
+        margin-top: 15px;
       }
+    }
 
-      & .FromToTxnCell {
-        width: 30%;
-      }
+    & .Table {
+      width: 80%;
 
-      & .ActionCell {
-        width: 15%;
+      & .RowContainer {
+        justify-content: space-between;
+        width: 100%;
+
+        & .CellIcon {
+          width: 10%;
+
+          & .ContractIcon {
+            width: 18px;
+          }
+        }
+
+        & .HashTimeCell {
+          width: 30%;
+        }
+
+        & .FromToTxnCell {
+          width: 30%;
+        }
+
+        & .ActionCell {
+          width: 15%;
+        }
       }
     }
   }
 }
 
 .EmptyTitleBox {
-  padding: 22px 60px;
+  background-color: var(--foreground);
+  padding: 27px 70px 27px 39px;
 }
 
 @media only screen and (max-width: 1605px) {

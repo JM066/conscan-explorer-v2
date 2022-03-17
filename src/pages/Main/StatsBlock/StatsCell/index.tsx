@@ -22,7 +22,7 @@ function StatsCell({ channelHash }: { channelHash: string }) {
 
   return (
     <div className={styles.Container}>
-      <VStack bordered={false} centered={false}>
+      <VStack centered={false}>
         <NetworkStats
           blocks={channelStatistics.blocks}
           title={"con price".toUpperCase()}
@@ -43,7 +43,7 @@ function StatsCell({ channelHash }: { channelHash: string }) {
         />
       </VStack>
 
-      <VStack bordered={false}>
+      <VStack>
         <NetworkStats
           blocks={channelStatistics.txns}
           title={"market cap".toUpperCase()}

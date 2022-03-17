@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import Table from "@/components/Table";
 import Row from "@/components/Table/Row";
 import Cell from "@/components/Table/Cell";
-import Title from "@/components/Title";
 import Box from "@/components/Box";
 import VStack from "@/components/VStack/index";
 import Pagination from "@/components/Pagination";
@@ -12,6 +11,7 @@ import Button from "@/components/Button";
 import ErrorMessage from "@/components/ErrorMessage";
 import HashTimeCell from "@/components/Table/HashTimeCell";
 import TxnsCell from "@/components/Table/TxnsCell";
+
 import useActivityData from "@/hooks/useActivityData";
 
 import { BlockActivityDataType } from "@/types/index";
@@ -32,8 +32,6 @@ function Blocks({ channelHash, latestBlocks }: Props) {
     currentPage,
     "blockActivity"
   );
-
-  const EmptyRows = Array(10).fill("");
 
   const handleNext = () => {
     if (currentPage >= 10) {
@@ -63,23 +61,28 @@ function Blocks({ channelHash, latestBlocks }: Props) {
   }
   if (isLoading) {
     return (
-      <VStack>
-        <Box className={styles.EmptyTitleBox} position="start">
-          <Title className={styles.Title} title="Recent Blocks" />
-        </Box>
-        <Table>
-          {EmptyRows.map((index: number) => (
-            <DuplicatedSkeleton key={index} />
-          ))}
-        </Table>
-      </VStack>
+      <div className={styles.BlocksPage}>
+        <VStack className={styles.TableContainer}>
+          <Box
+            className={styles.TitleContainer}
+            position="start"
+            title="Recent Blocks"
+            goBackButton
+          />
+          <DuplicatedSkeleton row={10} />
+        </VStack>
+      </div>
     );
   }
   return (
     <div className={styles.BlocksPage}>
-      <VStack>
-        <Box className={styles.TitleBox} position="start">
-          <Title className={styles.Title} title="Recent Blocks" />
+      <VStack className={styles.TableContainer}>
+        <Box
+          className={styles.TitleContainer}
+          goBackButton
+          position="start"
+          title="Recent Blocks"
+        >
           <Pagination
             className={styles.PaginationButtons}
             handleLatest={handleLatest}
@@ -89,7 +92,7 @@ function Blocks({ channelHash, latestBlocks }: Props) {
           />
         </Box>
         <Table className={styles.Table}>
-          {activeData?.row.map((block: BlockActivityDataType) => {
+          {activeData?.map((block: BlockActivityDataType) => {
             return (
               <Row
                 key={block.blocknum}
@@ -101,18 +104,17 @@ function Blocks({ channelHash, latestBlocks }: Props) {
                     <p>{block.blocknum}</p>
                   </Button>
                 </Cell>
-                <Button variant="ghost" className={styles.HashCell}>
-                  <HashTimeCell
-                    identicon
-                    variant="grey"
-                    hash={block.blockhash}
-                    time={block.createdt}
-                    link={`/blocks/${block.blocknum}`}
-                    activityId={block.blocknum.toString()}
-                    hashLeft={0}
-                    hashRight={0}
-                  />
-                </Button>
+                <HashTimeCell
+                  identicon
+                  className={styles.HashCell}
+                  variant="grey"
+                  hash={block.blockhash}
+                  time={block.createdt}
+                  link={`/blocks/${block.blocknum}`}
+                  activityId={block.blocknum.toString()}
+                  hashLeft={0}
+                  hashRight={0}
+                />
                 <TxnsCell txcount={block.txcount} className={styles.TxnsCell} />
               </Row>
             );

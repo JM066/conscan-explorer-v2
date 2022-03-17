@@ -7,6 +7,14 @@
   position: relative;
   width: 100%;
 
+  & .TitleContainer {
+    padding: 15px 0;
+
+    & .Title {
+      font-size: 1.1rem;
+    }
+  }
+
   & .BlocksTable {
     overflow-y: scroll;
     padding: 0 10px;

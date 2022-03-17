@@ -1,0 +1,55 @@
+.SmartContact {
+  background-color: var(--foreground);
+  height: 654px;
+  justify-content: space-between;
+  padding-bottom: 50px;
+  padding-top: 24px;
+  width: 100%;
+
+  & .SmartContactContainer {
+    justify-content: flex-start;
+
+    & .TableHeader {
+      width: 100%;
+    }
+
+    & .Table {
+      padding-top: 62px;
+      width: 90%;
+
+      & .TitleRow {
+        border-bottom: 1px solid #eee;
+        box-shadow: 0 2px 0 0 rgb(171 171 171 / 30%);
+
+        & .Cell {
+          color: var(--grey-text);
+          font-weight: 600;
+          width: 100px;
+        }
+      }
+
+      & .Row {
+        & .ContractNameCell {
+          color: red;
+          width: 100px;
+        }
+
+        & .Cell {
+          width: 100px;
+
+          & .Icon {
+            width: 30px;
+          }
+        }
+      }
+    }
+  }
+
+  & .Github {
+    border: 1px solid #bdbdbd;
+    border-radius: 30px;
+    box-sizing: border-box;
+    color: var(--conun-blue);
+    padding: 10px 20px;
+  }
+}

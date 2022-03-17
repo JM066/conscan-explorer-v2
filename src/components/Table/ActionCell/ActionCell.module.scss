@@ -1,4 +1,17 @@
-.HashCell {
+.SmartContractActionCell {
+  align-items: flex-start;
+  color: var(--grey-text);
+  font-size: 0.8rem;
+  font-weight: 500;
+  gap: 3px;
+
+  & .Icon {
+    height: 18px;
+    width: 18px;
+  }
+}
+
+.ActionCell {
   color: var(--grey-text);
   font-size: 0.8rem;
   font-weight: 500;

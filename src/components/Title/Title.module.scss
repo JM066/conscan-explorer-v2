@@ -1,5 +1,9 @@
 .Title {
   color: var(--conun-blue);
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: 1.6rem;
+  font-weight: 500;
+
+  &.bold {
+    font-weight: 700;
+  }
 }

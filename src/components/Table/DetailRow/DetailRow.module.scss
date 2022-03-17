@@ -1,17 +1,21 @@
 .RowContainer {
   align-items: flex-start;
-  width: 80%;
+  width: 85%;
 
   & .Cell {
     align-items: flex-start;
     width: 100%;
 
     & .TitleCell {
-      width: 15%;
+      align-items: flex-end;
+      display: flex;
+      flex-direction: column;
+      width: 17%;
 
       & .Title {
         gap: 6px;
         justify-content: flex-end;
+        width: 95%;
 
         &:first-child {
           font-weight: 600;
@@ -21,6 +25,10 @@
           color: var(--red);
         }
       }
+    }
+
+    & .Children {
+      padding-left: 14px;
     }
 
     & .Value {

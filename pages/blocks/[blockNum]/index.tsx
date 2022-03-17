@@ -1,4 +1,5 @@
 import BlockDetails from "../../../src/pages/Blocks/BlockDetails";
+
 import { getHash } from "../../api/index";
 
 export default BlockDetails;
