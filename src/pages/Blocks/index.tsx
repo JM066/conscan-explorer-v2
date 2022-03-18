@@ -57,7 +57,7 @@ function Blocks({ channelHash, latestBlocks }: Props) {
     if (error instanceof Error) {
       errorMessage = error;
     }
-    return <ErrorMessage message={errorMessage?.message} />;
+    return <ErrorMessage statusCode={errorMessage?.message} />;
   }
 
   return (

@@ -5,7 +5,6 @@ import Box from "@/components/Box/index";
 import Button from "@/components/Button/index";
 import Table from "@/components/Table/index";
 import ErrorMessage from "@/components/ErrorMessage";
-
 import DetailRow from "@/components/Table/DetailRow/index";
 
 import useActivityDetailsData from "@/hooks/useActivityDetailsData";
@@ -41,7 +40,7 @@ function TransactionDetails({
     if (error instanceof Error) {
       errorMessage = error;
     }
-    return <ErrorMessage message={errorMessage?.message} />;
+    return <ErrorMessage statusCode={errorMessage?.message} />;
   }
 
   return (

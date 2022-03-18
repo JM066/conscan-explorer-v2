@@ -12,6 +12,7 @@ interface Props {
   children: React.ReactNode;
   className?: string;
   skeletonRow?: number;
+  fullLength?: boolean;
   size: "small" | "medium";
 }
 
@@ -20,6 +21,7 @@ const Table: React.FunctionComponent<Props> = ({
   children,
   className,
   skeletonRow,
+  fullLength,
   size = "small",
 }) => {
   const EmptyRows = Array(skeletonRow).fill("");
@@ -32,7 +34,11 @@ const Table: React.FunctionComponent<Props> = ({
       )}
     >
       {loading ? (
-        <div className={styles.DuplicatedSkeleton}>
+        <div
+          className={classNames(styles.DuplicatedSkeleton, {
+            [styles.full]: fullLength,
+          })}
+        >
           {EmptyRows.map((row: string, index: number) => (
             <Row key={index} className={classNames(styles.Row, styles[size])}>
               <Cell className={styles.Cell}>{row}</Cell>

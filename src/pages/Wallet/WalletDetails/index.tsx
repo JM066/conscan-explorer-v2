@@ -113,7 +113,7 @@ function WalletDetails({ txnsList, channelHash, walletAddress }: Props) {
             handleNext={handleNext}
           />
         </Box>
-        <Table loading={loadingTransactionsList} skeletonRow={10} size="medium">
+        <Table loading={loadingTransactionsList} skeletonRow={5} size="medium">
           {activeTab === "txns" ? (
             listOfTransactions?.map(
               (transaction: TxnActivityDataType, index: number) => {

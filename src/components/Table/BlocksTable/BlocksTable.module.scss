@@ -3,9 +3,10 @@
   width: 100%;
 
   & .NumberCell {
+    align-items: flex-start;
     color: var(--green-dark);
     font-weight: 600;
-    width: 10%;
+    width: 15%;
   }
 
   & .HashCell {

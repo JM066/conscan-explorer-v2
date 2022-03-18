@@ -36,10 +36,14 @@ function TxnActivitySection({ channelHash }: { channelHash: string }) {
         {latestData?.map((txns: TxnActivityDataType) => {
           return (
             <Row key={txns.id} className={styles.RowContainer}>
-              <Button variant="ghost">
+              <Button
+                variant="ghost"
+                link={`txns`}
+                className={styles.ContractButton}
+              >
                 <ContractIcon
                   contractName={txns?.chaincodename}
-                  className={styles.ContractIcon}
+                  className={styles.Icon}
                 />
               </Button>
               <HashTimeCell
@@ -48,20 +52,18 @@ function TxnActivitySection({ channelHash }: { channelHash: string }) {
                 className={styles.HashTimeCell}
                 hash={txns.txhash}
                 time={txns.createdt}
-                link={`Txns/${txns.txhash}`}
+                link={`txns`}
                 activityId={txns.id.toString()}
                 hashLeft={6}
                 hashRight={4}
               />
-              <Button variant="ghost" className={styles.FromToTxnCell}>
-                <FromToTxnCell
-                  from={txns.tx_from}
-                  to={txns.tx_to}
-                  leftHash={6}
-                  rightHash={4}
-                />
-              </Button>
-
+              <FromToTxnCell
+                from={txns.tx_from}
+                to={txns.tx_to}
+                leftHash={6}
+                rightHash={4}
+                className={styles.FromToTxnCell}
+              />
               <ActionCell
                 action={txns.tx_action}
                 value={txns.tx_value}

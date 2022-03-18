@@ -83,6 +83,7 @@ function Txns({ channelHash, latestTxns }: Props) {
           className={styles.Table}
           skeletonRow={10}
           loading={isLoading}
+          fullLength
           size="medium"
         >
           {activeData?.map((txns: TxnActivityDataType) => {

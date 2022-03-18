@@ -1,7 +1,6 @@
 import React from "react";
 
 import Row from "@/components/Table/Row";
-import Cell from "@/components/Table/Cell";
 import Button from "@/components/Button";
 import HashTimeCell from "@/components/Table/HashTimeCell";
 import TxnsCell from "@/components/Table/TxnsCell";
@@ -18,10 +17,12 @@ function BlocksTable({
 }) {
   return (
     <Row className={styles.BlocksRow}>
-      <Button variant="ghost" className={styles.NumberCell}>
-        <Cell>
-          <p>{block.blocknum}</p>
-        </Cell>
+      <Button
+        variant="ghost"
+        className={styles.NumberCell}
+        link={`/blocks/${block.blocknum}`}
+      >
+        <p>{block.blocknum}</p>
       </Button>
       <HashTimeCell
         variant="dark-grey"
