@@ -6,9 +6,8 @@ import Cell from "@/components/Table/Cell";
 import Box from "@/components/Box";
 import VStack from "@/components/VStack/index";
 import Pagination from "@/components/Pagination";
-
+import SkeletonTable from "@/components/SkeletonTable";
 import Button from "@/components/Button";
-import ErrorMessage from "@/components/ErrorMessage";
 import HashTimeCell from "@/components/Table/HashTimeCell";
 import TxnsCell from "@/components/Table/TxnsCell";
 
@@ -27,7 +26,7 @@ function Blocks({ channelHash, latestBlocks }: Props) {
     latestBlocks[0].blocknum
   );
 
-  const { activeData, isLoading, isError, error } = useActivityData(
+  const { activeData, isLoading, isError } = useActivityData(
     channelHash,
     currentPage,
     "blockActivity"
@@ -52,14 +51,6 @@ function Blocks({ channelHash, latestBlocks }: Props) {
     setCurrentPage(latestBlocks[0].blocknum % 10);
   };
 
-  if (isError && error) {
-    let errorMessage;
-    if (error instanceof Error) {
-      errorMessage = error;
-    }
-    return <ErrorMessage statusCode={errorMessage?.message} />;
-  }
-
   return (
     <div className={styles.BlocksPage}>
       <VStack className={styles.TableContainer}>
@@ -77,40 +68,44 @@ function Blocks({ channelHash, latestBlocks }: Props) {
             handleNext={handleNext}
           />
         </Box>
-        <Table
-          className={styles.Table}
-          loading={isLoading}
-          skeletonRow={10}
-          size="medium"
-        >
-          {activeData?.map((block: BlockActivityDataType) => {
-            return (
-              <Row
-                key={block.blocknum}
-                className={styles.RowContainer}
-                fullLength={true}
-              >
-                <Cell className={styles.BlockNumCell}>
-                  <Button link={`/blocks/${block.blocknum}`}>
-                    <p>{block.blocknum}</p>
-                  </Button>
-                </Cell>
-                <HashTimeCell
-                  identicon
-                  className={styles.HashCell}
-                  variant="grey"
-                  hash={block.blockhash}
-                  time={block.createdt}
-                  link={`/blocks/${block.blocknum}`}
-                  activityId={block.blocknum.toString()}
-                  hashLeft={0}
-                  hashRight={0}
-                />
-                <TxnsCell txcount={block.txcount} className={styles.TxnsCell} />
-              </Row>
-            );
-          })}
-        </Table>
+        <VStack className={styles.TableContainer}>
+          {isLoading || isError ? (
+            <SkeletonTable loading={isLoading} row={10} size="large" />
+          ) : (
+            <Table className={styles.Table}>
+              {activeData?.map((block: BlockActivityDataType) => {
+                return (
+                  <Row
+                    key={block.blocknum}
+                    className={styles.RowContainer}
+                    fullLength={true}
+                  >
+                    <Cell className={styles.BlockNumCell}>
+                      <Button link={`/blocks/${block.blocknum}`}>
+                        <p>{block.blocknum}</p>
+                      </Button>
+                    </Cell>
+                    <HashTimeCell
+                      identicon
+                      className={styles.HashCell}
+                      variant="grey"
+                      hash={block.blockhash}
+                      time={block.createdt}
+                      link={`/blocks/${block.blocknum}`}
+                      activityId={block.blocknum.toString()}
+                      hashLeft={0}
+                      hashRight={0}
+                    />
+                    <TxnsCell
+                      txcount={block.txcount}
+                      className={styles.TxnsCell}
+                    />
+                  </Row>
+                );
+              })}
+            </Table>
+          )}
+        </VStack>
       </VStack>
     </div>
   );

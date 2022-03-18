@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useRouter } from "next/router";
 
 import Button from "@/components/Button";
@@ -7,18 +7,23 @@ import MagnifyingGlass from "@/assets/icons/magnifying-glass.svg";
 import styles from "./SearchBox.module.scss";
 
 function SearchBox() {
+  const [inputSearch, setInputSearch] = useState<string | undefined>("");
   const inputRef = useRef<HTMLInputElement | null>(null);
   const router = useRouter();
+
   const searchSubmitHandler = (event: any) => {
     event.preventDefault();
-    const value = inputRef.current?.value;
-    if (value?.startsWith("0x") && value.length > 2) {
-      const fullPath = `/blocks/${value}`;
-      router.push(fullPath);
+
+    const refValue = inputRef?.current?.value;
+    if (refValue?.startsWith("0x") && refValue.length > 2) {
+      const fullPath = `/wallet/${refValue}`;
+      router.replace(fullPath);
     } else {
-      const fullPath = `/transactions/${value}`;
-      router.push(fullPath);
+      const fullPath = `/txns/${refValue}`;
+      router.push(fullPath, undefined, { shallow: false });
     }
+
+    setInputSearch("");
   };
   return (
     <form className={styles.SearchBox} onSubmit={searchSubmitHandler}>
@@ -32,6 +37,8 @@ function SearchBox() {
             placeholder="Search by block number or transaction hash"
             className={styles.InputWithNoOutline}
             ref={inputRef}
+            value={inputSearch}
+            onChange={(e) => setInputSearch(e.target.value)}
           />
           <Button variant="ghost" type="submit" className={styles.SerachButton}>
             <MagnifyingGlass />

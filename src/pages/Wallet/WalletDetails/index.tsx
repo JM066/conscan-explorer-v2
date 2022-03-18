@@ -9,6 +9,7 @@ import Box from "@/components/Box";
 import Table from "@/components/Table";
 import Tabs from "@/components/Tabs";
 import Pagination from "@/components/Pagination";
+import SkeletonTable from "@/components/SkeletonTable";
 
 import useWalletStatus from "@/hooks/useWalletStatus";
 import useFilteredTransactionList from "@/hooks/useFilteredTransactionList";
@@ -113,24 +114,30 @@ function WalletDetails({ txnsList, channelHash, walletAddress }: Props) {
             handleNext={handleNext}
           />
         </Box>
-        <Table loading={loadingTransactionsList} skeletonRow={5} size="medium">
-          {activeTab === "txns" ? (
-            listOfTransactions?.map(
-              (transaction: TxnActivityDataType, index: number) => {
-                if (index < 5) {
-                  return (
-                    <ContractTransactions
-                      key={transaction.id}
-                      txns={transaction}
-                    />
-                  );
-                }
-              }
-            )
+        <VStack>
+          {loadingTransactionsList ? (
+            <SkeletonTable row={5} size="large" />
           ) : (
-            <div>No Code Data</div>
+            <Table>
+              {activeTab === "txns" ? (
+                listOfTransactions?.map(
+                  (transaction: TxnActivityDataType, index: number) => {
+                    if (index < 5) {
+                      return (
+                        <ContractTransactions
+                          key={transaction.id}
+                          txns={transaction}
+                        />
+                      );
+                    }
+                  }
+                )
+              ) : (
+                <div>No Code Data</div>
+              )}
+            </Table>
           )}
-        </Table>
+        </VStack>
       </VStack>
     </div>
   );
