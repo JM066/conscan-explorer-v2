@@ -21,12 +21,17 @@
     width: 100%;
 
     & .RowContainer {
-      & .ContractIcon {
-        width: 18px;
+      & .ContractButton {
+        align-items: flex-start;
+        width: 10%;
+
+        & .Icon {
+          width: 20px;
+        }
       }
 
       & .HashTimeCell {
-        width: 40%;
+        width: 35%;
       }
 
       & .FromToTxnCell {
@@ -34,7 +39,7 @@
       }
 
       & .ActionCell {
-        width: 15%;
+        width: 10%;
       }
     }
   }

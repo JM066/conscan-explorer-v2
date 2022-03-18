@@ -12,7 +12,7 @@ interface Props {
 
 function DetailRow({ title, children }: Props) {
   return (
-    <Row className={styles.RowContainer} fullLength={true}>
+    <Row className={styles.RowContainer}>
       <Cell className={styles.Cell}>
         <div className={styles.TitleCell}>
           <HStack className={styles.Title}>

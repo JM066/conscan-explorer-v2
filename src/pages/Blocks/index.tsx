@@ -6,7 +6,7 @@ import Cell from "@/components/Table/Cell";
 import Box from "@/components/Box";
 import VStack from "@/components/VStack/index";
 import Pagination from "@/components/Pagination";
-import DuplicatedSkeleton from "@/components/DuplicatedSkeleton";
+
 import Button from "@/components/Button";
 import ErrorMessage from "@/components/ErrorMessage";
 import HashTimeCell from "@/components/Table/HashTimeCell";
@@ -57,23 +57,9 @@ function Blocks({ channelHash, latestBlocks }: Props) {
     if (error instanceof Error) {
       errorMessage = error;
     }
-    return <ErrorMessage message={errorMessage?.message} />;
+    return <ErrorMessage statusCode={errorMessage?.message} />;
   }
-  if (isLoading) {
-    return (
-      <div className={styles.BlocksPage}>
-        <VStack className={styles.TableContainer}>
-          <Box
-            className={styles.TitleContainer}
-            position="start"
-            title="Recent Blocks"
-            goBackButton
-          />
-          <DuplicatedSkeleton row={10} />
-        </VStack>
-      </div>
-    );
-  }
+
   return (
     <div className={styles.BlocksPage}>
       <VStack className={styles.TableContainer}>
@@ -91,7 +77,12 @@ function Blocks({ channelHash, latestBlocks }: Props) {
             handleNext={handleNext}
           />
         </Box>
-        <Table className={styles.Table}>
+        <Table
+          className={styles.Table}
+          loading={isLoading}
+          skeletonRow={10}
+          size="medium"
+        >
           {activeData?.map((block: BlockActivityDataType) => {
             return (
               <Row

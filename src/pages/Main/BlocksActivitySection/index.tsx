@@ -3,7 +3,6 @@ import useLatestActivityData from "@/hooks/useLatestActivityData";
 import Table from "@/components/Table";
 import BlocksTable from "@/components/Table/BlocksTable";
 import VStack from "@/components/VStack";
-import Loading from "@/components/Loading";
 import Title from "@/components/Title";
 import Button from "@/components/Button";
 import Box from "@/components/Box";
@@ -23,22 +22,22 @@ function BlocksActivitySection({ channelHash }: { channelHash: string }) {
       <Box position="center" className={styles.TitleContainer}>
         <Title title="Recent Blocks" className={styles.Title} />
       </Box>
-
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <Table className={styles.BlocksTable}>
-          {latestData?.map((block: BlockActivityDataType) => {
-            return (
-              <BlocksTable
-                key={block.blocknum}
-                block={block}
-                activityId={block.blocknum.toString()}
-              />
-            );
-          })}
-        </Table>
-      )}
+      <Table
+        className={styles.BlocksTable}
+        loading={isLoading}
+        skeletonRow={5}
+        size="small"
+      >
+        {latestData?.map((block: BlockActivityDataType) => {
+          return (
+            <BlocksTable
+              key={block.blocknum}
+              block={block}
+              activityId={block.blocknum.toString()}
+            />
+          );
+        })}
+      </Table>
       <div className={styles.ViewBlocks}>
         <Button link={"/blocks/"}>View More Blocks</Button>
       </div>

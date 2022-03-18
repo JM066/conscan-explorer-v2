@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import Loading from "../Loading";
+import SmallSpinner from "../SmallSpinner";
 import Disconnected from "../Disconnected";
 import PageContainer from "./PageContainer";
 
@@ -26,7 +26,7 @@ function Layout({ children }: Layout) {
       <div className={styles.AppWidth}>
         <PageContainer>
           {loadingChannelHash ? (
-            <Loading />
+            <SmallSpinner />
           ) : channelHash ? (
             children
           ) : (

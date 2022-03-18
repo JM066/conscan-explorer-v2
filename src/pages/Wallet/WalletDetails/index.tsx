@@ -9,7 +9,6 @@ import Box from "@/components/Box";
 import Table from "@/components/Table";
 import Tabs from "@/components/Tabs";
 import Pagination from "@/components/Pagination";
-import DuplicatedSkeleton from "@/components/DuplicatedSkeleton";
 
 import useWalletStatus from "@/hooks/useWalletStatus";
 import useFilteredTransactionList from "@/hooks/useFilteredTransactionList";
@@ -47,21 +46,6 @@ function WalletDetails({ txnsList, channelHash, walletAddress }: Props) {
   const handleNext = () => {
     setCurrentPage((prev) => prev - 5);
   };
-
-  let txnsData;
-  if (loadingTransactionsList) {
-    txnsData = <DuplicatedSkeleton row={5} />;
-  } else {
-    txnsData = listOfTransactions?.map(
-      (transaction: TxnActivityDataType, index: number) => {
-        if (index < 5) {
-          return (
-            <ContractTransactions key={transaction.id} txns={transaction} />
-          );
-        }
-      }
-    );
-  }
 
   return (
     <div className={styles.WalletPage}>
@@ -129,8 +113,23 @@ function WalletDetails({ txnsList, channelHash, walletAddress }: Props) {
             handleNext={handleNext}
           />
         </Box>
-        <Table>
-          {activeTab === "txns" ? txnsData : <div>No Code Data</div>}
+        <Table loading={loadingTransactionsList} skeletonRow={5} size="medium">
+          {activeTab === "txns" ? (
+            listOfTransactions?.map(
+              (transaction: TxnActivityDataType, index: number) => {
+                if (index < 5) {
+                  return (
+                    <ContractTransactions
+                      key={transaction.id}
+                      txns={transaction}
+                    />
+                  );
+                }
+              }
+            )
+          ) : (
+            <div>No Code Data</div>
+          )}
         </Table>
       </VStack>
     </div>

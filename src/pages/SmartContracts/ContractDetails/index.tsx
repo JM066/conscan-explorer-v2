@@ -7,7 +7,6 @@ import Box from "@/components/Box";
 import Pagination from "@/components/Pagination";
 import Tabs from "@/components/Tabs";
 import Table from "@/components/Table";
-import DuplicatedSkeleton from "@/components/DuplicatedSkeleton";
 
 import useFilteredTransactionList from "@/hooks/useFilteredTransactionList";
 
@@ -45,21 +44,6 @@ function ContractDetails({ contracts, contractName, txnsList }: Props) {
     setCurrentPage((prev) => prev - 5);
   };
 
-  let txnsData;
-  if (loadingTransactionsList) {
-    txnsData = <DuplicatedSkeleton row={5} />;
-  } else {
-    txnsData = listOfTransactions?.map(
-      (transaction: TxnActivityDataType, index: number) => {
-        if (index < 5) {
-          return (
-            <ContractTransactions key={transaction.id} txns={transaction} />
-          );
-        }
-      }
-    );
-  }
-
   return (
     <VStack className={styles.DrivePage}>
       <Box
@@ -80,8 +64,23 @@ function ContractDetails({ contracts, contractName, txnsList }: Props) {
             handleNext={handleNext}
           />
         </Box>
-        <Table>
-          {activeTab === "txns" ? txnsData : <div>No Code Data</div>}
+        <Table size="medium" loading={loadingTransactionsList} skeletonRow={5}>
+          {activeTab === "txns" ? (
+            listOfTransactions?.map(
+              (transaction: TxnActivityDataType, index: number) => {
+                if (index < 5) {
+                  return (
+                    <ContractTransactions
+                      key={transaction.id}
+                      txns={transaction}
+                    />
+                  );
+                }
+              }
+            )
+          ) : (
+            <div>No Code Data</div>
+          )}
         </Table>
       </div>
     </VStack>

@@ -5,7 +5,6 @@ import Button from "@/components/Button/index";
 import Table from "@/components/Table/index";
 import DetailRow from "@/components/Table/DetailRow/index";
 import ErrorMessage from "@/components/ErrorMessage";
-import DuplicatedSkeleton from "@/components/DuplicatedSkeleton";
 
 import useActivityDetailsData from "@/hooks/useActivityDetailsData";
 import useChannelStatistics from "@/hooks/useChannelStatistics";
@@ -38,24 +37,9 @@ function BlockDetails({
     if (error instanceof Error) {
       errorMessage = error;
     }
-    return <ErrorMessage message={errorMessage?.message} />;
+    return <ErrorMessage statusCode={errorMessage?.message} />;
   }
-  if (isLoading) {
-    return (
-      <div className={styles.BlockDetailsPage}>
-        <div className={styles.BlockDataSection}>
-          <Box
-            position="start"
-            bottomLine={false}
-            className={styles.TitleContainer}
-            goBackButton
-            title="Blocks Details"
-          />
-          <DuplicatedSkeleton row={7} />
-        </div>
-      </div>
-    );
-  }
+
   return (
     <div className={styles.BlockDetailsPage}>
       <div className={styles.BlockDataSection}>
@@ -67,7 +51,12 @@ function BlockDetails({
           title="Blocks Details"
         />
 
-        <Table className={styles.Table}>
+        <Table
+          className={styles.Table}
+          loading={isLoading}
+          skeletonRow={7}
+          size="small"
+        >
           <DetailRow title="Block Number">
             {dataDetails?.data?.blocknum}
           </DetailRow>

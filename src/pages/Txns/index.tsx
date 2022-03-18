@@ -5,7 +5,7 @@ import Row from "@/components/Table/Row";
 import Box from "@/components/Box";
 import VStack from "@/components/VStack/index";
 import Pagination from "@/components/Pagination";
-import DuplicatedSkeleton from "@/components/DuplicatedSkeleton";
+
 import Button from "@/components/Button";
 import HashTimeCell from "@/components/Table/HashTimeCell";
 import FromToTxnCell from "@/components/Table/FromToTxnCell";
@@ -62,21 +62,6 @@ function Txns({ channelHash, latestTxns }: Props) {
     return <ErrorMessage message={errorMessage?.message} />;
   }
 
-  if (isLoading) {
-    return (
-      <div className={styles.TxnsPage}>
-        <VStack className={styles.TableContainer}>
-          <Box
-            className={styles.TitleBox}
-            position="start"
-            title="Recent Transactions"
-            goBackButton
-          />
-          <DuplicatedSkeleton row={10} />
-        </VStack>
-      </div>
-    );
-  }
   return (
     <div className={styles.TxnsPage}>
       <VStack className={styles.TableContainer}>
@@ -94,7 +79,13 @@ function Txns({ channelHash, latestTxns }: Props) {
             handleNext={handleNext}
           />
         </Box>
-        <Table className={styles.Table}>
+        <Table
+          className={styles.Table}
+          skeletonRow={10}
+          loading={isLoading}
+          fullLength
+          size="medium"
+        >
           {activeData?.map((txns: TxnActivityDataType) => {
             return (
               <Row

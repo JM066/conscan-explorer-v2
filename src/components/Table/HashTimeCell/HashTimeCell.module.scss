@@ -1,9 +1,9 @@
 .HashCell {
   align-items: flex-start;
+  width: 100%;
 
   & .Wrapper {
     margin-left: 10px;
-    width: 100%;
 
     & .green {
       color: var(--green-dark);

@@ -4,4 +4,32 @@
   flex-direction: column;
   justify-content: center;
   width: 100%;
+
+  &.loading {
+    position: relative;
+  }
+
+  & .DuplicatedSkeleton {
+    width: 85%;
+
+    &.full {
+      width: 100%;
+    }
+
+    & .Row {
+      width: 100%;
+
+      &.small {
+        padding: 17px;
+      }
+
+      &.medium {
+        padding: 26px;
+      }
+
+      & .Cell {
+        height: 25px;
+      }
+    }
+  }
 }
