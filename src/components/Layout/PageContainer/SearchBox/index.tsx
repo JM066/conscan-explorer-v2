@@ -41,7 +41,7 @@ function SearchBox() {
             value={inputSearch}
             onChange={(e) => setInputSearch(e.target.value)}
           />
-          <Button variant="ghost" className={styles.SerachButton}>
+          <Button variant="ghost" type="submit" className={styles.SerachButton}>
             <MagnifyingGlass />
           </Button>
         </div>

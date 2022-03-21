@@ -13,7 +13,6 @@ export async function getServerSideProps(context: any) {
     props: {
       blockNum,
       channelHash,
-      fallback: true,
     },
   };
 }
