@@ -9,7 +9,7 @@ import useWebSocket from "@/hooks/WebSocket";
 
 import styles from "./Main.module.scss";
 
-function Main({ channelHash }: { channelHash: string }) {
+function Main({ channelHash }: { channelHash: string; slug: string }) {
   useWebSocket(channelHash);
   // const isMobile = useIsMobile();
 

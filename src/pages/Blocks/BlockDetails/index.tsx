@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Box from "@/components/Box/index";
 import Button from "@/components/Button/index";
@@ -32,6 +32,10 @@ function BlockDetails({
     page,
     "block/transactions"
   );
+
+  useEffect(() => {
+    setPage(blockNum);
+  }, [blockNum]);
 
   return (
     <div className={styles.BlockDetailsPage}>

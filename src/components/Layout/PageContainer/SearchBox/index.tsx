@@ -15,12 +15,13 @@ function SearchBox() {
     event.preventDefault();
 
     const refValue = inputRef?.current?.value;
+    const numInput = /^\d+$/;
     if (refValue?.startsWith("0x") && refValue.length > 2) {
-      const fullPath = `/wallet/${refValue}`;
-      router.replace(fullPath);
+      router.push(`/wallet/${refValue}`);
+    } else if (refValue && refValue.match(numInput)) {
+      router.push(`/blocks/${refValue}`);
     } else {
-      const fullPath = `/txns/${refValue}`;
-      router.push(fullPath, undefined, { shallow: false });
+      router.push({ pathname: `/txns/${refValue}` });
     }
 
     setInputSearch("");
@@ -40,7 +41,7 @@ function SearchBox() {
             value={inputSearch}
             onChange={(e) => setInputSearch(e.target.value)}
           />
-          <Button variant="ghost" type="submit" className={styles.SerachButton}>
+          <Button variant="ghost" className={styles.SerachButton}>
             <MagnifyingGlass />
           </Button>
         </div>

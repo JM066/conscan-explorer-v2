@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
 import instance from "../axios/instance";
+
 function useWalletStatus(channelHash: string, walletAddress: string) {
   const { data: walletStatus, isLoading } = useQuery(
     ["wallet-stats", walletAddress],

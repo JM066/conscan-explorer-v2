@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ValidityIcon from "./ValidityIcon/index";
 
 import VStack from "@/components/VStack";
@@ -29,12 +29,15 @@ function TransactionDetails({
   txnHash: string;
   channelHash: string;
 }) {
-  const [page] = useState(txnHash);
+  const [page, setPage] = useState(txnHash);
   const { isLoading, dataDetails } = useActivityDetailsData(
     channelHash,
     page,
     "transaction"
   );
+  useEffect(() => {
+    setPage(txnHash);
+  }, [txnHash]);
 
   return (
     <div className={styles.TxnsDetailsPage}>
