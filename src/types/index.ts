@@ -18,8 +18,9 @@ export type SmartContractDetailsType = {
   txnCount: number;
   updated: string;
 };
-export type ContractsType = {
-  contracts: ContractType[];
+export type contractData = {
+  status: number;
+  chaincode: ContractType[];
 };
 export type ContractType = {
   chaincodename: string;

@@ -1,0 +1,24 @@
+.DuplicatedSkeleton {
+  position: relative;
+  width: 85%;
+
+  & .Row {
+    width: 100%;
+
+    &.small {
+      padding: 17px;
+    }
+
+    &.medium {
+      padding: 22.5px;
+    }
+
+    &.large {
+      padding: 26px;
+    }
+
+    & .Cell {
+      height: 25px;
+    }
+  }
+}

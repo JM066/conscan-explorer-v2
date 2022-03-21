@@ -19,24 +19,26 @@
       }
     }
 
-    & .Table {
-      & .RowContainer {
-        width: 80%;
+    & .TableContainer {
+      & .Table {
+        width: 85%;
 
-        & .BlockNumCell {
-          color: #0993b1;
-          font-weight: 600;
-          padding-left: 20px;
-          width: 10%;
-        }
+        & .RowContainer {
+          & .BlockNumCell {
+            color: #0993b1;
+            font-weight: 600;
+            padding-left: 20px;
+            width: 10%;
+          }
 
-        & .HashCell {
-          color: var(--grey-text);
-          max-width: 550px;
-        }
+          & .HashCell {
+            color: var(--grey-text);
+            max-width: 550px;
+          }
 
-        & .TxnsCell {
-          width: 20%;
+          & .TxnsCell {
+            width: 20%;
+          }
         }
       }
     }

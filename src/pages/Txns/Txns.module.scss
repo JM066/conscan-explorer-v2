@@ -24,31 +24,35 @@
       }
     }
 
-    & .Table {
-      width: 80%;
+    & .TableContainer {
+      width: 100%;
 
-      & .RowContainer {
-        justify-content: space-between;
-        width: 100%;
+      & .Table {
+        width: 85%;
 
-        & .CellIcon {
-          width: 10%;
+        & .RowContainer {
+          justify-content: space-between;
+          width: 100%;
 
-          & .ContractIcon {
-            width: 18px;
+          & .CellIcon {
+            width: 10%;
+
+            & .ContractIcon {
+              width: 18px;
+            }
           }
-        }
 
-        & .HashTimeCell {
-          width: 30%;
-        }
+          & .HashTimeCell {
+            width: 30%;
+          }
 
-        & .FromToTxnCell {
-          width: 30%;
-        }
+          & .FromToTxnCell {
+            width: 30%;
+          }
 
-        & .ActionCell {
-          width: 15%;
+          & .ActionCell {
+            width: 15%;
+          }
         }
       }
     }

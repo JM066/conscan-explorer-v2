@@ -7,16 +7,17 @@ import Box from "@/components/Box";
 import Pagination from "@/components/Pagination";
 import Tabs from "@/components/Tabs";
 import Table from "@/components/Table";
+import SkeletonTable from "@/components/SkeletonTable";
 
 import useFilteredTransactionList from "@/hooks/useFilteredTransactionList";
 
 import { toCapitalize } from "@/helpers/index";
 
-import { ContractsType, TxnActivityDataType } from "@/types/index";
+import { contractData, TxnActivityDataType } from "@/types/index";
 import styles from "./ContractDetails.module.scss";
 
 interface Props {
-  contracts: ContractsType;
+  contracts: contractData;
   contractName: string;
   txnsList: Array<TxnActivityDataType>;
 }
@@ -28,7 +29,7 @@ function ContractDetails({ contracts, contractName, txnsList }: Props) {
   const { listOfTransactions, loadingTransactionsList } =
     useFilteredTransactionList("contract", contractName, currentPage);
 
-  const contract = contracts.contracts.find(
+  const contractFound = contracts.chaincode.find(
     (contract) => contract.chaincodename === contractName
   );
 
@@ -55,7 +56,7 @@ function ContractDetails({ contracts, contractName, txnsList }: Props) {
       />
 
       <div className={styles.DrivePageContainer}>
-        {contract && <ContractDescription contract={contract} />}
+        {contractFound && <ContractDescription contract={contractFound} />}
         <Box className={styles.TableHeader} position="start">
           <Tabs setActiveTab={setActiveTab} activeTab={activeTab} />
           <Pagination
@@ -64,24 +65,30 @@ function ContractDetails({ contracts, contractName, txnsList }: Props) {
             handleNext={handleNext}
           />
         </Box>
-        <Table size="medium" loading={loadingTransactionsList} skeletonRow={5}>
-          {activeTab === "txns" ? (
-            listOfTransactions?.map(
-              (transaction: TxnActivityDataType, index: number) => {
-                if (index < 5) {
-                  return (
-                    <ContractTransactions
-                      key={transaction.id}
-                      txns={transaction}
-                    />
-                  );
-                }
-              }
-            )
+        <VStack>
+          {loadingTransactionsList ? (
+            <SkeletonTable size="large" row={5} />
           ) : (
-            <div>No Code Data</div>
+            <Table>
+              {activeTab === "txns" ? (
+                listOfTransactions?.map(
+                  (transaction: TxnActivityDataType, index: number) => {
+                    if (index < 5) {
+                      return (
+                        <ContractTransactions
+                          key={transaction.id}
+                          txns={transaction}
+                        />
+                      );
+                    }
+                  }
+                )
+              ) : (
+                <div>No Code Data</div>
+              )}
+            </Table>
           )}
-        </Table>
+        </VStack>
       </div>
     </VStack>
   );

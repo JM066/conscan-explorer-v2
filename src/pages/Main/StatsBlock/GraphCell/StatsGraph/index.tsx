@@ -17,7 +17,6 @@ type Props = {
 };
 
 const StatsGraph = ({ data, width, height }: Props) => {
-  console.log(typeof data);
   return (
     <ResponsiveContainer width={width} height={height}>
       <AreaChart

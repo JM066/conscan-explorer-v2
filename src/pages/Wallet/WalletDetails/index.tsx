@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import WalletDescription from "./WalletDescription";
 import QRCodeGenerator from "./QRCodeGenerator";
 import ContractTransactions from "../../SmartContracts/ContractDetails/ContractTransactions";
@@ -9,9 +9,11 @@ import Box from "@/components/Box";
 import Table from "@/components/Table";
 import Tabs from "@/components/Tabs";
 import Pagination from "@/components/Pagination";
+import SkeletonTable from "@/components/SkeletonTable";
 
 import useWalletStatus from "@/hooks/useWalletStatus";
 import useFilteredTransactionList from "@/hooks/useFilteredTransactionList";
+
 import { FormatValue } from "@/helpers/index";
 import { TxnActivityDataType } from "@/types/index";
 
@@ -24,16 +26,23 @@ interface Props {
   walletAddress: string;
 }
 function WalletDetails({ txnsList, channelHash, walletAddress }: Props) {
-  const [currentPage, setCurrentPage] = useState<number>(txnsList[0]?.id);
-  const [activeTab, setActiveTab] = useState<string>("txns");
-  const [isCopied, setIsCopied] = useState<boolean>(false);
   const { walletStatus, isLoading } = useWalletStatus(
     channelHash,
     walletAddress
   );
 
+  const [currentPage, setCurrentPage] = useState<number>(txnsList[0]?.id);
+  const [activeTab, setActiveTab] = useState<string>("txns");
+  const [isCopied, setIsCopied] = useState<boolean>(false);
+
   const { listOfTransactions, loadingTransactionsList } =
     useFilteredTransactionList("wallet", walletAddress, currentPage);
+
+  useEffect(() => {
+    if (txnsList.length > 0) {
+      setCurrentPage(txnsList[0]?.id);
+    }
+  }, [walletAddress, txnsList]);
 
   const handleLatest = () => {
     setCurrentPage(txnsList[0]?.id);
@@ -113,24 +122,30 @@ function WalletDetails({ txnsList, channelHash, walletAddress }: Props) {
             handleNext={handleNext}
           />
         </Box>
-        <Table loading={loadingTransactionsList} skeletonRow={5} size="medium">
-          {activeTab === "txns" ? (
-            listOfTransactions?.map(
-              (transaction: TxnActivityDataType, index: number) => {
-                if (index < 5) {
-                  return (
-                    <ContractTransactions
-                      key={transaction.id}
-                      txns={transaction}
-                    />
-                  );
-                }
-              }
-            )
+        <VStack>
+          {loadingTransactionsList || txnsList.length === 0 ? (
+            <SkeletonTable row={5} size="large" />
           ) : (
-            <div>No Code Data</div>
+            <Table>
+              {activeTab === "txns" ? (
+                listOfTransactions?.map(
+                  (transaction: TxnActivityDataType, index: number) => {
+                    if (index < 5) {
+                      return (
+                        <ContractTransactions
+                          key={transaction.id}
+                          txns={transaction}
+                        />
+                      );
+                    }
+                  }
+                )
+              ) : (
+                <div>No Code Data</div>
+              )}
+            </Table>
           )}
-        </Table>
+        </VStack>
       </VStack>
     </div>
   );
