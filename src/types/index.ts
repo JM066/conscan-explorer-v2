@@ -6,6 +6,8 @@ export type ObjectType = {
   [key: string]: string;
 };
 export type AppState = {
+  isMobile: boolean;
+  setIsMobile: (value: boolean) => void;
   channelStats: {
     blocks: string;
     txns: string;

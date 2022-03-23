@@ -1,4 +1,5 @@
 import React from "react";
+import useStore from "@/store/store";
 import classNames from "classnames";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -7,7 +8,6 @@ import Disconnected from "../Disconnected";
 import PageContainer from "./PageContainer";
 
 import useLatestBlocksData from "@/hooks/useChannelHash";
-// import useIsMobile from "@/hooks/useIsMobile";
 
 import styles from "./Layout.module.scss";
 
@@ -17,11 +17,10 @@ interface Layout {
 
 function Layout({ children }: Layout) {
   const { channelHash, loadingChannelHash } = useLatestBlocksData();
-  // const isMobile = useIsMobile();
-
+  const isMobile = useStore((state) => state.isMobile);
   return (
     <div className={classNames(styles.Layout)}>
-      <Navbar />
+      {isMobile ? <Navbar /> : <Navbar />}
       <div className={styles.AppWidth}>
         <PageContainer>
           {loadingChannelHash ? (

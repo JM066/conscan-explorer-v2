@@ -1,5 +1,6 @@
 .GraphCell {
   background-color: var(--foreground);
+  border-radius: var(--radius);
   box-shadow: var(--box-shadow);
   height: 100%;
   width: 100%;

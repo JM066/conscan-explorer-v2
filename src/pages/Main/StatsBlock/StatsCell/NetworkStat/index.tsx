@@ -9,7 +9,7 @@ type StatType = {
   value?: string;
   icon: React.ReactNode;
   className?: string;
-  hasBorder: boolean;
+  hasBorder?: boolean;
   position?: "top" | "bottom";
 };
 function NetworkStats({
@@ -18,7 +18,7 @@ function NetworkStats({
   value,
   icon,
   className,
-  hasBorder = false,
+  hasBorder,
   position = "top",
 }: StatType) {
   return (

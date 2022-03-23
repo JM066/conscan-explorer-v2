@@ -1,5 +1,6 @@
 .TableContainer {
   background-color: var(--foreground);
+  border-radius: var(--radius);
   box-shadow: var(--box-shadow);
   display: flex;
   flex-direction: column;

@@ -8,23 +8,9 @@
   width: 100%;
 }
 
-.HorizontalLine {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: 20px;
-  justify-content: center;
-  width: 100%;
-
-  & .Line {
-    border: 1px solid #eee;
-    border-style: solid;
-    box-shadow: 0 1px 2px rgb(171 171 171 / 40%);
-    width: 90%;
-  }
-}
 @media only screen and (max-width: 800px) {
   .Container {
-    height: 480px;
+    flex-direction: column;
+    padding: 15px 0;
   }
 }
