@@ -1,0 +1,35 @@
+.NetworkStats {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+
+  & .Statbox {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+
+    &.top {
+      justify-content: flex-start;
+    }
+
+    &.bottom {
+      justify-content: flex-end;
+    }
+
+    & .InnerBox {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      height: 90%;
+      justify-content: center;
+      width: 100%;
+
+      &.borderRight {
+        border-right: 3px solid rgb(171 171 171 / 25%);
+      }
+    }
+  }
+}

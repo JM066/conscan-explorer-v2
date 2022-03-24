@@ -1,6 +1,6 @@
 import StatsCell from "./StatsBlock/StatsCell";
 import GraphCell from "./StatsBlock/GraphCell";
-import BlocksActivitySection from "./BlocksActivitySection";
+import BlocksActivityTable from "./BlocksActivityTable";
 import TxnActivitySection from "./TxnActivitySection";
 import HStack from "@/components/HStack";
 
@@ -19,7 +19,7 @@ function Main({ channelHash }: { channelHash: string }) {
       </HStack>
 
       <HStack className={styles.SubStatsBottom}>
-        <BlocksActivitySection channelHash={channelHash} />
+        <BlocksActivityTable channelHash={channelHash} />
         <TxnActivitySection channelHash={channelHash} />
       </HStack>
     </div>
