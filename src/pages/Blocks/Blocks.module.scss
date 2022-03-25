@@ -1,10 +1,10 @@
 .BlocksPage {
   background-color: var(--foreground);
   border-radius: var(--radius);
-  height: 930px;
+  max-height: 930px;
   width: 100%;
 
-  & .TableContainer {
+  & .TableCard {
     justify-content: flex-start;
 
     & .TitleContainer {
@@ -27,33 +27,36 @@
           & .BlockNumCell {
             color: #0993b1;
             font-weight: 600;
-            padding-left: 20px;
-            width: 10%;
           }
 
           & .HashCell {
             color: var(--grey-text);
-            max-width: 550px;
+            max-width: 560px;
           }
 
-          & .TxnsCell {
-            width: 20%;
+          & .TxnsNumCell {
+            align-items: center;
+            display: flex;
           }
         }
       }
     }
   }
 }
-
-@media only screen and (max-width: 1605px) {
+@media only screen and (max-width: 1025px) {
   .BlocksPage {
-    & .Table {
-      & .Row {
-        gap: 50px;
+    & .TableCard {
+      & .TitleContainer {
+        display: flex;
+        flex-direction: column;
+        padding: 0 21px;
+        padding-top: 19px;
+      }
 
-        & .HashCell {
-          width: 450px;
-        }
+      & .MobilePaginationButtons {
+        justify-content: flex-end;
+        padding: 20px 0;
+        width: 100%;
       }
     }
   }

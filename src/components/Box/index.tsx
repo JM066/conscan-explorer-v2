@@ -33,17 +33,18 @@ function Box({
         className
       )}
     >
-      {goBackButton && title && (
-        <HStack>
+      <HStack>
+        {goBackButton && (
           <div
             onClick={() => router.back()}
             className={styles.GoBackIconContainer}
           >
             <BackButton />
           </div>
-          <Title title={title} className={styles.Title} />
-        </HStack>
-      )}
+        )}
+        {title && <Title title={title} className={styles.Title} />}
+      </HStack>
+
       {children}
     </div>
   );

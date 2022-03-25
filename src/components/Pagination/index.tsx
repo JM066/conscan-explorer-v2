@@ -10,19 +10,30 @@ import styles from "./Pagination.module.scss";
 
 interface Props {
   className?: string;
-  handleLatest: () => void;
+  isMobile?: boolean;
+  handleLatest?: () => void;
   handleOldest?: () => void;
   handlePrev: () => void;
   handleNext: () => void;
 }
 function Pagination({
   className,
+  isMobile,
   handleLatest,
   handleOldest,
   handlePrev,
   handleNext,
 }: Props) {
-  return (
+  return isMobile ? (
+    <div className={classNames(styles.PaginationButtons, className)}>
+      <Button variant="ghost">
+        <Prev onClick={handlePrev} />
+      </Button>
+      <Button variant="ghost">
+        <Next onClick={handleNext} />
+      </Button>
+    </div>
+  ) : (
     <div className={classNames(styles.PaginationButtons, className)}>
       <Button variant="ghost">
         <FastForward onClick={handleLatest} />
