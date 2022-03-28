@@ -8,11 +8,11 @@
 
   & .SubStatsTop {
     flex-direction: row wrap;
-    min-height: 248px;
+    gap: var(--gap);
   }
 
   & .SubStatsBottom {
     flex-direction: row wrap;
-    height: 390px;
+    gap: var(--gap);
   }
 }

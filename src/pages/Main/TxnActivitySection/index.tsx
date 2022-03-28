@@ -1,6 +1,5 @@
 import React from "react";
 
-import Title from "@/components/Title";
 import Table from "@/components/Table";
 import Row from "@/components/Table/Row";
 import Button from "@/components/Button";
@@ -24,9 +23,11 @@ function TxnActivitySection({ channelHash }: { channelHash: string }) {
 
   return (
     <VStack className={styles.TableContainer}>
-      <Box position="center" className={styles.TitleContainer}>
-        <Title title="Recent Transactions" className={styles.Title}></Title>
-      </Box>
+      <Box
+        position="center"
+        title="Recent Transactions"
+        className={styles.TitleContainer}
+      ></Box>
       {isLoading ? (
         <SkeletonTable loading={isLoading} row={5} />
       ) : (
@@ -39,10 +40,7 @@ function TxnActivitySection({ channelHash }: { channelHash: string }) {
                   link={`txns`}
                   className={styles.ContractButton}
                 >
-                  <ContractIcon
-                    contractName={txns?.chaincodename}
-                    className={styles.Icon}
-                  />
+                  <ContractIcon contractName={txns?.chaincodename} />
                 </Button>
                 <HashTimeCell
                   variant="dark-grey"
@@ -52,14 +50,14 @@ function TxnActivitySection({ channelHash }: { channelHash: string }) {
                   time={txns.createdt}
                   link={`txns`}
                   activityId={txns.id.toString()}
-                  hashLeft={6}
-                  hashRight={4}
+                  hashLeft={8}
+                  hashRight={8}
                 />
                 <FromToTxnCell
                   from={txns.tx_from}
                   to={txns.tx_to}
-                  leftHash={6}
-                  rightHash={4}
+                  leftHash={10}
+                  rightHash={10}
                   className={styles.FromToTxnCell}
                 />
                 <ActionCell

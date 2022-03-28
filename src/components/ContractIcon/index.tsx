@@ -24,11 +24,7 @@ function Icon({ contractName }: { contractName: string }) {
 }
 
 function ContractIcon({ contractName, className }: Props) {
-  return (
-    <div className={classNames(styles.ContractIcon, className)}>
-      <Icon contractName={contractName} />
-    </div>
-  );
+  return <Icon contractName={classNames(contractName, className)} />;
 }
 
 export default ContractIcon;

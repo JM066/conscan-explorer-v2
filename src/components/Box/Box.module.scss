@@ -22,12 +22,17 @@
   }
 
   & .GoBackIconContainer {
+    align-items: center;
     display: flex;
-    flex-direction: column;
+    gap: 10px;
     justify-content: center;
 
     &:hover {
       cursor: pointer;
+    }
+
+    &.alignLeft {
+      align-self: flex-start;
     }
   }
 

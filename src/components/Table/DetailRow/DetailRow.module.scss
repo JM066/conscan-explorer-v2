@@ -1,6 +1,11 @@
 .RowContainer {
   align-items: flex-start;
+  padding-left: 20px;
   width: 85%;
+
+  &.noIndentation {
+    padding-left: 0;
+  }
 
   & .Cell {
     align-items: flex-start;
@@ -10,24 +15,31 @@
       align-items: flex-end;
       display: flex;
       flex-direction: column;
-      width: 20%;
 
       & .Title {
+        align-items: flex-start;
+        flex-direction: row;
         gap: 6px;
         justify-content: flex-end;
-        width: 95%;
+        width: 100%;
 
-        &:first-child {
+        & .TitleBox {
+          align-items: center;
+          display: flex;
           font-weight: 600;
+          width: 82px;
         }
 
         & .Partition {
           color: var(--red);
+          font-weight: 600;
         }
       }
     }
 
-    & .Children {
+    & .Description {
+      min-width: 0;
+      overflow-wrap: break-word;
       padding-left: 14px;
     }
 

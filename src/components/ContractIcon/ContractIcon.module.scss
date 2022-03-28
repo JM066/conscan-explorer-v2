@@ -1,10 +1,6 @@
-.ContractIcon {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  width: 25px;
-
-  & .Icon {
-    width: 100%;
+.Icon {
+  width: 22px;
+  @media only screen and (max-width: 1024px) {
+    width: 17px;
   }
 }

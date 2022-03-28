@@ -3,7 +3,6 @@ import Table from "@/components/Table";
 import BlocksTable from "@/components/Table/BlocksTable";
 import SkeletonTable from "@/components/SkeletonTable";
 import VStack from "@/components/VStack";
-import Title from "@/components/Title";
 import Button from "@/components/Button";
 import Box from "@/components/Box";
 
@@ -18,9 +17,11 @@ function BlocksActivityTable({ channelHash }: { channelHash: string }) {
   );
   return (
     <VStack className={styles.TableContainer}>
-      <Box position="center" className={styles.TitleContainer}>
-        <Title title="Recent Blocks" className={styles.Title} />
-      </Box>
+      <Box
+        position="center"
+        title="Recent Blocks"
+        className={styles.TitleContainer}
+      ></Box>
 
       {isLoading ? (
         <SkeletonTable loading={isLoading} row={5} />

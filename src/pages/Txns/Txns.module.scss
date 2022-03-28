@@ -4,7 +4,7 @@
   height: 930px;
   width: 100%;
 
-  & .TableContainer {
+  & .TxnsContainer {
     justify-content: flex-start;
 
     & .TitleBox {
@@ -25,33 +25,19 @@
     }
 
     & .TableContainer {
-      width: 100%;
+      width: 90%;
 
       & .Table {
         width: 85%;
 
         & .RowContainer {
-          justify-content: space-between;
+          justify-content: space-around;
           width: 100%;
 
           & .CellIcon {
-            width: 10%;
-
-            & .ContractIcon {
-              width: 18px;
-            }
-          }
-
-          & .HashTimeCell {
-            width: 30%;
-          }
-
-          & .FromToTxnCell {
-            width: 30%;
-          }
-
-          & .ActionCell {
-            width: 15%;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
           }
         }
       }
@@ -59,14 +45,14 @@
   }
 }
 
-@media only screen and (max-width: 1605px) {
-  .BlocksPage {
-    & .Table {
-      & .Row {
-        gap: 50px;
+@media only screen and (max-width: 1024px) {
+  .TxnsPage {
+    & .TxnsContainer {
+      & .TableContainer {
+        width: 100%;
 
-        & .HashCell {
-          width: 450px;
+        & .Table {
+          width: 90%;
         }
       }
     }

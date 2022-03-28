@@ -58,6 +58,7 @@ function Blocks({ channelHash, latestBlocks }: Props) {
       <VStack className={styles.TableCard}>
         {isMobile ? (
           <MobileTableHeader
+            header="Recent Blocks"
             headTitles={["Block No.", "Block Hash", "TXN Count"]}
           />
         ) : (

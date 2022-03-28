@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import useStore from "@/store/store";
 import Table from "@/components/Table";
 import Row from "@/components/Table/Row";
 import Box from "@/components/Box";
+import MobileTableHeader from "@/components/MobileTableHeader";
 import VStack from "@/components/VStack/index";
 import Pagination from "@/components/Pagination";
 import SkeletonTable from "@/components/SkeletonTable";
@@ -25,6 +27,7 @@ interface Props {
 function Txns({ channelHash, latestTxns }: Props) {
   const channelStatistics = useChannelStatistics(channelHash);
   const [currentPage, setCurrentPage] = useState<number>(latestTxns[0].id);
+  const isMobile = useStore((state) => state.isMobile);
 
   const { activeData, isLoading, isError } = useActivityData(
     channelHash,
@@ -55,21 +58,29 @@ function Txns({ channelHash, latestTxns }: Props) {
 
   return (
     <div className={styles.TxnsPage}>
-      <VStack className={styles.TableContainer}>
-        <Box
-          className={styles.TitleBox}
-          position="start"
-          goBackButton
-          title="Recent Transactions"
-        >
-          <Pagination
-            className={styles.PaginationButtons}
-            handleLatest={handleLatest}
-            handleOldest={handleOldest}
-            handlePrev={handlePrev}
-            handleNext={handleNext}
+      <VStack className={styles.TxnsContainer}>
+        {isMobile ? (
+          <MobileTableHeader
+            header="Recent Transactions"
+            headTitles={["TXN Information", "From/To", "Action"]}
           />
-        </Box>
+        ) : (
+          <Box
+            className={styles.TitleBox}
+            position="start"
+            goBackButton
+            title="Recent Transactions"
+          >
+            <Pagination
+              className={styles.PaginationButtons}
+              handleLatest={handleLatest}
+              handleOldest={handleOldest}
+              handlePrev={handlePrev}
+              handleNext={handleNext}
+            />
+          </Box>
+        )}
+
         <VStack className={styles.TableContainer}>
           {isLoading || isError ? (
             <SkeletonTable loading={isLoading} row={10} size="large" />
@@ -80,16 +91,13 @@ function Txns({ channelHash, latestTxns }: Props) {
                   <Row
                     key={txns.id}
                     className={styles.RowContainer}
-                    fullLength={true}
+                    fullLength={isMobile ? false : true}
                   >
                     <Button
                       link={`/txns/${txns.txhash}`}
                       className={styles.CellIcon}
                     >
-                      <ContractIcon
-                        contractName={txns?.chaincodename}
-                        className={styles.ContractIcon}
-                      />
+                      <ContractIcon contractName={txns?.chaincodename} />
                     </Button>
                     <HashTimeCell
                       variant="green"
@@ -98,19 +106,17 @@ function Txns({ channelHash, latestTxns }: Props) {
                       time={txns.createdt}
                       link={`/txns/${txns.txhash}`}
                       activityId={txns.id.toString()}
-                      hashLeft={15}
-                      hashRight={15}
-                      className={styles.HashTimeCell}
+                      hashLeft={isMobile ? 5 : 15}
+                      hashRight={isMobile ? 4 : 15}
                     />
                     <FromToTxnCell
-                      className={styles.FromToTxnCell}
                       from={txns.tx_from}
                       to={txns.tx_to}
-                      leftHash={15}
-                      rightHash={15}
+                      leftHash={isMobile ? 6 : 15}
+                      rightHash={isMobile ? 4 : 15}
                     />
                     <ActionCell
-                      className={styles.ActionCell}
+                      isMobile
                       action={txns.tx_action}
                       value={txns.tx_value}
                       coinName={txns.chaincodename}

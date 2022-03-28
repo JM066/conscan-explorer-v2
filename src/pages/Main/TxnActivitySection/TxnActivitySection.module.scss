@@ -4,6 +4,7 @@
   box-shadow: var(--box-shadow);
   display: flex;
   flex-direction: column;
+  max-height: 390px;
   overflow-y: auto;
   position: relative;
   width: 100%;
@@ -22,13 +23,11 @@
     width: 100%;
 
     & .RowContainer {
+      width: 100%;
+
       & .ContractButton {
         align-items: flex-start;
-        width: 10%;
-
-        & .Icon {
-          width: 20px;
-        }
+        width: 20px;
       }
 
       & .HashTimeCell {

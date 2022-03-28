@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import Cell from "@/components/Table/Cell/index";
 import Row from "@/components/Table/Row/index";
 import HStack from "@/components/HStack/index";
@@ -7,20 +8,27 @@ import React from "react";
 
 interface Props {
   title: string;
+  isMobile?: boolean;
   children?: React.ReactNode;
 }
 
-function DetailRow({ title, children }: Props) {
+function DetailRow({ title, children, isMobile = false }: Props) {
   return (
-    <Row className={styles.RowContainer}>
+    <Row
+      className={classNames(styles.RowContainer, {
+        [styles.noIndentation]: isMobile,
+      })}
+    >
       <Cell className={styles.Cell}>
         <div className={styles.TitleCell}>
           <HStack className={styles.Title}>
-            <div> {title}</div>
+            <div className={styles.TitleBox}>
+              <p>{title}</p>
+            </div>
             <div className={styles.Partition}>|</div>
           </HStack>
         </div>
-        {children && <div className={styles.Children}>{children}</div>}
+        {children && <div className={styles.Description}>{children}</div>}
       </Cell>
     </Row>
   );
