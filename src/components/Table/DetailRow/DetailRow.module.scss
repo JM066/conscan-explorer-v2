@@ -2,8 +2,7 @@
   align-items: flex-start;
   padding-left: 20px;
   width: 85%;
-
-  &.noIndentation {
+  @media only screen and (max-width: 1024px) {
     padding-left: 0;
   }
 
@@ -27,7 +26,11 @@
           align-items: center;
           display: flex;
           font-weight: 600;
-          width: 82px;
+          width: 120px;
+
+          @media only screen and (max-width: 1024px) {
+            width: 83px;
+          }
         }
 
         & .Partition {
@@ -41,6 +44,8 @@
       min-width: 0;
       overflow-wrap: break-word;
       padding-left: 14px;
+      padding-top: 2px;
+      text-align: left;
     }
 
     & .Value {

@@ -43,28 +43,25 @@ function TxnActivitySection({ channelHash }: { channelHash: string }) {
                   <ContractIcon contractName={txns?.chaincodename} />
                 </Button>
                 <HashTimeCell
-                  variant="dark-grey"
                   identicon
-                  className={styles.HashTimeCell}
+                  variant="dark-grey"
                   hash={txns.txhash}
                   time={txns.createdt}
-                  link={`txns`}
-                  activityId={txns.id.toString()}
                   hashLeft={8}
                   hashRight={8}
+                  idString={txns.id}
+                  link={`/txns/`}
                 />
                 <FromToTxnCell
                   from={txns.tx_from}
                   to={txns.tx_to}
                   leftHash={10}
                   rightHash={10}
-                  className={styles.FromToTxnCell}
                 />
                 <ActionCell
                   action={txns.tx_action}
                   value={txns.tx_value}
                   coinName={txns.chaincodename}
-                  className={styles.ActionCell}
                 />
               </Row>
             );

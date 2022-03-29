@@ -25,10 +25,8 @@
     }
 
     & .TableContainer {
-      width: 90%;
-
       & .Table {
-        width: 85%;
+        width: 90%;
 
         & .RowContainer {
           justify-content: space-around;
@@ -37,7 +35,12 @@
           & .CellIcon {
             align-items: center;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            gap: 2px;
+          }
+
+          & .FromToTxnCell {
+            max-width: 105px;
           }
         }
       }
@@ -53,6 +56,12 @@
 
         & .Table {
           width: 90%;
+
+          & .MobilePaginationButtons {
+            justify-content: flex-end;
+            padding: 20px 0;
+            width: 100%;
+          }
         }
       }
     }

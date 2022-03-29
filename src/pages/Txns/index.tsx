@@ -3,11 +3,13 @@ import useStore from "@/store/store";
 import Table from "@/components/Table";
 import Row from "@/components/Table/Row";
 import Box from "@/components/Box";
+import Cell from "@/components/Table/Cell";
 import MobileTableHeader from "@/components/MobileTableHeader";
 import VStack from "@/components/VStack/index";
 import Pagination from "@/components/Pagination";
 import SkeletonTable from "@/components/SkeletonTable";
 import Button from "@/components/Button";
+import IdenticonLink from "@/components/IdenticonLink";
 import HashTimeCell from "@/components/Table/HashTimeCell";
 import FromToTxnCell from "@/components/Table/FromToTxnCell";
 import ActionCell from "@/components/Table/ActionCell";
@@ -99,16 +101,20 @@ function Txns({ channelHash, latestTxns }: Props) {
                     >
                       <ContractIcon contractName={txns?.chaincodename} />
                     </Button>
-                    <HashTimeCell
-                      variant="green"
-                      identicon
-                      hash={txns.txhash}
-                      time={txns.createdt}
-                      link={`/txns/${txns.txhash}`}
-                      activityId={txns.id.toString()}
-                      hashLeft={isMobile ? 5 : 15}
-                      hashRight={isMobile ? 4 : 15}
-                    />
+                    <Cell>
+                      <IdenticonLink
+                        idString={txns.id}
+                        link={`/txns/${txns.txhash}`}
+                      />
+                      <HashTimeCell
+                        variant="green"
+                        hash={txns.txhash}
+                        time={txns.createdt}
+                        hashLeft={isMobile ? 5 : 15}
+                        hashRight={isMobile ? 4 : 15}
+                      />
+                    </Cell>
+
                     <FromToTxnCell
                       from={txns.tx_from}
                       to={txns.tx_to}
@@ -116,7 +122,7 @@ function Txns({ channelHash, latestTxns }: Props) {
                       rightHash={isMobile ? 4 : 15}
                     />
                     <ActionCell
-                      isMobile
+                      isMobile={isMobile}
                       action={txns.tx_action}
                       value={txns.tx_value}
                       coinName={txns.chaincodename}
@@ -124,6 +130,15 @@ function Txns({ channelHash, latestTxns }: Props) {
                   </Row>
                 );
               })}
+              {isMobile && (
+                <Pagination
+                  className={styles.MobilePaginationButtons}
+                  handleLatest={handleLatest}
+                  handleOldest={handleOldest}
+                  handlePrev={handlePrev}
+                  handleNext={handleNext}
+                />
+              )}
             </Table>
           )}
         </VStack>

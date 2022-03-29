@@ -21,7 +21,7 @@
 
     & .TableContainer {
       & .Table {
-        width: 85%;
+        width: 90%;
 
         & .RowContainer {
           & .BlockNumCell {
@@ -31,26 +31,33 @@
 
           & .HashCell {
             color: var(--grey-text);
-            max-width: 560px;
-          }
-
-          & .TxnsNumCell {
-            align-items: center;
-            display: flex;
+            width: 500px;
           }
         }
       }
     }
   }
 }
-@media only screen and (max-width: 1025px) {
+@media only screen and (max-width: 1024px) {
   .BlocksPage {
     & .TableCard {
-      & .TitleContainer {
-        display: flex;
-        flex-direction: column;
-        padding: 0 21px;
-        padding-top: 19px;
+      & .TableContainer {
+        & .Table {
+          width: 100%;
+
+          & .RowContainer {
+            & .HashCell {
+              color: var(--grey-text);
+              width: 0;
+            }
+
+            & .TxnsNumCell {
+              align-items: center;
+              display: flex;
+              width: 27px;
+            }
+          }
+        }
       }
 
       & .MobilePaginationButtons {

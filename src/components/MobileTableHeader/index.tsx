@@ -1,4 +1,3 @@
-import Cell from "@/components/Table/Cell";
 import Box from "@/components/Box";
 import styles from "./MobileTableHeader.module.scss";
 interface Props {
@@ -16,7 +15,7 @@ function MobileTableHeader({ headTitles, header }: Props) {
       {headTitles && (
         <div className={styles.TableHeader}>
           {headTitles.map((title, i) => {
-            return <Cell key={i}>{title}</Cell>;
+            return <div key={i}>{title}</div>;
           })}
         </div>
       )}

@@ -1,17 +1,13 @@
 .CellContainer {
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
 
   & .Cell {
     align-items: center;
     display: flex;
-    flex-direction: row;
     flex-grow: 1;
-    justify-content: flex-start;
-
-    &.grow {
-      flex-grow: 2;
-    }
+    width: 90%;
 
     &.centered {
       align-items: center;

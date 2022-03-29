@@ -75,25 +75,25 @@ function BlockDetails({
             <SkeletonTable loading={isLoading} row={7} />
           ) : (
             <Table>
-              <DetailRow title="Block No." isMobile>
+              <DetailRow title="Block No.">
                 {dataDetails?.data?.blocknum}
               </DetailRow>
-              <DetailRow title="Block Size" isMobile>
+              <DetailRow title="Block Size">
                 {dataDetails?.data?.blksize}
               </DetailRow>
-              <DetailRow title="Timestamp" isMobile>{`${getTimeDistance(
+              <DetailRow title="Timestamp">{`${getTimeDistance(
                 dataDetails?.data?.createdt
               )} [${getLocalTime(dataDetails?.data?.createdt)}]`}</DetailRow>
-              <DetailRow title="Block Hash" isMobile>
+              <DetailRow title="Block Hash">
                 {dataDetails?.data?.blockhash}
               </DetailRow>
-              <DetailRow title="Data Hash" isMobile>
+              <DetailRow title="Data Hash">
                 {dataDetails?.data?.datahash}
               </DetailRow>
-              <DetailRow title="Previous Hash" isMobile>
+              <DetailRow title="Previous Hash">
                 {dataDetails?.data?.prehash}
               </DetailRow>
-              <DetailRow title="Transaction" isMobile>
+              <DetailRow title="Transaction">
                 {dataDetails?.data?.txhash[0].toString()}
               </DetailRow>
             </Table>

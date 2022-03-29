@@ -18,22 +18,12 @@ interface Props {
 }
 function Pagination({
   className,
-  isMobile,
   handleLatest,
   handleOldest,
   handlePrev,
   handleNext,
 }: Props) {
-  return isMobile ? (
-    <div className={classNames(styles.PaginationButtons, className)}>
-      <Button variant="ghost">
-        <Prev onClick={handlePrev} />
-      </Button>
-      <Button variant="ghost">
-        <Next onClick={handleNext} />
-      </Button>
-    </div>
-  ) : (
+  return (
     <div className={classNames(styles.PaginationButtons, className)}>
       <Button variant="ghost">
         <FastForward onClick={handleLatest} />

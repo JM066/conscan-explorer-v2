@@ -29,7 +29,7 @@ function ActionCell({
 }: Props) {
   const { txValue, txCoin } = getActionValue(action, value, coinName);
   const actionIcon = getTxnsActionIcon(action);
-  console.log("isMobile?", isMobile);
+
   if (isActionFromSmartContact) {
     return (
       <Cell className={classNames(styles.SmartContractActionCell, className)}>
@@ -51,7 +51,7 @@ function ActionCell({
     );
   }
   return (
-    <Cell grow className={classNames(styles.ActionCell, className)}>
+    <Cell className={classNames(styles.ActionCell, className)}>
       <div>{actionIcon}</div>
       <Wrapper>
         <div> {txValue && FormatNumber(parseInt(txValue))}</div>

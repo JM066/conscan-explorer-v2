@@ -6,14 +6,9 @@
     align-items: flex-start;
     color: var(--green-dark);
     font-weight: 600;
-    width: 15%;
   }
 
-  & .HashCell {
-    width: 60%;
-  }
-
-  & .TxnsCell {
-    width: 15%;
+  & .HashTimeCell {
+    width: 280px;
   }
 }
