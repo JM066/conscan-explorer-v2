@@ -1,13 +1,12 @@
 import Identicon from "react-identicons";
 import Button from "@/components/Button";
-
 import styles from "./IdenticonLink.module.scss";
 
-interface IdenticonLink {
-  idString: string;
-  link: string;
+export interface IdenticonLinkProps {
+  idString?: number;
+  link?: string;
 }
-const IdenticonLink = ({ idString, link }: IdenticonLink) => {
+const IdenticonLink = ({ idString, link }: IdenticonLinkProps) => {
   return (
     <Button variant="ghost" link={link} className={styles.IconBox}>
       <Identicon size={15} string={idString} />

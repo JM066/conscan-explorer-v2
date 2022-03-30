@@ -6,7 +6,7 @@ import HashTimeCell from "@/components/Table/HashTimeCell";
 import FromToTxnCell from "@/components/Table/FromToTxnCell";
 import ActionCell from "@/components/Table/ActionCell";
 
-import { getTxnsIcon } from "@/helpers/index";
+import { getTxnsActionIcon } from "@/helpers/index";
 import { TxnActivityDataType } from "@/types/index";
 import styles from "./TxnsTable.module.scss";
 
@@ -17,7 +17,7 @@ interface Props {
 }
 
 function TxnsTable({ txn, className }: Props) {
-  const txnsIcon = getTxnsIcon(txn?.chaincodename);
+  const txnsIcon = getTxnsActionIcon(txn?.chaincodename);
 
   return (
     <HStack className={(styles.Row, className)}>

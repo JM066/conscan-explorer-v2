@@ -1,6 +1,10 @@
 .RowContainer {
   align-items: flex-start;
+  padding-left: 20px;
   width: 85%;
+  @media only screen and (max-width: 1024px) {
+    padding-left: 0;
+  }
 
   & .Cell {
     align-items: flex-start;
@@ -10,25 +14,38 @@
       align-items: flex-end;
       display: flex;
       flex-direction: column;
-      width: 20%;
 
       & .Title {
+        align-items: flex-start;
+        flex-direction: row;
         gap: 6px;
         justify-content: flex-end;
-        width: 95%;
+        width: 100%;
 
-        &:first-child {
+        & .TitleBox {
+          align-items: center;
+          display: flex;
           font-weight: 600;
+          width: 120px;
+
+          @media only screen and (max-width: 1024px) {
+            width: 83px;
+          }
         }
 
         & .Partition {
           color: var(--red);
+          font-weight: 600;
         }
       }
     }
 
-    & .Children {
+    & .Description {
+      min-width: 0;
+      overflow-wrap: break-word;
       padding-left: 14px;
+      padding-top: 2px;
+      text-align: left;
     }
 
     & .Value {

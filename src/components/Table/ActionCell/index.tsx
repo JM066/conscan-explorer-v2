@@ -15,6 +15,7 @@ interface Props {
   value: string;
   coinName: string;
   className?: string;
+  isMobile?: boolean;
   isActionFromSmartContact?: boolean;
 }
 
@@ -23,6 +24,7 @@ function ActionCell({
   value,
   coinName,
   isActionFromSmartContact,
+  isMobile,
   className,
 }: Props) {
   const { txValue, txCoin } = getActionValue(action, value, coinName);
@@ -38,8 +40,18 @@ function ActionCell({
       </Cell>
     );
   }
+  if (isMobile) {
+    return (
+      <Cell className={classNames(styles.SmartContractActionCell, className)}>
+        <Wrapper>
+          <div>{actionIcon}</div>
+          <div> {txCoin && txCoin}</div>
+        </Wrapper>
+      </Cell>
+    );
+  }
   return (
-    <Cell grow className={classNames(styles.ActionCell, className)}>
+    <Cell className={classNames(styles.ActionCell, className)}>
       <div>{actionIcon}</div>
       <Wrapper>
         <div> {txValue && FormatNumber(parseInt(txValue))}</div>

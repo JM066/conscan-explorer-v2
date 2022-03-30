@@ -10,32 +10,28 @@ import styles from "./BlocksTable.module.scss";
 
 function BlocksTable({
   block,
-  activityId,
-}: {
+}: // activityId,
+{
   block: BlockActivityDataType;
   activityId: string;
 }) {
   return (
     <Row className={styles.BlocksRow}>
-      <Button
-        variant="ghost"
-        className={styles.NumberCell}
-        link={`/blocks/${block.blocknum}`}
-      >
+      <Button variant="ghost" className={styles.NumberCell} link={`/blocks/`}>
         <p>{block.blocknum}</p>
       </Button>
       <HashTimeCell
         variant="dark-grey"
         hash={block.blockhash}
         time={block.createdt}
-        activityId={activityId}
+        idString={block.blocknum}
         identicon
         hashLeft={15}
         hashRight={15}
-        className={styles.HashCell}
-        link={`/blocks/${block.blocknum}`}
+        link={`/blocks/`}
+        className={styles.HashTimeCell}
       />
-      <TxnsCell className={styles.TxnsCell} txcount={block.txcount} />
+      <TxnsCell txcount={block.txcount} />
     </Row>
   );
 }

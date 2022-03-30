@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-
+import useStore from "@/store/store";
+import classNames from "classnames";
+import MobileTableHeader from "@/components/MobileTableHeader";
 import Table from "@/components/Table";
 import Row from "@/components/Table/Row";
 import Cell from "@/components/Table/Cell";
@@ -10,7 +12,6 @@ import SkeletonTable from "@/components/SkeletonTable";
 import Button from "@/components/Button";
 import HashTimeCell from "@/components/Table/HashTimeCell";
 import TxnsCell from "@/components/Table/TxnsCell";
-
 import useActivityData from "@/hooks/useActivityData";
 
 import { BlockActivityDataType } from "@/types/index";
@@ -25,6 +26,7 @@ function Blocks({ channelHash, latestBlocks }: Props) {
   const [currentPage, setCurrentPage] = useState<number>(
     latestBlocks[0].blocknum
   );
+  const isMobile = useStore((state) => state.isMobile);
 
   const { activeData, isLoading, isError } = useActivityData(
     channelHash,
@@ -53,21 +55,30 @@ function Blocks({ channelHash, latestBlocks }: Props) {
 
   return (
     <div className={styles.BlocksPage}>
-      <VStack className={styles.TableContainer}>
-        <Box
-          className={styles.TitleContainer}
-          goBackButton
-          position="start"
-          title="Recent Blocks"
-        >
-          <Pagination
-            className={styles.PaginationButtons}
-            handleLatest={handleLatest}
-            handleOldest={handleOldest}
-            handlePrev={handlePrev}
-            handleNext={handleNext}
+      <VStack className={styles.TableCard}>
+        {isMobile ? (
+          <MobileTableHeader
+            header="Recent Blocks"
+            headTitles={["Block No.", "Block Hash", "TXN Count"]}
           />
-        </Box>
+        ) : (
+          <Box
+            className={styles.TitleContainer}
+            goBackButton
+            position="start"
+            title="Recent Blocks"
+          >
+            <Pagination
+              isMobile={isMobile}
+              className={styles.PaginationButtons}
+              handleLatest={handleLatest}
+              handleOldest={handleOldest}
+              handlePrev={handlePrev}
+              handleNext={handleNext}
+            />
+          </Box>
+        )}
+
         <VStack className={styles.TableContainer}>
           {isLoading || isError ? (
             <SkeletonTable loading={isLoading} row={10} size="large" />
@@ -75,34 +86,45 @@ function Blocks({ channelHash, latestBlocks }: Props) {
             <Table className={styles.Table}>
               {activeData?.map((block: BlockActivityDataType) => {
                 return (
-                  <Row
-                    key={block.blocknum}
-                    className={styles.RowContainer}
-                    fullLength={true}
-                  >
+                  <Row key={block.blocknum} className={styles.RowContainer}>
                     <Cell className={styles.BlockNumCell}>
                       <Button link={`/blocks/${block.blocknum}`}>
                         <p>{block.blocknum}</p>
                       </Button>
                     </Cell>
+
                     <HashTimeCell
                       identicon
-                      className={styles.HashCell}
+                      className={classNames(!isMobile && styles.HashCell)}
                       variant="grey"
                       hash={block.blockhash}
                       time={block.createdt}
+                      idString={block.blocknum}
                       link={`/blocks/${block.blocknum}`}
-                      activityId={block.blocknum.toString()}
-                      hashLeft={0}
-                      hashRight={0}
+                      hashLeft={isMobile ? 8 : 0}
+                      hashRight={isMobile ? 5 : 0}
                     />
-                    <TxnsCell
-                      txcount={block.txcount}
-                      className={styles.TxnsCell}
-                    />
+
+                    {isMobile ? (
+                      <div className={styles.TxnsNumCell}>{block.txcount}</div>
+                    ) : (
+                      <TxnsCell
+                        txcount={block.txcount}
+                        className={styles.TxnsNumCell}
+                      />
+                    )}
                   </Row>
                 );
               })}
+              {isMobile && (
+                <Pagination
+                  className={styles.MobilePaginationButtons}
+                  handleLatest={handleLatest}
+                  handleOldest={handleOldest}
+                  handlePrev={handlePrev}
+                  handleNext={handleNext}
+                />
+              )}
             </Table>
           )}
         </VStack>

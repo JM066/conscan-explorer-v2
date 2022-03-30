@@ -10,7 +10,8 @@ import styles from "./Pagination.module.scss";
 
 interface Props {
   className?: string;
-  handleLatest: () => void;
+  isMobile?: boolean;
+  handleLatest?: () => void;
   handleOldest?: () => void;
   handlePrev: () => void;
   handleNext: () => void;

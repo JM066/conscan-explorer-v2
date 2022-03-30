@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import useStore from "@/store/store";
-// import instance from "src/axios/instance";
-// import { useQuery } from "react-query";
-import NetworkStats from "./NetworkStat/index";
+import SectionBlock from "@/components/SectionBlock";
+import NetworkStats from "./NetworkStats/index";
 import VStack from "@/components/VStack";
+import HorizontalLine from "@/components/HorizontalLine/inxex";
 import useChannelStatistics from "@/hooks/useChannelStatistics";
 
 import ConPrice from "src/assets/icons/con_price.svg";
@@ -14,7 +14,8 @@ import styles from "./StatsCell.module.scss";
 
 function StatsCell({ channelHash }: { channelHash: string }) {
   const channelStatistics = useChannelStatistics(channelHash);
-  const channelStats = useStore((store) => store.setChannelStats);
+  const channelStats = useStore((state) => state.setChannelStats);
+  const isMobile = useStore((state) => state.isMobile);
 
   useEffect(() => {
     channelStats(channelStatistics);
@@ -22,46 +23,85 @@ function StatsCell({ channelHash }: { channelHash: string }) {
 
   return (
     <div className={styles.Container}>
-      <VStack centered={false}>
-        <NetworkStats
-          blocks={channelStatistics.blocks}
-          title={"con price".toUpperCase()}
-          value="0.0000005104 BTC"
-          icon={<ConPrice />}
-          hasBorder={true}
-          position="top"
-        />
-        <div className={styles.HorizontalLine}>
-          <hr className={styles.Line}></hr>
-        </div>
-        <NetworkStats
-          blocks={channelStatistics.blocks}
-          title={"total blocks".toUpperCase()}
-          icon={<BlockIcon />}
-          hasBorder={true}
-          position="bottom"
-        />
-      </VStack>
+      {isMobile ? (
+        <VStack centered={true}>
+          <SectionBlock position="bottom">
+            <NetworkStats
+              blocks={channelStatistics.txns}
+              title={"total transactions".toUpperCase()}
+              icon={<TotalTxn />}
+            />
+          </SectionBlock>
 
-      <VStack>
-        <NetworkStats
-          blocks={channelStatistics.txns}
-          title={"market cap".toUpperCase()}
-          icon={<MarketCap />}
-          hasBorder={false}
-          position="top"
-        />
-        <div className={styles.HorizontalLine}>
-          <hr className={styles.Line}></hr>
-        </div>
-        <NetworkStats
-          blocks={channelStatistics.txns}
-          title={"total transactions".toUpperCase()}
-          icon={<TotalTxn />}
-          hasBorder={false}
-          position="bottom"
-        />
-      </VStack>
+          <HorizontalLine />
+          <SectionBlock position="bottom">
+            <NetworkStats
+              blocks={channelStatistics.blocks}
+              title={"total blocks".toUpperCase()}
+              icon={<BlockIcon />}
+            />
+          </SectionBlock>
+
+          <HorizontalLine />
+          <SectionBlock position="top">
+            <NetworkStats
+              blocks={channelStatistics.blocks}
+              title={"con price".toUpperCase()}
+              value="0.0000005104 BTC"
+              icon={<ConPrice />}
+            />
+          </SectionBlock>
+
+          <HorizontalLine />
+          <SectionBlock position="top">
+            <NetworkStats
+              blocks={channelStatistics.txns}
+              title={"market cap".toUpperCase()}
+              icon={<MarketCap />}
+            />
+          </SectionBlock>
+        </VStack>
+      ) : (
+        <>
+          <VStack centered={false}>
+            <SectionBlock hasBorder={true} position="top">
+              <NetworkStats
+                blocks={channelStatistics.blocks}
+                title={"con price".toUpperCase()}
+                value="0.0000005104 BTC"
+                icon={<ConPrice />}
+              />
+            </SectionBlock>
+
+            <HorizontalLine />
+            <SectionBlock hasBorder={true} position="bottom">
+              <NetworkStats
+                blocks={channelStatistics.blocks}
+                title={"total blocks".toUpperCase()}
+                icon={<BlockIcon />}
+              />
+            </SectionBlock>
+          </VStack>
+          <VStack>
+            <SectionBlock position="top">
+              <NetworkStats
+                blocks={channelStatistics.txns}
+                title={"market cap".toUpperCase()}
+                icon={<MarketCap />}
+              />
+            </SectionBlock>
+
+            <HorizontalLine />
+            <SectionBlock position="bottom">
+              <NetworkStats
+                blocks={channelStatistics.txns}
+                title={"total transactions".toUpperCase()}
+                icon={<TotalTxn />}
+              />
+            </SectionBlock>
+          </VStack>
+        </>
+      )}
     </div>
   );
 }

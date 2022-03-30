@@ -22,16 +22,22 @@
   }
 
   & .GoBackIconContainer {
+    align-items: center;
     display: flex;
-    flex-direction: column;
+    gap: 10px;
     justify-content: center;
 
     &:hover {
       cursor: pointer;
     }
+
+    &.alignLeft {
+      align-self: flex-start;
+    }
   }
 
   & .Title {
     font-weight: 400;
+    height: 1.2rem;
   }
 }

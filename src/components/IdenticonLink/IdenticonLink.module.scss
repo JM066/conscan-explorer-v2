@@ -1,5 +1,9 @@
 .IconBox {
   border: 2px solid var(--grey-bkg);
   border-radius: 10px;
-  padding: 10px;
+  padding: 10px 15px;
+
+  @media only screen and (max-width: 1420px) {
+    padding: 5px 10px;
+  }
 }

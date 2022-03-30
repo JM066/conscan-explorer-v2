@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import classNames from "classnames";
+import useStore from "@/store/store";
 import ValidityIcon from "./ValidityIcon/index";
 
 import VStack from "@/components/VStack";
@@ -35,6 +37,7 @@ function TransactionDetails({
     page,
     "transaction"
   );
+  const isMobile = useStore((state) => state.isMobile);
   useEffect(() => {
     setPage(txnHash);
   }, [txnHash]);
@@ -46,10 +49,10 @@ function TransactionDetails({
           position="start"
           bottomLine={false}
           className={styles.TitleContainer}
-          goBackButton
+          goBackButton={isMobile ? false : true}
           title="Transaction Details"
         />
-        <VStack className={styles.Table}>
+        <VStack className={classNames(styles.Table, {})}>
           {isLoading || dataDetails.error ? (
             <SkeletonTable loading={isLoading} row={9} />
           ) : (
@@ -73,23 +76,14 @@ function TransactionDetails({
                   <div>{dataDetails?.row?.chaincodename}</div>
                 )}
               </DetailRow>
-              <DetailRow title="FROM">
-                <Button
-                  variant="ghost"
-                  className={styles.TxnsFrom}
-                  link={`/wallet/${dataDetails?.row?.tx_from}`}
-                >
-                  {dataDetails?.row?.tx_from}
-                </Button>
+              <DetailRow
+                title="FROM"
+                path={`/wallet/${dataDetails?.row?.tx_from}`}
+              >
+                {dataDetails?.row?.tx_from}
               </DetailRow>
-              <DetailRow title="TO">
-                <Button
-                  variant="ghost"
-                  className={styles.TxnsTo}
-                  link={`/wallet/${dataDetails?.row?.tx_to}`}
-                >
-                  {dataDetails?.row?.tx_to}
-                </Button>
+              <DetailRow title="TO" path={`/wallet/${dataDetails?.row?.tx_to}`}>
+                {dataDetails?.row?.tx_to}
               </DetailRow>
               <DetailRow title="Action">
                 {dataDetails?.row?.tx_action}
@@ -106,16 +100,18 @@ function TransactionDetails({
           )}
         </VStack>
       </div>
-      <div className={styles.BlueVerticalBar}>
-        <div className={styles.ButtonContainer}>
-          <Button variant="ghost">
-            <NextUpwards />
-          </Button>
-          <Button variant="ghost">
-            <PreviousDownwards />
-          </Button>
+      {!isMobile && (
+        <div className={styles.BlueVerticalBar}>
+          <div className={styles.ButtonContainer}>
+            <Button variant="ghost">
+              <NextUpwards />
+            </Button>
+            <Button variant="ghost">
+              <PreviousDownwards />
+            </Button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

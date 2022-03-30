@@ -7,10 +7,12 @@
   width: 100%;
 
   & .SubStatsTop {
-    height: 248px;
+    flex-direction: row wrap;
+    gap: var(--gap);
   }
 
   & .SubStatsBottom {
-    height: 390px;
+    flex-direction: row wrap;
+    gap: var(--gap);
   }
 }

@@ -14,5 +14,12 @@
         font-size: 0.7rem;
       }
     }
+
+    &.flat {
+      display: flex;
+      flex-direction: row;
+      gap: 6px;
+      justify-content: center;
+    }
   }
 }

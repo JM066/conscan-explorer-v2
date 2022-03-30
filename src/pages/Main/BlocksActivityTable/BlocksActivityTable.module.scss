@@ -1,13 +1,16 @@
 .TableContainer {
   background-color: var(--foreground);
+  border-radius: var(--radius);
   box-shadow: var(--box-shadow);
   display: flex;
   flex-direction: column;
+  max-height: 390px;
   overflow-y: auto;
   position: relative;
   width: 100%;
 
   & .TitleContainer {
+    gap: var(--gap);
     padding: 15px 0;
 
     & .Title {

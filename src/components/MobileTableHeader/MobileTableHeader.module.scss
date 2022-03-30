@@ -1,0 +1,20 @@
+.TableHeaderContainer {
+  display: flex;
+  flex-direction: column;
+  padding-top: 19px;
+  width: 90%;
+
+  .TableHeader {
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 2px 0.5px 0 rgb(171 171 171 / 60%);
+    color: var(--light-grey);
+    display: flex;
+    flex-direction: row;
+    font-size: 1rem;
+    font-weight: 600;
+    justify-content: space-between;
+    padding: 6px 10px;
+    padding-top: 24px;
+    width: 100%;
+  }
+}
