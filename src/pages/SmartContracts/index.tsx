@@ -9,7 +9,7 @@ import Row from "@/components/Table/Row";
 import Button from "@/components/Button";
 import ContractIcon from "@/components/ContractIcon";
 import { ContractType } from "@/types/index";
-import styles from "./SmartContracts.module.scss";
+import styles from "./SmartContract.module.scss";
 
 interface Props {
   status: number;

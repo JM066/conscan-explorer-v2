@@ -1,3 +1,4 @@
+import React from "react";
 import Row from "@/components/Table/Row";
 import HashTimeCell from "@/components/Table/HashTimeCell";
 import FromToTxnCell from "@/components/Table/FromToTxnCell";
@@ -6,27 +7,24 @@ import ActionCell from "@/components/Table/ActionCell";
 import HStack from "@/components/HStack";
 
 import { TxnActivityDataType } from "@/types/index";
-import styles from "./ContractTransactions.module.scss";
+import styles from "./ContractTxnsTab.module.scss";
 
 interface Props {
   txns: TxnActivityDataType;
 }
-function ContractTransactions({ txns }: Props) {
+function ContractTxnsTab({ txns }: Props) {
   return (
     <Row fullLength={true} className={styles.Row}>
       <HStack className={styles.InnerRow}>
         <div className={styles.HashTimeCell}>
-          <IdenticonLink
-            idString={txns.id.toString()}
-            link={`/txns/${txns.txhash}`}
-          />
+          <IdenticonLink idString={txns.id} link={`/txns/${txns.txhash}`} />
 
           <HashTimeCell
             variant="green"
             hash={txns.txhash}
             time={txns.createdt}
             link={`/txns/${txns.txhash}`}
-            activityId={txns.id.toString()}
+            idString={txns.id}
             hashLeft={15}
             hashRight={15}
           />
@@ -50,4 +48,4 @@ function ContractTransactions({ txns }: Props) {
   );
 }
 
-export default ContractTransactions;
+export default ContractTxnsTab;
