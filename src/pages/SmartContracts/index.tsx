@@ -31,7 +31,7 @@ function SmartContract({ status, chaincode }: Props) {
               Icon
             </Cell>
             <Cell centered className={styles.Cell}>
-              Versions
+              Ver.
             </Cell>
             <Cell centered className={styles.Cell}>
               Last Updated
