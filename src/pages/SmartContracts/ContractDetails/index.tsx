@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useLayoutEffect, useRef } from "react";
 
 import ContractDescription from "./ContractDescription";
-import ContractTransactions from "./ContractTransactions";
+import ContractTxnsTab from "./ContractTxnsTab";
+import CodeSnippetTab from "./CodeSnippetTab";
 import VStack from "@/components/VStack";
 import Box from "@/components/Box";
 import Pagination from "@/components/Pagination";
@@ -25,7 +26,21 @@ interface Props {
 function ContractDetails({ contracts, contractName, txnsList }: Props) {
   const [activeTab, setActiveTab] = useState<string>("txns");
   const [currentPage, setCurrentPage] = useState<number>(txnsList[0]?.id);
+  const [size, setSize] = useState<number | undefined>(0);
+  const refWidth = useRef<HTMLDivElement>(null);
 
+  useLayoutEffect(() => {
+    const { current } = refWidth;
+    function getTableWidth() {
+      const tableWidth = current?.offsetWidth;
+      setSize(tableWidth);
+    }
+    window.addEventListener("resize", getTableWidth);
+    getTableWidth();
+    return () => {
+      current?.removeEventListener("resize", getTableWidth);
+    };
+  }, []);
   const { listOfTransactions, loadingTransactionsList } =
     useFilteredTransactionList("contract", contractName, currentPage);
 
@@ -55,7 +70,7 @@ function ContractDetails({ contracts, contractName, txnsList }: Props) {
         title={toCapitalize(contractName)}
       />
 
-      <div className={styles.DrivePageContainer}>
+      <div className={styles.DrivePageContainer} ref={refWidth}>
         {contractFound && <ContractDescription contract={contractFound} />}
         <Box className={styles.TableHeader} position="start">
           <Tabs setActiveTab={setActiveTab} activeTab={activeTab} />
@@ -69,13 +84,13 @@ function ContractDetails({ contracts, contractName, txnsList }: Props) {
           {loadingTransactionsList ? (
             <SkeletonTable size="large" row={5} />
           ) : (
-            <Table>
+            <Table scrollable={activeTab !== "txns"}>
               {activeTab === "txns" ? (
                 listOfTransactions?.map(
                   (transaction: TxnActivityDataType, index: number) => {
                     if (index < 5) {
                       return (
-                        <ContractTransactions
+                        <ContractTxnsTab
                           key={transaction.id}
                           txns={transaction}
                         />
@@ -84,7 +99,7 @@ function ContractDetails({ contracts, contractName, txnsList }: Props) {
                   }
                 )
               ) : (
-                <div>No Code Data</div>
+                <CodeSnippetTab tableWidth={size} contractName={contractName} />
               )}
             </Table>
           )}

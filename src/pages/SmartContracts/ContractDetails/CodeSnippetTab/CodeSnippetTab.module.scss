@@ -1,0 +1,11 @@
+.GistWrapper {
+  padding-left: 10px;
+
+  & .Content {
+    height: 400px;
+  }
+}
+
+.NoData {
+  padding-left: 20px;
+}

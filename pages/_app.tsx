@@ -3,7 +3,7 @@ import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
 import Layout from "../src/components/Layout";
-
+import "regenerator-runtime/runtime";
 import "./styles/globals.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {

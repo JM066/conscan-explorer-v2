@@ -5,7 +5,7 @@ import classNames from "classnames";
 import styles from "./Title.module.scss";
 
 export interface TitleProps {
-  title: string;
+  title?: string;
   className?: string;
   bolded?: boolean;
 }
