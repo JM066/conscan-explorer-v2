@@ -24,11 +24,11 @@ interface Props {
 }
 
 function ContractDetails({ contracts, contractName, txnsList }: Props) {
-  const [activeTab, setActiveTab] = useState<string>("txns");
+  const [activeTab, setActiveTab] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(txnsList[0]?.id);
   const [size, setSize] = useState<number | undefined>(0);
   const refWidth = useRef<HTMLDivElement>(null);
-
+  console.log("activeTab", activeTab);
   useLayoutEffect(() => {
     const { current } = refWidth;
     function getTableWidth() {
@@ -59,7 +59,32 @@ function ContractDetails({ contracts, contractName, txnsList }: Props) {
   const handleNext = () => {
     setCurrentPage((prev) => prev - 5);
   };
-
+  let loadTabData;
+  if (activeTab === "txns") {
+    loadTabData = (
+      <Table>
+        {listOfTransactions?.map(
+          (transaction: TxnActivityDataType, index: number) => {
+            if (index < 5) {
+              return (
+                <ContractTxnsTab key={transaction.id} txns={transaction} />
+              );
+            }
+          }
+        )}
+      </Table>
+    );
+  }
+  if (activeTab === "desc") {
+    loadTabData = <Table>description</Table>;
+  }
+  if (activeTab === "code") {
+    loadTabData = (
+      <Table scrollable>
+        <CodeSnippetTab tableWidth={size} contractName={contractName} />
+      </Table>
+    );
+  }
   return (
     <VStack className={styles.DrivePage}>
       <Box
@@ -84,24 +109,7 @@ function ContractDetails({ contracts, contractName, txnsList }: Props) {
           {loadingTransactionsList ? (
             <SkeletonTable size="large" row={5} />
           ) : (
-            <Table scrollable={activeTab !== "txns"}>
-              {activeTab === "txns" ? (
-                listOfTransactions?.map(
-                  (transaction: TxnActivityDataType, index: number) => {
-                    if (index < 5) {
-                      return (
-                        <ContractTxnsTab
-                          key={transaction.id}
-                          txns={transaction}
-                        />
-                      );
-                    }
-                  }
-                )
-              ) : (
-                <CodeSnippetTab tableWidth={size} contractName={contractName} />
-              )}
-            </Table>
+            loadTabData
           )}
         </VStack>
       </div>

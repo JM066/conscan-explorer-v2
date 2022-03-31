@@ -2,11 +2,20 @@
   justify-content: space-between;
   padding-bottom: 44px;
   padding-top: 10px;
+  @media only screen and (max-width: 1024px) {
+    gap: 30px;
+  }
 
   .Section {
     align-items: flex-start;
     gap: 10px;
     width: 25%;
+
+    @media only screen and (max-width: 1024px) {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+    }
 
     .Partition {
       color: var(--red);
@@ -16,12 +25,20 @@
     .Title {
       font-weight: 600;
       line-height: 19px;
+
+      @media only screen and (max-width: 1024px) {
+        width: 80px;
+      }
     }
 
     & .DescriptionBox {
       align-items: flex-start;
+      align-items: center;
       color: var(--grey-text);
       justify-content: flex-start;
+      @media only screen and (max-width: 1024px) {
+        align-items: flex-start;
+      }
 
       & .Description {
         margin-top: 10px;
@@ -31,13 +48,22 @@
 
   & .Type {
     width: 10%;
+    @media only screen and (max-width: 1024px) {
+      width: 100%;
+    }
   }
 
   & .Author {
     width: 15%;
+    @media only screen and (max-width: 1024px) {
+      width: 100%;
+    }
   }
 
   & .Updated {
     width: 25%;
+    @media only screen and (max-width: 1024px) {
+      width: 100%;
+    }
   }
 }
