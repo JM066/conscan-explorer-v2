@@ -18,7 +18,6 @@ function ContractTxnsTab({ txns }: Props) {
       <HStack className={styles.InnerRow}>
         <div className={styles.HashTimeCell}>
           <IdenticonLink idString={txns.id} link={`/txns/${txns.txhash}`} />
-
           <HashTimeCell
             variant="green"
             hash={txns.txhash}

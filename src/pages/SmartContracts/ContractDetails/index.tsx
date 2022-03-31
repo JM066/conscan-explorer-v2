@@ -84,7 +84,7 @@ function ContractDetails({ contracts, contractName, txnsList }: Props) {
           {loadingTransactionsList ? (
             <SkeletonTable size="large" row={5} />
           ) : (
-            <Table>
+            <Table scrollable={activeTab !== "txns"}>
               {activeTab === "txns" ? (
                 listOfTransactions?.map(
                   (transaction: TxnActivityDataType, index: number) => {
@@ -99,7 +99,7 @@ function ContractDetails({ contracts, contractName, txnsList }: Props) {
                   }
                 )
               ) : (
-                <CodeSnippetTab tableWidth={size} />
+                <CodeSnippetTab tableWidth={size} contractName={contractName} />
               )}
             </Table>
           )}
