@@ -29,31 +29,30 @@ function ActionCell({
 }: Props) {
   const { txValue, txCoin } = getActionValue(action, value, coinName);
   const actionIcon = getTxnsActionIcon(action);
-
   if (isActionFromSmartContact) {
     return (
-      <Cell className={classNames(styles.SmartContractActionCell, className)}>
-        <ContractIcon contractName={coinName} className={styles.Icon} />
-        <div className={styles.Icon}>{actionIcon}</div>
-        <div> {txValue && `${FormatValue(value).substring(0, 10)}...`}</div>
-        <div> {txCoin && txCoin}</div>
-      </Cell>
-    );
-  }
-  if (isMobile) {
-    return (
-      <Cell className={classNames(styles.SmartContractActionCell, className)}>
-        <Wrapper>
-          <div>{actionIcon}</div>
+      <Cell
+        className={classNames(styles.SmartContractActionCell, {
+          [styles.wrapper]: isMobile,
+        })}
+      >
+        <div className={styles.IconContainer}>
+          <ContractIcon contractName={coinName} className={styles.Icon} />
+          <div className={styles.Icon}>{actionIcon}</div>
+        </div>
+        <div>
+          {!isMobile && (
+            <div> {txValue && `${FormatValue(value).substring(0, 10)}...`}</div>
+          )}
           <div> {txCoin && txCoin}</div>
-        </Wrapper>
+        </div>
       </Cell>
     );
   }
   return (
     <Cell className={classNames(styles.ActionCell, className)}>
-      <div>{actionIcon}</div>
-      <Wrapper>
+      {!isMobile && <div>{actionIcon}</div>}
+      <Wrapper className={styles.Wrapper}>
         <div> {txValue && FormatNumber(parseInt(txValue))}</div>
         <div> {txCoin && txCoin}</div>
       </Wrapper>

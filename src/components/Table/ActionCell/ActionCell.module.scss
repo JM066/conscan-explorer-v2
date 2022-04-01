@@ -5,9 +5,20 @@
   font-weight: 500;
   gap: 3px;
 
-  & .Icon {
-    height: 18px;
-    width: 18px;
+  &.wrapper {
+    display: flex;
+    flex-direction: column;
+
+    & .IconContainer {
+      display: flex;
+      flex-direction: row;
+      gap: 2px;
+
+      & .Icon {
+        height: 18px;
+        width: 18px;
+      }
+    }
   }
 }
 
@@ -17,4 +28,10 @@
   font-weight: 500;
   gap: 10px;
   letter-spacing: -0.02em;
+
+  @media only screen and (max-width: 1024px) {
+    & .Wrapper {
+      align-items: center;
+    }
+  }
 }

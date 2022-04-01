@@ -1,17 +1,19 @@
 import classNames from "classnames";
-import style from "./Row.module.scss";
+import styles from "./Row.module.scss";
 
 interface Props {
   children: React.ReactNode;
   className?: string;
   fullLength?: boolean;
+  noSpaceAround?: boolean;
 }
-function Row({ children, fullLength, className }: Props) {
+function Row({ children, fullLength, noSpaceAround, className }: Props) {
   return (
-    <div className={classNames(style.RowContainer, className)}>
+    <div className={classNames(styles.RowContainer, className)}>
       <div
-        className={classNames(style.Row, {
-          [style.full]: fullLength,
+        className={classNames(styles.Row, {
+          [styles.full]: fullLength,
+          [styles.noSpaceAround]: noSpaceAround,
         })}
       >
         {children}

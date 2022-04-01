@@ -19,11 +19,12 @@
 }
 @media only screen and (max-width: 1024px) {
   .RowContainer {
-    width: 90%;
+    width: 95%;
 
     & .Row {
-      justify-content: space-between;
-      width: 95%;
+      & .noSpaceAround {
+        justify-content: space-between;
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 import React, { useState, useLayoutEffect, useRef } from "react";
-
+import useStore from "@/store/store";
 import ContractDescription from "./ContractDescription";
 import ContractTxnsTab from "./ContractTxnsTab";
 import CodeSnippetTab from "./CodeSnippetTab";
@@ -27,8 +27,9 @@ function ContractDetails({ contracts, contractName, txnsList }: Props) {
   const [activeTab, setActiveTab] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(txnsList[0]?.id);
   const [size, setSize] = useState<number | undefined>(0);
+  const isMobile = useStore((state) => state.isMobile);
   const refWidth = useRef<HTMLDivElement>(null);
-  console.log("activeTab", activeTab);
+  console.log("activeTab", isMobile);
   useLayoutEffect(() => {
     const { current } = refWidth;
     function getTableWidth() {
@@ -72,11 +73,23 @@ function ContractDetails({ contracts, contractName, txnsList }: Props) {
             }
           }
         )}
+        {isMobile && (
+          <Pagination
+            className={styles.MobilePagination}
+            handleLatest={handleLatest}
+            handlePrev={handlePrev}
+            handleNext={handleNext}
+          />
+        )}
       </Table>
     );
   }
   if (activeTab === "desc") {
-    loadTabData = <Table>description</Table>;
+    loadTabData = (
+      <Table>
+        {contractFound && <ContractDescription contract={contractFound} />}
+      </Table>
+    );
   }
   if (activeTab === "code") {
     loadTabData = (
@@ -91,19 +104,23 @@ function ContractDetails({ contracts, contractName, txnsList }: Props) {
         position="start"
         bottomLine={false}
         className={styles.TitleHeader}
-        goBackButton
+        goBackButton={isMobile ? false : true}
         title={toCapitalize(contractName)}
       />
 
       <div className={styles.DrivePageContainer} ref={refWidth}>
-        {contractFound && <ContractDescription contract={contractFound} />}
+        {contractFound && !isMobile && (
+          <ContractDescription contract={contractFound} />
+        )}
         <Box className={styles.TableHeader} position="start">
           <Tabs setActiveTab={setActiveTab} activeTab={activeTab} />
-          <Pagination
-            handleLatest={handleLatest}
-            handlePrev={handlePrev}
-            handleNext={handleNext}
-          />
+          {!isMobile && (
+            <Pagination
+              handleLatest={handleLatest}
+              handlePrev={handlePrev}
+              handleNext={handleNext}
+            />
+          )}
         </Box>
         <VStack>
           {loadingTransactionsList ? (
