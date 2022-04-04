@@ -89,3 +89,44 @@ export const SOLUTIONS = [
     path: "https://chrome.google.com/webstore/detail/metacon/fpklpminiiiopkibkfamkglecdgfoaia?authuser=1&gclid=CjwKCAiA-9uNBhBTEiwAN3IlNLg6EuaasCIcy616zWE-x8hv-3Vl8PEUo9v-7naXFON7CWTiimiMwRoCUUgQAvD_BwE",
   },
 ];
+export const PAGES_MAIN = [
+  {
+    id: "blocks",
+    name: "Recent Blocks",
+    path: "/blocks",
+  },
+  {
+    id: "txns",
+    name: "Recent Transactions",
+    path: "/",
+  },
+];
+
+export const PAGES_SMARTCONTRACT = [
+  {
+    id: "drive",
+    name: "Drive",
+    path: "/smart-contracts/drive",
+  },
+  {
+    id: "conx",
+    name: "CONX",
+    path: "/smart-contracts/conx",
+  },
+  {
+    id: "bridge",
+    name: "Bridge",
+    path: "/smart-contracts/bridge",
+  },
+];
+
+export const LOCALES = [
+  {
+    label: "English",
+    value: "en",
+  },
+  {
+    label: "한국어",
+    value: "ko",
+  },
+];

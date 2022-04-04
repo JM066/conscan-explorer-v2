@@ -1,98 +1,24 @@
 .Header {
   background: transparent;
-  padding-top: 25px;
   width: 100%;
 
-  .Navbar {
+  & .Navbar {
     align-items: flex-start;
+    align-items: center;
     display: flex;
     flex-direction: row;
+    height: 80px;
     justify-content: space-between;
     margin: 0 auto;
     width: 90%;
-
-    @media only screen and (min-width: 768px) {
-      width: 80%;
-    }
 
     & .Logo {
       margin-left: 1rem;
       width: 10rem;
     }
+  }
 
-    & .NavAndLocales {
-      align-items: flex-start;
-      display: flex;
-      padding-right: 1rem;
-
-      & .Navs {
-        color: var(--conun-blue);
-        font-size: 1rem;
-        font-weight: 500;
-        margin-top: 3px;
-
-        & .Nav {
-          cursor: pointer;
-          margin-right: 1rem;
-        }
-      }
-
-      & .InvisibleSelectorBox {
-        background-color: transparent;
-        height: 200px;
-        position: absolute;
-        right: 125px;
-        width: 200px;
-      }
-
-      & .LocaleSelector {
-        display: flex;
-        flex-direction: row;
-
-        & .Global {
-          height: 20px;
-          margin: 3px;
-          width: 20px;
-        }
-
-        & .Dropdown {
-          align-items: center;
-          background-color: transparent;
-          color: var(--conun-blue);
-          display: flex;
-          flex-direction: column;
-          font-size: 0.7rem;
-          position: relative;
-          width: 70px;
-
-          & .ListItems {
-            background: rgb(151 191 220 / 68%);
-            border-radius: 5px;
-            list-style: none;
-            margin-top: 3px;
-            padding: 5px;
-            position: absolute;
-            top: 22px;
-            width: 70px;
-
-            & .DropdownItem {
-              align-items: center;
-              display: flex;
-              justify-content: center;
-              padding: 5px;
-              width: 100%;
-
-              &:hover {
-                background: var(--conun-blue);
-                border-radius: 0;
-                color: #fff;
-                cursor: pointer;
-                opacity: 0.5;
-              }
-            }
-          }
-        }
-      }
-    }
+  & .NavbarMobile {
+    width: 50px;
   }
 }

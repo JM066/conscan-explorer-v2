@@ -1,0 +1,38 @@
+.MenuDrawer {
+  align-items: center;
+  background-color: var(--conun-blue);
+  box-shadow: 2px 0 5px rgb(0 0 0 / 50%);
+  height: 300px;
+  left: 0;
+  padding: 20px;
+  padding-top: 0;
+  position: absolute;
+  transform: translateY(-120%);
+  transition: transform 0.5s ease-out;
+  width: 100%;
+  z-index: 200;
+
+  &.open {
+    transform: translateY(-15%);
+  }
+
+  & .Logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 50px;
+  }
+
+  & .ListContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+    & .List {
+      color: white;
+      font-size: 1.2rem;
+      width: 200px;
+    }
+  }
+}

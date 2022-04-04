@@ -1,0 +1,17 @@
+.MenuToggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 23px;
+  justify-content: space-between;
+  right: 25px;
+  width: 30px;
+
+  & .HamburgerButton {
+    background-color: var(--conun-blue);
+    height: 4px;
+    width: 100%;
+  }
+}
