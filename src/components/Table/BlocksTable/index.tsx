@@ -1,5 +1,5 @@
 import React from "react";
-
+import useStore from "@/store/store";
 import Row from "@/components/Table/Row";
 import Button from "@/components/Button";
 import HashTimeCell from "@/components/Table/HashTimeCell";
@@ -10,11 +10,11 @@ import styles from "./BlocksTable.module.scss";
 
 function BlocksTable({
   block,
-}: // activityId,
-{
+}: {
   block: BlockActivityDataType;
   activityId: string;
 }) {
+  const isMobile = useStore((state) => state.isMobile);
   return (
     <Row className={styles.BlocksRow}>
       <Button variant="ghost" className={styles.NumberCell} link={`/blocks/`}>
@@ -26,10 +26,9 @@ function BlocksTable({
         time={block.createdt}
         idString={block.blocknum}
         identicon
-        hashLeft={15}
-        hashRight={15}
+        hashLeft={isMobile ? 8 : 15}
+        hashRight={isMobile ? 5 : 15}
         link={`/blocks/`}
-        className={styles.HashTimeCell}
       />
       <TxnsCell txcount={block.txcount} />
     </Row>

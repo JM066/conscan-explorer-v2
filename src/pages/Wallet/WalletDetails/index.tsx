@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import WalletDescription from "./WalletDescription";
 import QRCodeGenerator from "./QRCodeGenerator";
-import ContractTransactions from "../../SmartContracts/ContractDetails/ContractTransactions";
+import ContractTransactions from "../../SmartContracts/ContractDetails/ContractTxnsTab";
 import VStack from "@/components/VStack";
 import CopyButton from "@/components/Button/CopyButton";
 import HStack from "@/components/HStack";

@@ -49,6 +49,10 @@ function Navbar() {
               </Link>
             ))}
           </div>
+          <div
+            onClick={() => setIsDropdownOpen(false)}
+            className={styles.InvisibleSelectorBox}
+          ></div>
           <div className={styles.LocaleSelector}>
             <GlobalSymbol className={styles.Global} />
             <Dropdown

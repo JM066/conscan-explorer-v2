@@ -8,6 +8,14 @@
     gap: 10px;
     width: 25%;
 
+    @media only screen and (max-width: 1024px) {
+      border-bottom: 1px solid rgb(144 158 193 / 40%);
+      display: flex;
+      flex-direction: row;
+      padding: 13px 10px;
+      width: 100%;
+    }
+
     .Partition {
       color: var(--red);
       font-weight: 600;
@@ -16,12 +24,21 @@
     .Title {
       font-weight: 600;
       line-height: 19px;
+
+      @media only screen and (max-width: 1024px) {
+        width: 80px;
+      }
     }
 
     & .DescriptionBox {
       align-items: flex-start;
+      align-items: center;
       color: var(--grey-text);
       justify-content: flex-start;
+
+      @media only screen and (max-width: 1024px) {
+        align-items: flex-start;
+      }
 
       & .Description {
         margin-top: 10px;
@@ -31,13 +48,22 @@
 
   & .Type {
     width: 10%;
+    @media only screen and (max-width: 1024px) {
+      width: 100%;
+    }
   }
 
   & .Author {
     width: 15%;
+    @media only screen and (max-width: 1024px) {
+      width: 100%;
+    }
   }
 
   & .Updated {
     width: 25%;
+    @media only screen and (max-width: 1024px) {
+      width: 100%;
+    }
   }
 }

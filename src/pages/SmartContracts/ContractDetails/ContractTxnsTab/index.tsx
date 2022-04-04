@@ -1,4 +1,5 @@
 import React from "react";
+import useStore from "@/store/store";
 import Row from "@/components/Table/Row";
 import HashTimeCell from "@/components/Table/HashTimeCell";
 import FromToTxnCell from "@/components/Table/FromToTxnCell";
@@ -13,6 +14,8 @@ interface Props {
   txns: TxnActivityDataType;
 }
 function ContractTxnsTab({ txns }: Props) {
+  const isMobile = useStore((state) => state.isMobile);
+
   return (
     <Row fullLength={true} className={styles.Row}>
       <HStack className={styles.InnerRow}>
@@ -24,19 +27,19 @@ function ContractTxnsTab({ txns }: Props) {
             time={txns.createdt}
             link={`/txns/${txns.txhash}`}
             idString={txns.id}
-            hashLeft={15}
-            hashRight={15}
+            hashLeft={isMobile ? 5 : 15}
+            hashRight={isMobile ? 5 : 15}
           />
         </div>
         <FromToTxnCell
-          className={styles.FromToTxnCell}
           from={txns.tx_from}
           to={txns.tx_to}
-          leftHash={15}
-          rightHash={15}
+          leftHash={isMobile ? 4 : 15}
+          rightHash={isMobile ? 4 : 15}
         />
 
         <ActionCell
+          isMobile={isMobile}
           isActionFromSmartContact
           action={txns.tx_action}
           value={txns.tx_value}

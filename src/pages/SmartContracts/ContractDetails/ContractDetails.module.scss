@@ -15,5 +15,14 @@
       border-bottom: 1px solid #eee;
       box-shadow: 0 2px 0 0 rgb(171 171 171 / 30%);
     }
+
+    & .MobilePagination {
+      margin-top: 20px;
+    }
+  }
+}
+@media only screen and (max-width: 800px) {
+  .DrivePage {
+    height: 570px;
   }
 }

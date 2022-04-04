@@ -79,16 +79,19 @@ function ContractDescription({ contract, className }: Props) {
         title="TITLE"
         data={contract.chaincodename}
       />
+
       <Section
         className={classNames(styles.Type, className)}
         title="TYPE"
         data={contract.chaincodename}
       />
+
       <Section
         className={classNames(styles.Author, className)}
         title="AUTHOR"
         data="CONUN"
       />
+
       <Section
         className={classNames(styles.Updated, className)}
         title="UPDATED"

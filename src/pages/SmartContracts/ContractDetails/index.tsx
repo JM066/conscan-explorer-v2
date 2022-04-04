@@ -1,5 +1,5 @@
 import React, { useState, useLayoutEffect, useRef } from "react";
-
+import useStore from "@/store/store";
 import ContractDescription from "./ContractDescription";
 import ContractTxnsTab from "./ContractTxnsTab";
 import CodeSnippetTab from "./CodeSnippetTab";
@@ -24,9 +24,10 @@ interface Props {
 }
 
 function ContractDetails({ contracts, contractName, txnsList }: Props) {
-  const [activeTab, setActiveTab] = useState<string>("txns");
+  const [activeTab, setActiveTab] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(txnsList[0]?.id);
   const [size, setSize] = useState<number | undefined>(0);
+  const isMobile = useStore((state) => state.isMobile);
   const refWidth = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
@@ -35,7 +36,7 @@ function ContractDetails({ contracts, contractName, txnsList }: Props) {
       const tableWidth = current?.offsetWidth;
       setSize(tableWidth);
     }
-    window.addEventListener("resize", getTableWidth);
+    current?.addEventListener("resize", getTableWidth);
     getTableWidth();
     return () => {
       current?.removeEventListener("resize", getTableWidth);
@@ -59,49 +60,73 @@ function ContractDetails({ contracts, contractName, txnsList }: Props) {
   const handleNext = () => {
     setCurrentPage((prev) => prev - 5);
   };
-
+  let loadTabData;
+  if (activeTab === "txns") {
+    loadTabData = (
+      <Table>
+        {listOfTransactions?.map(
+          (transaction: TxnActivityDataType, index: number) => {
+            if (index < 5) {
+              return (
+                <ContractTxnsTab key={transaction.id} txns={transaction} />
+              );
+            }
+          }
+        )}
+        {isMobile && (
+          <Pagination
+            className={styles.MobilePagination}
+            handleLatest={handleLatest}
+            handlePrev={handlePrev}
+            handleNext={handleNext}
+          />
+        )}
+      </Table>
+    );
+  }
+  if (activeTab === "desc") {
+    loadTabData = (
+      <Table>
+        {contractFound && <ContractDescription contract={contractFound} />}
+      </Table>
+    );
+  }
+  if (activeTab === "code") {
+    loadTabData = (
+      <Table scrollable>
+        <CodeSnippetTab tableWidth={size} contractName={contractName} />
+      </Table>
+    );
+  }
   return (
     <VStack className={styles.DrivePage}>
       <Box
         position="start"
         bottomLine={false}
         className={styles.TitleHeader}
-        goBackButton
+        goBackButton={isMobile ? false : true}
         title={toCapitalize(contractName)}
       />
 
       <div className={styles.DrivePageContainer} ref={refWidth}>
-        {contractFound && <ContractDescription contract={contractFound} />}
+        {contractFound && !isMobile && (
+          <ContractDescription contract={contractFound} />
+        )}
         <Box className={styles.TableHeader} position="start">
           <Tabs setActiveTab={setActiveTab} activeTab={activeTab} />
-          <Pagination
-            handleLatest={handleLatest}
-            handlePrev={handlePrev}
-            handleNext={handleNext}
-          />
+          {!isMobile && (
+            <Pagination
+              handleLatest={handleLatest}
+              handlePrev={handlePrev}
+              handleNext={handleNext}
+            />
+          )}
         </Box>
         <VStack>
           {loadingTransactionsList ? (
             <SkeletonTable size="large" row={5} />
           ) : (
-            <Table scrollable={activeTab !== "txns"}>
-              {activeTab === "txns" ? (
-                listOfTransactions?.map(
-                  (transaction: TxnActivityDataType, index: number) => {
-                    if (index < 5) {
-                      return (
-                        <ContractTxnsTab
-                          key={transaction.id}
-                          txns={transaction}
-                        />
-                      );
-                    }
-                  }
-                )
-              ) : (
-                <CodeSnippetTab tableWidth={size} contractName={contractName} />
-              )}
-            </Table>
+            loadTabData
           )}
         </VStack>
       </div>

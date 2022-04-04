@@ -1,5 +1,5 @@
 import React from "react";
-
+import useStore from "@/store/store";
 import Table from "@/components/Table";
 import Row from "@/components/Table/Row";
 import Button from "@/components/Button";
@@ -20,6 +20,7 @@ function TxnActivitySection({ channelHash }: { channelHash: string }) {
     channelHash,
     "txActivity"
   );
+  const isMobile = useStore((state) => state.isMobile);
 
   return (
     <VStack className={styles.TableContainer}>
@@ -34,7 +35,11 @@ function TxnActivitySection({ channelHash }: { channelHash: string }) {
         <Table className={styles.Table}>
           {latestData?.map((txns: TxnActivityDataType) => {
             return (
-              <Row key={txns.id} className={styles.RowContainer}>
+              <Row
+                key={txns.id}
+                noSpaceAround={isMobile}
+                className={styles.RowContainer}
+              >
                 <Button
                   variant="ghost"
                   link={`txns`}
@@ -47,18 +52,19 @@ function TxnActivitySection({ channelHash }: { channelHash: string }) {
                   variant="dark-grey"
                   hash={txns.txhash}
                   time={txns.createdt}
-                  hashLeft={8}
-                  hashRight={8}
+                  hashLeft={isMobile ? 5 : 8}
+                  hashRight={isMobile ? 4 : 8}
                   idString={txns.id}
                   link={`/txns/`}
                 />
                 <FromToTxnCell
                   from={txns.tx_from}
                   to={txns.tx_to}
-                  leftHash={10}
-                  rightHash={10}
+                  leftHash={isMobile ? 6 : 10}
+                  rightHash={isMobile ? 4 : 10}
                 />
                 <ActionCell
+                  isMobile={isMobile}
                   action={txns.tx_action}
                   value={txns.tx_value}
                   coinName={txns.chaincodename}

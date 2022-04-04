@@ -16,14 +16,14 @@ interface Props {
 
 function FromToTxnCell({ from, to, leftHash, rightHash, className }: Props) {
   return (
-    <Cell grow className={classNames(styles.HashCell, className)}>
+    <Cell className={classNames(styles.HashCell, className)}>
       <Wrapper className={styles.Wrapper}>
         <div className={styles.HashBox}>
           <div className={styles.HashTitleBox}>FROM:</div>
           <div>{getReducedHash(from, leftHash, rightHash)}</div>
         </div>
         <div className={styles.HashBox}>
-          <div className={styles.HashTitleBox}>To:</div>
+          <div className={styles.HashTitleBox}>TO:</div>
           <div>{getReducedHash(to, leftHash, rightHash)}</div>
         </div>
       </Wrapper>

@@ -15,13 +15,18 @@ function SearchBox() {
     event.preventDefault();
 
     const refValue = inputRef?.current?.value;
-    const numInput = /^\d+$/;
+    const numInputRex = /^\d+$/;
+    const hashRex = /^0x([A-Fa-f0-9]{64})$/;
     if (refValue?.startsWith("0x") && refValue.length > 2) {
       router.push(`/wallet/${refValue}`);
-    } else if (refValue && refValue.match(numInput)) {
+    } else if (refValue && refValue.match(numInputRex)) {
       router.push(`/blocks/${refValue}`);
-    } else {
+    } else if (refValue && refValue.match(hashRex)) {
       router.push({ pathname: `/txns/${refValue}` });
+    } else {
+      router.push({
+        pathname: `/error?type=invalid_search&terms=${refValue}`,
+      });
     }
 
     setInputSearch("");

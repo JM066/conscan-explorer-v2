@@ -1,8 +1,19 @@
 .GistWrapper {
-  padding-left: 10px;
+  height: 400px;
+  width: 100%;
 
   & .Content {
     height: 400px;
+
+    @media only screen and (max-width: 767px) {
+      padding-left: 630px;
+    }
+    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+      padding-left: 330px;
+    }
+    @media only screen and (min-width: 1024px) and (max-width: 1366px) {
+      padding-left: 130px;
+    }
   }
 }
 
