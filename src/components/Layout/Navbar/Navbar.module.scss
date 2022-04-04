@@ -37,6 +37,14 @@
         }
       }
 
+      & .InvisibleSelectorBox {
+        background-color: transparent;
+        height: 200px;
+        position: absolute;
+        right: 125px;
+        width: 200px;
+      }
+
       & .LocaleSelector {
         display: flex;
         flex-direction: row;

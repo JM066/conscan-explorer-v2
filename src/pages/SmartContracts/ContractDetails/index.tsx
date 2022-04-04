@@ -29,14 +29,14 @@ function ContractDetails({ contracts, contractName, txnsList }: Props) {
   const [size, setSize] = useState<number | undefined>(0);
   const isMobile = useStore((state) => state.isMobile);
   const refWidth = useRef<HTMLDivElement>(null);
-  console.log("activeTab", isMobile);
+
   useLayoutEffect(() => {
     const { current } = refWidth;
     function getTableWidth() {
       const tableWidth = current?.offsetWidth;
       setSize(tableWidth);
     }
-    window.addEventListener("resize", getTableWidth);
+    current?.addEventListener("resize", getTableWidth);
     getTableWidth();
     return () => {
       current?.removeEventListener("resize", getTableWidth);

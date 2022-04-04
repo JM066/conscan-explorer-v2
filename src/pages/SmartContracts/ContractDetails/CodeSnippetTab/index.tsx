@@ -9,7 +9,6 @@ interface Props {
 }
 function CodeSnippetTab({ tableWidth, contractName }: Props) {
   const [gist, setGist] = useState<string>("");
-  console.log("table width", tableWidth);
   const GetGistByContract = () => {
     switch (contractName) {
       case "conx":
