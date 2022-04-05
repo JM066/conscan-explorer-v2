@@ -1,23 +1,16 @@
-.NavMenu {
+.Menu {
   align-items: flex-start;
   display: flex;
   padding-right: 1rem;
 
-  & .Navs {
+  & .Link {
     color: var(--conun-blue);
     font-size: 1rem;
     font-weight: 500;
-    margin-top: 3px;
-
-    & .Nav {
-      cursor: pointer;
-      margin-right: 1rem;
-    }
   }
 
-  & .LocaleSelector {
+  & .MenuRight {
     display: flex;
-    flex-direction: row;
 
     & .Global {
       height: 20px;

@@ -98,7 +98,7 @@ export const PAGES_MAIN = [
   {
     id: "txns",
     name: "Recent Transactions",
-    path: "/",
+    path: "/txns",
   },
 ];
 
