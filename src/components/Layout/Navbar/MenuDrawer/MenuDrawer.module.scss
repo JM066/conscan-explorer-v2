@@ -1,0 +1,62 @@
+.MenuDrawer {
+  align-items: center;
+  background-color: var(--conun-blue);
+  box-shadow: 2px 0 5px rgb(0 0 0 / 50%);
+  height: 350px;
+  left: 0;
+  padding: 40px 20px;
+  position: absolute;
+  transform: translateY(-120%);
+  transition: transform 0.5s ease-out;
+  width: 100%;
+  z-index: 200;
+
+  &.open {
+    transform: translateY(-15%);
+  }
+
+  & .Logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  & .ListContainer {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    padding-left: 57px;
+
+    & .List {
+      color: white;
+      font-size: 1.2rem;
+      width: 200px;
+
+      & .ListItem {
+        & .ListTitle {
+          align-items: center;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+        }
+
+        & .SubItems {
+          display: flex;
+          flex-direction: column;
+          font-size: 1rem;
+          padding: 10px 0;
+          padding-left: 20px;
+
+          & > a,
+          & > div {
+            &:hover {
+              color: #c3c9c9;
+            }
+          }
+        }
+      }
+    }
+  }
+}
