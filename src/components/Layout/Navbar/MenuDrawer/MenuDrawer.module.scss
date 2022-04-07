@@ -2,9 +2,8 @@
   align-items: center;
   background-color: var(--conun-blue);
   box-shadow: 2px 0 5px rgb(0 0 0 / 50%);
-  height: 350px;
   left: 0;
-  padding: 40px 20px;
+  padding: 30px 20px;
   position: absolute;
   transform: translateY(-120%);
   transition: transform 0.5s ease-out;
@@ -12,7 +11,7 @@
   z-index: 200;
 
   &.open {
-    transform: translateY(-15%);
+    transform: translateY(0%);
   }
 
   & .Logo {

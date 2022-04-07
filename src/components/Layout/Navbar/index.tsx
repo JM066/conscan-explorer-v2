@@ -43,7 +43,7 @@ function Navbar() {
             selectLanguage={selectLanguage}
           />
         ) : (
-          <div className={styles.NavbarMobile}>
+          <div className={isDropdownOpen ? styles.MenuDown : styles.MenuUp}>
             <MenuDrawer open={isDropdownOpen} />
             <MenuToggle toggleClick={handleDropdown} />
             {isDropdownOpen && (

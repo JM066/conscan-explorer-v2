@@ -9,9 +9,9 @@ import ArrowUp from "@/assets/icons/arrow-up.svg";
 import styles from "./MenuDrawer.module.scss";
 
 function MenuDrawer({ open }: { open: boolean }) {
-  const [mainToggle, setMainToggle] = useToggle(true);
-  const [contractToggle, setContractToggle] = useToggle(true);
-  const [languageToggle, setLanguageToggle] = useToggle(true);
+  const [mainToggle, setMainToggle] = useToggle(false);
+  const [contractToggle, setContractToggle] = useToggle(false);
+  const [languageToggle, setLanguageToggle] = useToggle(false);
   return (
     <div className={classNames(styles.MenuDrawer, { [styles.open]: open })}>
       <div className={styles.Logo}>

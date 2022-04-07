@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import useStore from "@/store/store";
 import ContractDescription from "./ContractDescription";
 import ContractTxnsTab from "./ContractTxnsTab";
@@ -16,6 +16,7 @@ import { toCapitalize } from "@/helpers/index";
 
 import { contractData, TxnActivityDataType } from "@/types/index";
 import styles from "./ContractDetails.module.scss";
+import useWidthDetect from "@/hooks/useWidthDetect";
 
 interface Props {
   contracts: contractData;
@@ -26,22 +27,11 @@ interface Props {
 function ContractDetails({ contracts, contractName, txnsList }: Props) {
   const [activeTab, setActiveTab] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(txnsList[0]?.id);
-  const [size, setSize] = useState<number | undefined>(0);
-  const isMobile = useStore((state) => state.isMobile);
   const refWidth = useRef<HTMLDivElement>(null);
+  const size = useWidthDetect(refWidth);
 
-  useLayoutEffect(() => {
-    const { current } = refWidth;
-    function getTableWidth() {
-      const tableWidth = current?.offsetWidth;
-      setSize(tableWidth);
-    }
-    current?.addEventListener("resize", getTableWidth);
-    getTableWidth();
-    return () => {
-      current?.removeEventListener("resize", getTableWidth);
-    };
-  }, []);
+  const isMobile = useStore((state) => state.isMobile);
+
   const { listOfTransactions, loadingTransactionsList } =
     useFilteredTransactionList("contract", contractName, currentPage);
 

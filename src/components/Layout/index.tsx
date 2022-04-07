@@ -1,5 +1,5 @@
 import React from "react";
-import useStore from "@/store/store";
+
 import classNames from "classnames";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -8,7 +8,7 @@ import Disconnected from "../Disconnected";
 import PageContainer from "./PageContainer";
 
 import useLatestBlocksData from "@/hooks/useChannelHash";
-
+import hasMounted from "@/hooks/useHasMounted";
 import styles from "./Layout.module.scss";
 
 interface Layout {
@@ -17,10 +17,11 @@ interface Layout {
 
 function Layout({ children }: Layout) {
   const { channelHash, loadingChannelHash } = useLatestBlocksData();
-  const isMobile = useStore((state) => state.isMobile);
+  const isWindow = hasMounted();
+
   return (
     <div className={classNames(styles.Layout)}>
-      {isMobile ? <Navbar /> : <Navbar />}
+      {isWindow && <Navbar />}
       <div className={styles.AppWidth}>
         <PageContainer>
           {loadingChannelHash ? (
@@ -32,7 +33,7 @@ function Layout({ children }: Layout) {
           )}
         </PageContainer>
       </div>
-      <Footer />
+      {isWindow && <Footer />}
     </div>
   );
 }
