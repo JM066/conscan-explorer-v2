@@ -7,6 +7,7 @@ import Logo from "@/assets/icons/conunLogoFooter.svg";
 import styles from "./Footer.module.scss";
 
 function Footer() {
+  console.log("window", window.innerWidth);
   const isMobile = useStore((state) => state.isMobile);
   return (
     <div className={styles.FooterPage}>
