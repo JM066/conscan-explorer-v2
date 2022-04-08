@@ -1,8 +1,10 @@
 .Menu {
   align-items: flex-start;
+  align-items: center;
   display: flex;
   height: 80px;
-  padding-right: 1rem;
+  justify-content: space-between;
+  width: 300px;
 
   & .Link {
     color: var(--conun-blue);

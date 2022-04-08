@@ -25,7 +25,7 @@ function DetailRow({ title, path, children }: Props) {
             <div className={styles.Partition}>|</div>
           </HStack>
         </div>
-        {children && (
+        {children && path ? (
           <Button
             variant="ghost"
             onClick={() => path && route.replace(path)}
@@ -33,6 +33,8 @@ function DetailRow({ title, path, children }: Props) {
           >
             {children}
           </Button>
+        ) : (
+          <div className={styles.Description}>{children}</div>
         )}
       </Cell>
     </Row>

@@ -9,10 +9,12 @@
     flex-direction: row;
     justify-content: space-between;
     margin: 0 auto;
-    width: 90%;
+    width: 80%;
+    @media only screen and (max-width: 1024px) {
+      width: 90%;
+    }
 
     & .Logo {
-      margin-left: 1rem;
       width: 10rem;
     }
   }

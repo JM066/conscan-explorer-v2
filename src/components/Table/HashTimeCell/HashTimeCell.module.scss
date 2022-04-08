@@ -1,5 +1,6 @@
 .HashCell {
   align-items: flex-start;
+  font-size: 1rem;
 
   & .Wrapper {
     margin-left: 10px;
@@ -17,7 +18,7 @@
     }
 
     & .Time {
-      font-size: 0.7rem;
+      font-size: 0.85rem;
       font-weight: 500;
     }
   }

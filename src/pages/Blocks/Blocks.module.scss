@@ -31,7 +31,7 @@
 
           & .HashCell {
             color: var(--grey-text);
-            width: 500px;
+            min-width: 538px;
           }
         }
       }
@@ -48,7 +48,7 @@
           & .RowContainer {
             & .HashCell {
               color: var(--grey-text);
-              width: 0;
+              min-width: 150px;
             }
 
             & .TxnsNumCell {

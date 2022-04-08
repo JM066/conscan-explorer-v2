@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import useStore from "@/store/store";
-import classNames from "classnames";
 import MobileTableHeader from "@/components/MobileTableHeader";
 import Table from "@/components/Table";
 import Row from "@/components/Table/Row";
@@ -27,7 +27,7 @@ function Blocks({ channelHash, latestBlocks }: Props) {
     latestBlocks[0].blocknum
   );
   const isMobile = useStore((state) => state.isMobile);
-
+  const router = useRouter();
   const { activeData, isLoading, isError } = useActivityData(
     channelHash,
     currentPage,
@@ -88,22 +88,26 @@ function Blocks({ channelHash, latestBlocks }: Props) {
                 return (
                   <Row key={block.blocknum} className={styles.RowContainer}>
                     <Cell className={styles.BlockNumCell}>
-                      <Button link={`/blocks/${block.blocknum}`}>
+                      <Button link={`/blocks/${block?.blocknum}`}>
                         <p>{block.blocknum}</p>
                       </Button>
                     </Cell>
 
-                    <HashTimeCell
-                      identicon
-                      className={classNames(!isMobile && styles.HashCell)}
-                      variant="grey"
-                      hash={block.blockhash}
-                      time={block.createdt}
-                      idString={block.blocknum}
-                      link={`/blocks/${block.blocknum}`}
-                      hashLeft={isMobile ? 8 : 0}
-                      hashRight={isMobile ? 5 : 0}
-                    />
+                    <Button
+                      variant="ghost"
+                      onClick={() => router.push(`/blocks/${block?.blocknum}`)}
+                    >
+                      <HashTimeCell
+                        identicon
+                        className={styles.HashCell}
+                        variant="grey"
+                        hash={block.blockhash}
+                        time={block.createdt}
+                        idString={block.blocknum}
+                        hashLeft={isMobile ? 8 : 0}
+                        hashRight={isMobile ? 5 : 0}
+                      />
+                    </Button>
 
                     {isMobile ? (
                       <div className={styles.TxnsNumCell}>{block.txcount}</div>
