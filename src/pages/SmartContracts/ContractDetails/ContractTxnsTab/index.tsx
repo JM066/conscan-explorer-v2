@@ -25,7 +25,6 @@ function ContractTxnsTab({ txns }: Props) {
             variant="green"
             hash={txns.txhash}
             time={txns.createdt}
-            // link={`/txns/${txns.txhash}`}
             idString={txns.id}
             hashLeft={isMobile ? 5 : 15}
             hashRight={isMobile ? 5 : 15}

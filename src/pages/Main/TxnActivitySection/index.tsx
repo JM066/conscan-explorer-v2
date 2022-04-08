@@ -44,7 +44,7 @@ function TxnActivitySection({ channelHash }: { channelHash: string }) {
                 <Button
                   variant="ghost"
                   className={styles.TxnsCell}
-                  onClick={() => router.push(`/txns/${txns?.id}`)}
+                  onClick={() => router.push(`/txns/${txns?.txhash}`)}
                 >
                   <ContractIcon contractName={txns?.chaincodename} />
                   <HashTimeCell
@@ -55,7 +55,6 @@ function TxnActivitySection({ channelHash }: { channelHash: string }) {
                     hashLeft={isMobile ? 5 : 8}
                     hashRight={isMobile ? 4 : 8}
                     idString={txns.id}
-                    // link={`/txns/`}
                     className={styles.HashCell}
                   />
                   <FromToTxnCell

@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import useStore from "@/store/store";
 import ContractDescription from "./ContractDescription";
 import ContractTxnsTab from "./ContractTxnsTab";
-import CodeSnippetTab from "./CodeSnippetTab";
+import CodeSnippetTab from "@/components/CodeSnippetTab";
 import VStack from "@/components/VStack";
 import Box from "@/components/Box";
 import Pagination from "@/components/Pagination";
@@ -11,12 +11,12 @@ import Table from "@/components/Table";
 import SkeletonTable from "@/components/SkeletonTable";
 
 import useFilteredTransactionList from "@/hooks/useFilteredTransactionList";
+import useWidthDetect from "@/hooks/useWidthDetect";
 
 import { toCapitalize } from "@/helpers/index";
 
 import { contractData, TxnActivityDataType } from "@/types/index";
 import styles from "./ContractDetails.module.scss";
-import useWidthDetect from "@/hooks/useWidthDetect";
 
 interface Props {
   contracts: contractData;
@@ -29,8 +29,13 @@ function ContractDetails({ contracts, contractName, txnsList }: Props) {
   const [currentPage, setCurrentPage] = useState<number>(txnsList[0]?.id);
   const refWidth = useRef<HTMLDivElement>(null);
   const size = useWidthDetect(refWidth);
-
   const isMobile = useStore((state) => state.isMobile);
+
+  const TABS_ITEMS = [
+    { tabId: "desc", label: "Description" },
+    { tabId: "txns", label: "Transactions" },
+    { tabId: "code", label: "Code" },
+  ];
 
   const { listOfTransactions, loadingTransactionsList } =
     useFilteredTransactionList("contract", contractName, currentPage);
@@ -84,7 +89,12 @@ function ContractDetails({ contracts, contractName, txnsList }: Props) {
   if (activeTab === "code") {
     loadTabData = (
       <Table scrollable>
-        <CodeSnippetTab tableWidth={size} contractName={contractName} />
+        {contractFound && (
+          <CodeSnippetTab
+            tableWidth={size}
+            contractName={contractFound.chaincodename}
+          />
+        )}
       </Table>
     );
   }
@@ -103,7 +113,12 @@ function ContractDetails({ contracts, contractName, txnsList }: Props) {
           <ContractDescription contract={contractFound} />
         )}
         <Box className={styles.TableHeader} position="start">
-          <Tabs setActiveTab={setActiveTab} activeTab={activeTab} />
+          <Tabs
+            walletPage={false}
+            setActiveTab={setActiveTab}
+            tabs={TABS_ITEMS}
+            activeTab={activeTab}
+          />
           {!isMobile && (
             <Pagination
               handleLatest={handleLatest}

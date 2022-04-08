@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from "react";
-import WalletDescription from "./WalletDescription";
-import QRCodeGenerator from "./QRCodeGenerator";
-import ContractTransactions from "../../SmartContracts/ContractDetails/ContractTxnsTab";
+import React, { useState, useEffect, useRef } from "react";
+import useStore from "@/store/store";
+import Address from "./Address";
+import WalletDescription from "./WalletDescription/";
+
+import ContractTxnsTab from "../../SmartContracts/ContractDetails/ContractTxnsTab";
 import VStack from "@/components/VStack";
-import CopyButton from "@/components/Button/CopyButton";
-import HStack from "@/components/HStack";
+
 import Box from "@/components/Box";
 import Table from "@/components/Table";
 import Tabs from "@/components/Tabs";
 import Pagination from "@/components/Pagination";
 import SkeletonTable from "@/components/SkeletonTable";
-
+import CodeSnippetTab from "@/components/CodeSnippetTab";
 import useWalletStatus from "@/hooks/useWalletStatus";
 import useFilteredTransactionList from "@/hooks/useFilteredTransactionList";
-
-import { FormatValue } from "@/helpers/index";
+import useWidthDetect from "@/hooks/useWidthDetect";
+import useHasMounted from "@/hooks/useHasMounted";
 import { TxnActivityDataType } from "@/types/index";
 
 import styles from "./WalletDetails.module.scss";
-import classNames from "classnames";
 
 interface Props {
   txnsList: Array<TxnActivityDataType>;
@@ -33,8 +33,16 @@ function WalletDetails({ txnsList, channelHash, walletAddress }: Props) {
 
   const [currentPage, setCurrentPage] = useState<number>(txnsList[0]?.id);
   const [activeTab, setActiveTab] = useState<string>("txns");
-  const [isCopied, setIsCopied] = useState<boolean>(false);
 
+  const isMobile = useStore((state) => state.isMobile);
+  const refWidth = useRef<HTMLDivElement>(null);
+  const size = useWidthDetect(refWidth);
+  const hasMounted = useHasMounted();
+  const TABS_ITEMS = [
+    { tabId: "details", label: "Details" },
+    { tabId: "txns", label: "Transactions" },
+    { tabId: "code", label: "Code" },
+  ];
   const { listOfTransactions, loadingTransactionsList } =
     useFilteredTransactionList("wallet", walletAddress, currentPage);
 
@@ -55,7 +63,48 @@ function WalletDetails({ txnsList, channelHash, walletAddress }: Props) {
   const handleNext = () => {
     setCurrentPage((prev) => prev - 5);
   };
-
+  let loadTabData;
+  if (activeTab === "txns") {
+    loadTabData = (
+      <Table>
+        {listOfTransactions?.map(
+          (transaction: TxnActivityDataType, index: number) => {
+            if (index < 5) {
+              return (
+                <ContractTxnsTab key={transaction.id} txns={transaction} />
+              );
+            }
+          }
+        )}
+        {isMobile && (
+          <Pagination
+            className={styles.MobilePagination}
+            handleLatest={handleLatest}
+            handlePrev={handlePrev}
+            handleNext={handleNext}
+          />
+        )}
+      </Table>
+    );
+  }
+  if (activeTab === "details") {
+    loadTabData = (
+      <Table className={styles.DetailsTab}>
+        <Address walletAddress={walletAddress} />
+        <WalletDescription
+          loading={isLoading}
+          walletStatus={walletStatus?.tx_count}
+        />
+      </Table>
+    );
+  }
+  if (activeTab === "code") {
+    loadTabData = (
+      <Table scrollable>
+        <CodeSnippetTab tableWidth={size} contractName="drive" />
+      </Table>
+    );
+  }
   return (
     <div className={styles.WalletPage}>
       <Box
@@ -64,89 +113,42 @@ function WalletDetails({ txnsList, channelHash, walletAddress }: Props) {
         goBackButton
         title="Wallet Details"
       />
-
-      <VStack className={styles.TableContainer}>
-        <div className={styles.WalletAddressContainer}>
-          <HStack className={styles.WalletAddress}>
-            <div className={styles.Title}>WALLET ADDRESS</div>
-            <HStack className={styles.DescriptionContainer}>
-              <div
-                className={classNames(styles.Address, {
-                  [styles.copied]: isCopied,
-                })}
-              >
-                {walletAddress}
-              </div>
-              <CopyButton
-                className={styles.Icon}
-                setIsCopied={setIsCopied}
-                textToCopy={walletAddress}
+      {hasMounted && (
+        <VStack className={styles.TableContainer}>
+          {!isMobile && (
+            <>
+              <Address walletAddress={walletAddress} />
+              <WalletDescription
+                loading={isLoading}
+                walletStatus={walletStatus?.tx_count}
               />
-              <QRCodeGenerator
-                walletQR={walletAddress}
-                className={styles.Icon}
-              />
-            </HStack>
-          </HStack>
-        </div>
-        {isLoading ? (
-          <HStack className={styles.Description}>
-            <WalletDescription
-              title="TOTAL TRANSACTIONS"
-              value={"loading..."}
-            />
-            <WalletDescription title="BALANCE" value={"loading..."} />
-            <WalletDescription title="CONX VALUE" value={"loading..."} />
-          </HStack>
-        ) : (
-          <HStack className={styles.Description}>
-            <WalletDescription
-              title="TOTAL TRANSACTIONS"
-              value={walletStatus[0]?.tx_count}
-            />
-            <WalletDescription
-              title="BALANCE"
-              value={`${FormatValue("500000000")} CONX`}
-            />
-            <WalletDescription
-              title="CONX VALUE"
-              value={`$${FormatValue("500000000")} (0.0000007344 ETH)`}
-            />
-          </HStack>
-        )}
-        <Box className={styles.TableHeader} position="start">
-          <Tabs setActiveTab={setActiveTab} activeTab={activeTab} />
-          <Pagination
-            handleLatest={handleLatest}
-            handlePrev={handlePrev}
-            handleNext={handleNext}
-          />
-        </Box>
-        <VStack>
-          {loadingTransactionsList || txnsList.length === 0 ? (
-            <SkeletonTable row={5} size="large" />
-          ) : (
-            <Table>
-              {activeTab === "txns" ? (
-                listOfTransactions?.map(
-                  (transaction: TxnActivityDataType, index: number) => {
-                    if (index < 5) {
-                      return (
-                        <ContractTransactions
-                          key={transaction.id}
-                          txns={transaction}
-                        />
-                      );
-                    }
-                  }
-                )
-              ) : (
-                <div>No Code Data</div>
-              )}
-            </Table>
+            </>
           )}
+
+          <div className={styles.TableHeader}>
+            <Tabs
+              walletPage
+              setActiveTab={setActiveTab}
+              tabs={TABS_ITEMS}
+              activeTab={activeTab}
+            />
+            {!isMobile && (
+              <Pagination
+                handleLatest={handleLatest}
+                handlePrev={handlePrev}
+                handleNext={handleNext}
+              />
+            )}
+          </div>
+          <div className={styles.WalletDetailContainer} ref={refWidth}>
+            {loadingTransactionsList ? (
+              <SkeletonTable size="large" row={5} />
+            ) : (
+              loadTabData
+            )}
+          </div>
         </VStack>
-      </VStack>
+      )}
     </div>
   );
 }

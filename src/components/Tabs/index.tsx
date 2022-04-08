@@ -3,29 +3,29 @@ import useStore from "@/store/store";
 import classNames from "classnames";
 import HStack from "@/components/HStack";
 import Button from "@/components/Button";
-
+import { ObjectType } from "@/types/index";
 import styles from "./Tabs.module.scss";
 
-const TABSARR = [
-  { tabId: "desc", label: "DESCRIPTION" },
-  { tabId: "txns", label: "TRANSACTIONS" },
-  { tabId: "code", label: "CODE" },
-];
-
 interface Props {
+  walletPage: boolean;
   activeTab: string;
+  tabs: ObjectType[];
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function Tabs({ activeTab, setActiveTab }: Props) {
+function Tabs({ tabs, activeTab, setActiveTab, walletPage }: Props) {
   const isMobile = useStore((state) => state.isMobile);
-  const tabs = TABSARR.slice(isMobile ? 0 : 1);
+  const tabsCopy = tabs.slice(isMobile ? 0 : 1);
   useEffect(() => {
-    setActiveTab(isMobile ? "desc" : "txns");
+    if (walletPage) {
+      setActiveTab(isMobile ? "details" : "txns");
+    } else {
+      setActiveTab(isMobile ? "desc" : "txns");
+    }
   }, []);
   return (
     <HStack className={styles.TabContainer}>
-      {tabs.map((tab, index) => (
+      {tabsCopy.map((tab, index) => (
         <Button
           variant="ghost"
           key={index}
