@@ -23,34 +23,24 @@ interface Props {
   latestBlocks: BlockActivityDataType[];
 }
 function Blocks({ channelHash, latestBlocks }: Props) {
-  const [currentPage, setCurrentPage] = useState<number>(
-    latestBlocks[0].blocknum
+  const [page, setPage] = useState<string>(
+    localStorage.getItem("page") || latestBlocks[0].blocknum.toString()
   );
   const isMobile = useStore((state) => state.isMobile);
+
   const router = useRouter();
   const { activeData, isLoading, isError } = useActivityData(
     channelHash,
-    currentPage,
+    page,
     "blockActivity"
   );
 
-  const handleNext = () => {
-    if (currentPage >= 10) {
-      setCurrentPage((prev) => Math.max(prev - 10, 1));
-    }
-  };
-  const handlePrev = () => {
-    if (currentPage < latestBlocks[0].blocknum) {
-      setCurrentPage((prev) => Math.min(prev + 10, latestBlocks[0].blocknum));
-    }
-  };
-
-  const handleLatest = () => {
-    setCurrentPage(latestBlocks[0].blocknum);
-  };
-
-  const handleOldest = () => {
-    setCurrentPage(latestBlocks[0].blocknum % 10);
+  const navigation = {
+    initial: Number(page),
+    prevSteps: 10,
+    nextSteps: 10,
+    latestPage: latestBlocks[0].blocknum,
+    oldestPage: latestBlocks[0].blocknum % 10,
   };
 
   return (
@@ -69,12 +59,10 @@ function Blocks({ channelHash, latestBlocks }: Props) {
             title="Recent Blocks"
           >
             <Pagination
+              setPage={setPage}
               isMobile={isMobile}
               className={styles.PaginationButtons}
-              handleLatest={handleLatest}
-              handleOldest={handleOldest}
-              handlePrev={handlePrev}
-              handleNext={handleNext}
+              navigation={navigation}
             />
           </Box>
         )}
@@ -123,10 +111,9 @@ function Blocks({ channelHash, latestBlocks }: Props) {
               {isMobile && (
                 <Pagination
                   className={styles.MobilePaginationButtons}
-                  handleLatest={handleLatest}
-                  handleOldest={handleOldest}
-                  handlePrev={handlePrev}
-                  handleNext={handleNext}
+                  setPage={setPage}
+                  isMobile={isMobile}
+                  navigation={navigation}
                 />
               )}
             </Table>

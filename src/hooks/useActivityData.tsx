@@ -4,7 +4,7 @@ import instance from "../axios/instance";
 
 function useActivityData(
   channelHash: string,
-  pageNum: number,
+  pageNum: string,
   dataName: string
 ) {
   const {
