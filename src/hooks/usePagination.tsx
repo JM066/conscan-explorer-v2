@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { PageControl } from "@/types/index";
+import { Navigation } from "@/types/index";
 
 function usePagination({
   initial,
@@ -8,10 +8,10 @@ function usePagination({
   nextSteps,
   latestPage,
   oldestPage,
-}: PageControl) {
+}: Navigation) {
   const [current, setCurrent] = useState<number>(initial);
   useEffect(() => {
-    localStorage.setItem("page", current.toString());
+    localStorage.setItem("page", current?.toString());
 
     return () => {
       localStorage.setItem("page", latestPage.toString());

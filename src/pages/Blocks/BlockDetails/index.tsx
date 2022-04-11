@@ -3,7 +3,7 @@ import useStore from "@/store/store";
 import Box from "@/components/Box/index";
 import Button from "@/components/Button/index";
 import VStack from "@/components/VStack";
-import Pagination from "@/components/Pagination";
+// import Pagination from "@/components/Pagination";
 import SkeletonTable from "@/components/SkeletonTable";
 import DetailRow from "@/components/Table/DetailRow/index";
 import Table from "@/components/Table";
@@ -39,18 +39,18 @@ function BlockDetails({
     setPage(blockNum);
   }, [blockNum]);
 
-  const handlePrev = () => {
-    const blockNumber = Math.min(
-      dataDetails?.data?.blocknum + 1,
-      Number(channelStatistics?.blocks - 1)
-    );
-    setPage(blockNumber.toString());
-  };
+  // const handlePrev = () => {
+  //   const blockNumber = Math.min(
+  //     dataDetails?.data?.blocknum + 1,
+  //     Number(channelStatistics?.blocks - 1)
+  //   );
+  //   setPage(blockNumber.toString());
+  // };
 
-  const handleNext = () => {
-    const blockNumber = Math.max(dataDetails?.data?.blocknum - 1, 0);
-    setPage(blockNumber.toString());
-  };
+  // const handleNext = () => {
+  //   const blockNumber = Math.max(dataDetails?.data?.blocknum - 1, 0);
+  //   setPage(blockNumber.toString());
+  // };
   return (
     <div className={styles.BlockDetailsPage}>
       <div className={styles.BlockDataSection}>
@@ -61,13 +61,13 @@ function BlockDetails({
           goBackButton={isMobile ? false : true}
           title="Blocks Details"
         >
-          {isMobile && (
+          {/* {isMobile && (
             <Pagination
               isMobile={isMobile}
               handlePrev={handlePrev}
               handleNext={handleNext}
             />
-          )}
+          )} */}
         </Box>
 
         <VStack className={styles.Table}>

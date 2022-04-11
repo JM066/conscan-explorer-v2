@@ -32,6 +32,7 @@ function TransactionDetails({
   channelHash: string;
 }) {
   const [page, setPage] = useState(txnHash);
+
   const { isLoading, dataDetails } = useActivityDetailsData(
     channelHash,
     page,
@@ -100,7 +101,9 @@ function TransactionDetails({
           )}
         </VStack>
       </div>
+
       {!isMobile && (
+        //Need new API for this pagination
         <div className={styles.BlueVerticalBar}>
           <div className={styles.ButtonContainer}>
             <Button variant="ghost">

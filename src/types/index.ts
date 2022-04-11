@@ -73,13 +73,6 @@ export type BlockDetail = {
   txhash: String[];
 };
 
-export type PageControl = {
-  initial: number;
-  prevSteps: number;
-  nextSteps: number;
-  latestPage: number;
-  oldestPage: number;
-};
 export type Navigation = {
   initial: number;
   prevSteps: number;
