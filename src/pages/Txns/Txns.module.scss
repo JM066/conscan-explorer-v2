@@ -39,8 +39,8 @@
             gap: 2px;
           }
 
-          & .FromToTxnCell {
-            max-width: 105px;
+          & .HashCell {
+            min-width: 300px;
           }
         }
       }
@@ -56,6 +56,12 @@
 
         & .Table {
           width: 90%;
+
+          & .RowContainer {
+            & .HashCell {
+              min-width: 110px;
+            }
+          }
 
           & .MobilePaginationButtons {
             justify-content: flex-end;

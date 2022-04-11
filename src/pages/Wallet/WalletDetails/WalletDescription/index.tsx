@@ -1,18 +1,31 @@
-import VStack from "@/components/VStack";
+import DescriptionCell from "./DescriptionCell";
 import HStack from "@/components/HStack";
+import { FormatValue } from "@/helpers/index";
 import styles from "./WalletDescription.module.scss";
+
 interface Props {
-  title: string;
-  value: string;
+  walletStatus: string;
+  loading: boolean;
 }
-function WalletDescription({ title, value }: Props) {
+function WalletDescription({ walletStatus, loading }: Props) {
+  if (loading) {
+    <HStack className={styles.Description}>
+      <DescriptionCell title="TOTAL TRANSACTIONS" value={"loading..."} />
+      <DescriptionCell title="BALANCE" value={"loading..."} />
+      <DescriptionCell title="CONX VALUE" value={"loading..."} />
+    </HStack>;
+  }
   return (
-    <HStack className={styles.WalletDescriptionContainer}>
-      <div className={styles.Partition}>|</div>
-      <VStack className={styles.WalletDescription}>
-        <div>{title}</div>
-        <div>{value}</div>
-      </VStack>
+    <HStack className={styles.Description}>
+      <DescriptionCell title="TOTAL TRANSACTIONS" value={walletStatus} />
+      <DescriptionCell
+        title="BALANCE"
+        value={`${FormatValue("500000000")} CONX`}
+      />
+      <DescriptionCell
+        title="CONX VALUE"
+        value={`$${FormatValue("500000000")} (0.0000007344 ETH)`}
+      />
     </HStack>
   );
 }

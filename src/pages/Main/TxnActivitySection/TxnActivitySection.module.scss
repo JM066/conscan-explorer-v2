@@ -25,9 +25,18 @@
     & .RowContainer {
       width: 100%;
 
-      & .ContractButton {
-        align-items: flex-start;
-        width: 20px;
+      & .TxnsCell {
+        align-items: center;
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+
+        & .HashCell {
+          min-width: 180px;
+          @media only screen and (max-width: 1024px) {
+            min-width: 106px;
+          }
+        }
       }
     }
   }

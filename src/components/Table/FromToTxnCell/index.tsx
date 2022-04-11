@@ -12,18 +12,26 @@ interface Props {
   leftHash: number;
   rightHash: number;
   className?: string;
+  isMobile?: boolean;
 }
 
-function FromToTxnCell({ from, to, leftHash, rightHash, className }: Props) {
+function FromToTxnCell({
+  from,
+  to,
+  leftHash,
+  rightHash,
+  className,
+  isMobile,
+}: Props) {
   return (
     <Cell className={classNames(styles.HashCell, className)}>
       <Wrapper className={styles.Wrapper}>
         <div className={styles.HashBox}>
-          <div className={styles.HashTitleBox}>FROM:</div>
+          {!isMobile && <div className={styles.HashTitleBox}>FROM:</div>}
           <div>{getReducedHash(from, leftHash, rightHash)}</div>
         </div>
         <div className={styles.HashBox}>
-          <div className={styles.HashTitleBox}>TO:</div>
+          {!isMobile && <div className={styles.HashTitleBox}>TO:</div>}
           <div>{getReducedHash(to, leftHash, rightHash)}</div>
         </div>
       </Wrapper>

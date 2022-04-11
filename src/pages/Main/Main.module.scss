@@ -9,10 +9,12 @@
   & .SubStatsTop {
     flex-direction: row wrap;
     gap: var(--gap);
+    width: 100%;
   }
 
   & .SubStatsBottom {
     flex-direction: row wrap;
     gap: var(--gap);
+    width: 100%;
   }
 }

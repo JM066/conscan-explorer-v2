@@ -26,11 +26,10 @@ function HashTimeCell({
   identicon,
   variant = "dark-grey",
   className,
-  link,
 }: Props) {
   return (
     <Cell className={classNames(styles.HashCell, className)}>
-      {identicon && <IdenticonLink idString={idString} link={link} />}
+      {identicon && <IdenticonLink idString={idString} />}
       <Wrapper className={styles.Wrapper}>
         <div className={styles[variant]}>
           {getReducedHash(hash, hashLeft, hashRight)}

@@ -2,9 +2,23 @@
   font-size: 0.8rem;
   width: 100%;
 
-  & .NumberCell {
-    align-items: flex-start;
-    color: var(--green-dark);
-    font-weight: 600;
+  & .BoxCell {
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+
+    & .NumberCell {
+      color: var(--green-dark);
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    & .HashCell {
+      min-width: 300px;
+      @media only screen and (max-width: 1024px) {
+        min-width: 0;
+      }
+    }
   }
 }

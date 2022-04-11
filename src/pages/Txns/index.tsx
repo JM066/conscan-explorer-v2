@@ -1,15 +1,14 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import useStore from "@/store/store";
 import Table from "@/components/Table";
 import Row from "@/components/Table/Row";
 import Box from "@/components/Box";
-import Cell from "@/components/Table/Cell";
 import MobileTableHeader from "@/components/MobileTableHeader";
 import VStack from "@/components/VStack/index";
 import Pagination from "@/components/Pagination";
 import SkeletonTable from "@/components/SkeletonTable";
 import Button from "@/components/Button";
-import IdenticonLink from "@/components/IdenticonLink";
 import HashTimeCell from "@/components/Table/HashTimeCell";
 import FromToTxnCell from "@/components/Table/FromToTxnCell";
 import ActionCell from "@/components/Table/ActionCell";
@@ -30,7 +29,7 @@ function Txns({ channelHash, latestTxns }: Props) {
   const channelStatistics = useChannelStatistics(channelHash);
   const [currentPage, setCurrentPage] = useState<number>(latestTxns[0].id);
   const isMobile = useStore((state) => state.isMobile);
-
+  const router = useRouter();
   const { activeData, isLoading, isError } = useActivityData(
     channelHash,
     currentPage,
@@ -96,30 +95,34 @@ function Txns({ channelHash, latestTxns }: Props) {
                     fullLength={isMobile ? false : true}
                   >
                     <Button
-                      link={`/txns/${txns.txhash}`}
+                      variant="ghost"
+                      onClick={() => router.push(`/txns/${txns.txhash}`)}
                       className={styles.CellIcon}
                     >
                       <ContractIcon contractName={txns?.chaincodename} />
                     </Button>
-                    <Cell>
-                      <IdenticonLink
-                        idString={txns.id}
-                        link={`/txns/${txns.txhash}`}
-                      />
+                    <Button
+                      variant="ghost"
+                      className={styles.HashCell}
+                      onClick={() => router.push(`/txns/${txns.txhash}`)}
+                    >
                       <HashTimeCell
                         variant="green"
+                        identicon
+                        idString={txns.id}
                         hash={txns.txhash}
                         time={txns.createdt}
                         hashLeft={isMobile ? 5 : 15}
                         hashRight={isMobile ? 4 : 15}
                       />
-                    </Cell>
+                    </Button>
 
                     <FromToTxnCell
                       from={txns.tx_from}
                       to={txns.tx_to}
                       leftHash={isMobile ? 6 : 15}
                       rightHash={isMobile ? 4 : 15}
+                      isMobile={isMobile}
                     />
                     <ActionCell
                       isMobile={isMobile}

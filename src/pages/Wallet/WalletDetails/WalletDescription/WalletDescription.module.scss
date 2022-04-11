@@ -1,22 +1,7 @@
-.WalletDescriptionContainer {
-  gap: 10px;
-
-  & .Partition {
-    color: var(--red);
-    font-weight: 600;
-  }
-
-  & .WalletDescription {
-    align-items: flex-start;
-
-    & div {
-      &:first-child {
-        font-weight: 500;
-      }
-
-      &:last-child {
-        color: #bdbdbd;
-      }
-    }
-  }
+.Description {
+  border-radius: 15px;
+  box-shadow: inset -2px -2px 3px rgb(237 237 237 / 75%),
+    inset 2px 2px 5px rgb(171 171 171 / 75%);
+  padding: 14px 30px;
+  width: 100%;
 }

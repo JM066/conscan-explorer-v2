@@ -8,7 +8,7 @@ function useWalletStatus(channelHash: string, walletAddress: string) {
       const response = await instance.get(
         `/status/userActivity/${channelHash}/${walletAddress}`
       );
-      return response.data.row;
+      return response.data.row[0];
     }
   );
   return {

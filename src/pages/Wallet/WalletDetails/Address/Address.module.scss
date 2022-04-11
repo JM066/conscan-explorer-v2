@@ -1,0 +1,53 @@
+.WalletAddress {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-size: 1.2rem;
+  padding: 10px;
+
+  & .Title {
+    font-size: 1.4rem;
+  }
+
+  & .DescriptionContainer {
+    align-items: center;
+    color: #828282;
+    gap: 5px;
+
+    & .Address {
+      border: 0.5px solid transparent;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      padding: 5px 10px;
+
+      &.copied {
+        border: 0.5px solid var(--grey-light);
+      }
+    }
+
+    & .Icon {
+      height: 22.15px;
+      width: 22.15px;
+
+      &:hover {
+        border: 2px solid #6fb0e8;
+        border-radius: 50%;
+        box-shadow: 0 2px 3px rgb(171 171 171 / 60%);
+      }
+    }
+  }
+}
+@media only screen and (max-width: 800px) {
+  .WalletAddress {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2rem;
+    padding: 10px;
+
+    & .Title {
+      font-size: 1.4rem;
+      width: 100%;
+    }
+  }
+}

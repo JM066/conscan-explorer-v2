@@ -25,18 +25,18 @@ function Pagination({
 }: Props) {
   return (
     <div className={classNames(styles.PaginationButtons, className)}>
-      <Button variant="ghost">
-        <FastForward onClick={handleLatest} />
+      <Button variant="ghost" onClick={handleLatest}>
+        <FastForward />
       </Button>
-      <Button variant="ghost">
-        <Prev onClick={handlePrev} />
+      <Button variant="ghost" onClick={handlePrev}>
+        <Prev />
       </Button>
-      <Button variant="ghost">
-        <Next onClick={handleNext} />
+      <Button variant="ghost" onClick={handleNext}>
+        <Next />
       </Button>
       {handleOldest && (
-        <Button variant="ghost">
-          <Rewind onClick={handleOldest} />
+        <Button variant="ghost" onClick={handleOldest}>
+          <Rewind />
         </Button>
       )}
     </div>
