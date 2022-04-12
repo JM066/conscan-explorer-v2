@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import useStore from "@/store/store";
+import { useRouter } from "next/router";
 import Box from "@/components/Box/index";
 import Button from "@/components/Button/index";
 import VStack from "@/components/VStack";
-// import Pagination from "@/components/Pagination";
 import SkeletonTable from "@/components/SkeletonTable";
 import DetailRow from "@/components/Table/DetailRow/index";
 import Table from "@/components/Table";
@@ -15,6 +15,8 @@ import { getTimeDistance, getLocalTime } from "@/helpers/index";
 
 import NextUpwards from "@/assets/icons/next-upwards.svg";
 import PreviousDownwards from "@/assets/icons/previous-downwards.svg";
+import Next from "@/assets/icons/next.svg";
+import Prev from "@/assets/icons/prev.svg";
 
 import styles from "./BlockDetails.module.scss";
 
@@ -26,6 +28,7 @@ function BlockDetails({
   channelHash: string;
 }) {
   const [page, setPage] = useState(blockNum);
+
   const isMobile = useStore((state) => state.isMobile);
   const channelStatistics = useChannelStatistics(channelHash);
 
@@ -34,23 +37,32 @@ function BlockDetails({
     page,
     "block/transactions"
   );
+  const router = useRouter();
 
   useEffect(() => {
     setPage(blockNum);
   }, [blockNum]);
 
-  // const handlePrev = () => {
-  //   const blockNumber = Math.min(
-  //     dataDetails?.data?.blocknum + 1,
-  //     Number(channelStatistics?.blocks - 1)
-  //   );
-  //   setPage(blockNumber.toString());
-  // };
+  const handleNext = () => {
+    const blockNumber = Math.min(
+      dataDetails?.data?.blocknum + 1,
+      Number(channelStatistics?.blocks - 1)
+    );
+    router.push({
+      pathname: "/blocks/[blockNum]",
+      query: { blockNum: blockNumber },
+    });
+    setPage(blockNumber.toString());
+  };
 
-  // const handleNext = () => {
-  //   const blockNumber = Math.max(dataDetails?.data?.blocknum - 1, 0);
-  //   setPage(blockNumber.toString());
-  // };
+  const handlePrev = () => {
+    const blockNumber = Math.max(dataDetails?.data?.blocknum - 1, 0);
+    router.push({
+      pathname: "/blocks/[blockNum]",
+      query: { blockNum: blockNumber },
+    });
+    setPage(blockNumber.toString());
+  };
   return (
     <div className={styles.BlockDetailsPage}>
       <div className={styles.BlockDataSection}>
@@ -61,13 +73,16 @@ function BlockDetails({
           goBackButton={isMobile ? false : true}
           title="Blocks Details"
         >
-          {/* {isMobile && (
-            <Pagination
-              isMobile={isMobile}
-              handlePrev={handlePrev}
-              handleNext={handleNext}
-            />
-          )} */}
+          {isMobile && (
+            <div className={styles.MobilePagination}>
+              <Button variant="ghost" onClick={handleNext}>
+                <Next />
+              </Button>
+              <Button variant="ghost" onClick={handlePrev}>
+                <Prev />
+              </Button>
+            </div>
+          )}
         </Box>
 
         <VStack className={styles.Table}>
@@ -103,28 +118,10 @@ function BlockDetails({
       {!isMobile && (
         <div className={styles.BlueVerticalBar}>
           <div className={styles.ButtonContainer}>
-            <Button
-              variant="ghost"
-              onClick={() => {
-                const blockNumber = Math.min(
-                  dataDetails?.data?.blocknum + 1,
-                  Number(channelStatistics?.blocks - 1)
-                );
-                setPage(blockNumber.toString());
-              }}
-            >
+            <Button variant="ghost" onClick={handleNext}>
               <NextUpwards />
             </Button>
-            <Button
-              variant="ghost"
-              onClick={() => {
-                const blockNumber = Math.max(
-                  dataDetails?.data?.blocknum - 1,
-                  0
-                );
-                setPage(blockNumber.toString());
-              }}
-            >
+            <Button variant="ghost" onClick={handlePrev}>
               <PreviousDownwards />
             </Button>
           </div>

@@ -13,24 +13,11 @@
       display: flex;
       justify-content: space-between;
       padding: 27px 70px 27px 39px;
-
-      @media only screen and (max-width: 1024px) {
-        padding: 24px 10px 10px 24px;
-      }
-
-      & .Title {
-        align-self: center;
-        font-size: 1.6rem;
-      }
     }
 
     & .Table {
       margin-bottom: 50px;
       margin-top: 30px;
-
-      @media only screen and (max-width: 1024px) {
-        margin-top: 0;
-      }
     }
   }
 
@@ -52,31 +39,20 @@
   }
 }
 
-.BlockDetails {
-  background-color: var(--foreground);
-  border-radius: var(--radius);
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  width: 100%;
+@media only screen and (max-width: 1024px) {
+  .BlockDetailsPage {
+    & .BlockDataSection {
+      & .TitleContainer {
+        padding: 24px 10px 10px 24px;
 
-  & .Spinner {
-    left: 50%;
-    position: absolute;
-    top: 50%;
-  }
+        & .MobilePagination {
+          display: flex;
+          gap: 10px;
+        }
+      }
 
-  & .BlockDataSection {
-    width: 100%;
-
-    & .TitleContainer {
-      display: flex;
-      justify-content: space-between;
-      padding: 28px 39px;
-
-      & .Title {
-        align-self: center;
-        font-size: 1.6rem;
+      & .Table {
+        margin-top: 0;
       }
     }
   }

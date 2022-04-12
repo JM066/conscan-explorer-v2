@@ -10,13 +10,17 @@ function usePagination({
   oldestPage,
 }: Navigation) {
   const [current, setCurrent] = useState<number>(initial);
+
   useEffect(() => {
     localStorage.setItem("page", current?.toString());
+  }, [current]);
 
+  useEffect(() => {
     return () => {
-      localStorage.setItem("page", latestPage.toString());
+      localStorage.removeItem("page");
     };
-  }, [current, latestPage]);
+  }, [latestPage]);
+
   const latest = () => {
     setCurrent(latestPage);
   };

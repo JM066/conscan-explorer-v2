@@ -83,7 +83,13 @@ function Blocks({ channelHash, latestBlocks }: Props) {
 
                     <Button
                       variant="ghost"
-                      onClick={() => router.push(`/blocks/${block?.blocknum}`)}
+                      onClick={() => {
+                        localStorage.setItem(
+                          "page",
+                          block?.blocknum.toString()
+                        );
+                        router.push(`/blocks/${block?.blocknum}`);
+                      }}
                     >
                       <HashTimeCell
                         identicon

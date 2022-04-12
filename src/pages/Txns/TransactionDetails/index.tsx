@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import classNames from "classnames";
 import useStore from "@/store/store";
 import ValidityIcon from "./ValidityIcon/index";
 
@@ -22,6 +21,9 @@ import {
 import NextUpwards from "@/assets/icons/next-upwards.svg";
 import PreviousDownwards from "@/assets/icons/previous-downwards.svg";
 import Contract from "@/assets/icons/conx-smart.svg";
+import Next from "@/assets/icons/next.svg";
+import Prev from "@/assets/icons/prev.svg";
+
 import styles from "./TransactionDetails.module.scss";
 
 function TransactionDetails({
@@ -42,7 +44,13 @@ function TransactionDetails({
   useEffect(() => {
     setPage(txnHash);
   }, [txnHash]);
+  const handleNext = () => {
+    // setPage(txnsHash);
+  };
 
+  const handlePrev = () => {
+    // setPage(txnsHash);
+  };
   return (
     <div className={styles.TxnsDetailsPage}>
       <div className={styles.TxnsDataSection}>
@@ -52,8 +60,19 @@ function TransactionDetails({
           className={styles.TitleContainer}
           goBackButton={isMobile ? false : true}
           title="Transaction Details"
-        />
-        <VStack className={classNames(styles.Table, {})}>
+        >
+          {isMobile && (
+            <div className={styles.MobilePagination}>
+              <Button variant="ghost" onClick={handleNext}>
+                <Next />
+              </Button>
+              <Button variant="ghost" onClick={handlePrev}>
+                <Prev />
+              </Button>
+            </div>
+          )}
+        </Box>
+        <VStack className={styles.Table}>
           {isLoading || dataDetails.error ? (
             <SkeletonTable loading={isLoading} row={9} />
           ) : (
@@ -103,13 +122,13 @@ function TransactionDetails({
       </div>
 
       {!isMobile && (
-        //Need new API for this pagination
+        //Need a new API for this pagination
         <div className={styles.BlueVerticalBar}>
           <div className={styles.ButtonContainer}>
-            <Button variant="ghost">
+            <Button variant="ghost" onClick={handleNext}>
               <NextUpwards />
             </Button>
-            <Button variant="ghost">
+            <Button variant="ghost" onClick={handlePrev}>
               <PreviousDownwards />
             </Button>
           </div>
