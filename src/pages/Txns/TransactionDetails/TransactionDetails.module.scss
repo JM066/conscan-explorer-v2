@@ -9,19 +9,14 @@
     width: 100%;
 
     & .TitleContainer {
+      display: flex;
+      justify-content: space-between;
       padding: 27px 70px 27px 39px;
-      @media only screen and (max-width: 1024px) {
-        padding: 24px 10px 10px 24px;
-      }
     }
 
     & .Table {
       margin-bottom: 50px;
       margin-top: 30px;
-
-      @media only screen and (max-width: 1024px) {
-        margin-top: 0;
-      }
 
       & .ContractIconContainer {
         align-items: center;
@@ -57,7 +52,21 @@
     }
   }
 }
+@media only screen and (max-width: 1024px) {
+  .TxnsDetailsPage {
+    & .TxnsDataSection {
+      & .TitleContainer {
+        padding: 24px 10px 10px 24px;
 
-.EmptyTitleBox {
-  padding: 22px 60px;
+        & .MobilePagination {
+          display: flex;
+          gap: 10px;
+        }
+      }
+
+      & .Table {
+        margin-top: 0;
+      }
+    }
+  }
 }

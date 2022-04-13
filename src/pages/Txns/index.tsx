@@ -13,7 +13,6 @@ import HashTimeCell from "@/components/Table/HashTimeCell";
 import FromToTxnCell from "@/components/Table/FromToTxnCell";
 import ActionCell from "@/components/Table/ActionCell";
 import ContractIcon from "@/components/ContractIcon";
-
 import useActivityData from "@/hooks/useActivityData";
 import useChannelStatistics from "@/hooks/useChannelStatistics";
 
@@ -26,35 +25,24 @@ interface Props {
 }
 
 function Txns({ channelHash, latestTxns }: Props) {
+  const [page, setPage] = useState<string>(
+    localStorage.getItem("page") || latestTxns[0].id.toString()
+  );
   const channelStatistics = useChannelStatistics(channelHash);
-  const [currentPage, setCurrentPage] = useState<number>(latestTxns[0].id);
   const isMobile = useStore((state) => state.isMobile);
   const router = useRouter();
   const { activeData, isLoading, isError } = useActivityData(
     channelHash,
-    currentPage,
+    page,
     "txActivity"
   );
-
   const numbsToSubtract = channelStatistics.txns - 10;
-
-  const handleNext = () => {
-    if (currentPage >= 10 && currentPage > latestTxns[0].id - numbsToSubtract) {
-      setCurrentPage((prev) => Math.max(prev - 10, 1));
-    }
-  };
-  const handlePrev = () => {
-    if (currentPage < latestTxns[0].id) {
-      setCurrentPage((prev) => Math.min(prev + 10, latestTxns[0].id));
-    }
-  };
-
-  const handleLatest = () => {
-    setCurrentPage(latestTxns[0].id);
-  };
-
-  const handleOldest = () => {
-    setCurrentPage(latestTxns[0].id - numbsToSubtract);
+  const navigation = {
+    initial: Number(page),
+    prevSteps: 10,
+    nextSteps: 10,
+    latestPage: latestTxns[0].id,
+    oldestPage: latestTxns[0].id - numbsToSubtract,
   };
 
   return (
@@ -73,11 +61,10 @@ function Txns({ channelHash, latestTxns }: Props) {
             title="Recent Transactions"
           >
             <Pagination
+              setPage={setPage}
+              isMobile={isMobile}
               className={styles.PaginationButtons}
-              handleLatest={handleLatest}
-              handleOldest={handleOldest}
-              handlePrev={handlePrev}
-              handleNext={handleNext}
+              navigation={navigation}
             />
           </Box>
         )}
@@ -136,10 +123,9 @@ function Txns({ channelHash, latestTxns }: Props) {
               {isMobile && (
                 <Pagination
                   className={styles.MobilePaginationButtons}
-                  handleLatest={handleLatest}
-                  handleOldest={handleOldest}
-                  handlePrev={handlePrev}
-                  handleNext={handleNext}
+                  setPage={setPage}
+                  isMobile={isMobile}
+                  navigation={navigation}
                 />
               )}
             </Table>
