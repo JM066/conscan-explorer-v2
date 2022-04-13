@@ -7,20 +7,22 @@ import Logo from "@/assets/icons/conunLogoFooter.svg";
 import styles from "./Footer.module.scss";
 
 function Footer() {
-  console.log("window", window.innerWidth);
   const isMobile = useStore((state) => state.isMobile);
+  const logoAndCopyRight = (
+    <div className={styles.LogoContainer}>
+      <Logo className={styles.Logo} />
+      <div className={styles.CopyRight}>
+        <div>© 2021 CONUN</div>
+        <div>Connecting on Universal Networks</div>
+      </div>
+      {isMobile && <div>CONSCAN V.2.0.0</div>}
+    </div>
+  );
+
   return (
     <div className={styles.FooterPage}>
       <div className={styles.FooterItems}>
-        {!isMobile && (
-          <div className={styles.LogoCell}>
-            <Logo className={styles.Logo} />
-            <div className={styles.CopyRightContainer}>
-              <div>2021 CONUN</div>
-              <div>Connecting on Universal Networks</div>
-            </div>
-          </div>
-        )}
+        {!isMobile && logoAndCopyRight}
         <div className={styles.CompanySection}>
           <div> Company</div>
           {COMPANY.map((company) => {
@@ -48,17 +50,10 @@ function Footer() {
             </Link>
           ))}
         </div>
-        {!isMobile && <div className={styles.Version}>CONSCAN V.2.0.0</div>}
+        {!isMobile && <div>CONSCAN V.2.0.0</div>}
       </div>
       {isMobile && (
-        <div className={styles.MobileContainer}>
-          <Logo className={styles.ConunLogo} />
-          <div className={styles.CopyRightContainer}>
-            <div>2021 CONUN</div>
-            <div>Connecting on Universal Networks</div>
-          </div>
-          <div className={styles.Version}>CONSCAN V.2.0.0</div>
-        </div>
+        <div className={styles.MobileContainer}>{logoAndCopyRight}</div>
       )}
     </div>
   );
